@@ -1,11 +1,14 @@
 language: ruby
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
 services:
   - postgresql
-bundler_args: --without development --deployment --jobs=3 --retry=3
+bundler_args: "--without development --deployment --jobs=3 --retry=3"
 cache: bundler
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
 script: bundle exec bin/rake spec
+
+env:
+  secure: "GAawl8yNLJdaOLncHoadGn7Vy57QUwLEB71FM6qzixNyv6wlsDRm73j2qNUc/uBKpKWdOoM39qtHL90xJf2KuHxGjbvqMMszf5uFs6e6A1GnTUK6eyhTdgu2Wz5cSFrszRuPxABAneUoCIalq1nE0KqRnRLOm2ORzAmjnuE6DLcYbe84XwHXbB9rGK+toJ5u9HAYU3FwxrfwaO8/fCTYKMH51XFdO3ektOBM+P9bY3m8HhUhAV7lbSa4jwnK0sUTrVpVZpigOxQTYAww4DR88JsYr3Ek+S1idwuJQo4/K3CMmyR75KhTv4aka/szpNaS+uQAPfT4s7q4lDjYH6hnokx5xfBoPeQcf++QYN6A8cX95bDOE3D+FDcneAfLbnBb0VP0BuIC4UniKWVLk8Jwxq3GrVHpH9ZNYJYsY+xSE56+pM7WJGthdVJowjaibZSvidzZew+yVovO3auK0guJHO2xDP1ErpB3XZeUx+03KMzWJxKnD+e/5hJ2gStV5zEcE3lPiiifSA4j5pFTPZ4RS/bIgKYs5fKUIpi77xJqnkG0i67a1YNSl4V3UhcdTU2fdjxKdqPE4dmh3MVXY7iaxX3ikM85vwJ1Y5IE0GAPqw/IRMx4AwU+z1xbjPJGscDV+9tm4DtwDhV9lwKPkcW2LNuKZqtxrAdWrenZFOBxNdk="
