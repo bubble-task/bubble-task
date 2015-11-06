@@ -152,12 +152,9 @@ Style/SpaceAroundOperators:
 # * 式展開したい場合に書き換えるのが面倒
 # * 文章ではダブルクォートよりもシングルクォートの方が頻出する
 # ことから EnforcedStyle: double_quotes 推奨
-# -- 式展開するときはダブルクォート、それ以外はシングルクォートで使い分ける
 Style/StringLiterals:
 #  EnforcedStyle: double_quotes
-  SupportedStyles:
-    - single_quotes
-    - double_quotes
+  Enabled: false
 
 # auto-correct 時に Style/StringLiterals とカニバって無限ループになる (v0.28.0)
 Style/StringLiteralsInInterpolation:
