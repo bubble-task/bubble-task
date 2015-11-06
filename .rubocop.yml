@@ -176,6 +176,9 @@ Style/SingleSpaceBeforeFirstArg:
 Style/TrailingComma:
   EnforcedStyleForMultiline: comma
 
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
 ##################### Lint ##################################
 
 # * 同名のメソッドがある場合にローカル変数に `_` を付ける
