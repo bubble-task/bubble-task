@@ -1,0 +1,4 @@
+language: ruby
+bundler_args: --without development --deployment --jobs=3 --tetry=3
+cache: bundler
+script: bundle exec bin/rake spec
