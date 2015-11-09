@@ -3,6 +3,10 @@ class Calculation
 
   attr_accessor :left, :right, :operator
 
+  def self.operators
+    [:+, :-, :*]
+  end
+
   def initialize(params = {})
     super
     self.left = left.to_i
