@@ -3,18 +3,16 @@ class Calculation
 
   attr_accessor :left, :right, :operator
 
+  validates :left, numericality: true
+
   def self.operators
     [:+, :-, :*, :/]
   end
 
-  def initialize(params = {})
-    super
-    self.left = left.to_i
-    self.right = right.to_i
-  end
-
   def compute!
-    @answer = left.send(operator, right)
+    if valid?
+      @answer = left.to_i.send(operator, right.to_i)
+    end
   end
 
   def describe

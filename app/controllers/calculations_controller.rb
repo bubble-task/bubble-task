@@ -7,5 +7,10 @@ class CalculationsController < ApplicationController
   def create
     @calculation = Calculation.new(params[:calculation])
     @calculation.compute!
+    if @calculation.errors.empty?
+      render :create
+    else
+      render :new
+    end
   end
 end

@@ -36,4 +36,11 @@ describe 'Calculation' do
     let(:operator) { '/' }
     it { expect(page).to have_content '6 / 2 = 3' }
   end
+
+  context '整数値以外を入力した場合' do
+    let(:left) { 'one' }
+    let(:right) { 2 }
+    let(:operator) { '+' }
+    it { expect(page).to have_content 'Left is not a number' }
+  end
 end
