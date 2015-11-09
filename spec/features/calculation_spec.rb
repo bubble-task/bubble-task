@@ -34,4 +34,14 @@ describe 'Calculation' do
       expect(page).to have_content '3 * 4 = 12'
     end
   end
+
+  context '割り算を行う場合' do
+    it do
+      fill_in 'Left', with: 6 
+      select '/', from: 'calculation_operator'
+      fill_in 'Right', with: 2
+      click_button 'Compute'
+      expect(page).to have_content '6 / 2 = 3'
+    end
+  end
 end
