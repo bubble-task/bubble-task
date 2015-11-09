@@ -1,20 +1,21 @@
 class Calculation
   include ActiveModel::Model
 
-  attr_accessor :left, :right, :operator
+  OPERATORS = %w(+ - * /).freeze
 
-  def self.operators
-    %w(+ - * /)
-  end
+  attr_accessor :left, :right, :operator
 
   validates :left, numericality: true
   validates :right, numericality: true
-  validates_inclusion_of :operator, in: operators, message: 'Operator is not operation symbol'
+  validates :operator, inclusion: { in: OPERATORS, message: 'Operator is not operation symbol' }
+
+  def self.operators
+    OPERATORS
+  end
 
   def compute!
-    if valid?
-      @answer = left.to_i.send(operator, right.to_i)
-    end
+    return unless valid?
+    @answer = left.to_i.send(operator, right.to_i)
   end
 
   def describe
