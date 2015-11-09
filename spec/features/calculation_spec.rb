@@ -44,11 +44,10 @@ describe 'Calculation' do
     it { expect(page).to have_content 'Left is not a number' }
   end
 
-  context '整数値以外を入力した場合' do
+  context 'rightに整数値以外を入力した場合' do
     let(:left) { 1 }
     let(:right) { 'two' }
     let(:operator) { '+' }
     it { expect(page).to have_content 'Right is not a number' }
   end
-
 end

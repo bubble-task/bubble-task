@@ -3,12 +3,13 @@ class Calculation
 
   attr_accessor :left, :right, :operator
 
-  validates :left, numericality: true
-  validates :right, numericality: true
-
   def self.operators
     [:+, :-, :*, :/]
   end
+
+  validates :left, numericality: true
+  validates :right, numericality: true
+  validates_inclusion_of :operator, in: operators, message: 'Operator is not operation symbol'
 
   def compute!
     if valid?
