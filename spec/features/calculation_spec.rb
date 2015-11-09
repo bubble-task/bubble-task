@@ -3,45 +3,37 @@ require 'rails_helper'
 describe 'Calculation' do
   before do
     visit new_calculation_path
+    fill_in 'Left', with: left
+    select operator, from: 'calculation_operator'
+    fill_in 'Right', with: right
+    click_button 'Compute'
   end
 
   context '足し算を行う場合' do
-    it do
-      fill_in 'Left', with: 1
-      select '+', from: 'calculation_operator'
-      fill_in 'Right', with: 2
-      click_button 'Compute'
-      expect(page).to have_content '1 + 2 = 3'
-    end
+    let(:left) { 1 }
+    let(:right) { 2 }
+    let(:operator) { '+' }
+    it { expect(page).to have_content '1 + 2 = 3' }
   end
 
   context '引き算を行う場合' do
-    it do
-      fill_in 'Left', with: 2
-      select '-', from: 'calculation_operator'
-      fill_in 'Right', with: 1
-      click_button 'Compute'
-      expect(page).to have_content '2 - 1 = 1'
-    end
+    let(:left) { 2 }
+    let(:right) { 1 }
+    let(:operator) { '-' }
+    it { expect(page).to have_content '2 - 1 = 1' }
   end
 
   context '掛け算を行う場合' do
-    it do
-      fill_in 'Left', with: 3
-      select '*', from: 'calculation_operator'
-      fill_in 'Right', with: 4
-      click_button 'Compute'
-      expect(page).to have_content '3 * 4 = 12'
-    end
+    let(:left) { 3 }
+    let(:right) { 4 }
+    let(:operator) { '*' }
+    it { expect(page).to have_content '3 * 4 = 12' }
   end
 
   context '割り算を行う場合' do
-    it do
-      fill_in 'Left', with: 6 
-      select '/', from: 'calculation_operator'
-      fill_in 'Right', with: 2
-      click_button 'Compute'
-      expect(page).to have_content '6 / 2 = 3'
-    end
+    let(:left) { 6 }
+    let(:right) { 2 }
+    let(:operator) { '/' }
+    it { expect(page).to have_content '6 / 2 = 3' }
   end
 end
