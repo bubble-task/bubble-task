@@ -8,6 +8,7 @@ AllCops:
     - "db/schema.rb"
     - "bin/**/*"
     - "Gemfile*"
+    - "spec/*_helper.rb"
   DisplayCopNames: true
 
 ##################### Style ##################################
