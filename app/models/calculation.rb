@@ -4,7 +4,7 @@ class Calculation
   attr_accessor :left, :right, :operator
 
   def self.operators
-    [:+, :-, :*, :/]
+    %w(+ - * /)
   end
 
   validates :left, numericality: true
