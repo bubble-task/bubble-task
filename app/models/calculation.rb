@@ -1,4 +1,4 @@
-class Addition
+class Calculation
   include ActiveModel::Model
 
   attr_accessor :left, :right
