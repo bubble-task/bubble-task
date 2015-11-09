@@ -11,7 +11,7 @@ describe 'Calculation' do
       expect(page).to have_content '1 + 2 = 3'
     end
   end
-  
+
   context '引き算を行う場合' do
     it do
       visit new_calculation_path
@@ -22,5 +22,4 @@ describe 'Calculation' do
       expect(page).to have_content '2 - 1 = 1'
     end
   end
-
 end
