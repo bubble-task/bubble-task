@@ -1,7 +1,7 @@
 <%= form_for(@calculation) do |f| %>
   <%= f.label :left %>
   <%= f.text_field :left %>
-  <%= f.collection_select :operator, [:+], :to_s, :to_s %>
+  <%= f.collection_select :operator, [:+, :-], :to_s, :to_s %>
   <%= f.label :right %>
   <%= f.text_field :right %>
   <%= f.submit 'Compute' %>
