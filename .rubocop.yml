@@ -9,6 +9,8 @@ AllCops:
     - "bin/**/*"
     - "Gemfile*"
     - "spec/*_helper.rb"
+    - "app/assets/stylesheets/**/*"
+    - "app/assets/javascripts/**/*"
   DisplayCopNames: true
 
 ##################### Style ##################################
