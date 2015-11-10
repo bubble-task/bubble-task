@@ -31,6 +31,7 @@ config/initializers/secret_token.rb
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+/node_modules
 
 # Ignore pow environment settings
 .powenv
