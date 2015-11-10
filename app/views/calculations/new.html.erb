@@ -1,0 +1,11 @@
+<%= form_for(@calculation) do |f| %>
+  <% @calculation.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+  <%= f.label :left %>
+  <%= f.text_field :left %>
+  <%= f.collection_select :operator, f.object.class.operators, :to_s, :to_s %>
+  <%= f.label :right %>
+  <%= f.text_field :right %>
+  <%= f.submit 'Compute' %>
+<% end -%>
