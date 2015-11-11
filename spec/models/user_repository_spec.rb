@@ -20,19 +20,18 @@ end
 describe UserRepository do
   context 'ユーザが登録されている場合' do
     it '登録されているユーザを返す' do
-      dummy_user = 'dummy user'
-      spy = UserSpy.new(dummy_user)
-      user = UserRepository.new(spy).find_by_oauth_credential({})
-      expect(user).to eq dummy_user
+      auth_hash = default_auth_hash
+      expected_user = create_user_from_oauth_credential(auth_hash)
+      user = UserRepository.new(User).find_by_oauth_credential(auth_hash)
+      expect(user).to eq(expected_user)
     end
   end
 
   context 'ユーザがまだ登録されていない場合' do
     it 'Userに新規のユーザを作成させる' do
-      auth_hash = {}
-      spy = UserSpy.new(nil)
-      UserRepository.new(spy).find_by_oauth_credential(auth_hash)
-      expect(spy.auth_hash).to eq auth_hash
+      user = UserRepository.new(User).find_by_oauth_credential(default_auth_hash)
+      expected_user = User.last
+      expect(user).to eq(expected_user)
     end
   end
 end
