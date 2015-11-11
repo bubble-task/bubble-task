@@ -8,11 +8,11 @@ class UserSpy
     @user = user
   end
 
-  def find(auth_hash)
+  def find_by_oauth_credential(provider, uid)
     @user
   end
 
-  def create(auth_hash)
+  def create_from_oauth_user(auth_hash)
     self.auth_hash = auth_hash
   end
 end
