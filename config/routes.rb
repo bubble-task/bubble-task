@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :sessions, only: [:new, :destroy]
-
+  get 'home' => 'home#index', as: :home
+  match '/auth/:provider/callback', to: 'oauth_callbacks#create', via: [:get, :post], as: :oauth_callbacks
   root 'sessions#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
