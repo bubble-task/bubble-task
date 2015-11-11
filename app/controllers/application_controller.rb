@@ -3,12 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  delegate :sign_in, :current_user, to: :session_manager
+  def sign_in(user)
+    SessionManager.sign_in(session, user)
+  end
+
+  def current_user
+    SessionManager.current_user(session)
+  end
+
   helper_method :current_user
-
-  private
-
-    def session_manager
-      @session_manager ||= SessionManager.new(session)
-    end
 end
