@@ -53,4 +53,6 @@ group :development do
 end
 
 gem 'rubocop', require: false
+
 gem 'materialize-sass'
+gem 'material_icons'
