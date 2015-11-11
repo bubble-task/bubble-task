@@ -1,5 +1,4 @@
 class OauthCallbacksController < ApplicationController
-  include SignInHelper
 
   def create
     auth_hash = request.env['omniauth.auth']
