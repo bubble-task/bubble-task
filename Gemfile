@@ -55,3 +55,4 @@ end
 gem 'rubocop', require: false
 gem 'materialize-sass'
 gem 'omniauth'
+gem 'omniauth-google-oauth2'
