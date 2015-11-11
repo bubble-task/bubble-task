@@ -13,7 +13,7 @@ class UserSpy
   end
 
   def create(auth_hash)
-    self.auth_hash =  auth_hash
+    self.auth_hash = auth_hash
   end
 end
 
