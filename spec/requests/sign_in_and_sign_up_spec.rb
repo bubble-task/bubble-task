@@ -10,9 +10,9 @@ describe 'GET /auth/google/callback' do
           'uid' => '1234567890',
           'info' => {
             'email' => 'user@gaiax.com',
-            'name' => 'ユーザの名前'
-          }
-        }
+            'name' => 'ユーザの名前',
+          },
+        },
       )
       Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
       get(oauth_callbacks_path(provider: :google))
