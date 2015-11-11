@@ -96,6 +96,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    material_icons (1.0.0)
     materialize-sass (0.97.1)
       sass (~> 3.3)
     mime-types (2.6.2)
@@ -244,6 +245,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 2.0)
   jquery-rails
+  material_icons
   materialize-sass
   omniauth
   omniauth-google-oauth2
