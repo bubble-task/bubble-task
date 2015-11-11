@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
     end
 
     def find_by_oauth_credential(provider, uid)
-      OauthCredential.find_by(provider: provider, uid: uid).user
+      oauth_credential = OauthCredential.find_by(provider: provider, uid: uid)
+      return nil unless oauth_credential
+      oauth_credential.user
     end
   end
 end

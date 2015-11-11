@@ -36,7 +36,7 @@ describe User do
       end
     end
 
-    skip 'ユーザが登録されていない場合' do
+    context 'ユーザが登録されていない場合' do
       it do
         auth_hash = {
           'provider' => 'google',
@@ -46,6 +46,8 @@ describe User do
             'name' => 'TestUser'
           }
         }
+        user = User.find_by_oauth_credential(auth_hash['provider'], auth_hash['uid'])
+        expect(user).to be_nil
       end
     end
   end
