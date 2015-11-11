@@ -21,4 +21,14 @@ describe SignInHelper do
       expect(controller.session[:user_id]).to eq(user.id)
     end
   end
+
+  describe 'ログインしているユーザを取得する' do
+    it do
+      expected_user = create_user_from_oauth_credential
+      controller = FakeController.new
+      controller.sign_in(expected_user)
+      user = controller.current_user
+      expect(user).to eq(expected_user)
+    end
+  end
 end
