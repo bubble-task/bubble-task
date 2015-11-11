@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'GET /auth/google/callback' do
-  skip 'OAuth認証に成功した場合' do
+  context 'OAuth認証に成功した場合' do
     it 'ログイン状態になっていること' do
       OmniAuth.config.add_mock(
         :google,
