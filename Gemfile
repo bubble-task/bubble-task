@@ -56,3 +56,5 @@ gem 'rubocop', require: false
 
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
