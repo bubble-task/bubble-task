@@ -8,7 +8,7 @@ bundler_args: "--without development --deployment --jobs=3 --retry=3"
 cache:
   bundler: true
   directories:
-    - app/assets/node_modules
+    - ./node_modules
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
