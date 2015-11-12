@@ -1,7 +1,7 @@
 <%= form_for @form, url: tasks_url do |f| %>
-  <%= f.label :title, 'タイトル' %>
+  <%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.label :description, '説明' %>
+  <%= f.label :description %>
   <%= f.text_field :description %>
-  <%= f.submit '作成する' %>
+  <%= f.submit %>
 <% end %>

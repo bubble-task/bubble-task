@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'タスクを登録する' do
-  skip do
+  it do
     OmniAuth.config.add_mock(
       :google,
       {
@@ -16,8 +16,8 @@ describe 'タスクを登録する' do
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
     visit oauth_callbacks_path(provider: :google)
     visit new_task_path
-    fill_in 'タイトル', with: 'タスクのタイトル'
-    fill_in '説明', with: 'タスクの説明'
+    fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
+    fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'タスクの説明'
     click_button '作成する'
     expect(page).to have_content 'タスクのタイトル'
   end
