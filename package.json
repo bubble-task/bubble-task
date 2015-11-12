@@ -1,0 +1,21 @@
+{
+  "name": "bubble-task",
+  "version": "0.0.1",
+  "description": "out tasks",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "webpack --config webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.1.4",
+    "babel-loader": "^6.1.0",
+    "expose-loader": "^0.7.1",
+    "webpack": "^1.12.4",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "react": "^0.14.2"
+  }
+}

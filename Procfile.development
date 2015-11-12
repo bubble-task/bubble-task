@@ -1,0 +1,1 @@
+webpack: webpack -wc --config app/assets/webpack.config.js
