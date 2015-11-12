@@ -1,9 +1,9 @@
 module.exports = {
-  context: __dirname + '/javascripts',
+  context: __dirname + '/app/assets/javascripts',
   entry: './webpack_application.js',
   output: {
     filename: 'webpack.bundle.js',
-    path: __dirname + '/javascripts',
+    path: __dirname + '/app/assets/javascripts',
   },
   module: {
     loaders: [
