@@ -13,6 +13,7 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - ./bin/setup
+  - npm install
 script: bundle exec bin/rake spec
 
 env:
