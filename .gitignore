@@ -32,7 +32,6 @@ config/initializers/secret_token.rb
 *.bowerrc
 bower.json
 /node_modules
-app/assets/javascripts/react_bundle.js
 
 # Ignore pow environment settings
 .powenv

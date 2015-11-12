@@ -12,7 +12,7 @@ cache:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
-  - npm install
+  - npm run build
 script: bundle exec bin/rake spec
 
 env:
