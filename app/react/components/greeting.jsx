@@ -1,13 +1,10 @@
-import React from 'react';
+const React = require('react');
+const RaisedButton = require('material-ui/lib/raised-button');
 
-class Greeing extends React.Component {
-  render() {
+export default React.createClass({
+  render: function() {
     return (
-      <div className="greeting">
-        Hello, {this.props.name}
-      </div>
+      <RaisedButton label={this.props.name} />
     );
   }
-}
-
-export default Greeing;
+});
