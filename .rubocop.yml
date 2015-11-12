@@ -11,6 +11,8 @@ AllCops:
     - "spec/*_helper.rb"
     - "app/assets/stylesheets/**/*"
     - "app/assets/javascripts/**/*"
+    - "app/react/**/*"
+    - "node_modules/**/*"
   DisplayCopNames: true
 
 ##################### Style ##################################

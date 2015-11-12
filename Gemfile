@@ -54,6 +54,7 @@ end
 
 gem 'rubocop', require: false
 
+gem 'react_webpack_rails'
 gem 'materialize-sass'
 gem 'material_icons'
 gem 'omniauth'
