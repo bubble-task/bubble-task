@@ -3,5 +3,5 @@ import ReactDOM from 'react-dom';
 window.React = React;
 window.ReactDOM = ReactDOM;
 
-import Greeting from './components/greeting';
-registerComponent('Greeting', Greeting);
+import AppBar from './components/app_bar';
+registerComponent('AppBar', AppBar);
