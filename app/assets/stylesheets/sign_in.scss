@@ -2,7 +2,23 @@ body#sign-in {
   background: image_url('sign_in_bg.png');
 }
 
-.product-name {
-  color: $brand-font-color;
-  font-weight: 200;
+.card-sign-in {
+  background-color: $background-color;
+
+  .brand-logo {
+    color: $brand-font-color;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 200;
+    }
+  }
+}
+
+.card-sign-in-btn {
+  background-color: $secondary-color;
+
+  a {
+    width: 100%;
+  }
 }
