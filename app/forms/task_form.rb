@@ -5,5 +5,4 @@ class TaskForm
     :title,
     :description,
   )
-
 end

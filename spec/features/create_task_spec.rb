@@ -19,6 +19,8 @@ describe 'タスクを登録する' do
     fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
     fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'タスクの説明'
     click_button '作成する'
+    click_link 'タスクのタイトル'
     expect(page).to have_content 'タスクのタイトル'
+    expect(page).to have_content 'タスクの説明'
   end
 end

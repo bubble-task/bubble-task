@@ -1,1 +1,4 @@
 <p>User's Home</p>
+<% @tasks.each do |task| %>
+  <%= link_to task.title, task_url(task) %>
+<% end %>
