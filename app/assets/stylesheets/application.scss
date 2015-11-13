@@ -32,7 +32,8 @@ $navbar-brand-font-size: 1.5rem !default;
 @import 'materialize';
 @import 'material_icons';
 
-@import 'sign_in';
-
 /*** Overrides ***/
 nav { background-color: $background-color; }
+
+@import 'sign_in';
+@import 'home';
