@@ -1,6 +1,6 @@
 @import "materialize/components/color";
 
-$primary-color: color("amber", "darken-2") !default;
+$primary-color: color("brown", "lighten-5") !default;
 $primary-color-light: false !default;
 $primary-color-dark: false !default;
 @if not $primary-color-light {
@@ -9,22 +9,25 @@ $primary-color-dark: false !default;
 @if not $primary-color-dark {
   $primary-color-dark: darken($primary-color, 15%);
 }
-$secondary-color: color("teal", "lighten-1") !default;
+$secondary-color: color("amber", "darken-1") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 
+/*** Additional variables ***/
 $background-color: #FFFEFE;
+$brand-font-color: color("brown", "lighten-2");
+$primary-font-color: color("brown", "darken-4");
+
+$button-color-raised: $primary-font-color !default;
 
 /*** Body ***/
 body { background-color: $background-color; }
 
 /*** NavBar ***/
-$navbar-font-color: color("brown", "lighten-2");
+$navbar-font-color: $brand-font-color;
 $navbar-brand-font-size: 1.5rem !default;
-.brand-logo {
-  font-weight: 200;
-}
+.brand-logo { font-weight: 200; }
 
 @import 'materialize';
 @import 'material_icons';
