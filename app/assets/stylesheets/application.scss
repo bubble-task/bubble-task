@@ -15,14 +15,14 @@ $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 
 /*** Additional variables ***/
-$background-color: #FFFEFE;
-$brand-font-color: color("brown", "lighten-2");
+$background-color: #FFFCFE;
+$brand-font-color: color("brown", "base");
 $primary-font-color: color("brown", "darken-4");
 
 $button-color-raised: $primary-font-color !default;
 
 /*** Body ***/
-body { background-color: $background-color; }
+body { background-color: #E6E0CF; }
 
 /*** NavBar ***/
 $navbar-font-color: $brand-font-color;
