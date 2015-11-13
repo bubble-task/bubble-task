@@ -1,9 +1,24 @@
 body#sign-in {
-  background-color: #4b5c5c;
   background: image_url('sign_in_bg.png');
 }
 
-.product-name {
-  color: color('grey', 'darken-1');
-  font-weight: 200;
+.card-sign-in {
+  background-color: $background-color;
+
+  .brand-logo {
+    color: $brand-font-color;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 200;
+    }
+  }
+}
+
+.card-sign-in-btn {
+  background-color: $secondary-color;
+
+  a {
+    width: 100%;
+  }
 }
