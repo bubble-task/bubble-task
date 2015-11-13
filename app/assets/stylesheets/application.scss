@@ -24,16 +24,9 @@ $button-color-raised: $primary-font-color !default;
 /*** Body ***/
 body { background-color: #E6E0CF; }
 
-/*** NavBar ***/
-$navbar-font-color: $brand-font-color;
-$navbar-brand-font-size: 1.5rem !default;
-.brand-logo { font-weight: 200; }
-
 @import 'materialize';
 @import 'material_icons';
 
-/*** Overrides ***/
-nav { background-color: $background-color; }
-
+@import 'navigation';
 @import 'sign_in';
 @import 'home';

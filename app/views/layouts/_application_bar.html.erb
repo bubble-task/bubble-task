@@ -1,19 +1,20 @@
 <header>
-  <div class="navbar-fixed">
-    <nav role="navigation">
-      <div class="container">
-        <div class="nav-wrapper">
-          <div class="brand">
-            <a href="/" class="brand-logo">
-              <i class="material-icons left">hdr_weak</i>
-              Bubble Task
-            </a>
-          </div>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="#"><%= current_user.name %></a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <nav class="top-nav">
+    <div class="container">
+      <div class="nav-wrapper"><a class="page-title">Home</div>
+    </div>
+  </nav>
+  <div class="container">
+    <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
+      <i class="mdi-navigation-menu"></i>
+    </a>
   </div>
+  <ul id="nav-mobile" class="side-nav fixed">
+    <li class="logo">
+      <a id="logo-container" class="brand-logo">
+        <i class="material-icons">hdr_weak</i>
+        Bubble Task
+      </a>
+    </li>
+  </ul>
 </header>
