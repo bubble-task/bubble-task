@@ -135,6 +135,7 @@ ja:
       create: 作成する
       submit: 保存する
       update: 更新する
+      cancel: キャンセル
   number:
     currency:
       format:

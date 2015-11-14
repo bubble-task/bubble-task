@@ -1,7 +1,20 @@
-<%= form_for @form, url: tasks_url do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.submit %>
-<% end %>
+<%= content_for(:page_title) { t('.page_title') } %>
+<div class="card-panel white">
+  <%= form_for @form, url: tasks_url do |f| %>
+    <div class="input-field">
+      <i class="material-icons prefix">subject</i>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="input-field">
+      <i class="material-icons prefix">note_add</i>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'materialize-textarea' %>
+    </div>
+    <%= link_to t('helpers.submit.cancel'), home_url, class: 'waves-effect waves-dark btn-flat' %>
+    <button class="btn-large waves-effect waves-light" type="submit" name="action">
+      <%= t('helpers.submit.create') %>
+      <i class="material-icons left">send</i>
+    </button>
+  <% end %>
+</div>
