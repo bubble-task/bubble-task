@@ -13,7 +13,7 @@
   </div>
   <ul id="nav-mobile" class="side-nav fixed">
     <li class="user-area">
-      <a href="#" class="dropdown-button" data-activates="user-menu" data-beloworigin="true">
+      <a href="#" class="dropdown-button" data-activates="user-menu" data-hover="true">
         <img src="http://gravatar.com/avatar" class="avatar circle responsive-img" />
         <%= current_user.name %>
       </a>
@@ -23,6 +23,7 @@
         <li><%= link_to 'ログアウト', '#' %></li>
       </ul>
     </li>
+    <li class="divider"></li>
     <!--
     <li>
       <a id="logo-container" class="brand-logo">
