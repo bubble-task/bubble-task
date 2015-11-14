@@ -1,0 +1,10 @@
+<ul class="collection z-depth-1">
+  <% tasks.each do |task| %>
+    <li class="collection-item avatar">
+      <img src="http://gravatar.com/avatar" class="circle" />
+      <%= link_to task_url(task) do %>
+        <span class="title"><%= task.title %></span>
+      <% end -%>
+    </li>
+  <% end %>
+</ul>

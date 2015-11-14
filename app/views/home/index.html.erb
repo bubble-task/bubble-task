@@ -1,7 +1,5 @@
 <%= content_for(:page_title) { 'Home' } %>
-<% @tasks.each do |task| %>
-  <%= link_to task.title, task_url(task) %>
-<% end %>
+<%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
 <div id="new-task-fab" class="fixed-action-btn">
   <%= link_to new_task_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
     <i class="large material-icons">mode_edit</i>
