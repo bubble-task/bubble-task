@@ -1,19 +1,39 @@
 <header>
-  <div class="navbar-fixed">
-    <nav role="navigation">
-      <div class="container">
-        <div class="nav-wrapper">
-          <div class="brand">
-            <a href="/" class="brand-logo">
-              <i class="material-icons left">hdr_weak</i>
-              Bubble Task
-            </a>
-          </div>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="#"><%= current_user.name %></a></li>
-          </ul>
-        </div>
+  <nav class="top-nav">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a class="page-title"><%= content_for(:page_title) %></a>
       </div>
-    </nav>
+    </div>
+  </nav>
+  <div class="container">
+    <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
+      <i class="mdi-navigation-menu"></i>
+    </a>
   </div>
+  <ul id="nav-mobile" class="side-nav fixed">
+    <li class="user-area">
+      <a href="#" class="dropdown-button" data-activates="user-menu" data-hover="true">
+        <img src="http://gravatar.com/avatar" class="avatar circle responsive-img" />
+        <%= current_user.name %>
+      </a>
+      <ul id="user-menu" class="dropdown-content">
+        <li><%= link_to '設定', '#' %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'ログアウト', '#' %></li>
+      </ul>
+    </li>
+    <li class="divider"></li>
+    <!--
+    <li>
+      <a id="logo-container" class="brand-logo">
+        Bubble Task
+        <i class="material-icons left">hdr_weak</i>
+      </a>
+    </li>
+    -->
+    <li><a href="#">Home<i class="material-icons left">home</i></a></li>
+    <li><a href="#">Tasks<i class="material-icons left">assignment</i></a></li>
+    <li><a href="#">Tags<i class="material-icons left">label</i></a></li>
+  </ul>
 </header>

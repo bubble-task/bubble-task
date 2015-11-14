@@ -1,5 +1,11 @@
 @import "materialize/components/color";
 
+/*** Additional variables ***/
+$background-color: #FFF;
+$brand-font-color: color("blue-grey", "darken-4");
+$primary-font-color: color("glue-grey", "darken-4");
+
+/*** Color ***/
 $primary-color: color("brown", "lighten-5") !default;
 $primary-color-light: false !default;
 $primary-color-dark: false !default;
@@ -14,26 +20,18 @@ $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 
-/*** Additional variables ***/
-$background-color: #FFF;
-$brand-font-color: color("blue-grey", "darken-4");
-$primary-font-color: color("glue-grey", "darken-4");
+/*** Navbar ***/
+$navbar-font-color: $brand-font-color;
 
+/*** Button ***/
 $button-color-raised: $primary-font-color !default;
 
 /*** Body ***/
 body { background-color: #E6E0CF; }
 
-/*** NavBar ***/
-$navbar-font-color: $brand-font-color;
-$navbar-brand-font-size: 1.5rem !default;
-.brand-logo { font-weight: 200; }
+@import "materialize";
+@import "material_icons";
 
-@import 'materialize';
-@import 'material_icons';
-
-/*** Overrides ***/
-nav { background-color: $background-color; }
-
-@import 'sign_in';
-@import 'home';
+@import "navigation";
+@import "sign_in";
+@import "home";
