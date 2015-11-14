@@ -1,4 +1,3 @@
-$navbar-font-color: $brand-font-color;
 $navbar-brand-font-size: 1.5rem !default;
 $side-nav-width: 280px;
 
@@ -6,18 +5,32 @@ nav.top-nav {
   background-color: $background-color;
 }
 
-ul.side-nav {
-  background-color: color("blue-grey", "darken-1");
+.side-nav.fixed {
+  $bg-color: color("grey", "lighten-3");
+  $link-color: color("grey", "darken-1");
+  $line-height: 64px;
+
   width: $side-nav-width;
+  background-color: $bg-color;
+
+  a {
+    color: $link-color;
+    font-weight: 200;
+
+    i {
+      line-height: $line-height;
+    }
+  }
 
   a.brand-logo {
-    font-size: 1.2rem;
-    font-weight: 200;
-    color: color("grey", "lighten-3");
+    font-size: 1.3rem;
+    color: $link-color;
+
+    i { margin-right: 5px; }
   }
 }
 
-@media only screen and (min-width : 993px) {
+@media #{$large-and-up} {
   header, main {
     padding-left: $side-nav-width;
   }
