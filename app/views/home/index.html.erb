@@ -1,4 +1,4 @@
-<%= content_for(:page_title) { 'Home' } %>
+<%= content_for(:page_title) { t('.page_title') } %>
 <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
 <div id="new-task-fab" class="fixed-action-btn">
   <%= link_to new_task_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
