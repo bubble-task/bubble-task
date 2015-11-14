@@ -1,0 +1,71 @@
+$navbar-brand-font-size: 1.5rem !default;
+$side-nav-width: 320px;
+
+nav.top-nav {
+  background-color: $background-color;
+}
+
+.side-nav.fixed {
+  $bg-color: color("grey", "lighten-3");
+  $link-color: color("grey", "darken-1");
+  $line-height: 64px;
+
+  width: $side-nav-width;
+  background-color: $bg-color;
+
+  li.user-area {
+    img.avatar {
+      margin-right: 10px;
+      vertical-align: middle;
+      width: 38px;
+      height: 38px;
+    }
+  }
+
+  a {
+    color: $link-color;
+    font-weight: 200;
+
+    i {
+      line-height: $line-height;
+    }
+  }
+
+  a.brand-logo {
+    font-size: 1.3rem;
+    color: $link-color;
+
+    i { margin-right: 5px; }
+  }
+}
+
+@media #{$large-and-up} {
+  header, main {
+    padding-left: $side-nav-width;
+  }
+  .container {
+    width: 90%;
+  }
+}
+
+@media #{$medium-and-down} {
+  nav .nav-wrapper {
+    text-align: center;
+  }
+}
+
+a.button-collapse.top-nav {
+  position: absolute;
+  text-align: center;
+  left: 7.5%;
+  top: 0;
+  float: none;
+  margin-left: 0.3rem;
+  color: black;
+  font-size: 32px;
+  z-index: 2;
+}
+
+a.button-collapse.top-nav.full {
+  line-height: 62px;
+}
