@@ -1,5 +1,5 @@
 $navbar-brand-font-size: 1.5rem !default;
-$side-nav-width: 280px;
+$side-nav-width: 320px;
 
 nav.top-nav {
   background-color: $background-color;
@@ -12,6 +12,15 @@ nav.top-nav {
 
   width: $side-nav-width;
   background-color: $bg-color;
+
+  li.user-area {
+    img.avatar {
+      margin-right: 10px;
+      vertical-align: middle;
+      width: 38px;
+      height: 38px;
+    }
+  }
 
   a {
     color: $link-color;
