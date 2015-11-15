@@ -1,9 +1,7 @@
-<ul class="collection z-depth-1">
+<div class="task-summary-list">
   <% tasks.each do |task| %>
-    <li class="collection-item">
-      <%= link_to task_url(task) do %>
-        <span class="title"><%= task.title %></span>
-      <% end -%>
-    </li>
+    <%= link_to task_url(task), class: 'collection-item' do %>
+      <%= task.title %>
+    <% end -%>
   <% end %>
 </ul>
