@@ -1,4 +1,5 @@
 <%= content_for(:page_title) { t('.page_title') } %>
+<%= content_for(:page_icon) { 'home' } %>
 <div class="col s10">
   <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
   <div id="new-task-fab" class="fixed-action-btn">
