@@ -1,17 +1,25 @@
-$navbar-brand-font-size: 1.5rem !default;
 $side-nav-width: 240px;
 
 nav.top-nav {
-  background-color: $background-color;
+  background-color: #FFF;
+
+  a.page-title {
+    color: color("grey", "darken-1");
+    font-weight: 200;
+  }
 }
 
 .side-nav.fixed {
   $bg-color: color("grey", "lighten-3");
-  $link-color: color("grey", "darken-1");
+  $link-color: darken($bg-color, 45%);
   $line-height: 64px;
 
   width: $side-nav-width;
   background-color: $bg-color;
+
+  li {
+    &:hover, &.active { background-color: darken($bg-color, 5%); }
+  }
 
   li.user-area {
     img.avatar {
@@ -29,8 +37,8 @@ nav.top-nav {
   }
 
   a.brand-logo {
-    font-size: 1.2rem;
     color: $link-color;
+    font-size: 1.2rem;
 
     i { margin-right: 5px; }
   }
