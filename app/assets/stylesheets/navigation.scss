@@ -1,5 +1,5 @@
 $navbar-brand-font-size: 1.5rem !default;
-$side-nav-width: 320px;
+$side-nav-width: 240px;
 
 nav.top-nav {
   background-color: $background-color;
@@ -25,13 +25,10 @@ nav.top-nav {
   a {
     color: $link-color;
     font-weight: 200;
-
-    i {
-      line-height: $line-height;
-    }
+    i { line-height: $line-height; }
   }
 
-  a.brand-logo {
+  .brand-logo {
     font-size: 1.3rem;
     color: $link-color;
 
@@ -64,8 +61,4 @@ a.button-collapse.top-nav {
   color: black;
   font-size: 32px;
   z-index: 2;
-}
-
-a.button-collapse.top-nav.full {
-  line-height: 62px;
 }
