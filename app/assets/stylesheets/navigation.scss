@@ -1,8 +1,8 @@
 $navbar-brand-font-size: 1.5rem !default;
-$side-nav-width: 320px;
+$side-nav-width: 240px;
 
 nav.top-nav {
-  background-color: $background-color;
+  background-color: $content-bg-color;
 }
 
 .side-nav.fixed {
@@ -37,35 +37,4 @@ nav.top-nav {
 
     i { margin-right: 5px; }
   }
-}
-
-@media #{$large-and-up} {
-  header, main {
-    padding-left: $side-nav-width;
-  }
-  .container {
-    width: 90%;
-  }
-}
-
-@media #{$medium-and-down} {
-  nav .nav-wrapper {
-    text-align: center;
-  }
-}
-
-a.button-collapse.top-nav {
-  position: absolute;
-  text-align: center;
-  left: 7.5%;
-  top: 0;
-  float: none;
-  margin-left: 0.3rem;
-  color: black;
-  font-size: 32px;
-  z-index: 2;
-}
-
-a.button-collapse.top-nav.full {
-  line-height: 62px;
 }
