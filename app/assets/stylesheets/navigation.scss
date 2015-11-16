@@ -5,7 +5,7 @@ nav.top-nav {
 
   a.page-title {
     color: $secondary-color;
-    font-weight: 200;
+    font-weight: 300;
 
     i { font-size: 1.2rem; }
   }
@@ -13,7 +13,7 @@ nav.top-nav {
 
 .side-nav.fixed {
   $bg-color: color("grey", "lighten-3");
-  $link-color: darken($secondary-color, 5%);
+  $link-color: $secondary-color;
   $line-height: 64px;
 
   width: $side-nav-width;
@@ -24,11 +24,9 @@ nav.top-nav {
   }
 
   li.brand-logo {
-    //background-color: $secondary-color;
-
     a {
-      //color: #EEE;
       font-size: 1.15rem;
+      font-weight: 700;
 
       i { margin-right: 5px; }
     }
@@ -38,14 +36,14 @@ nav.top-nav {
     img.avatar {
       margin-right: 10px;
       vertical-align: middle;
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
     }
   }
 
   a {
     color: $link-color;
-    font-weight: 200;
+    font-weight: 700;
     i { line-height: $line-height; }
   }
 }
