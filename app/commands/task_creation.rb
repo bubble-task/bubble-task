@@ -4,11 +4,11 @@ class TaskCreation
   attr_accessor :title, :description
 
   validates :title,
-    presence: true,
-    length: { maximum: 40 }
+            presence: true,
+            length: { maximum: 40 }
 
   validates :description,
-    length: { maximum: 255 }
+            length: { maximum: 255 }
 
   def run(user)
     return nil unless valid?
