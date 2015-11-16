@@ -11,6 +11,6 @@ class OauthCallbacksController < ApplicationController
   private
 
     def not_authorized!
-      redirect_to root_url
+      redirect_to root_url if signed_in?
     end
 end
