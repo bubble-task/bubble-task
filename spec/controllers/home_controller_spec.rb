@@ -14,7 +14,7 @@ describe HomeController do
 
       it do
         get :index
-        expect(response).to_not redirect_to(new_session_url)
+        expect(response).to be_ok
       end
     end
   end
