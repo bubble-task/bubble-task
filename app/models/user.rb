@@ -20,4 +20,11 @@ class User < ActiveRecord::Base
       oauth_credential.user
     end
   end
+
+  def create_task(title, description = nil)
+    task = Task.new(title: title)
+    return task unless description
+    task.write_description(description)
+    task
+  end
 end

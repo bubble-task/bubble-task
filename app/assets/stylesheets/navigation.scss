@@ -1,17 +1,38 @@
-$navbar-brand-font-size: 1.5rem !default;
-$side-nav-width: 320px;
+$side-nav-width: 240px;
 
 nav.top-nav {
-  background-color: $background-color;
+  background-color: #FFF;
+
+  a.page-title {
+    color: $secondary-color;
+    font-weight: 200;
+
+    i { font-size: 1.2rem; }
+  }
 }
 
 .side-nav.fixed {
   $bg-color: color("grey", "lighten-3");
-  $link-color: color("grey", "darken-1");
+  $link-color: darken($secondary-color, 5%);
   $line-height: 64px;
 
   width: $side-nav-width;
   background-color: $bg-color;
+
+  li {
+    &:hover, &.active { background-color: darken($bg-color, 5%); }
+  }
+
+  li.brand-logo {
+    //background-color: $secondary-color;
+
+    a {
+      //color: #EEE;
+      font-size: 1.15rem;
+
+      i { margin-right: 5px; }
+    }
+  }
 
   li.user-area {
     img.avatar {
@@ -25,17 +46,7 @@ nav.top-nav {
   a {
     color: $link-color;
     font-weight: 200;
-
-    i {
-      line-height: $line-height;
-    }
-  }
-
-  a.brand-logo {
-    font-size: 1.3rem;
-    color: $link-color;
-
-    i { margin-right: 5px; }
+    i { line-height: $line-height; }
   }
 }
 
@@ -64,8 +75,4 @@ a.button-collapse.top-nav {
   color: black;
   font-size: 32px;
   z-index: 2;
-}
-
-a.button-collapse.top-nav.full {
-  line-height: 62px;
 }

@@ -1,6 +1,10 @@
-<%= content_for(:page_title) { 'Home' } %>
-<div id="new-task-fab" class="fixed-action-btn">
-  <a class="btn-floating btn-large">
-    <i class="large material-icons">mode_edit</i>
-  </a>
+<%= content_for(:page_title) { t('.page_title') } %>
+<%= content_for(:page_icon) { 'home' } %>
+<div class="col s10">
+  <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
+  <div id="new-task-fab" class="fixed-action-btn">
+    <%= link_to new_task_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
+      <i class="large material-icons">mode_edit</i>
+    <% end -%>
+  </div>
 </div>

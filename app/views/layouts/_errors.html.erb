@@ -1,0 +1,8 @@
+<% if @command.errors.any? %>
+  <ul class="error-explanation">
+    <li><i class="material-icons left">error</i></li>
+    <% @command.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

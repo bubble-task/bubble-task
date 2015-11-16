@@ -1,0 +1,9 @@
+ja:
+  activemodel:
+    messages:
+      task_creation:
+        success: 'タスクを作成しました'
+    attributes:
+      task_creation:
+        title: タイトル
+        description: 説明

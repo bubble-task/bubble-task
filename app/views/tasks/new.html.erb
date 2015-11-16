@@ -1,0 +1,26 @@
+<%= content_for(:page_title) { t('.page_title') } %>
+<%= content_for(:page_icon) { 'mode_edit' } %>
+<div class="col s10">
+  <div class="card-panel white">
+    <%= form_for @command, url: tasks_url do |f| %>
+      <%= render 'layouts/errors', locals: { errors: @command.errors } %>
+      <div class="input-field">
+        <i class="material-icons prefix">subject</i>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">note_add</i>
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'materialize-textarea' %>
+      </div>
+      <div class="actions">
+        <%= link_to t('helpers.submit.cancel'), home_url, class: 'waves-effect waves-light btn-flat' %>
+        <button class="waves-effect waves-light btn-flat" type="submit" name="action">
+          <%= t('helpers.submit.create') %>
+          <i class="material-icons left">send</i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+</div>

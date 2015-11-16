@@ -2,7 +2,10 @@
   <nav class="top-nav">
     <div class="container">
       <div class="nav-wrapper">
-        <a class="page-title"><%= content_for(:page_title) %></a>
+        <a class="page-title">
+          <%= content_for(:page_title) %>
+          <i class="material-icons left"><%= content_for(:page_icon) || 'bookmark' %></i>
+        </a>
       </div>
     </div>
   </nav>
@@ -12,9 +15,16 @@
     </a>
   </div>
   <ul id="nav-mobile" class="side-nav fixed">
+    <li class="brand-logo">
+      <a href="/home">
+        Bubble Task
+        <i class="material-icons left">hdr_weak</i>
+      </a>
+    </li>
+    <li class="divider"></li>
     <li class="user-area">
-      <a href="#" class="dropdown-button" data-activates="user-menu" data-hover="true">
-        <img src="http://gravatar.com/avatar" class="avatar circle responsive-img" />
+      <a href="#" class="dropdown-button" data-activates="user-menu" data-beloworigin="true">
+        <img src="http://gravatar.com/avatar" class="avatar circle" />
         <%= current_user.name %>
       </a>
       <ul id="user-menu" class="dropdown-content">
@@ -24,15 +34,6 @@
       </ul>
     </li>
     <li class="divider"></li>
-    <!--
-    <li>
-      <a id="logo-container" class="brand-logo">
-        Bubble Task
-        <i class="material-icons left">hdr_weak</i>
-      </a>
-    </li>
-    -->
-    <li><a href="#">Home<i class="material-icons left">home</i></a></li>
     <li><a href="#">Tasks<i class="material-icons left">assignment</i></a></li>
     <li><a href="#">Tags<i class="material-icons left">label</i></a></li>
   </ul>

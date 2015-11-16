@@ -1,0 +1,9 @@
+<%= content_for(:page_title) { t('.page_title') } %>
+<%= content_for(:page_icon) { 'description' } %>
+<div class="col s10">
+  <div class="card-panel white">
+    <h5 id="task_title"><%= @task.title %></h5>
+    <div class="divider"></div>
+    <%= simple_format(h(@task.description), id: 'task_description') %>
+  </div>
+</div>

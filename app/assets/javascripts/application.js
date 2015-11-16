@@ -11,7 +11,13 @@
 // about supported directives.
 //
 //= require jquery
-//= require materialize-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require materialize-sprockets
 //= require_tree .
+
+$(document).on('page:load page:change', function () {
+  Waves.displayEffect();
+  $('.dropdown-button').dropdown();
+  $('.button-collapse').sideNav();
+});

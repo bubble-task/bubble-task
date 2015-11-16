@@ -1,37 +1,42 @@
 @import "materialize/components/color";
 
 /*** Additional variables ***/
-$background-color: #FFF;
-$brand-font-color: color("blue-grey", "darken-4");
-$primary-font-color: color("glue-grey", "darken-4");
+$primary-bg-color: #FFF;
+$primary-font-color: #333;
 
 /*** Color ***/
-$primary-color: color("brown", "lighten-5") !default;
-$primary-color-light: false !default;
-$primary-color-dark: false !default;
-@if not $primary-color-light {
-  $primary-color-light: lighten($primary-color, 15%);
-}
-@if not $primary-color-dark {
-  $primary-color-dark: darken($primary-color, 15%);
-}
-$secondary-color: color("amber", "darken-1") !default;
+$primary-color: #FFF;
+$secondary-color: color("blue-grey", "darken-1") !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 
-/*** Navbar ***/
-$navbar-font-color: $brand-font-color;
-
-/*** Button ***/
-$button-color-raised: $primary-font-color !default;
-
 /*** Body ***/
-body { background-color: #E6E0CF; }
+body { background-color: #FAFAFA; }
 
 @import "materialize";
 @import "material_icons";
 
 @import "navigation";
+@import "form";
 @import "sign_in";
 @import "home";
+@import "task";
+
+html {
+  color: $primary-font-color;
+  font-family: 'Montserrat', '游ゴシック体', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+main {
+  margin-top: 2.5rem;
+}
+
+form .actions {
+  @extend .right-align;
+
+  .btn-flat:hover {
+    color: lighten($secondary-color, 50%);
+    background-color: $secondary-color;
+  }
+}
