@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   protected
 
     def authorize!
-      redirect_to new_session_url unless current_user
+      redirect_to new_session_url, alert: I18n.t('sessions.alert.must_sign_in') unless current_user
     end
 
     def sign_in(user)

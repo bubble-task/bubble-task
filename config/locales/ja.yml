@@ -136,6 +136,12 @@ ja:
       submit: 保存する
       update: 更新する
       cancel: キャンセル
+  sessions:
+    notice:
+      signed_in: ログインしました
+      signed_out: ログアウトしました
+    alert:
+      must_sign_in: ログインしてください
   number:
     currency:
       format:
