@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   def create
     @command = TaskCreation.new(params[:task_creation])
     if @command.run(current_user)
-      redirect_to home_url
+      redirect_to home_url, notice: I18n.t('.activemodel.messages.task_creation.success')
     else
       render :new
     end
