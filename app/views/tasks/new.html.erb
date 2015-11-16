@@ -1,13 +1,13 @@
 <%= content_for(:page_title) { t('.page_title') } %>
 <%= content_for(:page_icon) { 'mode_edit' } %>
 <div class="col s10">
-  <% if @form.errors.any? %>
-    <% @form.errors.full_messages.each do |message| %>
+  <% if @command.errors.any? %>
+    <% @command.errors.full_messages.each do |message| %>
       <p><%= message %></p>
     <% end %>
   <% end %>
   <div class="card-panel white">
-    <%= form_for @form, url: tasks_url do |f| %>
+    <%= form_for @command, url: tasks_url do |f| %>
       <div class="input-field">
         <i class="material-icons prefix">subject</i>
         <%= f.label :title %>

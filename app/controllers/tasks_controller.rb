@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
 
   def new
-    @form = TaskForm.new
+    @command = TaskCreation.new
   end
 
   def create
-    @form = TaskForm.new(params[:task_form])
-    if @form.create_task(current_user)
+    @command = TaskCreation.new(params[:task_creation])
+    if @command.run(current_user)
       redirect_to home_url
     else
       render :new

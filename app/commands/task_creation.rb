@@ -1,4 +1,4 @@
-class TaskForm
+class TaskCreation
   include ActiveModel::Model
 
   attr_accessor :title, :description
@@ -9,7 +9,7 @@ class TaskForm
 
   validates :description, length: { maximum: 510 }
 
-  def create_task(user)
+  def run(user)
     return nil unless valid?
     user.create_task(title, description).tap do |task|
       task.save

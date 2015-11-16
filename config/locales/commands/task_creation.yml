@@ -1,6 +1,6 @@
 ja:
   activemodel:
     attributes:
-      task_form:
+      task_creation:
         title: タイトル
         description: 説明
