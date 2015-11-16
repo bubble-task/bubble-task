@@ -17,64 +17,68 @@ describe 'タスクを登録する' do
     visit oauth_callbacks_path(provider: :google)
   end
 
-  it do
-    visit new_task_path
-    fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
-    click_button '作成する'
-    click_link 'タスクのタイトル'
-    title = find('#task_title').text
-    description = find('#task_description').text
-    expect(title).to eq 'タスクのタイトル'
-    expect(description).to eq ''
+  describe 'タスクを作成する' do
+    it do
+      visit new_task_path
+      fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
+      click_button '作成する'
+      click_link 'タスクのタイトル'
+      title = find('#task_title').text
+      description = find('#task_description').text
+      expect(title).to eq 'タスクのタイトル'
+      expect(description).to eq ''
+    end
+
+    it do
+      visit new_task_path
+      fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
+      fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'タスクの説明'
+      click_button '作成する'
+      click_link 'タスクのタイトル'
+      title = find('#task_title').text
+      description = find('#task_description').text
+      expect(title).to eq 'タスクのタイトル'
+      expect(description).to eq 'タスクの説明'
+    end
   end
 
-  it do
-    visit new_task_path
-    fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'タスクの説明'
-    click_button '作成する'
-    click_link 'タスクのタイトル'
-    title = find('#task_title').text
-    description = find('#task_description').text
-    expect(title).to eq 'タスクのタイトル'
-    expect(description).to eq 'タスクの説明'
-  end
+  describe 'バリデーションをかける' do
+    it do
+      visit new_task_path
+      fill_in I18n.t('activemodel.attributes.task_form.title'), with: ''
+      click_button '作成する'
+      expect(page).to have_content 'タイトルを入力してください'
+    end
 
-  it do
-    visit new_task_path
-    fill_in I18n.t('activemodel.attributes.task_form.title'), with: ''
-    click_button '作成する'
-    expect(page).to have_content 'タイトルを入力してください'
-  end
+    it do
+      visit new_task_path
+      title = 'a' * 80
+      fill_in I18n.t('activemodel.attributes.task_form.title'), with: title
+      click_button '作成する'
+      expect(page).to have_link(title)
+    end
 
-  it do
-    visit new_task_path
-    title = 'a' * 80
-    fill_in I18n.t('activemodel.attributes.task_form.title'), with: title
-    click_button '作成する'
-    expect(page).to have_link(title)
-  end
+    it do
+      visit new_task_path
+      fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'a' * 81
+      click_button '作成する'
+      expect(page).to have_content 'タイトルは80文字以内で入力してください'
+    end
 
-  it do
-    visit new_task_path
-    fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'a' * 81
-    click_button '作成する'
-    expect(page).to have_content 'タイトルは80文字以内で入力してください'
-  end
+    it do
+      visit new_task_path
+      fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
+      fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'a' * 511
+      click_button '作成する'
+      expect(page).to have_content '説明は510文字以内で入力してください'
+    end
 
-  it do
-    visit new_task_path
-    fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'a' * 511
-    click_button '作成する'
-    expect(page).to have_content '説明は510文字以内で入力してください'
-  end
-
-  it do
-    visit new_task_path
-    fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'a' * 510
-    click_button '作成する'
-    expect(page).to have_link('タスクのタイトル')
+    it do
+      visit new_task_path
+      fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
+      fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'a' * 510
+      click_button '作成する'
+      expect(page).to have_link('タスクのタイトル')
+    end
   end
 end
