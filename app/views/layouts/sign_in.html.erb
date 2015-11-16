@@ -10,6 +10,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body id="sign-in">
-<%= yield %>
+  <%= render 'layouts/flashes' %>
+  <%= yield %>
 </body>
 </html>
