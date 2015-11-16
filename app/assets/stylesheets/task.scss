@@ -7,3 +7,11 @@
     font-size: 1.2rem;
   }
 }
+
+.empty-list {
+  color: lighten($primary-font-color, 45%);
+  line-height: 1rem;
+  font-size: 1.5rem;
+
+  i { line-height: 1rem; }
+}

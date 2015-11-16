@@ -4,3 +4,5 @@ ja:
       page_title: '新しいタスク'
     show:
       page_title: 'タスクの詳細'
+    list:
+      empty: 'いまのところタスクはありません'
