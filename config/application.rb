@@ -33,8 +33,8 @@ module BubbleTask
     config.active_record.raise_in_transactional_callbacks = true
 
     # ActionView field_error
-    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
-      if instance.kind_of?(ActionView::Helpers::Tags::Label)
+    config.action_view.field_error_proc = proc do |html_tag, instance|
+      if instance.is_a?(ActionView::Helpers::Tags::Label)
         html_tag
           .sub(/>/, 'class="invalid">')
           .html_safe

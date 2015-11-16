@@ -12,8 +12,8 @@ class TaskCreation
 
   def run(user)
     return nil unless valid?
-    user.create_task(title, description).tap do |task|
-      task.save
-    end
+    user
+      .create_task(title, description)
+      .tap(&:save)
   end
 end
