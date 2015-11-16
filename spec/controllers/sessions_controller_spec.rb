@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe HomeController do
-  describe '#index' do
+describe SessionsController do
+  describe '#new' do
     context 'ログインしていない場合' do
       it do
-        get :index
-        expect(response).to redirect_to(new_session_url)
+        get :new
+        expect(response).to_not redirect_to(root_path)
       end
     end
 
@@ -13,8 +13,8 @@ describe HomeController do
       before { sign_in }
 
       it do
-        get :index
-        expect(response).to_not redirect_to(new_session_url)
+        get :new
+        expect(response).to redirect_to(root_path)
       end
     end
   end

@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     SessionManager.current_user(session)
   end
 
+  def signed_in?
+    current_user != nil
+  end
+
   helper_method :current_user
 
   protected
