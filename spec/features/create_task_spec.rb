@@ -58,14 +58,14 @@ describe 'タスクを登録する' do
     it do
       fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'a' * 81
       click_button '作成する'
-      expect(page).to have_content 'タイトルは80文字以内で入力してください'
+      expect(page).to have_content 'タイトルは半角80文字以内で入力してください'
     end
 
     it do
       fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'タスクのタイトル'
       fill_in I18n.t('activemodel.attributes.task_form.description'), with: 'a' * 511
       click_button '作成する'
-      expect(page).to have_content '説明は510文字以内で入力してください'
+      expect(page).to have_content '説明は半角510文字以内で入力してください'
     end
 
     it do
