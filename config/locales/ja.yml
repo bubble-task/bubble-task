@@ -138,6 +138,7 @@ ja:
       cancel: キャンセル
   sessions:
     notice:
+      signed_in: ログインしました
       signed_out: ログアウトしました
     alert:
       must_sign_in: ログインしてください
