@@ -5,4 +5,6 @@ class TaskForm
     :title,
     :description,
   )
+
+  validates :title, presence: true
 end
