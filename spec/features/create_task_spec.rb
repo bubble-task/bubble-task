@@ -2,19 +2,7 @@ require 'rails_helper'
 
 describe 'タスクを登録する' do
   before do
-    OmniAuth.config.add_mock(
-      :google,
-      {
-        'provider' => 'google',
-        'uid' => '1234567890',
-        'info' => {
-          'email' => 'user@gaiax.com',
-          'name' => 'ユーザの名前',
-        },
-      },
-    )
-    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
-    visit oauth_callbacks_path(provider: :google)
+    oauth_sign_in
     visit new_task_path
   end
 
