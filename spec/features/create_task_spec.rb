@@ -46,4 +46,11 @@ describe 'タスクを登録する' do
     click_button '作成する'
     expect(page).to have_content 'タイトルを入力してください'
   end
+
+  it do
+    visit new_task_path
+    fill_in I18n.t('activemodel.attributes.task_form.title'), with: 'a' * 81
+    click_button '作成する'
+    expect(page).to have_content 'タイトルは80文字以内で入力してください'
+  end
 end
