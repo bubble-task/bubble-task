@@ -6,4 +6,6 @@ class TaskForm
   validates :title,
     presence: true,
     length: { maximum: 80 }
+
+  validates :description, length: { maximum: 510 }
 end
