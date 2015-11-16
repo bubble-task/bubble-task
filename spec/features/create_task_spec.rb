@@ -49,28 +49,28 @@ describe 'タスクを登録する' do
     end
 
     it do
-      title = 'a' * 80
+      title = 'a' * 40
       fill_in I18n.t('activemodel.attributes.task_creation.title'), with: title
       click_button '作成する'
       expect(page).to have_link(title)
     end
 
     it do
-      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'a' * 81
+      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'a' * 41
       click_button '作成する'
-      expect(page).to have_content 'タイトルは半角80文字以内で入力してください'
+      expect(page).to have_content 'タイトルは40文字以内で入力してください'
     end
 
     it do
       fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-      fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 511
+      fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 256
       click_button '作成する'
-      expect(page).to have_content '説明は半角510文字以内で入力してください'
+      expect(page).to have_content '説明は255文字以内で入力してください'
     end
 
     it do
       fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-      fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 510
+      fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 255
       click_button '作成する'
       expect(page).to have_link('タスクのタイトル')
     end
