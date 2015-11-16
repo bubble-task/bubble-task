@@ -1,7 +1,10 @@
 .task-summary-list {
   @extend .collection, .z-depth-1;
 
+  border: none;
+
   a.collection-item {
+    @extend .z-depth-0;
     padding: 1.2rem;
     color: $primary-font-color;
     font-size: 1.2rem;
