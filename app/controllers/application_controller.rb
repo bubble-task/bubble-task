@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
-  helper_method :current_user
+  helper_method :current_user, :signed_in?
 
   protected
 

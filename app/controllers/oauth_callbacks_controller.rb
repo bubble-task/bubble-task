@@ -1,4 +1,5 @@
 class OauthCallbacksController < ApplicationController
+  before_action :not_authorized!
 
   def create
     auth_hash = request.env['omniauth.auth']
@@ -6,4 +7,10 @@ class OauthCallbacksController < ApplicationController
     sign_in(user)
     redirect_to root_url, notice: I18n.t('sessions.notice.signed_in')
   end
+
+  private
+
+    def not_authorized!
+      redirect_to root_url if signed_in?
+    end
 end

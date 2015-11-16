@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authorize!
 
   def new
     @command = TaskCreation.new
