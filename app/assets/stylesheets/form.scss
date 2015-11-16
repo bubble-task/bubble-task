@@ -1,3 +1,12 @@
+form .actions {
+  @extend .right-align;
+
+  .btn-flat:hover {
+    color: lighten($secondary-color, 50%);
+    background-color: $secondary-color;
+  }
+}
+
 .error-explanation {
   color: $error-color;
   margin-bottom: 3rem;

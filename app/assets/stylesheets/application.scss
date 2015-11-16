@@ -31,12 +31,3 @@ html {
 main {
   margin-top: 2.5rem;
 }
-
-form .actions {
-  @extend .right-align;
-
-  .btn-flat:hover {
-    color: lighten($secondary-color, 50%);
-    background-color: $secondary-color;
-  }
-}
