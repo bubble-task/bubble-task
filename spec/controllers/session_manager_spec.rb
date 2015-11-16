@@ -40,4 +40,15 @@ describe SessionManager do
       end
     end
   end
+
+  describe '渡されたセッションからユーザのidを削除する' do
+    it do
+      session = {}
+      user = create_user_from_oauth_credential
+      signed_in_session = SessionManager.sign_in(session, user)
+
+      new_session = SessionManager.sign_out(signed_in_session)
+      expect(new_session[:user_id]).to be_nil
+    end
+  end
 end
