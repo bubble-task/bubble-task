@@ -12,4 +12,8 @@ class Task < ActiveRecord::Base
   def description
     task_description.content
   end
+
+  def tags
+    ['タグ1']
+  end
 end

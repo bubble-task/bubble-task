@@ -1,7 +1,7 @@
 class TaskCreation
   include ActiveModel::Model
 
-  attr_accessor :title, :description
+  attr_accessor :title, :description, :tags
 
   validates :title,
             presence: true,
