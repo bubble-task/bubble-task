@@ -22,8 +22,6 @@ class Task < ActiveRecord::Base
   end
 
   def tag_contents
-    tags.map do |tag|
-      tag.content
-    end
+    tags.map(&:content)
   end
 end
