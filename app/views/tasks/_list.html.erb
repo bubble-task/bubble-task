@@ -2,8 +2,8 @@
   <div class="task-summary-list">
     <% tasks.each do |task| %>
       <div class="tags">
-        <% task.tags.each do |tag| %>
-          <span>tag.content</span>
+        <% task.tag_contents.each do |tag| %>
+          <span><%= tag %></span>
         <% end %>
       </div>
       <%= link_to task_url(task), class: 'collection-item' do %>

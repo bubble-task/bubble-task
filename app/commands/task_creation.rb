@@ -13,7 +13,13 @@ class TaskCreation
   def run(user)
     return nil unless valid?
     user
-      .create_task(title, description)
+      .create_task(title, description, tag_contents)
       .tap(&:save)
   end
+
+  private
+
+    def tag_contents
+      tags.split(/\s+/)
+    end
 end

@@ -1,5 +1,7 @@
 class Task < ActiveRecord::Base
   has_one :task_description
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   def self.by_author(author)
     where(author_id: author.id)
@@ -13,7 +15,15 @@ class Task < ActiveRecord::Base
     task_description.content
   end
 
-  def tags
-    ['タグ1']
+  def tagging(tag_contents)
+    tag_contents.each do |tag_content|
+      self.tags.build(content: tag_content)
+    end
+  end
+
+  def tag_contents
+    tags.map do |tag|
+      tag.content
+    end
   end
 end
