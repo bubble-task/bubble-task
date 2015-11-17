@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    SessionManager.current_user(session) || User.new(name: '末吉哉')
+    SessionManager.current_user(session)
   end
 
   def signed_in?
