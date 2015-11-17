@@ -3,7 +3,7 @@ require 'rails_helper'
 describe OauthCallbacksController do
   describe '#create' do
     subject do
-      OmniAuth.config.add_mock(:google, default_auth_hash)
+      OmniAuth.config.add_mock(:google, generate_auth_hash)
       request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
 
       get :create, provider: :google
