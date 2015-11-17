@@ -2,17 +2,17 @@
 
 /*** Additional variables ***/
 $primary-bg-color: #FFF;
-$primary-font-color: #3D3D3D;
+$primary-font-color: #555;
 
 /*** Color ***/
-$primary-color: #FFF;
-$secondary-color: color("amber", "darken-1") !default;
+$primary-color: #96c7cf;
+$secondary-color: #74b3be !default;
 $success-color: color("green", "base") !default;
-$error-color: color("red", "base") !default;
-$link-color: color("light-blue", "darken-1") !default;
+$error-color: color("red", "darken-1") !default;
+$link-color: #539fac !default;
 
 /*** Body ***/
-body { background-color: #EEE5E9; }
+body { background-color: #e6e6e6; }
 
 @import "materialize";
 @import "material_icons";
