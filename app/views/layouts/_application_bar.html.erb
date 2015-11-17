@@ -19,13 +19,8 @@
       <%= current_user.name %><i class="material-icons right">arrow_drop_down</i>
     </a>
     <ul id="user-menu" class="dropdown-content">
-      <li><%= link_to '設定', '#' %></li>
-      <li class="divider"></li>
-      <li><%= link_to 'ログアウト', '#' %></li>
+      <li><%= link_to 'ログアウト', session_url, method: :delete %></li>
     </ul>
   </li>
   <li class="divider"></li>
-  <li><a href="/">Home<i class="material-icons left">home</i></a></li>
-  <li><a href="#">Tasks<i class="material-icons left">assignment</i></a></li>
-  <li><a href="#">Tags<i class="material-icons left">label</i></a></li>
 </ul>
