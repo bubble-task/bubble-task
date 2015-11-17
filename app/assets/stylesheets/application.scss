@@ -1,12 +1,12 @@
 @import "materialize/components/color";
 
 /*** Additional variables ***/
-$primary-bg-color: #FFF;
-$primary-font-color: #555;
+$primary-bg-color: #EFF4AB;
+$primary-font-color: #3A3335;
 
 /*** Color ***/
-$primary-color: #96c7cf;
-$secondary-color: #74b3be !default;
+$primary-color: #EFF4AB;
+$secondary-color: #456293 !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "darken-1") !default;
 $link-color: #539fac !default;
@@ -35,3 +35,10 @@ main {
 .z-depth-1{
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
 }
+
+.primary-container {
+  @extend .card-panel;
+
+  background-color: $primary-bg-color;
+}
+

@@ -1,7 +1,7 @@
 <%= content_for(:page_title) { t('.page_title') } %>
 <%= content_for(:page_icon) { 'mode_edit' } %>
 <div class="col s10">
-  <div class="card-panel white">
+  <div class="primary-container">
     <%= form_for @command, url: tasks_url do |f| %>
       <%= render 'layouts/errors', locals: { errors: @command.errors } %>
       <div class="input-field">
