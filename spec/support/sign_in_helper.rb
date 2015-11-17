@@ -3,8 +3,7 @@ require_relative './user_helper'
 module SignInHelper
   include UserHelper
 
-  def oauth_sign_in(provider = :google, user = { email: nil, name: nil })
-    auth_hash = generate_auth_hash.merge(user)
+  def oauth_sign_in(auth_hash: auth_hash, provider: :google)
     setup_omniauth_mock(provider, auth_hash)
     visit oauth_callbacks_path(provider: provider)
   end

@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe 'タスクを登録する' do
   before do
-    oauth_sign_in
+    auth_hash = generate_auth_hash
+    create_user_from_oauth_credential(auth_hash)
+    oauth_sign_in(auth_hash: auth_hash)
     visit new_task_path
   end
 
