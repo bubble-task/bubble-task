@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151112093026) do
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title",      null: false
+    t.integer  "author_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

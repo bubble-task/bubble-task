@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def create_task(title, description = nil)
-    task = Task.new(title: title)
+    task = Task.new(author_id: id, title: title)
     return task unless description
     task.write_description(description)
     task
