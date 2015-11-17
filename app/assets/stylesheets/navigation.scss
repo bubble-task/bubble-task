@@ -1,5 +1,5 @@
 nav {
-  $bg-color: #F2F7F2;
+  $bg-color: #FFF;
   $font-color: #456293;
 
   background-color: $bg-color;
@@ -16,6 +16,12 @@ nav {
     color: $font-color;
     font-size: 1.2rem;
     font-weight: 700;
+  }
+
+  ul.right {
+    i {
+      color: lighten($secondary-color, 25%);
+    }
   }
 }
 
