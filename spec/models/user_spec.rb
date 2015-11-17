@@ -61,8 +61,9 @@ describe User do
     context 'タグが付加されている場合' do
       it do
         user = User.new(id: 1)
-        task = user.create_task('タスクのタイトル', '', ['タグ1'])
+        task = user.create_task('タスクのタイトル', '', ['タグ1', 'タグ2'])
         expect(task.tag_contents[0]).to eq('タグ1')
+        expect(task.tag_contents[1]).to eq('タグ2')
         expect(task.title).to eq('タスクのタイトル')
         expect(task.author_id).to eq(user.id)
       end
