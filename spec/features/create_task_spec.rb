@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe 'タスクを登録する' do
+describe 'タスクを作成する' do
   before do
     oauth_sign_in
     visit new_task_path
   end
 
-  describe 'タスクを作成する' do
+  context 'タイトルのみの場合' do
     it do
       fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
       click_button '作成する'
@@ -16,7 +16,9 @@ describe 'タスクを登録する' do
       expect(title).to eq 'タスクのタイトル'
       expect(description).to eq ''
     end
+  end
 
+  context '説明を記述する場合' do
     it do
       fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
       fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'タスクの説明'
@@ -29,38 +31,13 @@ describe 'タスクを登録する' do
     end
   end
 
-  describe 'バリデーションをかける' do
+  context 'タグを付加する場合' do
     it do
-      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: ''
-      click_button '作成する'
-      expect(page).to have_content 'タイトルを入力してください'
-    end
-
-    it do
-      title = 'a' * 40
-      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: title
-      click_button '作成する'
-      expect(page).to have_link(title)
-    end
-
-    it do
-      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'a' * 41
-      click_button '作成する'
-      expect(page).to have_content 'タイトルは40文字以内で入力してください'
-    end
-
-    it do
+      fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: 'タグ1 タグ2 タグ3'
       fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-      fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 256
       click_button '作成する'
-      expect(page).to have_content '説明は255文字以内で入力してください'
-    end
-
-    it do
-      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-      fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 255
-      click_button '作成する'
-      expect(page).to have_link('タスクのタイトル')
+      tags = first('.tags').text.split(/\s+/)
+      expect(tags).to eq %w(タグ1 タグ2 タグ3)
     end
   end
 end

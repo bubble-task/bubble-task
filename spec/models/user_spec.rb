@@ -37,23 +37,4 @@ describe User do
       end
     end
   end
-
-  describe 'タスクを作成する' do
-    context 'タスクの説明がない場合' do
-      it do
-        user = User.new
-        task = user.create_task('タスクのタイトル')
-        expect(task.title).to eq('タスクのタイトル')
-      end
-    end
-
-    context 'タスクの説明がある場合' do
-      it do
-        user = User.new
-        task = user.create_task('タスクのタイトル', 'タスクの説明')
-        expect(task.title).to eq('タスクのタイトル')
-        expect(task.description).to eq('タスクの説明')
-      end
-    end
-  end
 end

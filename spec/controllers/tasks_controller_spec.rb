@@ -39,7 +39,7 @@ describe TasksController do
       response
     end
 
-    let(:task) { Task.create(title: 'title') }
+    let(:task) { Task.create(author_id: 1, title: 'title') }
 
     context 'ログインしていない場合' do
       it { is_expected.to redirect_to(new_session_url) }
