@@ -5,6 +5,6 @@ ja:
         success: 'タスクを作成しました'
     attributes:
       task_creation:
-        tags: タグ
+        tag_words: タグ
         title: タイトル
         description: 説明

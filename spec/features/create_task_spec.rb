@@ -33,7 +33,7 @@ describe 'タスクを作成する' do
 
   context 'タグを付加する場合' do
     it do
-      fill_in I18n.t('activemodel.attributes.task_creation.tags'), with: 'タグ1'
+      fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: 'タグ1'
       fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
       click_button '作成する'
       tag = first('.tags').text

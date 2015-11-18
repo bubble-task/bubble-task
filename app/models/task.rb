@@ -14,9 +14,9 @@ class Task < ActiveRecord::Base
     task_description.content
   end
 
-  def tagging(tag_contents)
-    tag_contents.each do |tag_content|
-      self.taggings.build(tag: tag_content)
+  def tagging(tags)
+    tags.each do |tag|
+      self.taggings.build(tag: tag)
     end
   end
 
