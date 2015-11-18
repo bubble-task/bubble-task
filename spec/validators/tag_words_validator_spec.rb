@@ -11,7 +11,7 @@ class RecordSpy
 end
 
 describe TagWordsValidator do
-  let(:validator) { described_class.new({attributes: 1}) }
+  let(:validator) { described_class.new({ attributes: 1 }) }
   let(:record) { TaskCreation.new }
 
   it do
@@ -21,11 +21,20 @@ describe TagWordsValidator do
 
   it do
     validator.validate_each(record, :tag_words, "#{'a' * 16} #{'b' * 17}")
-    expect(record.errors.messages).to eq({tag_words: ["「#{'b' * 17}」は16文字以内で入力してください"]})
+    expect(record.errors.messages).to eq(
+      { tag_words: ["「#{'b' * 17}」は16文字以内で入力してください"] },
+    )
   end
 
   it do
     validator.validate_each(record, :tag_words, "#{'a' * 17} #{'b' * 17}")
-    expect(record.errors.messages).to eq({tag_words: ["「#{'a' * 17}」は16文字以内で入力してください", "「#{'b' * 17}」は16文字以内で入力してください"]})
+    expect(record.errors.messages).to eq(
+      {
+        tag_words: [
+          "「#{'a' * 17}」は16文字以内で入力してください",
+          "「#{'b' * 17}」は16文字以内で入力してください",
+        ],
+      },
+    )
   end
 end
