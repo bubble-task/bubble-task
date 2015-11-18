@@ -3,15 +3,28 @@
 
   background-color: $primary-bg-color;
   border: none;
+}
 
-  a.collection-item {
-    @extend .z-depth-0;
+.task-summary {
+  padding: 1rem 1.2rem;
+  border-bottom: solid 1px $collection-border-color;
 
-    background-color: $primary-bg-color;
-    color: $primary-font-color;
-    padding: 1.2rem;
-    font-size: 1.2rem;
+  color: $primary-font-color;
+  font-size: 1.3rem;
+
+  .tags {
+    margin-bottom: 0.6rem;
   }
+
+  .chip {
+    background-color: #ECEBE4;
+  }
+
+  a {
+    color: $primary-font-color;
+  }
+
+  &:hover { background-color: lighten($primary-bg-color, 5%); }
 }
 
 .empty-list {
