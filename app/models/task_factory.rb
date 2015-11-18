@@ -3,7 +3,7 @@ class TaskFactory
   def self.create(author_id, title, description = nil, tags = [])
     new(author_id, title).with do
       write_description(description)
-      tagging(tags)
+      tagging(tags.uniq)
     end
   end
 
