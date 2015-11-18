@@ -6,18 +6,23 @@
 }
 
 .task-summary {
-  padding: 1rem 1.2rem;
+  padding: 0.7rem 1.2rem;
   border-bottom: solid 1px $collection-border-color;
 
   color: $primary-font-color;
   font-size: 1.3rem;
 
   .tags {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
   }
 
   .chip {
-    background-color: #ECEBE4;
+    background-color: #E6E18F;
+    color: #92977E;
+    //background-color: #FFD07B;
+    //color: lighten($primary-font-color, 30%);
+    //background-color: #AFC2D5;
+    //color: #fcfcfc;
   }
 
   a {
