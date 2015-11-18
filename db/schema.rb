@@ -26,11 +26,7 @@ ActiveRecord::Schema.define(version: 20151117090525) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer "task_id", null: false
-    t.integer "tag_id",  null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "content", null: false
+    t.string  "tag",     null: false
   end
 
   create_table "task_descriptions", force: :cascade do |t|
