@@ -21,8 +21,8 @@ describe TaskFactory do
 
     context 'タグが付加されている場合' do
       it do
-        task = TaskFactory.create(1, 'タスクのタイトル', 'タスクの説明', ['タグ1', 'タグ2'])
-        expect(task.tags).to eq(['タグ1', 'タグ2'])
+        task = TaskFactory.create(1, 'タスクのタイトル', 'タスクの説明', %w(タグ1 タグ2))
+        expect(task.tags).to eq(%w(タグ1 タグ2))
         expect(task.title).to eq('タスクのタイトル')
         expect(task.author_id).to eq(1)
       end
