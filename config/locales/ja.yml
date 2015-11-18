@@ -136,7 +136,11 @@ ja:
       submit: 保存する
       update: 更新する
       cancel: キャンセル
+    navigations:
+      back: もどる
   sessions:
+    actions:
+      sign_out: ログアウト
     notice:
       signed_in: ログインしました
       signed_out: ログアウトしました

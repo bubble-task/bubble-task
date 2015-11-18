@@ -1,18 +1,18 @@
 @import "materialize/components/color";
 
 /*** Additional variables ***/
-$primary-bg-color: #FFF;
-$primary-font-color: #333;
+$primary-bg-color: #F7FCBD;
+$primary-font-color: #3A3335;
 
 /*** Color ***/
-$primary-color: #FFF;
-$secondary-color: color("blue-grey", "darken-1") !default;
+$primary-color: #EFF4AB;
+$secondary-color: #456293 !default;
 $success-color: color("green", "base") !default;
-$error-color: color("red", "base") !default;
-$link-color: color("light-blue", "darken-1") !default;
+$error-color: color("red", "darken-1") !default;
+$link-color: #539fac !default;
 
 /*** Body ***/
-body { background-color: #FAFAFA; }
+body { background-color: #e6e6e6; }
 
 @import "materialize";
 @import "material_icons";
@@ -34,4 +34,27 @@ main {
 
 .z-depth-1{
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+.primary-container {
+  @extend .card-panel;
+
+  background-color: $primary-bg-color;
+}
+
+.dropdown-content {
+  li.nolink {
+    span { color: $primary-font-color; }
+    &:hover, &.active { background-color: $dropdown-bg-color; }
+  }
+}
+
+.page-navigation {
+  a {
+    @extend .btn-flat;
+
+    &:hover { background-color: #FFF; }
+
+    i { margin-right: 0.3rem; }
+  }
 }

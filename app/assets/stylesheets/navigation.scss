@@ -1,76 +1,58 @@
-$side-nav-width: 240px;
+$nav-avatar-size: 34px;
 
-nav.top-nav {
-  background-color: #FFF;
+nav {
+  $bg-color: #FFF;
+  $font-color: #456293;
 
-  a.page-title {
-    color: $secondary-color;
-    font-weight: 300;
-
-    i { font-size: 1.2rem; }
-  }
-}
-
-.side-nav.fixed {
-  $bg-color: color("grey", "lighten-3");
-  $link-color: $secondary-color;
-  $line-height: 64px;
-
-  width: $side-nav-width;
   background-color: $bg-color;
 
-  li {
-    &:hover, &.active { background-color: darken($bg-color, 5%); }
-  }
-
-  li.brand-logo {
-    a {
-      font-size: 1.15rem;
-      font-weight: 700;
-
-      i { margin-right: 5px; }
+  .button-collapse {
+    i {
+      color: $font-color;
+      font-size: 1.8rem;
+      margin-right: 1rem;
     }
   }
 
-  li.user-area {
-    img.avatar {
-      margin-right: 10px;
-      vertical-align: middle;
-      width: 34px;
-      height: 34px;
-    }
+  .brand-logo {
+    color: $font-color;
+    font-size: 1.2rem;
+    font-weight: 700;
   }
+
+  ul.right {
+    i { color: lighten($secondary-color, 25%); }
+  }
+}
+
+li.avatar {
+  img {
+    vertical-align: middle;
+    width: $nav-avatar-size;
+    height: $nav-avatar-size;
+    border-radius: 0.3rem;
+  }
+
+  i {
+    margin-left: 3px;
+  }
+}
+
+.side-nav {
+  $bg-color: color("grey", "lighten-3");
+  $font-color: $primary-font-color;
+
+  $line-height: 64px;
+
+  background-color: $bg-color;
 
   a {
-    color: $link-color;
-    font-weight: 700;
-    i { line-height: $line-height; }
+    color: $font-color;
   }
-}
 
-@media #{$large-and-up} {
-  header, main {
-    padding-left: $side-nav-width;
-  }
-  .container {
-    width: 90%;
-  }
-}
+  i { line-height: $line-height; }
 
-@media #{$medium-and-down} {
-  nav .nav-wrapper {
-    text-align: center;
+  li.avatar {
+    span { left-margin: 5px; }
   }
-}
-
-a.button-collapse.top-nav {
-  position: absolute;
-  text-align: center;
-  left: 7.5%;
-  top: 0;
-  float: none;
-  margin-left: 0.3rem;
-  color: black;
-  font-size: 32px;
-  z-index: 2;
 }

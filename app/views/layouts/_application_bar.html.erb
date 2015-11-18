@@ -1,40 +1,45 @@
 <header>
-  <nav class="top-nav">
-    <div class="container">
-      <div class="nav-wrapper">
-        <a class="page-title">
-          <%= content_for(:page_title) %>
-          <i class="material-icons left"><%= content_for(:page_icon) || 'bookmark' %></i>
-        </a>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" data-activates="slide-out" class="button-collapse show-on-large">
+            <i class="mdi-navigation-menu"></i>
+          </a>
+          <a href="/" class="brand-logo">Bubble Task</a>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <%= link_to root_url, class: 'tooltipped', data: { position: 'bottom', tooltip: 'タスク一覧' } do %>
+                <i class="material-icons">view_list</i>
+              <% end -%>
+            </li>
+            <li class="avatar">
+              <%= link_to '#!', class: 'dropdown-button avatar-toggle', data: { activates: 'top-user-menu', constrainwidth: 'false', beloworigin: 'true' } do %>
+                <img src="https://gravatar.com/avatar" />
+                <i class="mdi-navigation-arrow-drop-down right"></i>
+              <% end -%>
+              <ul id="top-user-menu" class="dropdown-content">
+                <li class="nolink"><span><%= current_user.name %></span></li>
+                <li class="divider"></li>
+                <li><%= link_to t('sessions.actions.sign_out'), session_url, method: :delete %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  <div class="container">
-    <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
-      <i class="mdi-navigation-menu"></i>
-    </a>
+    </nav>
   </div>
-  <ul id="nav-mobile" class="side-nav fixed">
-    <li class="brand-logo">
-      <a href="/">
-        Bubble Task
-        <i class="material-icons left">hdr_weak</i>
-      </a>
-    </li>
-    <li class="divider"></li>
-    <li class="user-area">
-      <a href="#" class="dropdown-button" data-activates="user-menu" data-beloworigin="true">
-        <img src="http://gravatar.com/avatar" class="avatar circle" />
-        <%= current_user.name %>
-      </a>
-      <ul id="user-menu" class="dropdown-content">
-        <li><%= link_to '設定', '#' %></li>
-        <li class="divider"></li>
-        <li><%= link_to 'ログアウト', session_url, method: :delete, class: 'sign-out' %></li>
-      </ul>
-    </li>
-    <li class="divider"></li>
-    <li><a href="#">Tasks<i class="material-icons left">assignment</i></a></li>
-    <li><a href="#">Tags<i class="material-icons left">label</i></a></li>
-  </ul>
 </header>
+<ul id="slide-out" class="side-nav">
+  <li class="avatar">
+    <%= link_to '#!', class: 'dropdown-button avatar-toggle', data: { activates: 'side-user-menu', constrainwidth: 'false', beloworigin: 'true' } do %>
+      <img src="https://gravatar.com/avatar" />
+      <span><%= current_user.name %></span>
+      <i class="mdi-navigation-arrow-drop-down right"></i>
+    <% end -%>
+  </li>
+  <li class="divider"></li>
+</ul>
+<ul id="side-user-menu" class="dropdown-content">
+  <li><%= link_to t('sessions.actions.sign_out'), session_url, method: :delete %></li>
+</ul>
