@@ -2,9 +2,11 @@
 <%= content_for(:page_icon) { 'description' } %>
 <div class="col s10">
   <div class="primary-container">
-    <% @task.tags.each do |tag| %>
-      <p><%= tag %></p>
-    <% end -%>
+    <div id="tags">
+      <% @task.tags.each do |tag| %>
+        <p><%= tag %></p>
+      <% end -%>
+    </div>
     <h5 id="task_title"><%= @task.title %></h5>
     <div class="divider"></div>
     <%= simple_format(h(@task.description), id: 'task_description') %>
