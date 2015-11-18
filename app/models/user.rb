@@ -21,10 +21,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def create_task(title, description = nil)
-    task = Task.new(author_id: id, title: title)
-    return task unless description
-    task.write_description(description)
-    task
+  def create_task(title, description = nil, tags = [])
+    TaskFactory.create(id, title, description, tags)
   end
 end
