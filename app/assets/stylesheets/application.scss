@@ -48,3 +48,13 @@ main {
     &:hover, &.active { background-color: $dropdown-bg-color; }
   }
 }
+
+.page-navigation {
+  @extend .center;
+
+  a {
+    margin-top: 0.5rem;
+    background-color: #FFF;
+    color: lighten($primary-font-color, 15%);
+  }
+}
