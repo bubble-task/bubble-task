@@ -1,3 +1,5 @@
+$nav-avatar-size: 34px;
+
 nav {
   $bg-color: #FFF;
   $font-color: #456293;
@@ -25,12 +27,24 @@ nav {
   }
 }
 
+li.avatar {
+  img {
+    vertical-align: middle;
+    width: $nav-avatar-size;
+    height: $nav-avatar-size;
+    border-radius: 0.3rem;
+  }
+
+  i {
+    margin-left: 3px;
+  }
+}
+
 .side-nav {
   $bg-color: color("grey", "lighten-3");
   $font-color: $primary-font-color;
 
   $line-height: 64px;
-  $img-size: $line-height*0.5;
 
   background-color: $bg-color;
 
@@ -41,11 +55,6 @@ nav {
   i { line-height: $line-height; }
 
   li.avatar {
-    img {
-      margin-right: 0.6rem;
-      vertical-align: middle;
-      width: $img-size;
-      height: $img-size;
-    }
+    span { left-margin: 5px; }
   }
 }

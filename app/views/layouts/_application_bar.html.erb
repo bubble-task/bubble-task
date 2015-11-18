@@ -9,15 +9,21 @@
           <a href="/" class="brand-logo">Bubble Task</a>
           <ul class="right hide-on-med-and-down">
             <li>
-              <a class="tooltipped" data-position="bottom" data-tooltip="タスク一覧" href="#">
+              <%= link_to root_url, class: 'tooltipped', data: { position: 'bottom', tooltip: 'タスク一覧' } do %>
                 <i class="material-icons">view_list</i>
-              </a>
+              <% end -%>
             </li>
-            <!--li>
-              <a class="tooltipped" data-position="bottom" data-tooltip="タグ一覧"  href="#">
-                <i class="material-icons">label</i>
-              </a>
-            </li-->
+            <li class="avatar">
+              <%= link_to '#!', class: 'dropdown-button avatar-toggle', data: { activates: 'top-user-menu', constrainwidth: 'false', beloworigin: 'true' } do %>
+                <img src="https://gravatar.com/avatar" />
+                <i class="mdi-navigation-arrow-drop-down right"></i>
+              <% end -%>
+              <ul id="top-user-menu" class="dropdown-content">
+                <li class="nolink"><span><%= current_user.name %></span></li>
+                <li class="divider"></li>
+                <li><%= link_to t('sessions.actions.sign_out'), session_url, method: :delete %></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -26,13 +32,14 @@
 </header>
 <ul id="slide-out" class="side-nav">
   <li class="avatar">
-    <a href="#" class="dropdown-button" data-activates="user-menu">
-      <img src="http://gravatar.com/avatar" class="avatar circle" />
-      <%= current_user.name %><i class="material-icons right">arrow_drop_down</i>
-    </a>
-    <ul id="user-menu" class="dropdown-content">
-      <li><%= link_to 'ログアウト', session_url, method: :delete %></li>
-    </ul>
+    <%= link_to '#!', class: 'dropdown-button avatar-toggle', data: { activates: 'side-user-menu', constrainwidth: 'false', beloworigin: 'true' } do %>
+      <img src="https://gravatar.com/avatar" />
+      <span><%= current_user.name %></span>
+      <i class="mdi-navigation-arrow-drop-down right"></i>
+    <% end -%>
   </li>
   <li class="divider"></li>
+</ul>
+<ul id="side-user-menu" class="dropdown-content">
+  <li><%= link_to t('sessions.actions.sign_out'), session_url, method: :delete %></li>
 </ul>

@@ -42,3 +42,9 @@ main {
   background-color: $primary-bg-color;
 }
 
+.dropdown-content {
+  li.nolink {
+    span { color: $primary-font-color; }
+    &:hover, &.active { background-color: $dropdown-bg-color; }
+  }
+}

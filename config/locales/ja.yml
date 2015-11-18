@@ -137,6 +137,8 @@ ja:
       update: 更新する
       cancel: キャンセル
   sessions:
+    actions:
+      sign_out: ログアウト
     notice:
       signed_in: ログインしました
       signed_out: ログアウトしました
