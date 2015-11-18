@@ -38,4 +38,25 @@ describe 'タスク作成時にバリデーションをかける' do
     click_button '作成する'
     expect(page).to have_link('タスクのタイトル')
   end
+
+  it do
+    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
+    fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: 'a' * 17
+    click_button '作成する'
+    expect(page).to have_content("タグ「#{'a' * 17}」は16文字以内で入力してください")
+  end
+
+  it do
+    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
+    fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: "#{'a' * 16} #{'b' * 17}"
+    click_button '作成する'
+    expect(page).to have_content("タグ「#{'b' * 17}」は16文字以内で入力してください")
+  end
+
+  it do
+    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
+    fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: "#{'a' * 8} #{'a' * 9}"
+    click_button '作成する'
+    expect(page).to have_link('タスクのタイトル')
+  end
 end
