@@ -7,3 +7,8 @@
     <%= simple_format(h(@task.description), id: 'task_description') %>
   </div>
 </div>
+<div id="tags" class="col s2">
+  <% @task.tags.each do |tag| %>
+    <p><%= tag %></p>
+  <% end -%>
+</div>
