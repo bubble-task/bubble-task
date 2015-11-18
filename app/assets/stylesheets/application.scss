@@ -50,11 +50,11 @@ main {
 }
 
 .page-navigation {
-  @extend .center;
-
   a {
-    margin-top: 0.5rem;
-    background-color: #FFF;
-    color: lighten($primary-font-color, 15%);
+    @extend .btn-flat;
+
+    &:hover { background-color: #FFF; }
+
+    i { margin-right: 0.3rem; }
   }
 }
