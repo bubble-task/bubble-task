@@ -20,7 +20,7 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def tag_contents
+  def tags
     taggings.map(&:tag)
   end
 end

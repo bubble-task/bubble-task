@@ -62,7 +62,7 @@ describe User do
       it do
         user = User.new(id: 1)
         task = user.create_task('タスクのタイトル', '', ['タグ1', 'タグ2'])
-        expect(task.tag_contents).to eq(['タグ1', 'タグ2'])
+        expect(task.tags).to eq(['タグ1', 'タグ2'])
         expect(task.title).to eq('タスクのタイトル')
         expect(task.author_id).to eq(user.id)
       end
