@@ -10,6 +10,13 @@ class TaskCreation
   validates :description,
             length: { maximum: 255 }
 
+  validates :tag_words, tag_words: true
+
+  def self.tags_from(tag_words)
+    return [] unless tag_words
+    tag_words.split(/\s+/)
+  end
+
   def run(user)
     return nil unless valid?
     user
@@ -17,9 +24,7 @@ class TaskCreation
       .tap(&:save)
   end
 
-  private
-
-    def tags
-      tag_words.split(/\s+/)
-    end
+  def tags
+    self.class.tags_from(tag_words)
+  end
 end
