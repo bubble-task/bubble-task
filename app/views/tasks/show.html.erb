@@ -2,13 +2,17 @@
 <%= content_for(:page_icon) { 'description' } %>
 <div class="col s10">
   <div class="primary-container">
+    <% @task.tags.each do |tag| %>
+      <p><%= tag %></p>
+    <% end -%>
     <h5 id="task_title"><%= @task.title %></h5>
     <div class="divider"></div>
     <%= simple_format(h(@task.description), id: 'task_description') %>
   </div>
 </div>
-<div id="tags" class="col s2">
-  <% @task.tags.each do |tag| %>
-    <p><%= tag %></p>
+<div class="col s2 page-navigation">
+  <%= link_to root_url, class: 'waves-effect' do %>
+    <%= t('helpers.navigations.back') %>
+    <i class="material-icons left">replay</i>
   <% end -%>
 </div>
