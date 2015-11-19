@@ -1,5 +1,3 @@
-$nav-avatar-size: 34px;
-
 nav {
   $bg-color: #FFF;
   $font-color: #456293;
@@ -37,36 +35,39 @@ a.button-collapse.top-nav {
     top: 65px;
   }
 
-  @extend .z-depth-0;
+  @extend .z-depth-1;
 
   width: $side-nav-width;
 
-  $bg-color: lighten($secondary-color, 15%);
-  $font-color: #fff;
+  $bg-color: $bottom-color;
+  $font-color: $secondary-color;
   $line-height: 64px;
 
   background-color: $bg-color;
-
-  a { color: $font-color; }
 
   i {
     color: $font-color;
     line-height: $line-height;
   }
 
-  li:hover { background-color: lighten($bg-color, 20%); }
+  li:hover { background-color: #FFF; }
 
   li.divider { background-color: darken($bg-color, 5%); }
 
-  li.avatar img {
-    vertical-align: middle;
-    margin-right: 9px;
-    width: 28px;
-    height: 28px;
+  li.avatar{
+    i { font-size: 1.2rem; }
+
+    img {
+      vertical-align: middle;
+      margin-right: 9px;
+      width: 28px;
+      height: 28px;
+    }
   }
 
   .dropdown-content {
-    li:hover { background-color: color("grey", "lighten-3"); }
-    a { color: $bg-color; }
+    li {
+      &:hover { background-color: lighten($secondary-color, 50%); }
+    }
   }
 }

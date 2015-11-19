@@ -1,13 +1,13 @@
 @import "materialize/components/color";
 
-//$side-nav-width: 240px;
-$side-nav-width: 90px;
+$side-nav-width: 240px;
 
 /*** Color ***/
 
 /*** Additional variables ***/
 $primary-bg-color: #F7FCBD;
 $primary-font-color: #3A3335;
+$bottom-color: #E6E6E6;
 
 $primary-color: #EFF4AB;
 $secondary-color: #456293 !default;
@@ -16,7 +16,7 @@ $error-color: color("red", "darken-1") !default;
 $link-color: #539fac !default;
 
 /*** Body ***/
-body { background-color: #e6e6e6; }
+body { background-color: $bottom-color; }
 
 @import "materialize";
 @import "material_icons";
@@ -35,7 +35,7 @@ html {
 main {
   margin-top: 1.5rem;
 
-  @media #{$medium-and-up} {
+  @media #{$large-and-up} {
     margin-left: $side-nav-width;
 
     .container { width: 90%; }
