@@ -1,7 +1,11 @@
-<%= content_for(:page_title) { t('.page_title') } %>
-<%= content_for(:page_icon) { 'home' } %>
 <div class="col s10">
-  <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
+  <% if @tasks.any? -%>
+    <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
+  <% else -%>
+    <p class="empty-list">
+      <%= t('tasks.list.empty') %><i class="material-icons left">done_all</i>
+    </p>
+  <% end -%>
   <div id="new-task-fab" class="fixed-action-btn">
     <%= link_to new_task_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
       <i class="large material-icons">mode_edit</i>

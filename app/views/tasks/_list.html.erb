@@ -1,20 +1,12 @@
-<% if tasks.any? -%>
-  <div class="task-summary-list">
-    <% tasks.each do |task| %>
-      <div id="task_<%= task.id %>">
-        <div class="tags">
-          <% task.tags.each do |tag| %>
-            <span><%= tag %></span>
-          <% end %>
-        </div>
-        <%= link_to task_url(task), class: 'collection-item' do %>
-          <%= task.title %><i class="material-icons left">account_circle</i>
-        <% end -%>
+<div class="task-summary-list">
+  <% tasks.each do |task| %>
+    <div id="task_<%= task.id %>" class="task-summary">
+      <div class="tags">
+        <% task.tags.each do |tag| %>
+          <div class="tag"><%= tag %></div>
+        <% end %>
       </div>
-    <% end %>
-  </ul>
-<% else -%>
-  <p class="empty-list">
-    <%= t('tasks.list.empty') %><i class="material-icons left">done_all</i>
-  </p>
-<% end -%>
+      <%= link_to task.title, task_url(task) %>
+    </div>
+  <% end %>
+</div>

@@ -1,58 +1,73 @@
-$nav-avatar-size: 34px;
-
 nav {
   $bg-color: #FFF;
   $font-color: #456293;
 
   background-color: $bg-color;
 
-  .button-collapse {
-    i {
-      color: $font-color;
-      font-size: 1.8rem;
-      margin-right: 1rem;
-    }
+  .container {
+    width: 100%;
+    margin: 0 auto 0 15px;
   }
 
-  .brand-logo {
+  a.brand-logo {
+    padding: 0 15px;
     color: $font-color;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
   }
-
-  ul.right {
-    i { color: lighten($secondary-color, 25%); }
-  }
 }
 
-li.avatar {
-  img {
-    vertical-align: middle;
-    width: $nav-avatar-size;
-    height: $nav-avatar-size;
-    border-radius: 0.3rem;
-  }
-
-  i {
-    margin-left: 3px;
-  }
+a.button-collapse.top-nav {
+  position: absolute;
+  text-align: center;
+  left: 15px;
+  top: 0;
+  float: none;
+  margin-left: 0.3rem;
+  color: $secondary-color;
+  font-size: 32px;
+  z-index: 2;
 }
 
-.side-nav {
-  $bg-color: color("grey", "lighten-3");
-  $font-color: $primary-font-color;
+.side-nav.fixed {
+  @media #{$large-and-up} {
+    z-index: 1;
+    top: 65px;
+  }
 
+  @extend .z-depth-1;
+
+  width: $side-nav-width;
+
+  $bg-color: $bottom-color;
+  $font-color: $secondary-color;
   $line-height: 64px;
 
   background-color: $bg-color;
 
-  a {
+  i {
     color: $font-color;
+    line-height: $line-height;
   }
 
-  i { line-height: $line-height; }
+  li:hover { background-color: #FFF; }
 
-  li.avatar {
-    span { left-margin: 5px; }
+  li.divider { background-color: darken($bg-color, 5%); }
+
+  li.avatar{
+    i { font-size: 1.2rem; }
+
+    img {
+      vertical-align: middle;
+      margin-right: 9px;
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .dropdown-content {
+    li {
+      &:hover { background-color: lighten($secondary-color, 50%); }
+    }
   }
 }

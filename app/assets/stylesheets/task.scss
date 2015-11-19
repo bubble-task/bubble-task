@@ -3,15 +3,24 @@
 
   background-color: $primary-bg-color;
   border: none;
+}
 
-  a.collection-item {
-    @extend .z-depth-0;
+.task-summary {
+  padding: 0.7rem 1.2rem;
+  border-bottom: solid 1px $collection-border-color;
 
-    background-color: $primary-bg-color;
-    color: $primary-font-color;
-    padding: 1.2rem;
-    font-size: 1.2rem;
+  color: $primary-font-color;
+  font-size: 1.3rem;
+
+  .tags {
+    margin-bottom: 0.8rem;
   }
+
+  a {
+    color: $primary-font-color;
+  }
+
+  &:hover { background-color: lighten($primary-bg-color, 5%); }
 }
 
 .empty-list {
@@ -20,4 +29,18 @@
   font-size: 1.5rem;
 
   i { line-height: 1rem; }
+}
+
+.tag {
+  @extend .chip;
+  background-color: #E6E18F;
+  color: #92977E;
+}
+
+.tag-vertical {
+  margin-bottom: 0.5rem;
+}
+
+.tags-vertical {
+  margin-top: 10px;
 }

@@ -2,18 +2,13 @@ body#sign-in {
   background: image_url('sign_in_bg.png');
 }
 
-.card-sign-in {
-  .brand-logo {
-    h1 {
-      font-size: 2rem;
-    }
-  }
-}
+.container.sign-in {
+  width: 100%;
+  margin-top: 6rem;
 
-.card-sign-in-btn {
-  background-color: $secondary-color;
-
-  a {
-    width: 100%;
+  h1 {
+    color: #FFF;
+    font-size: 14rem;
+    font-weight: 700;
   }
 }
