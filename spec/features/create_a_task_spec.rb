@@ -6,10 +6,6 @@ describe 'タスクを作成する' do
     visit new_task_path
   end
 
-  let(:label_title) { I18n.t('activemodel.attributes.task_creation.title') }
-  let(:label_description) { I18n.t('activemodel.attributes.task_creation.description') }
-  let(:label_tag_words) { I18n.t('activemodel.attributes.task_creation.tag_words') }
-
   let(:title) { 'タスクのタイトル' }
   let(:description) { 'タスクの説明' }
 
@@ -17,10 +13,16 @@ describe 'タスクを作成する' do
   let(:description_on_page) { first('.task_description').text }
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
 
+  def create_task(title, description = '', tag_words = '')
+      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: title
+      fill_in I18n.t('activemodel.attributes.task_creation.description'), with: description
+      fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: tag_words
+      click_button '作成する'
+  end
+
   context 'タイトルのみの場合' do
     it do
-      fill_in label_title, with: title
-      click_button '作成する'
+      create_task(title)
       click_link title
       expect(title_on_page).to eq(title)
       expect(description_on_page).to eq ''
@@ -29,9 +31,7 @@ describe 'タスクを作成する' do
 
   context '説明を記述する場合' do
     it do
-      fill_in label_title, with: title
-      fill_in label_description, with: description
-      click_button '作成する'
+      create_task(title, description)
       click_link title
       expect(title_on_page).to eq(title)
       expect(description_on_page).to eq(description)
@@ -40,9 +40,7 @@ describe 'タスクを作成する' do
 
   context 'タグを付加する場合' do
     before do
-      fill_in label_tag_words, with: tag_words
-      fill_in label_title, with: title
-      click_button '作成する'
+      create_task(title, nil, tag_words)
     end
 
     context '全て違うタグを入力する' do
