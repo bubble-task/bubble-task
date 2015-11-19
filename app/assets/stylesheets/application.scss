@@ -28,8 +28,11 @@ html {
   font-family: 'Ruboto', '游ゴシック体', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
-main {
-  margin-top: 2.5rem;
+$side-nav-width: 240px;
+
+main > .container {
+  margin-top: 2rem;
+  margin-left: $side-nav-width;
 }
 
 .z-depth-1{
@@ -38,7 +41,6 @@ main {
 
 .primary-container {
   @extend .card-panel;
-
   background-color: $primary-bg-color;
 }
 

@@ -6,6 +6,11 @@ nav {
 
   background-color: $bg-color;
 
+  .container {
+    width: 100%;
+    margin: 0 auto 0 24px;
+  }
+
   .button-collapse {
     i {
       color: $font-color;
@@ -39,20 +44,18 @@ li.avatar {
 }
 
 .side-nav {
-  $bg-color: color("grey", "lighten-3");
-  $font-color: $primary-font-color;
+  @extend .z-depth-0;
 
+  top: 65px;
   $line-height: 64px;
 
-  background-color: $bg-color;
+  background-color: transparent;
 
-  a {
-    color: $font-color;
+  i {
+    line-height: $line-height;
   }
 
-  i { line-height: $line-height; }
-
   li.avatar {
-    span { left-margin: 5px; }
+    span { left-margin: 8px; }
   }
 }
