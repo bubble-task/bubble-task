@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe 'タスクを作成する' do
-  include TaskCreationHelper
-
   before do
     oauth_sign_in
     visit new_task_path
