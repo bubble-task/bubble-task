@@ -1,10 +1,13 @@
 @import "materialize/components/color";
 
+$side-nav-width: 240px;
+
+/*** Color ***/
+
 /*** Additional variables ***/
 $primary-bg-color: #F7FCBD;
 $primary-font-color: #3A3335;
 
-/*** Color ***/
 $primary-color: #EFF4AB;
 $secondary-color: #456293 !default;
 $success-color: color("green", "base") !default;
@@ -28,11 +31,11 @@ html {
   font-family: 'Ruboto', '游ゴシック体', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
-$side-nav-width: 240px;
-
-main > .container {
-  margin-top: 2rem;
+main {
   margin-left: $side-nav-width;
+  margin-top: 1.5rem;
+
+  .container { width: 90%; }
 }
 
 .z-depth-1{

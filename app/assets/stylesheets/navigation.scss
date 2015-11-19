@@ -8,54 +8,49 @@ nav {
 
   .container {
     width: 100%;
-    margin: 0 auto 0 24px;
+    margin: 0 auto 0 15px;
   }
 
-  .button-collapse {
-    i {
-      color: $font-color;
-      font-size: 1.8rem;
-      margin-right: 1rem;
-    }
-  }
-
-  .brand-logo {
+  a.brand-logo {
+    padding: 0 15px;
     color: $font-color;
     font-size: 1.2rem;
     font-weight: 700;
   }
-
-  ul.right {
-    i { color: lighten($secondary-color, 25%); }
-  }
 }
 
-li.avatar {
-  img {
-    vertical-align: middle;
-    width: $nav-avatar-size;
-    height: $nav-avatar-size;
-    border-radius: 0.3rem;
-  }
-
-  i {
-    margin-left: 3px;
-  }
-}
-
-.side-nav {
+.side-nav.fixed {
   @extend .z-depth-0;
-
+  z-index: 1;
   top: 65px;
+  width: $side-nav-width;
+
+  $bg-color: lighten($secondary-color, 15%);
+  $font-color: #fff;
   $line-height: 64px;
 
-  background-color: transparent;
+  background-color: $bg-color;
+
+  a { color: $font-color; }
 
   i {
+    color: $font-color;
     line-height: $line-height;
   }
 
-  li.avatar {
-    span { left-margin: 8px; }
+  li:hover { background-color: lighten($bg-color, 20%); }
+
+  li.divider { background-color: darken($bg-color, 5%); }
+
+  li.avatar img {
+    vertical-align: middle;
+    margin-right: 9px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .dropdown-content {
+    li:hover { background-color: color("grey", "lighten-3"); }
+    a { color: $bg-color; }
   }
 }
