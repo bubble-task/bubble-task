@@ -19,6 +19,18 @@ nav {
   }
 }
 
+a.button-collapse.top-nav {
+  position: absolute;
+  text-align: center;
+  left: 7.5%;
+  top: 0;
+  float: none;
+  margin-left: 0.3rem;
+  color: $secondary-color;
+  font-size: 32px;
+  z-index: 2;
+}
+
 .side-nav.fixed {
   @extend .z-depth-0;
   z-index: 1;
