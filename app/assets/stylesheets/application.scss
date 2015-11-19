@@ -1,6 +1,7 @@
 @import "materialize/components/color";
 
-$side-nav-width: 240px;
+//$side-nav-width: 240px;
+$side-nav-width: 90px;
 
 /*** Color ***/
 
@@ -34,7 +35,7 @@ html {
 main {
   margin-top: 1.5rem;
 
-  @media #{$large-and-up} {
+  @media #{$medium-and-up} {
     margin-left: $side-nav-width;
 
     .container { width: 90%; }

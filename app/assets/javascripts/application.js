@@ -19,6 +19,6 @@
 $(document).on('page:load page:change', function () {
   Waves.displayEffect();
   $('.dropdown-button').dropdown();
-  $('.button-collapse').sideNav();
+  $('.button-collapse').sideNav({ menuWidth: 90 });
   $('.tooltipped').tooltip({delay: 0});
 });
