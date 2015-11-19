@@ -7,10 +7,7 @@ describe '複数のタスクを作成する' do
     let(:common_tag) { '共通のタグ' }
 
     def create_task_with_tags(title, tag_words)
-      visit new_task_path
-      fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: tag_words
-      fill_in I18n.t('activemodel.attributes.task_creation.title'), with: title
-      click_button '作成する'
+      create_task(title, nil, tag_words)
       Task.last
     end
 
