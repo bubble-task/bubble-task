@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'タスク作成時にバリデーションをかける' do
   before do
     oauth_sign_in
-    visit new_task_path
   end
 
   let(:valid_title) { 'タスクのタイトル' }

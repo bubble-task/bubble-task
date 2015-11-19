@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'タスクを作成する' do
   before do
     oauth_sign_in
-    visit new_task_path
   end
 
   let(:title) { 'タスクのタイトル' }
