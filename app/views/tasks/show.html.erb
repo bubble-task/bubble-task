@@ -1,16 +1,16 @@
 <%= content_for(:page_title) { t('.page_title') } %>
 <%= content_for(:page_icon) { 'description' } %>
-<div class="col s8">
+<div class="col s9">
   <div class="primary-container">
+    <div id="tags">
+      <% @task.tags.each do |tag| %>
+        <div class="tag tag-vertical"><%= tag %></div>
+      <% end -%>
+    </div>
     <h5 id="task_title"><%= @task.title %></h5>
-    <div class="divider"></div>
-    <%= simple_format(h(@task.description), id: 'task_description') %>
-  </div>
-</div>
-<div class="col s1">
-  <div id="tags" class="tags-vertical">
-    <% @task.tags.each do |tag| %>
-      <div class="tag tag-vertical"><%= tag %></div>
+    <% if @task.description.present? -%>
+      <div class="divider"></div>
     <% end -%>
+    <%= simple_format(h(@task.description), id: 'task_description') %>
   </div>
 </div>
