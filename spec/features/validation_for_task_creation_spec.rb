@@ -1,62 +1,55 @@
 require 'rails_helper'
 
 describe 'タスク作成時にバリデーションをかける' do
+  include TaskCreationHelper
   before do
     oauth_sign_in
     visit new_task_path
   end
 
+  let(:valid_title) { 'タスクのタイトル' }
+  let(:out_of_boundary_length) { 17 }
+  let(:inside_of_boundary_length) { 16 }
+
   it do
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: ''
-    click_button '作成する'
+    create_task('')
     expect(page).to have_content 'タイトルを入力してください'
   end
 
   it do
-    title = 'a' * 40
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: title
-    click_button '作成する'
+    create_task('a' * 40)
     expect(page).to have_link(title)
   end
 
   it do
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'a' * 41
-    click_button '作成する'
+    create_task('a' * 41)
     expect(page).to have_content 'タイトルは40文字以内で入力してください'
   end
 
   it do
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 256
-    click_button '作成する'
+    create_task(valid_title, 'a' * 256)
     expect(page).to have_content '説明は255文字以内で入力してください'
   end
 
   it do
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_creation.description'), with: 'a' * 255
-    click_button '作成する'
-    expect(page).to have_link('タスクのタイトル')
+    create_task(valid_title, 'a' * 255)
+    expect(page).to have_link(valid_title)
   end
 
   it do
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: 'a' * 17
-    click_button '作成する'
-    expect(page).to have_content("タグ「#{'a' * 17}」は16文字以内で入力してください")
+    tag_words = 'a' * out_of_boundary_length
+    create_task(valid_title, nil, tag_words)
+    expect(page).to have_content("タグ「#{tag_words}」は16文字以内で入力してください")
   end
 
   it do
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: "#{'a' * 16} #{'b' * 17}"
-    click_button '作成する'
-    expect(page).to have_content("タグ「#{'b' * 17}」は16文字以内で入力してください")
+    invalid_tag = 'b' * out_of_boundary_length
+    create_task(valid_title, nil, "#{'a' * inside_of_boundary_length} #{invalid_tag}")
+    expect(page).to have_content("タグ「#{invalid_tag}」は16文字以内で入力してください")
   end
 
   it do
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスクのタイトル'
-    fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: "#{'a' * 8} #{'a' * 9}"
-    click_button '作成する'
+    create_task(valid_title, nil, "#{'a' * 8} #{'b' * 9}")
     expect(page).to have_link('タスクのタイトル')
   end
 end

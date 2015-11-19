@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe 'タスクを作成する' do
+  include TaskCreationHelper
+
   before do
     oauth_sign_in
     visit new_task_path
@@ -12,13 +14,6 @@ describe 'タスクを作成する' do
   let(:title_on_page) { first('.task_title').text }
   let(:description_on_page) { first('.task_description').text }
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
-
-  def create_task(title, description = '', tag_words = '')
-    fill_in I18n.t('activemodel.attributes.task_creation.title'), with: title
-    fill_in I18n.t('activemodel.attributes.task_creation.description'), with: description
-    fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: tag_words
-    click_button '作成する'
-  end
 
   context 'タイトルのみの場合' do
     it do
