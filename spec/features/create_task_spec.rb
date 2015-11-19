@@ -39,14 +39,14 @@ describe 'タスクを作成する' do
   end
 
   context 'タグを付加する場合' do
-    it do
+    it 'タスク一覧画面でタグが表示されていること' do
       fill_in label_tag_words, with: 'タグ1 タグ2 タグ3'
       fill_in label_title, with: title
       click_button '作成する'
       expect(tags_on_page).to eq %w(タグ1 タグ2 タグ3)
     end
 
-    it do
+    it 'タスク詳細画面でタグが表示されていること' do
       fill_in label_tag_words, with: 'タグ1 タグ2 タグ3'
       fill_in label_title, with: title
       click_button '作成する'
