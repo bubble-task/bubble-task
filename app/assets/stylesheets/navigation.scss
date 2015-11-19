@@ -22,7 +22,7 @@ nav {
 a.button-collapse.top-nav {
   position: absolute;
   text-align: center;
-  left: 7.5%;
+  left: 15px;
   top: 0;
   float: none;
   margin-left: 0.3rem;
@@ -32,9 +32,13 @@ a.button-collapse.top-nav {
 }
 
 .side-nav.fixed {
+  @media #{$large-and-up} {
+    z-index: 1;
+    top: 65px;
+  }
+
   @extend .z-depth-0;
-  z-index: 1;
-  top: 65px;
+
   width: $side-nav-width;
 
   $bg-color: lighten($secondary-color, 15%);
