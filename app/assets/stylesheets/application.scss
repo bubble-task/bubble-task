@@ -32,10 +32,13 @@ html {
 }
 
 main {
-  margin-left: $side-nav-width;
   margin-top: 1.5rem;
 
-  .container { width: 90%; }
+  @media #{$large-and-up} {
+    margin-left: $side-nav-width;
+
+    .container { width: 90%; }
+  }
 }
 
 .z-depth-1{
