@@ -1,6 +1,6 @@
 <div class="task-summary-list">
   <% tasks.each do |task| %>
-    <div id="task_#{task.id}" class="task-summary">
+    <div id="task_<%= task.id %>" class="task-summary">
       <div class="tags">
         <% task.tags.each do |tag| %>
           <div class="chip"><%= tag %></div>
@@ -9,4 +9,4 @@
       <%= link_to task.title, task_url(task) %>
     </div>
   <% end %>
-</ul>
+</div>

@@ -58,5 +58,23 @@ describe 'タスクを作成する' do
         expect(tags).to eq %w(タグ1 タグ2)
       end
     end
+
+    context '複数のタスクに同じタグを付加する場合' do
+      it do
+        fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: 'タグ'
+        fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスク1のタイトル'
+        click_button '作成する'
+        task1 = Task.last
+        visit new_task_path
+        fill_in I18n.t('activemodel.attributes.task_creation.tag_words'), with: 'タグ'
+        fill_in I18n.t('activemodel.attributes.task_creation.title'), with: 'タスク2のタイトル'
+        click_button '作成する'
+        task2 = Task.last
+        task1_tag = first("#task_#{task1.id} .tags").text
+        task2_tag = first("#task_#{task2.id} .tags").text
+        expect(task1_tag).to eq('タグ')
+        expect(task2_tag).to eq('タグ')
+      end
+    end
   end
 end
