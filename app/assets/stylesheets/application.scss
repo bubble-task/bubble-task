@@ -57,13 +57,3 @@ main {
     &:hover, &.active { background-color: $dropdown-bg-color; }
   }
 }
-
-.page-navigation {
-  a {
-    @extend .btn-flat;
-
-    &:hover { background-color: #FFF; }
-
-    i { margin-right: 0.3rem; }
-  }
-}

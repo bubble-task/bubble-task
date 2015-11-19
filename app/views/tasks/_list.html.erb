@@ -3,7 +3,7 @@
     <div id="task_<%= task.id %>" class="task-summary">
       <div class="tags">
         <% task.tags.each do |tag| %>
-          <div class="chip"><%= tag %></div>
+          <div class="tag"><%= tag %></div>
         <% end %>
       </div>
       <%= link_to task.title, task_url(task) %>
