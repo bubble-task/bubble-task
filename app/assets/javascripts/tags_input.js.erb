@@ -13,9 +13,10 @@ function setTagsInput(element) {
 }
 
 $(document).on('page:load page:change', function() {
-  $('#task_creation_tag_words').on('focus', function() {
-    setTagsInput(this).done(function() {
-      $('#task_creation_tag_words_tag').focus();
-    });
+  $('#task_creation_tag_words').on('focusin', function() {
+    var target = this;
+
+    setTagsInput(target)
+      .then(function() { $('#task_creation_tag_words_tag').focus(); });
   });
 });
