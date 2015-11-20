@@ -17,6 +17,7 @@
 //= require_tree .
 
 $(document).on('page:load page:change', function () {
+  /*** Materialize ***/
   Waves.displayEffect();
   $('.dropdown-button').dropdown();
   $('.tooltipped').tooltip({delay: 0});
