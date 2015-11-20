@@ -1,7 +1,7 @@
 .tag-words-guide {
   margin-left: 3rem;
   font-size: 0.8rem;
-  color: $input-border-color
+  color: $input-border-color;
 }
 
 label.tags-input.active {
@@ -30,7 +30,7 @@ div.tagsinput {
 
 div.tagsinput input {
   width: 80px;
-  border: none;
+  border: 0;
   outline: none;
   background: transparent;
 }
