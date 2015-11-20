@@ -2,8 +2,6 @@ ja:
   tasks:
     new:
       page_title: '新しいタスク'
-      placeholders:
-        tag_words: 'タグ（空白区切りで複数入力）'
     show:
       page_title: 'タスクの詳細'
     list:

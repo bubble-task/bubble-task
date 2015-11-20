@@ -1,0 +1,32 @@
+div.tagsinput {
+  margin-left: 3rem;
+  width: calc(100% - 3rem);
+
+  background: #FFF;
+  padding:5px;
+  overflow-y: auto;
+}
+
+div.tagsinput span.tag {
+  border: 1px solid #a5d24a;
+  -moz-border-radius:2px;
+  -webkit-border-radius:2px;
+  display: block;
+  float: left;
+  padding: 5px;
+  text-decoration:none;
+  background: #cde69c;
+  color: #638421;
+  margin-right: 5px;
+  margin-bottom:5px;
+  font-family: helvetica;
+  font-size:13px;
+}
+
+div.tagsinput input {
+  width:80px;
+  border:1px solid black;
+  background: transparent;
+}
+
+//div.tagsinput div { display:block; float: left; } 

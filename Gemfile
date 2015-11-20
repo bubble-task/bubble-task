@@ -53,10 +53,13 @@ group :development do
 end
 
 gem 'rails_12factor', group: :production
-
 gem 'rubocop', require: false
 
 gem 'materialize-sass'
 gem 'material_icons'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery-tags-input'
+end
