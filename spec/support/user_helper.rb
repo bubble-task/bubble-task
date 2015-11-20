@@ -1,7 +1,8 @@
 module UserHelper
 
   def create_user_from_oauth_credential(auth_hash = generate_auth_hash)
-    User.create_from_oauth_user(auth_hash)
+    owner = ResourceOwner.new(auth_hash)
+    owner.create_user
   end
 
   def generate_auth_hash(provider: 'google', email: 'user@example.com', name: 'ユーザ 名前')
