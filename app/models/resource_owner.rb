@@ -1,20 +1,20 @@
 class ResourceOwner
+  Credential = Struct.new(:provider, :uid)
 
   def initialize(auth_hash)
-    @auth_hash = auth_hash
+    @name, @email = auth_hash['info'].values_at('name', 'email')
+    @credential = Credential.new(*auth_hash.values_at('provider', 'uid'))
   end
 
   def create_user
-    User.new do |user|
-      user.name = @auth_hash['info']['name']
-      user.email = @auth_hash['info']['email']
-      user.build_oauth_credential(provider: @auth_hash['provider'], uid: @auth_hash['uid'])
+    User.new(name: @name, email: @email) do |user|
+      user.build_oauth_credential(@credential.to_h)
       user.save
-    end 
+    end
   end
 
   def find_user
-    oauth_credential = OauthCredential.find_by(provider: @auth_hash['provider'], uid: @auth_hash['uid'])
+    oauth_credential = OauthCredential.find_by(@credential.to_h)
     return nil unless oauth_credential
     oauth_credential.user
   end
