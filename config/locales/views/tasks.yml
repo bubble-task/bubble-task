@@ -4,6 +4,7 @@ ja:
       page_title: '新しいタスク'
       tag_words_guide: '空白区切りで複数のタグを入力できます'
     show:
+      tag_personal: '個人タスク'
       page_title: 'タスクの詳細'
     list:
       empty: 'いまのところタスクはありません'

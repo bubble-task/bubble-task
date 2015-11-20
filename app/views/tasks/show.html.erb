@@ -3,8 +3,12 @@
 <div class="col s9">
   <div class="primary-container">
     <div class="tags">
-      <% @task.tags.each do |tag| %>
-        <div class="tag tag-vertical"><%= tag %></div>
+      <% if @task.tags.any? %>
+        <% @task.tags.each do |tag| %>
+          <div class="tag"><%= tag %></div>
+        <% end -%>
+      <% else -%>
+        <div class="tag tag-personal"><%= t('tasks.show.tag_personal') %></div>
       <% end -%>
     </div>
     <h5 class="task_title"><%= @task.title %></h5>

@@ -12,10 +12,6 @@
   color: $primary-font-color;
   font-size: 1.3rem;
 
-  .tags {
-    margin-bottom: 0.8rem;
-  }
-
   a {
     color: $primary-font-color;
   }
@@ -31,16 +27,16 @@
   i { line-height: 1rem; }
 }
 
+.tags {
+  margin-bottom: 0.8rem;
+}
+
 .tag {
   @extend .chip;
   background-color: #E6E18F;
   color: #92977E;
 }
 
-.tag-vertical {
-  margin-bottom: 0.5rem;
-}
-
-.tags-vertical {
-  margin-top: 10px;
+.tag.tag-personal {
+  @extend .chip;
 }

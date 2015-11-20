@@ -2,11 +2,15 @@
   <% tasks.each do |task| %>
     <div id="task_<%= task.id %>" class="task-summary">
       <div class="tags">
-        <% task.tags.each do |tag| %>
-          <div class="tag"><%= tag %></div>
-        <% end %>
+        <% if task.tags.any? %>
+          <% task.tags.each do |tag| %>
+            <div class="tag"><%= tag %></div>
+          <% end -%>
+        <% else -%>
+          <div class="tag tag-personal"><%= t('tasks.show.tag_personal') %></div>
+        <% end -%>
       </div>
       <%= link_to task.title, task_url(task) %>
     </div>
-  <% end %>
+  <% end -%>
 </div>
