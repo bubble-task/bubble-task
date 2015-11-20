@@ -1,0 +1,27 @@
+var tagWordsOriginInputId = '#task_creation_tag_words';
+var tagWordsInputId = '#task_creation_tag_words_tag';
+
+var activateTagsInput = function(element) {
+  var d = new $.Deferred;
+
+  $(element).tagsInput({
+    defaultText: '',
+    width: 'inherit',
+    height: '3rem',
+    delimiter: [' ']
+  });
+
+  d.resolve();
+  return d.promise();
+};
+
+var setupTagsInput = function() {
+  if ( $('ul.error-explanation').length ) {
+    activateTagsInput($(tagWordsOriginInputId));
+  } else {
+    $(tagWordsOriginInputId).on('focusin', function() {
+      activateTagsInput(this)
+        .then(function() {$(tagWordsInputId).focus(); });
+    });
+  }
+};

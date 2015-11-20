@@ -12,14 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require materialize-sprockets
+//= require jquery-tags-input
+//= require turbolinks
 //= require_tree .
 
 $(document).on('page:load page:change', function () {
-  Waves.displayEffect();
-  $('.dropdown-button').dropdown();
-  $('.tooltipped').tooltip({delay: 0});
-  $('.button-collapse').sideNav();
-  //$('.button-collapse').sideNav({ menuWidth: 90 });
+  setupMaterialize()
+    .then(function() { setupTagsInput(); });
 });
