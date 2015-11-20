@@ -1,32 +1,59 @@
-div.tagsinput {
+.tag-words-guide {
   margin-left: 3rem;
-  width: calc(100% - 3rem);
-
-  background: #FFF;
-  padding:5px;
-  overflow-y: auto;
+  font-size: 0.8rem;
+  color: $input-border-color
 }
 
-div.tagsinput span.tag {
-  border: 1px solid #a5d24a;
-  -moz-border-radius:2px;
-  -webkit-border-radius:2px;
-  display: block;
-  float: left;
-  padding: 5px;
-  text-decoration:none;
-  background: #cde69c;
-  color: #638421;
-  margin-right: 5px;
-  margin-bottom:5px;
-  font-family: helvetica;
-  font-size:13px;
+label.tags-input.active {
+  top: 0.2rem;
+}
+
+div.for-tags-input {
+  margin-top: 2.5rem;
+}
+
+div.tagsinput {
+  // Adjust
+  margin: 0 0 30px 3rem;
+  width: calc(100% - 3rem);
+
+  // jquery tags inut
+  overflow-y: auto;
+
+  //// Materialize
+  // General Styles
+  background-color: transparent;
+  outline: none;
+  height: 3rem;
+  font-size: 1rem;
 }
 
 div.tagsinput input {
-  width:80px;
-  border:1px solid black;
+  width: 80px;
+  border: none;
+  outline: none;
   background: transparent;
 }
 
-//div.tagsinput div { display:block; float: left; } 
+@mixin tag-in-input {
+  border-radius: 16px;
+  font-size: 1rem;
+  line-height: 2rem;
+  padding: 0 12px;
+
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+div.tagsinput span.tag {
+  @include tag-in-input;
+  display: block;
+  float: left;
+}
+
+input.not_valid {
+  @include tag-in-input;
+  text-align: center;
+  background: $error-color !important;
+  color: #FFF !important;
+}

@@ -24,12 +24,4 @@ $(document).on('page:load page:change', function () {
   $('.tooltipped').tooltip({delay: 0});
   $('.button-collapse').sideNav();
   //$('.button-collapse').sideNav({ menuWidth: 90 });
-
-  /*** Tags Input ***/
-  $('#task_creation_tag_words').tagsInput({
-    width: 'inherit',
-    height: 'inherit',
-    defaultText: '',
-    delimiter: [' '],
-  });
 });

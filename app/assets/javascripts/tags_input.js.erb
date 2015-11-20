@@ -1,0 +1,21 @@
+function setTagsInput(element) {
+  var d = new $.Deferred;
+
+  $(element).tagsInput({
+    defaultText: '',
+    width: 'inherit',
+    height: '3rem',
+    delimiter: [' ']
+  });
+
+  d.resolve();
+  return d.promise();
+}
+
+$(document).on('page:load page:change', function() {
+  $('#task_creation_tag_words').on('focus', function() {
+    setTagsInput(this).done(function() {
+      $('#task_creation_tag_words_tag').focus();
+    });
+  });
+});
