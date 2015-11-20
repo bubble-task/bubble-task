@@ -18,10 +18,6 @@
 //= require_tree .
 
 $(document).on('page:load page:change', function () {
-  /*** Materialize ***/
-  Waves.displayEffect();
-  $('.dropdown-button').dropdown();
-  $('.tooltipped').tooltip({delay: 0});
-  $('.button-collapse').sideNav();
-  //$('.button-collapse').sideNav({ menuWidth: 90 });
+  setupMaterialize()
+    .then(function() { setupTagsInput(); });
 });

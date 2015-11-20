@@ -1,4 +1,7 @@
-function setTagsInput(element) {
+var tagWordsOriginInputId = '#task_creation_tag_words';
+var tagWordsInputId = '#task_creation_tag_words_tag';
+
+var activateTagsInput = function(element) {
   var d = new $.Deferred;
 
   $(element).tagsInput({
@@ -10,13 +13,15 @@ function setTagsInput(element) {
 
   d.resolve();
   return d.promise();
-}
+};
 
-$(document).on('page:load page:change', function() {
-  $('#task_creation_tag_words').on('focusin', function() {
-    var target = this;
-
-    setTagsInput(target)
-      .then(function() { $('#task_creation_tag_words_tag').focus(); });
-  });
-});
+var setupTagsInput = function() {
+  if ( $('ul.error-explanation').length ) {
+    activateTagsInput($(tagWordsOriginInputId));
+  } else {
+    $(tagWordsOriginInputId).on('focusin', function() {
+      activateTagsInput(this)
+        .then(function() {$(tagWordsInputId).focus(); });
+    });
+  }
+};

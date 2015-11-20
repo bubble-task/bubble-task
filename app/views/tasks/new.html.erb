@@ -3,7 +3,7 @@
 <div class="col s10">
   <div class="primary-container">
     <%= form_for @command, url: tasks_url do |f| %>
-      <%= render 'layouts/errors', locals: { errors: @command.errors } %>
+      <%= render partial: 'layouts/errors', locals: { errors: @command.errors } %>
       <div class="input-field for-tags-input">
         <i class="material-icons prefix">local_offer</i>
         <%= f.label :tag_words, class: 'tags-input' %>
