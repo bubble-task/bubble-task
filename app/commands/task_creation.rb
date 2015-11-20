@@ -8,7 +8,7 @@ class TaskCreation
             length: { maximum: 40 }
 
   validates :description,
-            length: { maximum: 255 }
+            length: { maximum: 5000 }
 
   validates :tag_words, tag_words: true
 

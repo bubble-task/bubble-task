@@ -25,12 +25,12 @@ describe 'タスク作成時にバリデーションをかける' do
   end
 
   it do
-    create_task(valid_title, 'a' * 256)
-    expect(page).to have_content '説明は255文字以内で入力してください'
+    create_task(valid_title, 'a' * 5001)
+    expect(page).to have_content '説明は5000文字以内で入力してください'
   end
 
   it do
-    create_task(valid_title, 'a' * 255)
+    create_task(valid_title, 'a' * 5000)
     expect(page).to have_link(valid_title)
   end
 
