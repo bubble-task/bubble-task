@@ -2,15 +2,15 @@
 <%= content_for(:page_icon) { 'description' } %>
 <div class="col s9">
   <div class="primary-container">
-    <div id="tags">
+    <div class="tags">
       <% @task.tags.each do |tag| %>
         <div class="tag tag-vertical"><%= tag %></div>
       <% end -%>
     </div>
-    <h5 id="task_title"><%= @task.title %></h5>
+    <h5 class="task_title"><%= @task.title %></h5>
     <% if @task.description.present? -%>
       <div class="divider"></div>
     <% end -%>
-    <%= simple_format(h(@task.description), id: 'task_description') %>
+    <%= simple_format(h(@task.description), class: 'task_description') %>
   </div>
 </div>
