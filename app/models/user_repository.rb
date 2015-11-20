@@ -1,4 +1,5 @@
-class UserRepository
+module UserRepository
+  module_function
 
   def find_by_oauth_credential(auth_hash)
     resource_owner = ResourceOwner.new(auth_hash)
