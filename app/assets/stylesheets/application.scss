@@ -24,7 +24,6 @@ body { background-color: $bottom-color; }
 @import "navigation";
 @import "form";
 @import "sign_in";
-@import "home";
 @import "task";
 @import "tags_input";
 
@@ -57,4 +56,9 @@ html {
     span { color: $primary-font-color; }
     &:hover, &.active { background-color: $dropdown-bg-color; }
   }
+}
+
+.fixed-action-btn {
+  top: 20px;
+  right: 100px;
 }

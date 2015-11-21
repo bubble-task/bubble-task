@@ -1,5 +1,4 @@
 <%= content_for(:page_title) { t('.page_title') } %>
-<%= content_for(:page_icon) { 'description' } %>
 <div class="col s9">
   <div class="primary-container">
     <div class="tags">
@@ -16,5 +15,10 @@
       <div class="divider"></div>
     <% end -%>
     <%= simple_format(h(@task.description), class: 'task_description') %>
+  </div>
+  <div class="fixed-action-btn">
+    <%= link_to root_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
+      <i class="large material-icons">keyboard_arrow_left</i>
+    <% end -%>
   </div>
 </div>
