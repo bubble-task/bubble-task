@@ -12,7 +12,7 @@ $bottom-color: #E6E6E6;
 $primary-color: #F7FCBD;
 $secondary-color: #456293 !default;
 $success-color: color("green", "base") !default;
-$error-color: color("red", "darken-1") !default;
+$error-color: color("red", "darken-2") !default;
 $link-color: #539fac !default;
 
 /*** Body ***/
@@ -63,4 +63,9 @@ html {
 .fixed-action-btn {
   top: 20px;
   right: 100px;
+}
+
+.toast {
+  &.success { background-color: $success-color; }
+  &.error { background-color: $error-color; }
 }
