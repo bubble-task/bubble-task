@@ -1,5 +1,5 @@
 <% content_for(:page_title) { t('.page_title') } %>
-<div class="col s12">
+<div class="col s10">
   <% if @tasks.any? -%>
     <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
   <% else -%>
