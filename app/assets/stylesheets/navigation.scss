@@ -6,7 +6,14 @@ nav {
 
   .container {
     margin-left: $side-nav-width;
-    width: 100%;
+    width: 90%;
+  }
+
+  a { color: $font-color; }
+
+  .brand-logo {
+    color: lighten($font-color, 15%);
+    font-size: 1.1rem;
   }
 }
 
