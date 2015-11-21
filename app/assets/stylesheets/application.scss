@@ -33,13 +33,14 @@ html {
   font-family: 'Ruboto', '游ゴシック体', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
-main {
-  @media #{$large-and-up} {
+@media #{$large-and-up} {
+  header,
+  main {
     margin-left: $side-nav-width;
-
-    .container { width: 90%; }
   }
 }
+
+.container { width: 90%; }
 
 .z-depth-1{
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);

@@ -4,17 +4,12 @@ nav {
 
   background-color: $bg-color;
 
-  .container {
-    margin-left: $side-nav-width;
-    width: 90%;
-  }
-
-  a { color: $font-color; }
-
   .brand-logo {
     color: lighten($font-color, 15%);
     font-size: 1.1rem;
   }
+
+  ul a { color: $font-color; }
 }
 
 a.button-collapse.top-nav {
