@@ -1,7 +1,7 @@
 ja:
   tasks:
     new:
-      page_title: '新しいタスク'
+      page_title: 'タスクを作成する'
       tag_words_guide: '空白区切りで複数のタグを入力できます'
     show:
       tag_personal: '個人タスク'

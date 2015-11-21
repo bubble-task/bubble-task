@@ -5,11 +5,9 @@ nav {
   background-color: $bg-color;
 
   .brand-logo {
-    color: lighten($font-color, 15%);
     font-size: 1.1rem;
+    color: $font-color;
   }
-
-  ul a { color: $font-color; }
 }
 
 a.button-collapse.top-nav {
