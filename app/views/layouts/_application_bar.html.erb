@@ -14,7 +14,7 @@
 </header>
 <ul id="slide-out" class="side-nav fixed">
   <li class="brand-logo">
-    <a href="/">Bubble Task</a>
+    <a href="/">BubbleTask</a>
   </li>
   <li class="divider"></li>
   <li class="avatar">
@@ -24,7 +24,12 @@
       <i class="material-icons right">keyboard_arrow_down</i>
     <% end -%>
     <ul id="side-user-menu" class="dropdown-content">
-      <li><%= link_to t('sessions.actions.sign_out'), session_url, method: :delete %></li>
+      <li>
+        <%= link_to session_url, method: :delete do %>
+          <%= t('sessions.actions.sign_out') %>
+          <i class="material-icons left">exit_to_app</i>
+        <% end -%>
+      </li>
     </ul>
   </li>
   <li class="divider"></li>
