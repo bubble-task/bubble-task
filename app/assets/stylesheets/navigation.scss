@@ -30,7 +30,7 @@ a.button-collapse.top-nav {
   width: $side-nav-width;
 
   $bg-color: $secondary-color;
-  $font-color: #FFF;
+  $font-color: #FAFAFA;
   $line-height: 64px;
 
   background-color: $bg-color;
@@ -41,17 +41,20 @@ a.button-collapse.top-nav {
     line-height: $line-height;
   }
 
+  li:hover { background-color: lighten($bg-color, 15%); }
+
   li.divider { background-color: darken($bg-color, 5%); }
 
   li.brand-logo {
     a {
-      text-align: center;
+      margin-left: 6px;
+      font-size: 1.1rem;
       font-weight: 700;
     }
   }
 
   li.avatar{
-    i { font-size: 1.2rem; }
+    i { font-size: 1.5rem; }
 
     img {
       vertical-align: middle;

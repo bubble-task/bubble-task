@@ -17,12 +17,14 @@
 </header>
 <ul id="slide-out" class="side-nav fixed">
   <li class="brand-logo">
-    <a href="/">Bt</a>
+    <a href="/">Bubble Task</a>
   </li>
   <li class="divider"></li>
   <li class="avatar">
     <%= link_to '#!', class: 'dropdown-button', data: { activates: 'side-user-menu', beloworigin: 'true' } do %>
       <img src="https://gravatar.com/avatar" class="circle" />
+      <%= current_user.name %>
+      <i class="material-icons right">keyboard_arrow_down</i>
     <% end -%>
     <ul id="side-user-menu" class="dropdown-content">
       <li><%= link_to t('sessions.actions.sign_out'), session_url, method: :delete %></li>
@@ -31,6 +33,7 @@
   <li class="divider"></li>
   <li>
     <%= link_to root_url do %>
+      <%= t('home.index.page_title') %>
       <i class="material-icons left">view_list</i>
     <% end -%>
   </li>
