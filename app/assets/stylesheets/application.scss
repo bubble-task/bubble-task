@@ -48,6 +48,8 @@ html {
 
 .primary-container {
   @extend .card-panel;
+
+  margin-top: 2rem;
   background-color: $primary-bg-color;
 }
 
