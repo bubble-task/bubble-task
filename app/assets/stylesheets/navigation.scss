@@ -8,13 +8,6 @@ nav {
     margin-left: $side-nav-width;
     width: 100%;
   }
-
-  a.brand-logo {
-    padding: 0 15px;
-    color: $font-color;
-    font-size: 1.2rem;
-    font-weight: 700;
-  }
 }
 
 a.button-collapse.top-nav {
@@ -43,13 +36,13 @@ a.button-collapse.top-nav {
   a { color: $font-color; }
 
   i {
-    color: $font-color;
     line-height: $line-height;
   }
 
-  li:hover { background-color: #FFF; }
-
   li.divider { background-color: darken($bg-color, 5%); }
+
+  li.brand-logo {
+  }
 
   li.avatar{
     i { font-size: 1.2rem; }
@@ -59,12 +52,6 @@ a.button-collapse.top-nav {
       margin-right: 9px;
       width: 28px;
       height: 28px;
-    }
-  }
-
-  .dropdown-content {
-    li {
-      &:hover { background-color: lighten($secondary-color, 50%); }
     }
   }
 }
