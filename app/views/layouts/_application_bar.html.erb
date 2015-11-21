@@ -2,7 +2,7 @@
   <div class="navbar-fixed">
     <nav>
       <div class="container">
-        <%= link_to content_for(:page_title) || 'タスク', '#', class: 'brand-logo center' %>
+      <span class="brand-logo center"><%= content_for(:page_title) || 'Bubble Task' %>
         <div class="nav-wrapper">
           <a href="#" data-activates="slide-out" class="button-collapse top-nav hide-on-large-only">
             <i class="mdi-navigation-menu"></i>
