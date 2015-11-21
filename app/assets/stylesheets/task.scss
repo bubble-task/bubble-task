@@ -1,6 +1,7 @@
 .task-summary-list {
   @extend .collection, .z-depth-1;
 
+  margin-top: 0;
   background-color: $primary-bg-color;
   border: none;
 }
