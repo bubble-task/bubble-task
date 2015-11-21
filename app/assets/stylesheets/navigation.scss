@@ -28,12 +28,15 @@ a.button-collapse.top-nav {
   width: $side-nav-width;
 
   $bg-color: $secondary-color;
-  $font-color: #FAFAFA;
+  $font-color: #FFF;
   $line-height: 64px;
 
   background-color: $bg-color;
 
-  a { color: $font-color; }
+  a {
+    color: $font-color;
+    opacity: 0.9;
+  }
 
   i {
     line-height: $line-height;
@@ -65,4 +68,7 @@ a.button-collapse.top-nav {
 
 .dropdown-content {
   background-color: $secondary-color;
+  li > a {
+    font-size: 1rem;
+  }
 }
