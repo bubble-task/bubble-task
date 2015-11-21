@@ -42,6 +42,10 @@ a.button-collapse.top-nav {
   li.divider { background-color: darken($bg-color, 5%); }
 
   li.brand-logo {
+    a {
+      text-align: center;
+      font-weight: 700;
+    }
   }
 
   li.avatar{
