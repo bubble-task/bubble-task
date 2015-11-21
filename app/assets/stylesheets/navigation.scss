@@ -1,18 +1,18 @@
 nav {
   $bg-color: #FFF;
-  $font-color: #456293;
+  $font-color: $secondary-color;
 
   background-color: $bg-color;
 
   .container {
+    margin-left: $side-nav-width;
     width: 100%;
-    margin: 0 auto 0 15px;
   }
 
   a.brand-logo {
     padding: 0 15px;
     color: $font-color;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
   }
 }
@@ -30,20 +30,17 @@ a.button-collapse.top-nav {
 }
 
 .side-nav.fixed {
-  @media #{$large-and-up} {
-    z-index: 1;
-    top: 65px;
-  }
-
   @extend .z-depth-1;
 
   width: $side-nav-width;
 
-  $bg-color: $bottom-color;
-  $font-color: $secondary-color;
+  $bg-color: $secondary-color;
+  $font-color: #FFF;
   $line-height: 64px;
 
   background-color: $bg-color;
+
+  a { color: $font-color; }
 
   i {
     color: $font-color;
