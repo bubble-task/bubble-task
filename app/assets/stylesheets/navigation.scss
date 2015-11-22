@@ -1,11 +1,11 @@
 nav {
   $bg-color: #FFF;
-  $font-color: $secondary-color;
+  $font-color: lighten($secondary-color, 15%);
 
   background-color: $bg-color;
 
   .brand-logo {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: $font-color;
   }
 }
@@ -58,6 +58,7 @@ a.button-collapse.top-nav {
       font-size: 1.1rem;
       font-weight: 700;
     }
+    &:hover { background-color: $bg-color; }
   }
 
   li.avatar{
