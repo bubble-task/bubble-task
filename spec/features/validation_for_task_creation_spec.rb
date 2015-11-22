@@ -15,6 +15,7 @@ describe 'タスク作成時にバリデーションをかける' do
   end
 
   it do
+    title = 'a' * 40
     create_task('a' * 40)
     expect(page).to have_link(title)
   end
