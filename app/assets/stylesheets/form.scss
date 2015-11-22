@@ -10,6 +10,11 @@ form .actions {
 .error-explanation {
   color: $error-color;
   margin-bottom: 3rem;
+
+  i {
+    margin-right: 9px;
+    vertical-align: middle;
+  }
 }
 
 label.invalid {
