@@ -35,11 +35,17 @@ a.button-collapse.top-nav {
 
   a {
     color: $font-color;
+    font-size: 0.9rem;
     opacity: 0.9;
   }
 
   i {
     line-height: $line-height;
+  }
+
+  li.active {
+    border-right: 3px solid $primary-color;
+    background-color: $bg-color;
   }
 
   li:hover { background-color: lighten($bg-color, 15%); }
