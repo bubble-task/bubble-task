@@ -1,10 +1,10 @@
 module ApplicationHelper
 
   def activate_menu(actives)
-    ' class=active'.html_safe if detect_active_page(actives)
+    ' class=active'.html_safe if current_page_active?(actives)
   end
 
-  def detect_active_page(actives)
+  def current_page_active?(actives)
     actives
       .map(&:flatten)
       .detect { |(c, a)| current_page?(controller: c, action: a) }
