@@ -1,19 +1,12 @@
 nav {
   $bg-color: #FFF;
-  $font-color: #456293;
+  $font-color: lighten($secondary-color, 15%);
 
   background-color: $bg-color;
 
-  .container {
-    width: 100%;
-    margin: 0 auto 0 15px;
-  }
-
-  a.brand-logo {
-    padding: 0 15px;
+  .brand-logo {
+    font-size: 1.2rem;
     color: $font-color;
-    font-size: 1.3rem;
-    font-weight: 700;
   }
 }
 
@@ -30,44 +23,65 @@ a.button-collapse.top-nav {
 }
 
 .side-nav.fixed {
-  @media #{$large-and-up} {
-    z-index: 1;
-    top: 65px;
-  }
-
   @extend .z-depth-1;
 
   width: $side-nav-width;
 
-  $bg-color: $bottom-color;
-  $font-color: $secondary-color;
+  $bg-color: $secondary-color;
+  $font-color: #F6F6F6;
   $line-height: 64px;
 
+  background: image_url('side-nav-bg.png');
   background-color: $bg-color;
 
-  i {
+  a {
     color: $font-color;
+    font-size: 0.9rem;
+  }
+
+  i {
     line-height: $line-height;
   }
 
-  li:hover { background-color: #FFF; }
+  li.active {
+    background-color: transparent;
+    border-right: 3px solid $primary-color;
+  }
+
+  li:hover { background-color: lighten($bg-color, 15%); }
 
   li.divider { background-color: darken($bg-color, 5%); }
 
+  li.brand-logo {
+    img {
+      margin-right: 12px;
+      vertical-align: middle;
+      width: 32px;
+    }
+
+    a {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    &:hover { background-color: transparent; }
+  }
+
   li.avatar{
-    i { font-size: 1.2rem; }
+    i { font-size: 1.5rem; }
 
     img {
       vertical-align: middle;
       margin-right: 9px;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
     }
   }
+}
 
-  .dropdown-content {
-    li {
-      &:hover { background-color: lighten($secondary-color, 50%); }
-    }
+.dropdown-content {
+  background-color: $secondary-color;
+  li > a {
+    font-size: 1rem;
   }
 }

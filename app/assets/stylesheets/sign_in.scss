@@ -1,6 +1,6 @@
 body#sign-in {
-  background-color: $primary-bg-color;
-  background: image_url('sign_in_bg.png');
+  background: image_url("sign-in-bg.png");
+  background-color: $bottom-color;
 }
 
 .container.sign-in {
@@ -10,10 +10,10 @@ body#sign-in {
   margin-top: 7rem;
 
   h1 {
-    color: #f5f5f5;
-    letter-spacing: -1.5rem;
-    line-height: 16rem;
-    font-size: 17rem;
+    color: #FFF;
+    font-size: 15rem;
     font-weight: 700;
+    letter-spacing: -1.2rem;
+    opacity: 0.5;
   }
 }

@@ -3,29 +3,40 @@
     <nav>
       <div class="container">
         <div class="nav-wrapper">
+          <span class="brand-logo"><%= content_for(:page_title) || 'Bubble Task' %></span>
           <a href="#" data-activates="slide-out" class="button-collapse top-nav hide-on-large-only">
             <i class="mdi-navigation-menu"></i>
           </a>
-          <a href="/" class="brand-logo">Bubble Task</a>
         </div>
       </div>
     </nav>
   </div>
 </header>
 <ul id="slide-out" class="side-nav fixed">
+  <li class="brand-logo">
+  <a href="/">BubbleTask</a>
+  </li>
+  <li class="divider"></li>
   <li class="avatar">
     <%= link_to '#!', class: 'dropdown-button', data: { activates: 'side-user-menu', beloworigin: 'true' } do %>
       <img src="https://gravatar.com/avatar" class="circle" />
-      <%= current_user.name %><i class="mdi-navigation-arrow-drop-down right"></i>
+      <%= current_user.name %>
+      <i class="material-icons right">keyboard_arrow_down</i>
     <% end -%>
     <ul id="side-user-menu" class="dropdown-content">
-      <li><%= link_to t('sessions.actions.sign_out'), session_url, method: :delete %></li>
+      <li>
+        <%= link_to session_url, method: :delete do %>
+          <%= t('sessions.actions.sign_out') %>
+          <i class="material-icons left">exit_to_app</i>
+        <% end -%>
+      </li>
     </ul>
   </li>
   <li class="divider"></li>
-  <li>
+  <li<%= activate_menu([{ home: :index }, { tasks: :new }, { tasks: :show }]) %>>
     <%= link_to root_url do %>
-      Task<i class="material-icons left">view_list</i>
+      <%= t('home.index.page_title') %>
+      <i class="material-icons left">view_list</i>
     <% end -%>
   </li>
 </ul>

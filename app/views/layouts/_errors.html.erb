@@ -1,8 +1,7 @@
 <% if errors.any? %>
   <ul class="error-explanation">
-    <li><i class="material-icons left">error</i></li>
     <% errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <li><i class="material-icons">error</i><%= message %></li>
     <% end %>
   </ul>
 <% end %>

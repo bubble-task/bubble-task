@@ -1,5 +1,4 @@
 <%= content_for(:page_title) { t('.page_title') } %>
-<%= content_for(:page_icon) { 'mode_edit' } %>
 <div class="col s10">
   <div class="primary-container">
     <%= form_for @command, url: tasks_url do |f| %>
@@ -27,4 +26,9 @@
       </div>
     <% end %>
   </div>
+</div>
+<div class="fixed-action-btn">
+  <%= link_to root_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
+    <i class="large material-icons">keyboard_arrow_left</i>
+  <% end -%>
 </div>

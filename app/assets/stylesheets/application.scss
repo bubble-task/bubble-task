@@ -12,7 +12,7 @@ $bottom-color: #E6E6E6;
 $primary-color: #F7FCBD;
 $secondary-color: #456293 !default;
 $success-color: color("green", "base") !default;
-$error-color: color("red", "darken-1") !default;
+$error-color: color("red", "darken-2") !default;
 $link-color: #539fac !default;
 
 /*** Body ***/
@@ -24,24 +24,23 @@ body { background-color: $bottom-color; }
 @import "navigation";
 @import "form";
 @import "sign_in";
-@import "home";
 @import "task";
 @import "tags_input";
 
 html {
   color: $primary-font-color;
-  font-family: 'Ruboto', '游ゴシック体', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  //font-family: 'Ruboto', '游ゴシック体', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  font-family: 'Ruboto', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
-main {
-  margin-top: 1.5rem;
-
-  @media #{$large-and-up} {
+@media #{$large-and-up} {
+  header,
+  main {
     margin-left: $side-nav-width;
-
-    .container { width: 90%; }
   }
 }
+
+.container { width: 90%; }
 
 .z-depth-1{
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
@@ -49,7 +48,9 @@ main {
 
 .primary-container {
   @extend .card-panel;
+
   background-color: $primary-bg-color;
+  margin-top: 2rem;
 }
 
 .dropdown-content {
@@ -57,4 +58,14 @@ main {
     span { color: $primary-font-color; }
     &:hover, &.active { background-color: $dropdown-bg-color; }
   }
+}
+
+.fixed-action-btn {
+  right: 100px;
+  top: 20px;
+}
+
+.toast {
+  &.success { background-color: $success-color; }
+  &.error { background-color: $error-color; }
 }
