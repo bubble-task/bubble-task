@@ -1,6 +1,6 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <% kind = name.to_s == 'notice' ? 'success' : 'error' %>
-    <%= javascript_tag("Materialize.toast('#{msg}', 30000, '#{kind}')") %>
+    <%= javascript_tag("Materialize.toast('#{msg}', 3000, '#{kind}')") %>
   <% end %>
 <% end %>
