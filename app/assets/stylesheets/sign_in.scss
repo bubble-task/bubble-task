@@ -1,5 +1,5 @@
 body#sign-in {
-  background: image_url('sign-in-bg.png');
+  background: image_url("sign-in-bg.png");
   background-color: $bottom-color;
 }
 
@@ -11,9 +11,9 @@ body#sign-in {
 
   h1 {
     color: #FFF;
-    opacity: 0.5;
-    letter-spacing: -1.2rem;
     font-size: 15rem;
     font-weight: 700;
+    letter-spacing: -1.2rem;
+    opacity: 0.5;
   }
 }

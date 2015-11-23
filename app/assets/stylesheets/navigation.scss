@@ -44,8 +44,8 @@ a.button-collapse.top-nav {
   }
 
   li.active {
-    border-right: 3px solid $primary-color;
     background-color: transparent;
+    border-right: 3px solid $primary-color;
   }
 
   li:hover { background-color: lighten($bg-color, 15%); }
@@ -54,9 +54,9 @@ a.button-collapse.top-nav {
 
   li.brand-logo {
     img {
+      margin-right: 12px;
       vertical-align: middle;
       width: 32px;
-      margin-right: 12px;
     }
 
     a {

@@ -49,8 +49,8 @@ html {
 .primary-container {
   @extend .card-panel;
 
-  margin-top: 2rem;
   background-color: $primary-bg-color;
+  margin-top: 2rem;
 }
 
 .dropdown-content {
@@ -61,8 +61,8 @@ html {
 }
 
 .fixed-action-btn {
-  top: 20px;
   right: 100px;
+  top: 20px;
 }
 
 .toast {
