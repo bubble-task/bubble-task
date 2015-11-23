@@ -28,7 +28,7 @@ a.button-collapse.top-nav {
   width: $side-nav-width;
 
   $bg-color: $secondary-color;
-  $font-color: #FFF;
+  $font-color: #F6F6F6;
   $line-height: 64px;
 
   background: image_url('side-nav.png');
@@ -37,7 +37,6 @@ a.button-collapse.top-nav {
   a {
     color: $font-color;
     font-size: 0.9rem;
-    opacity: 0.9;
   }
 
   i {
@@ -54,11 +53,13 @@ a.button-collapse.top-nav {
   li.divider { background-color: darken($bg-color, 5%); }
 
   li.brand-logo {
-    a {
-      margin-left: 6px;
-      font-size: 1.1rem;
-      font-weight: 700;
+    text-align: center;
+
+    img {
+      vertical-align: middle;
+      width: 34px;
     }
+
     &:hover { background-color: transparent; }
   }
 
