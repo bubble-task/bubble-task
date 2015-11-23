@@ -66,6 +66,14 @@ html {
 }
 
 .toast {
-  &.success { background-color: $success-color; }
-  &.error { background-color: $error-color; }
+  background-color: #F6F6F6;
+
+  &.success {
+    border-left: 5px solid $success-color;
+    color: $success-color;
+  }
+  &.error {
+    border-left: 5px solid $error-color;
+    color: $error-color;
+  }
 }
