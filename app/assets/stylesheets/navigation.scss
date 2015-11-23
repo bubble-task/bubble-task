@@ -31,7 +31,7 @@ a.button-collapse.top-nav {
   $font-color: #F6F6F6;
   $line-height: 64px;
 
-  background: image_url('side-nav.png');
+  background: image_url('side-nav-bg.png');
   background-color: $bg-color;
 
   a {
@@ -53,11 +53,15 @@ a.button-collapse.top-nav {
   li.divider { background-color: darken($bg-color, 5%); }
 
   li.brand-logo {
-    text-align: center;
-
     img {
       vertical-align: middle;
-      width: 34px;
+      width: 32px;
+      margin-right: 12px;
+    }
+
+    a {
+      font-size: 1rem;
+      font-weight: 700;
     }
 
     &:hover { background-color: transparent; }
@@ -69,8 +73,8 @@ a.button-collapse.top-nav {
     img {
       vertical-align: middle;
       margin-right: 9px;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
     }
   }
 }
