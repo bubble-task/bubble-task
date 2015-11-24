@@ -27,4 +27,12 @@ describe 'タグの一覧画面' do
     visit tags_path
     expect(tags).to eq(%w(タグA タグB タグC))
   end
+
+  it do
+    create_task(1, 'タスク1', nil, %w(AAA あああ 456))
+    create_task(1, 'タスク2', nil, %w(いいい))
+    create_task(1, 'タスク3', nil, %w(123 CCC))
+    visit tags_path
+    expect(tags).to eq(%w(123 456 AAA CCC あああ いいい))
+  end
 end
