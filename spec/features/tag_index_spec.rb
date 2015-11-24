@@ -3,12 +3,22 @@ require 'rails_helper'
 describe 'タグの一覧画面' do
   let(:auth_hash) { generate_auth_hash }
 
-  skip do
+  it do
     user = create_user_from_oauth_credential(auth_hash)
     oauth_sign_in(auth_hash: auth_hash)
     task = user.create_task('タスクのタイトル', nil, ['タグ'])
     task.save
     visit tags_path
     expect(page).to have_content('タグ')
+  end
+
+  it do
+    user = create_user_from_oauth_credential(auth_hash)
+    oauth_sign_in(auth_hash: auth_hash)
+    task = user.create_task('タスクのタイトル', nil, %w(タグB タグC タグA))
+    task.save
+    visit tags_path
+    tags = all('.tag').map(&:text)
+    expect(tags).to eq(%w(タグA タグB タグC))
   end
 end
