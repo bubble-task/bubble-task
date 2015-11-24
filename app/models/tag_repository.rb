@@ -2,6 +2,6 @@ module TagRepository
   module_function
 
   def index
-    ['タグ1', 'タグ2']
+    Task.all.flat_map(&:tags).uniq
   end
 end
