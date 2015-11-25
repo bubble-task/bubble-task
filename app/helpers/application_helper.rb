@@ -6,6 +6,6 @@ module ApplicationHelper
   def current_page_active?(actives)
     actives
       .map(&:flatten)
-      .detect { |(c, a)| current_page?(controller: c, action: a) }
+      .detect { |(c, a)| controller.controller_name == c && controller.action_name == a }
   end
 end
