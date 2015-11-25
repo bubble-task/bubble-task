@@ -6,12 +6,6 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
     oauth_sign_in(auth_hash: auth_hash)
   end
 
-  def create_task(*args)
-    TaskFactory
-      .create(*args)
-      .tap(&:save)
-  end
-
   let(:user) { create_user_from_oauth_credential(auth_hash) }
 
   let(:auth_hash) { generate_auth_hash }
