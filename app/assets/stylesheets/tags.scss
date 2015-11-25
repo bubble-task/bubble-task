@@ -1,0 +1,27 @@
+.tag-list {
+  margin-top: 2rem;
+}
+
+.tags {
+  margin-bottom: 0.8rem;
+}
+
+.tag {
+  @extend .chip;
+  background-color: #E6E18F;
+  color: #92977E;
+}
+
+.tag-individual {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  height: 4rem;
+  line-height: 4rem;
+  vertical-align: middle;
+  padding: 0 2rem;
+  border-radius: 2rem;
+}
+
+.tag.tag-personal {
+  @extend .chip;
+}

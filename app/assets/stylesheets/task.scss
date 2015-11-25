@@ -27,17 +27,3 @@
 
   i { line-height: 1rem; }
 }
-
-.tags {
-  margin-bottom: 0.8rem;
-}
-
-.tag {
-  @extend .chip;
-  background-color: #E6E18F;
-  color: #92977E;
-}
-
-.tag.tag-personal {
-  @extend .chip;
-}
