@@ -9,6 +9,14 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
+  def task_summary_by_order(order)
+    task_summary = all('.task-summary')[order - 1]
+    {
+      title: task_summary.first('.task-title').text,
+      tags: task_summary.all('.tag').map(&:text),
+    }
+  end
+
   it do
     create_task(user.id, 'タスクのタイトル3', nil, %w(タグ1))
     create_task(user.id, 'タスクのタイトル2', nil, %w(タグ2))
@@ -25,16 +33,12 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
     task_a = create_task(user.id, 'タスクのタイトルA', nil, %w(タグ1 タグ2 タグ4))
     visit tasks_path(tag: 'タグ1')
 
-    task_summary1 = all('.task-summary')[0]
-    task_summary1_title = task_summary1.first('.task-title').text
-    expect(task_summary1_title).to eq('タスクのタイトルC')
-    task_summary1_tags = task_summary1.all('.tag').map(&:text)
-    expect(task_summary1_tags).to eq(%w(タグ3 タグ1))
+    task_summary1 = task_summary_by_order(1)
+    expect(task_summary1[:title]).to eq('タスクのタイトルC')
+    expect(task_summary1[:tags]).to eq(%w(タグ3 タグ1))
 
-    task_summary2 = all('.task-summary')[1]
-    task_summary2_title = task_summary2.first('.task-title').text
-    expect(task_summary2_title).to eq('タスクのタイトルA')
-    task_summary2_tags = task_summary2.all('.tag').map(&:text)
-    expect(task_summary2_tags).to eq(%w(タグ1 タグ2 タグ4))
+    task_summary2 = task_summary_by_order(2)
+    expect(task_summary2[:title]).to eq('タスクのタイトルA')
+    expect(task_summary2[:tags]).to eq(%w(タグ1 タグ2 タグ4))
   end
 end
