@@ -20,6 +20,6 @@ class TasksController < ApplicationController
 
   def index
     @tag = params[:tag]
-    @tasks = Task.all
+    @tasks = TaskRepository.all_by_tag(@tag)
   end
 end
