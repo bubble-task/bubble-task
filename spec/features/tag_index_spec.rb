@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'タグの一覧画面' do
   before do
+    p db_lc_collate_value:ActiveRecord::Base.connection.execute('show LC_COLLATE').values
     create_user_from_oauth_credential(auth_hash)
     oauth_sign_in(auth_hash: auth_hash)
   end
