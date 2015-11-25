@@ -9,6 +9,7 @@ cache: bundler
 before_install:
   - sudo apt-get update
   - sudo apt-get install language-pack-ja-base
+  - sudo apt-get install postgresql-contrib-9.4
   - sudo /etc/init.d/postgresql stop
   - sudo /etc/init.d/postgresql start 9.4
 before_script:
