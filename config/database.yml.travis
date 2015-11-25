@@ -1,6 +1,7 @@
 test:
   adapter: postgresql
   encoding: utf8
-  collaction: ja_JP.UTF-8
+  charset: utf8
+  collation: ja_JP.UTF-8
   database: travis_ci_test
   username: postgres

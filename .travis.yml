@@ -6,10 +6,10 @@ services:
 bundler_args: "--without development --deployment --jobs=3 --retry=3"
 cache: bundler
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install language-pack-ja-base
-  - sudo /etc/init.d/postgresql stop
-  - sudo /etc/init.d/postgresql start 9.4
+  - apt-get update
+  - apt-get install language-pack-ja-base
+  - /etc/init.d/postgresql stop
+  - /etc/init.d/postgresql start 9.4
 before_script:
   - psql -c "create database travis_ci_test ENCODING 'UTF-8' LC_COLLATE 'ja_JP.UTF-8' LC_CTYPE 'ja_JP.UTF-8' TEMPLATE template0;" -U postgres
   - cp config/database.yml.travis config/database.yml
