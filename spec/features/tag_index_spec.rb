@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe 'タグの一覧画面' do
   before do
-    p db_lc_collate_value:ActiveRecord::Base.connection.execute('show LC_COLLATE').values
     create_user_from_oauth_credential(auth_hash)
     oauth_sign_in(auth_hash: auth_hash)
   end
@@ -29,7 +28,7 @@ describe 'タグの一覧画面' do
     expect(tags).to eq(%w(タグA タグB タグC))
   end
 
-  it do
+  it '半角英数、全角の順に並んでいること', skip_ci: true do
     create_task(1, 'タスク1', nil, %w(AAA あああ 456))
     create_task(1, 'タスク2', nil, %w(いいい))
     create_task(1, 'タスク3', nil, %w(123 CCC))
