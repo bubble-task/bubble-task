@@ -18,28 +18,44 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
     }
   end
 
-  it do
-    create_task(user.id, 'タスクのタイトル3', nil, %w(タグ1))
-    create_task(user.id, 'タスクのタイトル2', nil, %w(タグ2))
-    create_task(user.id, 'タスクのタイトル1', nil, %w(タグ1))
-    visit root_path
-    first('.task-summary').click_link('タグ1')
-    tag = first('.header .tag').text
-    expect(tag).to eq('タグ1')
+  describe '各一覧画面からの遷移' do
+    before do
+      create_task(user.id, 'タスクのタイトル', nil, %w(タグ))
+    end
+
+    let(:tag_at_header) { first('.header .tag').text }
+
+    context 'タスク一覧のタグをクリックした場合' do
+      it do
+        visit root_path
+        click_link('タグ')
+        expect(tag_at_header).to eq('タグ')
+      end
+    end
+
+    context 'タグ一覧のタグをクリックした場合' do
+      it do
+        visit tags_path
+        click_link('タグ')
+        expect(tag_at_header).to eq('タグ')
+      end
+    end
   end
 
-  it do
-    task_c = create_task(user.id, 'タスクのタイトルC', nil, %w(タグ3 タグ1))
-    task_b = create_task(user.id, 'タスクのタイトルB', nil, %w(タグ2))
-    task_a = create_task(user.id, 'タスクのタイトルA', nil, %w(タグ1 タグ2 タグ4))
-    visit tasks_path(tag: 'タグ1')
+  describe 'タグに紐づくタスク一覧画面の表示' do
+    it do
+      task_c = create_task(user.id, 'タスクのタイトルC', nil, %w(タグ3 タグ1))
+      task_b = create_task(user.id, 'タスクのタイトルB', nil, %w(タグ2))
+      task_a = create_task(user.id, 'タスクのタイトルA', nil, %w(タグ1 タグ2 タグ4))
+      visit tasks_path(tag: 'タグ1')
 
-    task_summary1 = task_summary_by_order(1)
-    expect(task_summary1[:title]).to eq('タスクのタイトルC')
-    expect(task_summary1[:tags]).to eq(%w(タグ3 タグ1))
+      task_summary1 = task_summary_by_order(1)
+      expect(task_summary1[:title]).to eq('タスクのタイトルC')
+      expect(task_summary1[:tags]).to eq(%w(タグ3 タグ1))
 
-    task_summary2 = task_summary_by_order(2)
-    expect(task_summary2[:title]).to eq('タスクのタイトルA')
-    expect(task_summary2[:tags]).to eq(%w(タグ1 タグ2 タグ4))
+      task_summary2 = task_summary_by_order(2)
+      expect(task_summary2[:title]).to eq('タスクのタイトルA')
+      expect(task_summary2[:tags]).to eq(%w(タグ1 タグ2 タグ4))
+    end
   end
 end
