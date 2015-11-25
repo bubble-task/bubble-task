@@ -26,6 +26,7 @@ body { background-color: $bottom-color; }
 @import "sign_in";
 @import "task";
 @import "tags_input";
+@import "tags";
 
 html {
   color: $primary-font-color;
