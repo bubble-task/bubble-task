@@ -11,10 +11,8 @@ before_install:
   - sudo /etc/init.d/postgresql stop
   - sudo /etc/init.d/postgresql start 9.4
 before_script:
-  - psql -c "create database travis_ci_test LC_COLLATE 'ja_JP.UTF-8' LC_CTYPE 'ja_JP.UTF-8' TEMPLATE template0;" -U postgres
+  - psql -c "create database travis_ci_test ENCODING 'UTF-8' LC_COLLATE 'ja_JP.UTF-8' LC_CTYPE 'ja_JP.UTF-8' TEMPLATE template0;" -U postgres
   - cp config/database.yml.travis config/database.yml
-  - sudo /etc/init.d/postgresql stop
-  - sudo /etc/init.d/postgresql start 9.4
 script: bundle exec bin/rake spec
 
 env:
