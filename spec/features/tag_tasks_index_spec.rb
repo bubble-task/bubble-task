@@ -10,7 +10,8 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
   let(:auth_hash) { generate_auth_hash }
 
   def task_summary_by_order(order)
-    task_summary = all('.task-summary')[order - 1]
+    index = order - 1
+    task_summary = all('.task-summary')[index]
     {
       title: task_summary.first('.task-title').text,
       tags: task_summary.all('.tag').map(&:text),
