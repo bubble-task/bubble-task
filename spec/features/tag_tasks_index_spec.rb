@@ -21,13 +21,14 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
   end
 
   it do
-    create_task(user.id, 'タスクのタイトル1', nil, ['タグ1'])
+    create_task(user.id, 'タスクのタイトル3', nil, ['タグ1'])
     create_task(user.id, 'タスクのタイトル2', nil, ['タグ2'])
+    create_task(user.id, 'タスクのタイトル1', nil, ['タグ1'])
     visit root_path
-    click_link('タグ1')
+    first('.task-summary').click_link('タグ1')
     tag = first('.header .tag').text
     tasks = all('.task-summary .task-title').map(&:text)
     expect(tag).to eq('タグ1')
-    expect(tasks).to eq(%w(タスクのタイトル1))
+    expect(tasks).to eq(%w(タスクのタイトル3 タスクのタイトル1))
   end
 end
