@@ -1,16 +1,31 @@
-.task-summary-list { @extend .z-depth-1; }
-.task-summary-list-primary { background-color: $primary-bg-color; }
+.task-summary-list-primary {
+  @extend .z-depth-1;
+  background-color: $primary-bg-color;
+}
 
 .task-summary {
-  padding: 0.7rem 1.2rem;
-  border-bottom: solid 1px $collection-border-color;
+  padding: 0.7rem 1.4rem;
 
-  color: $primary-font-color;
-  font-size: 1.3rem;
-
-  a {
-    color: $primary-font-color;
+  .tags {
+    margin-bottom: 1rem;
   }
 
+  .task-title {
+    margin-left: 0.2rem;
+  }
+}
+
+.task-title {
+  font-size: 1.3rem;
+  color: $primary-font-color;
+}
+
+.task-summary-primary {
+  border-bottom: solid 1px $collection-border-color;
+
   &:hover { background-color: lighten($primary-bg-color, 5%); }
+
+  &:last-child {
+    border-bottom: none;
+  }
 }
