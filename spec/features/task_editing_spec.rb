@@ -51,4 +51,18 @@ describe 'タスクの編集' do
       expect(description_on_page).to eq(old_description)
     end
   end
+
+  describe '説明を編集' do
+    it do
+      visit task_url(task.id)
+      click_link(I18n.t('helpers.actions.edit'))
+
+      fill_in 'task_editing[description]', with: new_description
+      click_button I18n.t('helpers.submit.update')
+
+      click_link old_title
+      expect(title_on_page).to eq(old_title)
+      expect(description_on_page).to eq(new_description)
+    end
+  end
 end

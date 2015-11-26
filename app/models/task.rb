@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  has_one :task_description
+  has_one :task_description, autosave: true
   has_many :taggings
 
   def self.by_author(author)
@@ -8,6 +8,11 @@ class Task < ActiveRecord::Base
 
   def write_description(description)
     self.build_task_description(content: description)
+  end
+
+  def rewrite_description(description)
+    return write_description(description) unless task_description
+    self.task_description.content = description
   end
 
   def description
