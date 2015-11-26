@@ -20,9 +20,10 @@ describe 'タスク編集時にバリデーションをかける' do
   let(:out_of_boundary_length) { 17 }
   let(:inside_of_boundary_length) { 16 }
 
-  skip do
-    visit edit_task_url(task.id)
+  it do
+    visit edit_task_path(task.id)
     fill_in 'task_editing[title]', with: ''
+    click_button I18n.t('helpers.submit.update')
     expect(page).to have_content 'タイトルを入力してください'
   end
 end

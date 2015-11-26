@@ -4,7 +4,7 @@ ja:
       task_editing:
         success: 'タスクを編集しました'
     attributes:
-      task_creation:
+      task_editing:
         tag_words: タグ
         title: タイトル
         description: 説明
