@@ -47,12 +47,6 @@ html {
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
 }
 
-.primary-container {
-  @extend .card-panel;
-
-  background-color: $primary-bg-color;
-}
-
 .dropdown-content {
   li.nolink {
     span { color: $primary-font-color; }

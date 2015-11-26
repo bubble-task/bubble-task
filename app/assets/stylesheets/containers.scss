@@ -8,6 +8,10 @@
   padding: 2rem;
 }
 
+.container-slim {
+  padding: 0;
+}
+
 // Skins
 .container-primary {
   @extend .z-depth-1;
