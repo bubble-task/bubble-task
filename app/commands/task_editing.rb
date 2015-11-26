@@ -4,7 +4,7 @@ class TaskEditing
   attr_accessor :origin, :title, :description, :tag_words
 
   def initialize(params)
-    if have_parameters?(params)
+    if parameters?(params)
       super(params)
     else
       set_attributes_from_origin(params[:origin])
@@ -34,7 +34,7 @@ class TaskEditing
       tags.join(' ')
     end
 
-    def have_parameters?(params)
+    def parameters?(params)
       params
         .values_at(:title, :description, :tag_words)
         .compact
