@@ -7,7 +7,7 @@ class TaskEditing
     if parameters?(params)
       super(params)
     else
-      set_attributes_from_origin(params[:origin])
+      fill_from_origin(params[:origin])
     end
   end
 
@@ -23,7 +23,7 @@ class TaskEditing
 
   private
 
-    def set_attributes_from_origin(origin)
+    def fill_from_origin(origin)
       self.origin = origin
       self.title = origin.title
       self.description = origin.description
