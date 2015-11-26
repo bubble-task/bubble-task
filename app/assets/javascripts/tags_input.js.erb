@@ -1,5 +1,5 @@
-var tagWordsOriginInputId = '#task_creation_tag_words';
-var tagWordsInputId = '#task_creation_tag_words_tag';
+var tagWordsOriginInputId = '#task_tag_words';
+var tagWordsInputId = '#task_tag_words_tag';
 
 var activateTagsInput = function(element) {
   var d = new $.Deferred;
@@ -16,12 +16,12 @@ var activateTagsInput = function(element) {
 };
 
 var setupTagsInput = function() {
-  if ( $('ul.error-explanation').length ) {
+  if ( $(tagWordsOriginInputId).attr('value') ) {
     activateTagsInput($(tagWordsOriginInputId));
   } else {
     $(tagWordsOriginInputId).on('focusin', function() {
       activateTagsInput(this)
-        .then(function() {$(tagWordsInputId).focus(); });
+        .then(function() { $(tagWordsInputId).focus(); });
     });
   }
 };

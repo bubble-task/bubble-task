@@ -136,6 +136,8 @@ ja:
       submit: 保存する
       update: 更新する
       cancel: キャンセル
+    actions:
+      edit: 編集する
     navigations:
       back: もどる
   sessions:

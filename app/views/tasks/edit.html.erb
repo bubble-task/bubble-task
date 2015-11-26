@@ -1,12 +1,12 @@
 <%= content_for(:page_title) { t('.page_title') } %>
 <div class="col s10">
   <div class="container-float container-primary">
-    <%= form_for @command, url: tasks_url do |f| %>
+    <%= form_for @command, url: task_url(@command.task_id) do |f| %>
       <%= render partial: 'layouts/errors', locals: { errors: @command.errors } %>
       <div class="input-field for-tags-input">
         <i class="material-icons prefix">local_offer</i>
         <%= f.label :tag_words, class: 'tags-input' %>
-        <%= f.text_field :tag_words, placeholder: t('.tag_words_guide'), id: 'task_tag_words' %>
+        <%= f.text_field :tag_words, { id: 'task_tag_words' } %>
       </div>
       <div class="input-field">
         <i class="material-icons prefix">subject</i>
@@ -20,7 +20,7 @@
       </div>
       <div class="actions">
         <button class="waves-effect waves-light btn-flat" type="submit" name="action">
-          <%= t('helpers.submit.create') %>
+          <%= t('helpers.submit.update') %>
           <i class="material-icons left">send</i>
         </button>
       </div>
@@ -28,7 +28,7 @@
   </div>
 </div>
 <div class="fixed-action-btn">
-  <%= link_to root_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
+  <%= link_to task_url(@command.task_id), class: 'btn-floating btn-large waves-effect waves-light' do %>
     <i class="large material-icons">keyboard_arrow_left</i>
   <% end -%>
 </div>

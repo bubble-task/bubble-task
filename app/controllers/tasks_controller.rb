@@ -1,6 +1,15 @@
 class TasksController < ApplicationController
   before_action :authorize!
 
+  def index
+    @tag = params[:tag]
+    @tasks = TaskRepository.all_by_tag(@tag)
+  end
+
+  def show
+    @task = Task.find(params[:id])
+  end
+
   def new
     @command = TaskCreation.new
   end
@@ -14,12 +23,8 @@ class TasksController < ApplicationController
     end
   end
 
-  def show
-    @task = Task.find(params[:id])
-  end
-
-  def index
-    @tag = params[:tag]
-    @tasks = TaskRepository.all_by_tag(@tag)
+  def edit
+    task = TaskRepository.find_by_id(params[:id])
+    @command = TaskEditing.from_task(task)
   end
 end

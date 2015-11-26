@@ -13,7 +13,7 @@ $primary-color: #F7FCBD;
 $secondary-color: #456293 !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "darken-2") !default;
-$link-color: #539fac !default;
+$link-color: $secondary-color !default;
 
 /*** Body ***/
 body { background-color: $bottom-color; }

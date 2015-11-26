@@ -16,6 +16,11 @@
         <div class="divider"></div>
       <% end -%>
       <%= simple_format(h(@task.description), class: 'task-description') %>
+      <div class="task-actions">
+        <%= link_to edit_task_url(@task), class: 'waves-effect waves-light btn-flat' do %>
+          <%= t('helpers.actions.edit') %><i class="material-icons left">edit</i>
+        <% end -%>
+      </div>
     </div>
   </div>
 </div>
