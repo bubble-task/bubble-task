@@ -9,5 +9,4 @@ ja:
     list:
       empty: 'いまのところタスクはありません'
     index:
-      page_title: "%{tag}のタスク"
-      all: 'すべて'
+      page_title: "タスク: %{tag}"
