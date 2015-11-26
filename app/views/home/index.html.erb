@@ -4,7 +4,7 @@
     <% if @tasks.any? -%>
       <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
     <% else -%>
-      <p class="empty-list">
+      <p class="message-embedded message-default">
         <%= t('tasks.list.empty') %><i class="material-icons left">done_all</i>
       </p>
     <% end -%>

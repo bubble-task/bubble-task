@@ -23,6 +23,7 @@ body { background-color: $bottom-color; }
 
 @import "navigation";
 @import "containers";
+@import "components";
 @import "form";
 @import "sign_in";
 @import "task";
