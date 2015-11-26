@@ -5,6 +5,7 @@
 
 .container-float {
   margin-top: 1.5rem;
+  padding: 1.5rem 2rem;
 }
 
 .container-slim {
@@ -14,6 +15,5 @@
 // Skins
 .container-primary {
   @extend .z-depth-1;
-
   background-color: $primary-bg-color;
 }
