@@ -15,8 +15,11 @@
   background-color: $bg-color;
   color: $font-color;
 
-  a {
-    color: $font-color;
+  a { color: $font-color; }
+
+  &:hover {
+    background-color: darken($bg-color, 15%);
+    a { color: darken($font-color, 15%); }
   }
 }
 
