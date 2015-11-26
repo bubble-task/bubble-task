@@ -1,3 +1,16 @@
+// Structures
 .container-embedded {
   margin-top: 0;
+}
+
+.container-float {
+  margin-top: 1.5rem;
+  padding: 2rem;
+}
+
+// Skins
+.container-primary {
+  @extend .z-depth-1;
+
+  background-color: $primary-bg-color;
 }
