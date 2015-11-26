@@ -3,11 +3,22 @@ class TaskEditing
 
   attr_accessor :origin, :title, :description, :tag_words
 
-  def initialize(params)
-    if parameters?(params)
-      super(params)
-    else
-      fill_from_origin(params[:origin])
+  validates :title,
+            presence: true
+
+  class << self
+
+    def from_origin(origin)
+      new(
+        origin: origin,
+        title: origin.title,
+        description: origin.description,
+        tag_words: build_tag_words(origin.tags)
+      )
+    end
+
+    def build_tag_words(tags)
+      tags.join(' ')
     end
   end
 
@@ -16,28 +27,9 @@ class TaskEditing
   end
 
   def run
+    return false unless valid?
     origin.retitle(title)
     origin.rewrite_description(description)
     origin.save
   end
-
-  private
-
-    def fill_from_origin(origin)
-      self.origin = origin
-      self.title = origin.title
-      self.description = origin.description
-      self.tag_words = build_tag_words(origin.tags)
-    end
-
-    def build_tag_words(tags)
-      tags.join(' ')
-    end
-
-    def parameters?(params)
-      params
-        .values_at(:title, :description, :tag_words)
-        .compact
-        .any?
-    end
 end

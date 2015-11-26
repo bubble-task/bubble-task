@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   def edit
     task = TaskRepository.find_by_id(params[:id])
-    @command = TaskEditing.new(origin: task)
+    @command = TaskEditing.from_origin(task)
   end
 
   def update
@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     if @command.run
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_editing.success')
     else
-      render :new
+      render :edit
     end
   end
 end
