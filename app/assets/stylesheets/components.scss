@@ -1,0 +1,10 @@
+.message-embedded {
+  line-height: 1rem;
+  font-size: 1.5rem;
+
+  i { line-height: 1rem; }
+}
+
+.message-default {
+  color: lighten($primary-font-color, 45%);
+}

@@ -32,33 +32,15 @@ $tag-font-color: #92977E;
 
 .tag-individual {
   margin-bottom: 1rem;
-  font-size: 1.5rem;
+  padding: 0 1.2rem;
   height: 3rem;
   line-height: 3rem;
+
   vertical-align: middle;
-  padding: 0 1.2rem;
+  font-size: 1.3rem;
   border-radius: 1.5rem;
 }
 
 .tag-nolink {
   @include static-tag;
-}
-
-// Page Containers
-
-.tag-list {
-  margin-top: 2rem;
-}
-
-.tag-tasks-container {
-  margin-top: 2rem;
-}
-
-.tag-tasks-header {
-  margin-bottom: 1rem;
-}
-
-// Containers
-.tags {
-  margin-bottom: 0.8rem;
 }

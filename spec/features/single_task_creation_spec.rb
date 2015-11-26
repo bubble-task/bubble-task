@@ -8,8 +8,8 @@ describe 'タスクを作成する' do
   let(:title) { 'タスクのタイトル' }
   let(:description) { 'タスクの説明' }
 
-  let(:title_on_page) { first('.task_title').text }
-  let(:description_on_page) { first('.task_description').text }
+  let(:title_on_page) { first('.task-title').text }
+  let(:description_on_page) { first('.task-description').text }
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
 
   context 'タイトルのみの場合' do

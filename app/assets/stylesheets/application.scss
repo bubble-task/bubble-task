@@ -22,6 +22,8 @@ body { background-color: $bottom-color; }
 @import "material_icons";
 
 @import "navigation";
+@import "containers";
+@import "components";
 @import "form";
 @import "sign_in";
 @import "task";
@@ -30,7 +32,6 @@ body { background-color: $bottom-color; }
 
 html {
   color: $primary-font-color;
-  //font-family: 'Ruboto', '游ゴシック体', 'Yu Gothic', 'YuGothic', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
   font-family: 'Ruboto', 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'Osaka', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
@@ -45,13 +46,6 @@ html {
 
 .z-depth-1{
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
-}
-
-.primary-container {
-  @extend .card-panel;
-
-  background-color: $primary-bg-color;
-  margin-top: 2rem;
 }
 
 .dropdown-content {

@@ -19,17 +19,15 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
   end
 
   describe '各一覧画面からの遷移' do
-    before do
-      create_task(user.id, 'タスクのタイトル', nil, %w(タグ))
-    end
-
-    let(:tag_at_header) { first('.tag-tasks-header .tag').text }
+    before { task }
+    let(:task) { create_task(user.id, 'タスクのタイトル', nil, %w(タグ)) }
+    let(:tag) { find('nav').text.sub(/タスク: /, '') }
 
     context 'タスク一覧のタグをクリックした場合' do
       it do
         visit root_path
         click_link('タグ')
-        expect(tag_at_header).to eq('タグ')
+        expect(tag).to eq('タグ')
       end
     end
 
@@ -37,7 +35,15 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
       it do
         visit tags_path
         click_link('タグ')
-        expect(tag_at_header).to eq('タグ')
+        expect(tag).to eq('タグ')
+      end
+    end
+
+    context 'タスク詳細のタグをクリックした場合' do
+      it do
+        visit task_path(task)
+        click_link('タグ')
+        expect(tag).to eq('タグ')
       end
     end
   end

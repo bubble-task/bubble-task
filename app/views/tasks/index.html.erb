@@ -1,7 +1,6 @@
-<%= content_for(:page_title) { t('.page_title') } %>
-<div class="tag-tasks-container">
-  <div class="tag-tasks-header">
-    <div class="tag tag-individual tag-nolink"><%= @tag %></div>
+<%= content_for(:page_title) { t('.page_title', tag: (@tag || t('.all'))) } %>
+<div class="col s10">
+  <div class="container-embedded">
+    <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
   </div>
-  <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
 </div>

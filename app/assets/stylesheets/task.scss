@@ -1,29 +1,46 @@
-.task-summary-list {
-  @extend .collection, .z-depth-1;
-
+.task-summary-list-primary {
+  @extend .z-depth-1;
   background-color: $primary-bg-color;
-  border: none;
-  margin-top: 0;
 }
 
 .task-summary {
-  padding: 0.7rem 1.2rem;
-  border-bottom: solid 1px $collection-border-color;
+  padding: 0.7rem 1.4rem;
 
-  color: $primary-font-color;
-  font-size: 1.3rem;
-
-  a {
-    color: $primary-font-color;
+  .tags {
+    margin-bottom: 1rem;
   }
 
-  &:hover { background-color: lighten($primary-bg-color, 5%); }
+  .task-title {
+    margin-left: 0.2rem;
+  }
 }
 
-.empty-list {
-  color: lighten($primary-font-color, 45%);
-  line-height: 1rem;
-  font-size: 1.5rem;
+.task-title {
+  font-size: 1.3rem;
+  color: $primary-font-color;
+}
 
-  i { line-height: 1rem; }
+.task-summary-primary {
+  border-bottom: solid 1px $collection-border-color;
+
+  &:hover { background-color: lighten($primary-bg-color, 5%); }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.task-detail {
+  .tags {
+    margin: 0.5rem 0 1.5rem 0;
+  }
+
+  .task-title {
+    font-size: 1.5rem;
+    margin-left: 0.2rem;
+  }
+
+  .task-description {
+    font-size: 1.1rem;
+  }
 }

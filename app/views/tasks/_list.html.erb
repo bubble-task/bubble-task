@@ -1,6 +1,6 @@
-<div class="task-summary-list">
+<div class="task-summary-list-primary">
   <% tasks.each do |task| %>
-    <div id="task_<%= task.id %>" class="task-summary">
+    <div id="task_<%= task.id %>" class="task-summary task-summary-primary">
       <div class="tags">
         <% if task.tags.any? %>
           <% task.tags.each do |tag| %>

@@ -8,9 +8,9 @@ module TaskCreationHelper
     click_button '作成する'
   end
 
-  def create_task(*args)
+  def create_task(author_id, title, description, tags)
     TaskFactory
-      .create(*args)
+      .create(author_id, title, description.to_s, tags)
       .tap(&:save)
   end
 end
