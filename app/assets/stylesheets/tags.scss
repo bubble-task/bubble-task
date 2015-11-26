@@ -8,8 +8,16 @@
 
 .tag {
   @extend .chip;
-  background-color: #E6E18F;
-  color: #92977E;
+
+  $font-color: #92977E;
+  $bg-color: #E6E18F;
+
+  background-color: $bg-color;
+  color: $font-color;
+
+  a {
+    color: $font-color;
+  }
 }
 
 .tag-individual {
