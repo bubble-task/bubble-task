@@ -6,6 +6,10 @@ class Task < ActiveRecord::Base
     where(author_id: author.id)
   end
 
+  def retitle(title)
+    self.title = title
+  end
+
   def write_description(description)
     self.build_task_description(content: description)
   end

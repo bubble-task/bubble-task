@@ -10,6 +10,14 @@ describe Task do
     end
   end
 
+  describe 'タイトルを編集する' do
+    it do
+      task = Task.new(title: '古いタイトル')
+      task.retitle('新しいタイトル')
+      expect(task.title).to eq('新しいタイトル')
+    end
+  end
+
   describe '説明を編集する' do
     context 'タスクに説明が存在する場合' do
       it do

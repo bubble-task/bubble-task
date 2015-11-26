@@ -16,7 +16,7 @@ class TaskEditing
   end
 
   def run
-    origin.title = title
+    origin.retitle(title)
     origin.rewrite_description(description)
     origin.save
   end
