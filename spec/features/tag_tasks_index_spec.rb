@@ -44,9 +44,9 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
 
   describe 'タグに紐づくタスク一覧画面の表示' do
     it do
-      task_c = create_task(user.id, 'タスクのタイトルC', nil, %w(タグ3 タグ1))
-      task_b = create_task(user.id, 'タスクのタイトルB', nil, %w(タグ2))
-      task_a = create_task(user.id, 'タスクのタイトルA', nil, %w(タグ1 タグ2 タグ4))
+      create_task(user.id, 'タスクのタイトルC', nil, %w(タグ3 タグ1))
+      create_task(user.id, 'タスクのタイトルB', nil, %w(タグ2))
+      create_task(user.id, 'タスクのタイトルA', nil, %w(タグ1 タグ2 タグ4))
       visit tasks_path(tag: 'タグ1')
 
       task_summary1 = task_summary_by_order(1)
