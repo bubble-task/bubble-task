@@ -7,7 +7,7 @@
             <div class="tag"><%= link_to tag, tasks_url(tag: tag) %></div>
           <% end -%>
         <% else -%>
-          <div class="tag tag-personal"><%= t('tasks.show.tag_personal') %></div>
+          <div class="tag-personal"><%= t('tasks.show.tag_personal') %></div>
         <% end -%>
       </div>
       <%= link_to task.title, task_url(task), class: 'task-title' %>
