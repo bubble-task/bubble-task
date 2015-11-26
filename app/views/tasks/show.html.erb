@@ -5,7 +5,7 @@
       <div class="tags">
         <% if @task.tags.any? %>
           <% @task.tags.each do |tag| %>
-            <div class="tag"><%= tag %></div>
+            <div class="tag"><%= link_to tag, tasks_url(tag: tag) %></div>
           <% end -%>
         <% else -%>
           <div class="tag-personal"><%= t('tasks.show.tag_personal') %></div>
