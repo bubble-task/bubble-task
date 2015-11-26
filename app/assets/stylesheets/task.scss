@@ -1,8 +1,5 @@
-.task-summary-list {
-  @extend .z-depth-1;
-
-  background-color: $primary-bg-color;
-}
+.task-summary-list { @extend .z-depth-1; }
+.task-summary-list-primary { background-color: $primary-bg-color; }
 
 .task-summary {
   padding: 0.7rem 1.2rem;
@@ -16,12 +13,4 @@
   }
 
   &:hover { background-color: lighten($primary-bg-color, 5%); }
-}
-
-.empty-list {
-  color: lighten($primary-font-color, 45%);
-  line-height: 1rem;
-  font-size: 1.5rem;
-
-  i { line-height: 1rem; }
 }
