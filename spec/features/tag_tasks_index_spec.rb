@@ -23,7 +23,7 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
       create_task(user.id, 'タスクのタイトル', nil, %w(タグ))
     end
 
-    let(:tag_at_header) { first('.header .tag').text }
+    let(:tag_at_header) { first('.tag-tasks-header .tag').text }
 
     context 'タスク一覧のタグをクリックした場合' do
       it do
