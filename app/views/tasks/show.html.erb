@@ -1,20 +1,22 @@
 <%= content_for(:page_title) { t('.page_title') } %>
 <div class="col s10">
   <div class="container-float container-primary">
-    <div class="tags">
-      <% if @task.tags.any? %>
-        <% @task.tags.each do |tag| %>
-          <div class="tag"><%= tag %></div>
+    <div class="task-detail">
+      <div class="tags">
+        <% if @task.tags.any? %>
+          <% @task.tags.each do |tag| %>
+            <div class="tag"><%= tag %></div>
+          <% end -%>
+        <% else -%>
+          <div class="tag-personal"><%= t('tasks.show.tag_personal') %></div>
         <% end -%>
-      <% else -%>
-        <div class="tag tag-personal"><%= t('tasks.show.tag_personal') %></div>
+      </div>
+      <h1 class="task-title"><%= @task.title %></h1>
+      <% if @task.description.present? -%>
+        <div class="divider"></div>
       <% end -%>
+      <%= simple_format(h(@task.description), class: 'task-description') %>
     </div>
-    <h5 class="task_title"><%= @task.title %></h5>
-    <% if @task.description.present? -%>
-      <div class="divider"></div>
-    <% end -%>
-    <%= simple_format(h(@task.description), class: 'task_description') %>
   </div>
 </div>
 <div class="fixed-action-btn">
