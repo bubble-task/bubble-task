@@ -1,19 +1,14 @@
-class TaskEditing
-  include ActiveModel::Model
-
-  attr_accessor :origin, :title, :description, :tag_words
-
-  validates :title,
-            presence: true
-
+class TaskEditing < SimpleDelegator
   class << self
 
     def from_origin(origin)
       new(
-        origin: origin,
-        title: origin.title,
-        description: origin.description,
-        tag_words: build_tag_words(origin.tags)
+        origin,
+        TaskParameters.new(
+          title: origin.title,
+          description: origin.description,
+          tag_words: build_tag_words(origin.tags)
+        )
       )
     end
 
@@ -22,14 +17,19 @@ class TaskEditing
     end
   end
 
+  def initialize(origin, parameters)
+    super(parameters)
+    @origin = origin
+  end
+
   def task_id
-    origin.id
+    @origin.id
   end
 
   def run
     return false unless valid?
-    origin.retitle(title)
-    origin.rewrite_description(description)
-    origin.save
+    @origin.retitle(title)
+    @origin.rewrite_description(description)
+    @origin.save
   end
 end

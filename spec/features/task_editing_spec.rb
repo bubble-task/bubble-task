@@ -27,10 +27,10 @@ describe 'タスクの編集' do
       visit task_url(task.id)
       click_link(I18n.t('helpers.actions.edit'))
 
-      filled_old_title = find('#task_editing_title').value
+      filled_old_title = find('#task_parameters_title').value
       expect(filled_old_title).to eq(old_title)
 
-      filled_old_description = find('#task_editing_description').value
+      filled_old_description = find('#task_parameters_description').value
       expect(filled_old_description).to eq(old_description)
 
       filled_old_tag_words = find('#task_tag_words', visible: false).value
@@ -43,7 +43,7 @@ describe 'タスクの編集' do
       visit task_url(task.id)
       click_link(I18n.t('helpers.actions.edit'))
 
-      fill_in 'task_editing[title]', with: new_title
+      fill_in 'task_parameters[title]', with: new_title
       click_button I18n.t('helpers.submit.update')
 
       click_link new_title
@@ -57,7 +57,7 @@ describe 'タスクの編集' do
       visit task_url(task.id)
       click_link(I18n.t('helpers.actions.edit'))
 
-      fill_in 'task_editing[description]', with: new_description
+      fill_in 'task_parameters[description]', with: new_description
       click_button I18n.t('helpers.submit.update')
 
       click_link old_title
