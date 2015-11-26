@@ -1,0 +1,7 @@
+<%= content_for(:page_title) { t('.page_title') } %>
+<div class="tag-tasks-container">
+  <div class="tag-tasks-header">
+    <div class="tag tag-individual tag-nolink"><%= @tag %></div>
+  </div>
+  <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
+</div>
