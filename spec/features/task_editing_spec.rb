@@ -14,7 +14,7 @@ describe 'タスクの編集' do
   let(:old_title) { '編集前のタイトル' }
   let(:old_description) { '編集前の説明' }
   let(:old_tags) { %w(タグ1 タグ2) }
-  let(:old_tag_words) { TaskEditing.build_tag_words(old_tags) }
+  let(:old_tag_words) { old_tags.join(' ') }
 
   let(:new_title) { '新しいタイトル' }
   let(:new_description) { '新しい説明' }
@@ -38,11 +38,17 @@ describe 'タスクの編集' do
     end
   end
 
-    #fill_in I18n.t('activemodel.attributes.task_creation.title'), with: new_title
-    #fill_in I18n.t('activemodel.attributes.task_creation.description'), with: new_description
-    #click_button I18n.t('helpers.submit.update')
+  describe 'タイトルを編集' do
+    it do
+      visit task_url(task.id)
+      click_link(I18n.t('helpers.actions.edit'))
 
-    #click_link new_title
-    #expect(title_on_page).to eq(new_title)
-    #expect(description_on_page).to eq ''
+      fill_in 'task_editing[title]', with: new_title
+      click_button I18n.t('helpers.submit.update')
+
+      click_link new_title
+      expect(title_on_page).to eq(new_title)
+      expect(description_on_page).to eq(old_description)
+    end
+  end
 end

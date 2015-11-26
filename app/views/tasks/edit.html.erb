@@ -1,7 +1,7 @@
 <%= content_for(:page_title) { t('.page_title') } %>
 <div class="col s10">
   <div class="container-float container-primary">
-    <%= form_for @command, url: task_url(@command.task_id) do |f| %>
+    <%= form_for @command, url: task_url(@command.task_id), method: :put do |f| %>
       <%= render partial: 'layouts/errors', locals: { errors: @command.errors } %>
       <div class="input-field for-tags-input">
         <i class="material-icons prefix">local_offer</i>

@@ -1,21 +1,42 @@
 class TaskEditing
   include ActiveModel::Model
 
-  class << self
+  attr_accessor :origin, :title, :description, :tag_words
 
-    def from_task(task)
-      new(
-        task_id: task.id,
-        title: task.title,
-        description: task.description,
-        tag_words: build_tag_words(task.tags)
-      )
+  def initialize(params)
+    if have_parameters?(params)
+      super(params)
+    else
+      set_attributes_from_origin(params[:origin])
+    end
+  end
+
+  def task_id
+    origin.id
+  end
+
+  def run
+    origin.title = title
+    origin.save
+  end
+
+  private
+
+    def set_attributes_from_origin(origin)
+      self.origin = origin
+      self.title = origin.title
+      self.description = origin.description
+      self.tag_words = build_tag_words(origin.tags)
     end
 
     def build_tag_words(tags)
       tags.join(' ')
     end
-  end
 
-  attr_accessor :task_id, :title, :description, :tag_words
+    def have_parameters?(params)
+      params
+        .values_at(:title, :description, :tag_words)
+        .compact
+        .any?
+    end
 end
