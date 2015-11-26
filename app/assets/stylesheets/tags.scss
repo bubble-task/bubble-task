@@ -1,18 +1,28 @@
 $tag-bg-color: #E6E18F;
 $tag-font-color: #92977E;
 
+@mixin active-tag {
+  &:hover {
+    background-color: darken($tag-bg-color, 15%);
+    a { color: darken($tag-font-color, 15%); }
+  }
+}
+
+@mixin static-tag {
+  &:hover {
+    background-color: $tag-bg-color;
+    a { color: $tag-font-color; }
+  }
+}
+
 .tag {
   @extend .chip;
+  @include active-tag;
 
   background-color: $tag-bg-color;
   color: $tag-font-color;
 
   a { color: $tag-font-color; }
-
-  &:hover {
-    background-color: darken($tag-bg-color, 15%);
-    a { color: darken($tag-font-color, 15%); }
-  }
 }
 
 .tag-personal {
@@ -28,6 +38,10 @@ $tag-font-color: #92977E;
   vertical-align: middle;
   padding: 0 1.2rem;
   border-radius: 1.5rem;
+}
+
+.tag-nolink {
+  @include static-tag;
 }
 
 // Page Containers
