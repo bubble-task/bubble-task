@@ -1,8 +1,8 @@
 class Task < ActiveRecord::Base
+  NotDescribed = Class.new(StandardError)
+
   has_one :task_description, autosave: true
   has_many :taggings
-
-  NotDescribed = Class.new(StandardError)
 
   before_save do
     if task_description && task_description.will_remove?
