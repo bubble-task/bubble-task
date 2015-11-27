@@ -16,9 +16,6 @@ describe 'タスクの編集' do
   let(:old_tags) { %w(タグ1 タグ2) }
   let(:old_tag_words) { old_tags.join(' ') }
 
-  let(:new_title) { '新しいタイトル' }
-  let(:new_description) { '新しい説明' }
-
   let(:title_on_page) { first('.task-title').text }
   let(:description_on_page) { first('.task-description').text }
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
@@ -40,7 +37,9 @@ describe 'タスクの編集' do
   end
 
   describe 'タイトルを編集' do
-    it do
+    let(:new_title) { '新しいタイトル' }
+
+    it 'タイトルのみ更新されていること' do
       update_task_from_ui(task, title: new_title)
       click_link new_title
       expect(title_on_page).to eq(new_title)
@@ -50,7 +49,9 @@ describe 'タスクの編集' do
   end
 
   describe '説明を編集' do
-    it do
+    let(:new_description) { '新しい説明' }
+
+    it '説明のみ更新されていること' do
       update_task_from_ui(task, description: new_description)
       click_link old_title
       expect(title_on_page).to eq(old_title)
@@ -59,12 +60,41 @@ describe 'タスクの編集' do
     end
   end
 
-  describe 'タグを編集' do
-    skip do
-      update_task_from_ui(task, tag_words: new_tag_words)
-      click_link old_title
-      expect(title_on_page).to eq(old_title)
-      expect(description_on_page).to eq(old_description)
+  skip 'タグを編集' do
+    context 'タグを1つ追加' do
+      let(:new_tag_words) { 'タグ1 タグ2 タグ3' }
+
+      it do
+        update_task_from_ui(task, tag_words: new_tag_words)
+        click_link old_title
+        expect(title_on_page).to eq(old_title)
+        expect(description_on_page).to eq(old_description)
+        expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+      end
+    end
+
+    context 'タグを1つ削除' do
+      let(:new_tag_words) { 'タグ2' }
+
+      it do
+        update_task_from_ui(task, tag_words: new_tag_words)
+        click_link old_title
+        expect(title_on_page).to eq(old_title)
+        expect(description_on_page).to eq(old_description)
+        expect(tags_on_page).to eq(%w(タグ2))
+      end
+    end
+
+    context 'タグを全て入れ替え' do
+      let(:new_tag_words) { 'タグ3 タグ4' }
+
+      it do
+        update_task_from_ui(task, tag_words: new_tag_words)
+        click_link old_title
+        expect(title_on_page).to eq(old_title)
+        expect(description_on_page).to eq(old_description)
+        expect(tags_on_page).to eq(%w(タグ3 タグ4))
+      end
     end
   end
 end
