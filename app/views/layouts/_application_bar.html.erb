@@ -24,7 +24,7 @@
       <%= javascript_tag "$('#current-user-avatar').attr({ src: Gravtastic('#{current_user.email}') })" %>
       <i class="material-icons right">keyboard_arrow_down</i>
     <% end -%>
-    <ul id="side-user-menu" class="dropdown-content">
+    <ul id="side-user-menu" class="dropdown-content dropdown-side-nav">
       <li>
         <%= link_to session_url, method: :delete do %>
           <%= t('sessions.actions.sign_out') %>

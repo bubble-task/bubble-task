@@ -2,10 +2,6 @@ class Task < ActiveRecord::Base
   has_one :task_description, autosave: true
   has_many :taggings
 
-  def self.by_author(author)
-    where(author_id: author.id)
-  end
-
   def retitle(title)
     self.title = title
   end

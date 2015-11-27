@@ -1,0 +1,29 @@
+<div id="task_<%= task.id %>" class="task-summary task-summary-primary">
+  <div class="row row-no-margin">
+    <div class="col s11">
+      <div class="tags">
+        <% if task.tags.any? %>
+          <% task.tags.each do |tag| %>
+            <div class="tag"><%= link_to tag, tasks_url(tag: tag) %></div>
+          <% end -%>
+        <% else -%>
+          <div class="tag-personal"><%= t('tasks.show.tag_personal') %></div>
+        <% end -%>
+      </div>
+      <%= link_to task.title, task_url(task), class: 'task-title' %>
+    </div>
+    <div class="col s1 task-actions">
+      <%= link_to '#!', class: 'dropdown-button', data: { activates: "task-actions-#{task.id}", constrainWidth: false, beloworigin: true } do %>
+        <i class="material-icons">more_vert</i>
+      <% end -%>
+      <ul id="task-actions-<%= task.id -%>" class="dropdown-content">
+        <li>
+          <%= link_to edit_task_url(task.id), data: { no_turbolink: true } do %>
+            <%= t('helpers.actions.edit') %>
+            <i class="material-icons left">edit</i>
+          <% end -%>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

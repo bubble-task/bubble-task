@@ -12,3 +12,9 @@
 .btn-flat {
   color: $link-color;
 }
+
+.dropdown-content {
+  li > a {
+    font-size: 1rem;
+  }
+}
