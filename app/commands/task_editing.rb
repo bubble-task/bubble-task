@@ -2,14 +2,12 @@ class TaskEditing < SimpleDelegator
   class << self
 
     def from_origin(origin)
-      new(
-        origin,
-        TaskParameters.new(
-          title: origin.title,
-          description: origin.description,
-          tag_words: build_tag_words(origin.tags)
-        )
+      parameters = TaskParameters.new(
+        title: origin.title,
+        description: origin.description,
+        tag_words: build_tag_words(origin.tags),
       )
+      new(origin, parameters)
     end
 
     def build_tag_words(tags)
