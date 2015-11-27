@@ -5,8 +5,8 @@ describe SessionManager do
     it do
       session = {}
       user = create_user_from_oauth_credential
-      new_session = SessionManager.sign_in(session, user)
-      expect(new_session[:user_id]).to eq(user.id)
+      SessionManager.sign_in(session, user)
+      expect(session[:user_id]).to eq(user.id)
     end
   end
 
@@ -45,10 +45,10 @@ describe SessionManager do
     it do
       session = {}
       user = create_user_from_oauth_credential
-      signed_in_session = SessionManager.sign_in(session, user)
+      SessionManager.sign_in(session, user)
 
-      new_session = SessionManager.sign_out(signed_in_session)
-      expect(new_session[:user_id]).to be_nil
+      SessionManager.sign_out(session)
+      expect(session[:user_id]).to be_nil
     end
   end
 end
