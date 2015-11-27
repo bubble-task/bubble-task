@@ -11,11 +11,11 @@ class TasksController < ApplicationController
   end
 
   def new
-    @command = TaskCreation.new
+    @command = TaskCreation.new(TaskParameters.new)
   end
 
   def create
-    @command = TaskCreation.new(params[:task_creation])
+    @command = TaskCreation.new(TaskParameters.new(params[:task_parameters]))
     if @command.run(current_user)
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_creation.success')
     else

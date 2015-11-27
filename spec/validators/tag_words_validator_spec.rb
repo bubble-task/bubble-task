@@ -12,7 +12,7 @@ end
 
 describe TagWordsValidator do
   let(:validator) { described_class.new({ attributes: 1 }) }
-  let(:record) { TaskCreation.new }
+  let(:record) { TaskParameters.new }
 
   it do
     validator.validate_each(record, :tag_words, 'a' * 16)
