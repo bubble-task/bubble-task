@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class DummyView
+class PreviousUrlHelper::DummyView
   include ApplicationHelper
   include Rails.application.routes.url_helpers
   default_url_options[:host] = 'http://test.host'
@@ -17,7 +17,7 @@ end
 describe PreviousUrlHelper do
   describe '#previous_url_for_task' do
     subject do
-      view = DummyView.new(previous_url)
+      view = PreviousUrlHelper::DummyView.new(previous_url)
       view.previous_url_for_task
     end
 
