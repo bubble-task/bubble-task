@@ -15,7 +15,12 @@ class Task < ActiveRecord::Base
     self.task_description.content = description
   end
 
+  def remove_description
+    self.task_description = nil
+  end
+
   def description
+    return nil unless task_description
     task_description.content
   end
 

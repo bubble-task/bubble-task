@@ -35,7 +35,7 @@ describe Task do
     end
   end
 
-  skip '説明を削除する' do
+  describe '説明を削除する' do
     context 'タスクに説明が存在する場合' do
       it do
         task.write_description('古いタスクの説明')
