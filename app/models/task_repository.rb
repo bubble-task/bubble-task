@@ -5,6 +5,10 @@ module TaskRepository
     Task.includes(:taggings).find(task_id)
   end
 
+  def all_by_author_id(author_id)
+    Task.includes(:taggings).where(author_id: author_id)
+  end
+
   def all_by_tag(tag)
     Task.joins(:taggings).where(taggings: { tag: tag }).preload(:taggings)
   end
