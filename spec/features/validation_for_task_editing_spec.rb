@@ -4,7 +4,7 @@ describe 'タスク編集時にバリデーションをかける' do
   before do
     user
     oauth_sign_in(auth_hash: auth_hash)
-    task
+    visit edit_task_path(task.id)
   end
 
   let(:user) { create_user_from_oauth_credential(auth_hash) }
@@ -16,46 +16,45 @@ describe 'タスク編集時にバリデーションをかける' do
   let(:old_tags) { %w(タグ1 タグ2) }
   let(:old_tag_words) { old_tags.join(' ') }
 
-  let(:valid_title) { 'タスクのタイトル' }
-  let(:out_of_boundary_length) { 17 }
-  let(:inside_of_boundary_length) { 16 }
-
   describe 'タイトル' do
-    it do
-      visit edit_task_path(task.id)
-      fill_in 'task_parameters[title]', with: ''
+    subject do
+      fill_in 'task_parameters[title]', with: title
       click_button I18n.t('helpers.submit.update')
-      expect(page).to have_content 'タイトルを入力してください'
+      page
     end
 
-    it do
-      visit edit_task_path(task.id)
-      fill_in 'task_parameters[title]', with: 'a' * 41
-      click_button I18n.t('helpers.submit.update')
-      expect(page).to have_content 'タイトルは40文字以内で入力してください'
+    context '未入力' do
+      let(:title) { '' }
+      it { is_expected.to have_content 'タイトルを入力してください' }
     end
 
-    it do
-      visit edit_task_path(task.id)
-      fill_in 'task_parameters[title]', with: 'a' * 40
-      click_button I18n.t('helpers.submit.update')
-      expect(page).to have_link 'a' * 40
+    context '41文字入力' do
+      let(:title) { 'a' * 41 }
+      it { is_expected.to have_content 'タイトルは40文字以内で入力してください' }
+    end
+
+    context '40文字入力' do
+      let(:title) { 'a' * 40 }
+      it { is_expected.to have_link title }
     end
   end
 
   describe '説明' do
-    it do
-      visit edit_task_path(task.id)
-      fill_in 'task_parameters[description]', with: 'a' * 5001
+    subject do
+      fill_in 'task_parameters[description]', with: description
       click_button I18n.t('helpers.submit.update')
-      expect(page).to have_content '説明は5000文字以内で入力してください'
+      page
     end
 
-    it do
-      visit edit_task_path(task.id)
-      fill_in 'task_parameters[description]', with: 'a' * 5000
-      click_button I18n.t('helpers.submit.update')
-      expect(page).to have_link old_title
+    context '最大文字数+1文字入力' do
+      let(:description) { 'a' * 5001 }
+
+      it { is_expected.to have_content '説明は5000文字以内で入力してください' }
+    end
+
+    context '最大文字数入力' do
+      let(:description) { 'a' * 5000 }
+      it { is_expected.to have_link old_title }
     end
   end
 end
