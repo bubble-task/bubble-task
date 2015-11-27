@@ -42,4 +42,20 @@ describe 'タスク編集時にバリデーションをかける' do
       expect(page).to have_link 'a' * 40
     end
   end
+
+  describe '説明' do
+    it do
+      visit edit_task_path(task.id)
+      fill_in 'task_parameters[description]', with: 'a' * 5001
+      click_button I18n.t('helpers.submit.update')
+      expect(page).to have_content '説明は5000文字以内で入力してください'
+    end
+
+    it do
+      visit edit_task_path(task.id)
+      fill_in 'task_parameters[description]', with: 'a' * 5000
+      click_button I18n.t('helpers.submit.update')
+      expect(page).to have_link old_title
+    end
+  end
 end
