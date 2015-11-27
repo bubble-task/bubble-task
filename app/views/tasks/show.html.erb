@@ -12,10 +12,10 @@
         <% end -%>
       </div>
       <h1 class="task-title"><%= @task.title %></h1>
-      <% if @task.description.present? -%>
+      <% if @task.description -%>
         <div class="divider"></div>
+        <%= simple_format(h(@task.description), class: 'task-description') %>
       <% end -%>
-      <%= simple_format(h(@task.description), class: 'task-description') %>
       <div class="task-actions">
         <%= link_to edit_task_url(@task), data: { no_turbolink: true }, class: 'waves-effect waves-light btn-flat' do %>
           <%= t('helpers.actions.edit') %><i class="material-icons left">edit</i>

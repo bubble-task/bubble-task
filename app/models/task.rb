@@ -4,6 +4,12 @@ class Task < ActiveRecord::Base
 
   NotDescribed = Class.new(StandardError)
 
+  before_save do
+    if task_description && task_description.will_remove?
+      task_description.destroy
+    end
+  end
+
   def retitle(title)
     self.title = title
   end
@@ -19,11 +25,12 @@ class Task < ActiveRecord::Base
 
   def remove_description
     raise NotDescribed unless description
-    self.task_description = nil
+    self.task_description.mark_as_remove
   end
 
   def description
     return nil unless task_description
+    return nil if task_description.will_remove?
     task_description.content
   end
 

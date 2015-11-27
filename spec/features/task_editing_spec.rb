@@ -64,11 +64,11 @@ describe 'タスクの編集' do
     context '説明を削除' do
       let(:new_description) { '' }
 
-      it '説明のみ更新されていること' do
+      it '説明が削除されていること' do
         update_task_from_ui(task, description: new_description)
         click_link old_title
+        expect(first('.task-description')).to be_nil
         expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(new_description)
         expect(tags_on_page).to eq(old_tags)
       end
     end
