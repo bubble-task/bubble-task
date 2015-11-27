@@ -54,4 +54,31 @@ describe 'タスク編集時にバリデーションをかける' do
       it { is_expected.to have_link old_title }
     end
   end
+
+  describe 'タグ' do
+    let(:out_of_boundary_length) { 17 }
+    let(:inside_of_boundary_length) { 16 }
+
+    subject do
+      update_task_from_ui(task, tag_words: tag_words)
+      page
+    end
+
+    context '全て最大文字数以内で入力' do
+      let(:tag_words) { "#{'a' * 8} #{'b' * 9}" }
+      it { is_expected.to have_link(old_title) }
+    end
+
+    context '最大文字数+1を単独で入力' do
+      let(:tag_words) { 'a' * out_of_boundary_length }
+      it { is_expected.to have_content("タグ「#{tag_words}」は16文字以内で入力してください") }
+    end
+
+    context '最大文字数+1と最大文字数を一つずつ入力' do
+      let(:invalid_tag) { 'b' * out_of_boundary_length }
+      let(:tag_words) { "#{'a' * inside_of_boundary_length} #{invalid_tag}" }
+
+      it { is_expected.to have_content("タグ「#{invalid_tag}」は16文字以内で入力してください") }
+    end
+  end
 end
