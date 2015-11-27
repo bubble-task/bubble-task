@@ -43,5 +43,11 @@ describe Task do
         expect(task.description).to be_nil
       end
     end
+
+    context 'タスクに説明が存在しない場合' do
+      it do
+        expect { task.remove_description }.to raise_error(Task::NotDescribed)
+      end
+    end
   end
 end

@@ -2,6 +2,8 @@ class Task < ActiveRecord::Base
   has_one :task_description, autosave: true
   has_many :taggings
 
+  NotDescribed = Class.new(StandardError)
+
   def retitle(title)
     self.title = title
   end
@@ -16,6 +18,7 @@ class Task < ActiveRecord::Base
   end
 
   def remove_description
+    raise NotDescribed unless description
     self.task_description = nil
   end
 
