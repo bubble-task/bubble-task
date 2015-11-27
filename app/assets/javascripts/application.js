@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require materialize-sprockets
 //= require jquery-tags-input
+//= require gravtastic
 //= require turbolinks
 //= require_tree .
 

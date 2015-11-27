@@ -59,6 +59,7 @@ gem 'materialize-sass'
 gem 'material_icons'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'gravtastic'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-tags-input'
