@@ -28,12 +28,12 @@ describe 'タスク編集時にバリデーションをかける' do
       it { is_expected.to have_content 'タイトルを入力してください' }
     end
 
-    context '41文字入力' do
+    context '最大文字数+1文字入力' do
       let(:title) { 'a' * 41 }
       it { is_expected.to have_content 'タイトルは40文字以内で入力してください' }
     end
 
-    context '40文字入力' do
+    context '最大文字数入力' do
       let(:title) { 'a' * 40 }
       it { is_expected.to have_link title }
     end
