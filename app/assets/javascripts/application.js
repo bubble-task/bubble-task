@@ -18,7 +18,18 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).on('page:load page:change', function () {
+/*
+$(document).on('ready page:load', function() {
+  console.log('#ready');
   setupMaterialize()
+    .then(function() { setupForm(); })
+    .then(function() { setupTagsInput(); });
+});
+*/
+
+$(document).on('page:change', function() {
+  console.log('#page:change');
+  setupMaterialize()
+    .then(function() { setupForm(); })
     .then(function() { setupTagsInput(); });
 });

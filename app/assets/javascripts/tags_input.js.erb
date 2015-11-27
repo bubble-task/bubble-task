@@ -15,13 +15,21 @@ var activateTagsInput = function(element) {
   return d.promise();
 };
 
-var setupTagsInput = function() {
+var prepareTagsInput = function() {
   if ( $(tagWordsOriginInputId).attr('value') ) {
     activateTagsInput($(tagWordsOriginInputId));
   } else {
     $(tagWordsOriginInputId).on('focusin', function() {
       activateTagsInput(this)
-        .then(function() { $(tagWordsInputId).focus(); });
+      .then(function() {
+        $(tagWordsInputId).focus();
+      });
     });
+  }
+};
+
+var setupTagsInput = function() {
+  if ( $(tagWordsOriginInputId).length ) {
+    prepareTagsInput();
   }
 };
