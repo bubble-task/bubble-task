@@ -1,6 +1,6 @@
 module TaskCreationHelper
 
-  def create_task_from_ui(title, description = '', tag_words = '')
+  def create_task_from_ui(title:, description: '', tag_words: '')
     visit new_task_path
     fill_in 'task_parameters[tag_words]', with: tag_words
     fill_in 'task_parameters[title]', with: title

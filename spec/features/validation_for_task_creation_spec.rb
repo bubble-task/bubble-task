@@ -9,7 +9,7 @@ describe 'タスク作成時にバリデーションをかける' do
 
   describe 'タイトル' do
     subject do
-      create_task_from_ui(title)
+      create_task_from_ui(title: title)
       page
     end
 
@@ -31,7 +31,7 @@ describe 'タスク作成時にバリデーションをかける' do
 
   describe '説明' do
     subject do
-      create_task_from_ui(valid_title, description)
+      create_task_from_ui(title: valid_title, description: description)
       page
     end
 
@@ -51,7 +51,7 @@ describe 'タスク作成時にバリデーションをかける' do
     let(:inside_of_boundary_length) { 16 }
 
     subject do
-      create_task_from_ui(valid_title, nil, tag_words)
+      create_task_from_ui(title: valid_title, tag_words: tag_words)
       page
     end
 
