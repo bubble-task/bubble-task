@@ -4,5 +4,6 @@ class TaskParameters
   attr_accessor :title, :description, :tag_words
 
   validates :title,
-            presence: true
+            presence: true,
+            length: { maximum: 40 }
 end
