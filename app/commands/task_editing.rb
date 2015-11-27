@@ -35,6 +35,6 @@ class TaskEditing < SimpleDelegator
 
     def update_description(description)
       return @origin.remove_description if description.blank?
-      return @origin.rewrite_description(description)
+      @origin.rewrite_description(description)
     end
 end
