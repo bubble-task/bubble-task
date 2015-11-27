@@ -60,8 +60,8 @@ describe 'タスクの編集' do
     end
   end
 
-  skip 'タグを編集' do
-    context 'タグを1つ追加' do
+  describe 'タグを編集' do
+    skip 'タグを1つ追加' do
       let(:new_tag_words) { 'タグ1 タグ2 タグ3' }
 
       it do
@@ -73,7 +73,7 @@ describe 'タスクの編集' do
       end
     end
 
-    context 'タグを1つ削除' do
+    skip 'タグを1つ削除' do
       let(:new_tag_words) { 'タグ2' }
 
       it do
@@ -85,7 +85,7 @@ describe 'タスクの編集' do
       end
     end
 
-    context 'タグを全て入れ替え' do
+    skip 'タグを全て入れ替え' do
       let(:new_tag_words) { 'タグ3 タグ4' }
 
       it do
