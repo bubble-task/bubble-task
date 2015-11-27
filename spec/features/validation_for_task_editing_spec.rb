@@ -20,17 +20,26 @@ describe 'タスク編集時にバリデーションをかける' do
   let(:out_of_boundary_length) { 17 }
   let(:inside_of_boundary_length) { 16 }
 
-  it do
-    visit edit_task_path(task.id)
-    fill_in 'task_parameters[title]', with: ''
-    click_button I18n.t('helpers.submit.update')
-    expect(page).to have_content 'タイトルを入力してください'
-  end
+  describe 'タイトル' do
+    it do
+      visit edit_task_path(task.id)
+      fill_in 'task_parameters[title]', with: ''
+      click_button I18n.t('helpers.submit.update')
+      expect(page).to have_content 'タイトルを入力してください'
+    end
 
-  it do
-    visit edit_task_path(task.id)
-    fill_in 'task_parameters[title]', with: 'a' * 41
-    click_button I18n.t('helpers.submit.update')
-    expect(page).to have_content 'タイトルは40文字以内で入力してください'
+    it do
+      visit edit_task_path(task.id)
+      fill_in 'task_parameters[title]', with: 'a' * 41
+      click_button I18n.t('helpers.submit.update')
+      expect(page).to have_content 'タイトルは40文字以内で入力してください'
+    end
+
+    it do
+      visit edit_task_path(task.id)
+      fill_in 'task_parameters[title]', with: 'a' * 40
+      click_button I18n.t('helpers.submit.update')
+      expect(page).to have_link 'a' * 40
+    end
   end
 end
