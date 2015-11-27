@@ -8,11 +8,11 @@ module TaskCreationHelper
     click_button '作成する'
   end
 
-  def update_task_from_ui(old_task, new_title = nil, new_description = nil, new_tag_words = nil)
+  def update_task_from_ui(old_task, title: nil, description: nil, tag_words: nil)
     visit edit_task_path(old_task.id)
     #fill_in 'task_parameters[tag_words]', with: tag_words
-    fill_in 'task_parameters[title]', with: new_title if new_title
-    fill_in 'task_parameters[description]', with: new_description
+    fill_in 'task_parameters[title]', with: title if title
+    fill_in 'task_parameters[description]', with: description if description
     click_button I18n.t('helpers.submit.update')
   end
 

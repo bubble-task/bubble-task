@@ -17,7 +17,7 @@ describe 'タスク編集時にバリデーションをかける' do
 
   describe 'タイトル' do
     subject do
-      update_task_from_ui(task, title)
+      update_task_from_ui(task, title: title)
       page
     end
 
@@ -39,7 +39,7 @@ describe 'タスク編集時にバリデーションをかける' do
 
   describe '説明' do
     subject do
-      update_task_from_ui(task, nil, description)
+      update_task_from_ui(task, description: description)
       page
     end
 
