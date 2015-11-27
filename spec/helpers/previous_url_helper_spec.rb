@@ -1,16 +1,18 @@
 require 'rails_helper'
 
-class PreviousUrlHelper::DummyView
-  include ApplicationHelper
-  include Rails.application.routes.url_helpers
-  default_url_options[:host] = 'http://test.host'
+module PreviousUrlHelper
+  class DummyView
+    include ApplicationHelper
+    include Rails.application.routes.url_helpers
+    default_url_options[:host] = 'http://test.host'
 
-  Request = Struct.new(:referrer)
+    Request = Struct.new(:referrer)
 
-  attr_reader :request
+    attr_reader :request
 
-  def initialize(previous_url)
-    @request = Request.new(previous_url)
+    def initialize(previous_url)
+      @request = Request.new(previous_url)
+    end
   end
 end
 

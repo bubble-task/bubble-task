@@ -1,14 +1,16 @@
 require 'rails_helper'
 
-class NavigationHelper::DummyView
-  include ApplicationHelper
+module NavigationHelper
+  class DummyView
+    include ApplicationHelper
 
-  Controller = Struct.new(:controller_name, :action_name)
+    Controller = Struct.new(:controller_name, :action_name)
 
-  attr_reader :controller
+    attr_reader :controller
 
-  def initialize(controller_name, action_name)
-    @controller = Controller.new(controller_name, action_name)
+    def initialize(controller_name, action_name)
+      @controller = Controller.new(controller_name, action_name)
+    end
   end
 end
 
