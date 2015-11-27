@@ -12,7 +12,7 @@ class DummyView
   end
 end
 
-describe ApplicationHelper do
+describe NavigationHelper do
   describe '#activate_menu' do
     it do
       c = DummyView.new('home', 'index')
