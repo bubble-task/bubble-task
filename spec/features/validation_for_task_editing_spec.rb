@@ -4,7 +4,6 @@ describe 'タスク編集時にバリデーションをかける' do
   before do
     user
     oauth_sign_in(auth_hash: auth_hash)
-    visit edit_task_path(task.id)
   end
 
   let(:user) { create_user_from_oauth_credential(auth_hash) }
@@ -18,8 +17,7 @@ describe 'タスク編集時にバリデーションをかける' do
 
   describe 'タイトル' do
     subject do
-      fill_in 'task_parameters[title]', with: title
-      click_button I18n.t('helpers.submit.update')
+      update_task_from_ui(task, title)
       page
     end
 
@@ -41,8 +39,7 @@ describe 'タスク編集時にバリデーションをかける' do
 
   describe '説明' do
     subject do
-      fill_in 'task_parameters[description]', with: description
-      click_button I18n.t('helpers.submit.update')
+      update_task_from_ui(task, nil, description)
       page
     end
 
