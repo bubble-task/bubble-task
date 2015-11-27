@@ -34,4 +34,14 @@ describe Task do
       end
     end
   end
+
+  skip '説明を削除する' do
+    context 'タスクに説明が存在する場合' do
+      it do
+        task.write_description('古いタスクの説明')
+        task.remove_description
+        expect(task.description).to be_nil
+      end
+    end
+  end
 end

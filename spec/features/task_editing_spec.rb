@@ -49,14 +49,28 @@ describe 'タスクの編集' do
   end
 
   describe '説明を編集' do
-    let(:new_description) { '新しい説明' }
+    context '説明を変更' do
+      let(:new_description) { '新しい説明' }
 
-    it '説明のみ更新されていること' do
-      update_task_from_ui(task, description: new_description)
-      click_link old_title
-      expect(title_on_page).to eq(old_title)
-      expect(description_on_page).to eq(new_description)
-      expect(tags_on_page).to eq(old_tags)
+      it '説明のみ更新されていること' do
+        update_task_from_ui(task, description: new_description)
+        click_link old_title
+        expect(title_on_page).to eq(old_title)
+        expect(description_on_page).to eq(new_description)
+        expect(tags_on_page).to eq(old_tags)
+      end
+    end
+
+    context '説明を削除' do
+      let(:new_description) { '' }
+
+      it '説明のみ更新されていること' do
+        update_task_from_ui(task, description: new_description)
+        click_link old_title
+        expect(title_on_page).to eq(old_title)
+        expect(description_on_page).to eq(new_description)
+        expect(tags_on_page).to eq(old_tags)
+      end
     end
   end
 
