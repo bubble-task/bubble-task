@@ -1,4 +1,4 @@
-<%= content_for(:page_title) { t('.page_title', tag: (@tag || t('.all'))) } %>
+<%= content_for(:page_title, t('.page_title', tag: (@tag || t('.all')))) %>
 <div class="col s10">
   <div class="container-embedded">
     <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
