@@ -21,9 +21,10 @@ describe 'タスクの編集' do
 
   let(:title_on_page) { first('.task-title').text }
   let(:description_on_page) { first('.task-description').text }
+  let(:tags_on_page) { first('.tags').text.split(/\s+/) }
 
   describe '編集画面' do
-    it do
+    it '既存のタグ・タイトル・説明が入力されていること' do
       visit task_url(task.id)
       click_link(I18n.t('helpers.actions.edit'))
 
@@ -40,29 +41,30 @@ describe 'タスクの編集' do
 
   describe 'タイトルを編集' do
     it do
-      visit task_url(task.id)
-      click_link(I18n.t('helpers.actions.edit'))
-
-      fill_in 'task_parameters[title]', with: new_title
-      click_button I18n.t('helpers.submit.update')
-
+      update_task_from_ui(task, title: new_title)
       click_link new_title
       expect(title_on_page).to eq(new_title)
       expect(description_on_page).to eq(old_description)
+      expect(tags_on_page).to eq(old_tags)
     end
   end
 
   describe '説明を編集' do
     it do
-      visit task_url(task.id)
-      click_link(I18n.t('helpers.actions.edit'))
-
-      fill_in 'task_parameters[description]', with: new_description
-      click_button I18n.t('helpers.submit.update')
-
+      update_task_from_ui(task, description: new_description)
       click_link old_title
       expect(title_on_page).to eq(old_title)
       expect(description_on_page).to eq(new_description)
+      expect(tags_on_page).to eq(old_tags)
+    end
+  end
+
+  describe 'タグを編集' do
+    skip do
+      update_task_from_ui(task, tag_words: new_tag_words)
+      click_link old_title
+      expect(title_on_page).to eq(old_title)
+      expect(description_on_page).to eq(old_description)
     end
   end
 end
