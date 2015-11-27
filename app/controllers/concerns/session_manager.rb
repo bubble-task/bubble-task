@@ -5,12 +5,10 @@ module SessionManager
 
   def sign_in(session, user)
     session[SESSION_KEY] = user.id
-    session
   end
 
   def sign_out(session)
-    session[SESSION_KEY] = nil
-    session
+    session.delete(SESSION_KEY)
   end
 
   def current_user(session)
