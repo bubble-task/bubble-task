@@ -2,7 +2,7 @@ class TaskPresenter < SimpleDelegator
   class PersonalTag
 
     def present(_)
-      %{<div class="tag-personal">#{I18n.t('tasks.show.tag_personal')}</div>}.html_safe
+      %(<div class="tag-personal">#{I18n.t('tasks.show.tag_personal')}</div>).html_safe
     end
   end
 
@@ -13,7 +13,7 @@ class TaskPresenter < SimpleDelegator
     end
 
     def present(view)
-      %{<div class="tag">#{view.link_to @tag, view.tasks_url(tag: @tag)}</div>}.html_safe
+      %(<div class="tag">#{view.link_to @tag, view.tasks_url(tag: @tag)}</div>).html_safe
     end
   end
 
