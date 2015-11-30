@@ -2,12 +2,8 @@
   <div class="row row-no-margin">
     <div class="col s11">
       <div class="tags">
-        <% if task.tags.any? %>
-          <% task.tags.each do |tag| %>
-            <div class="tag"><%= link_to tag, tasks_url(tag: tag) %></div>
-          <% end -%>
-        <% else -%>
-          <div class="tag-personal"><%= t('tasks.show.tag_personal') %></div>
+        <% task.tags.each do |tag| %>
+          <%= tag.present(self) %>
         <% end -%>
       </div>
       <%= link_to task.title, task_url(task), class: 'task-title' %>
