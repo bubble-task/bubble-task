@@ -1,11 +1,11 @@
 class TaskDescription < ActiveRecord::Base
-  attr_reader :will_remove
+  attr_reader :removed
 
-  def mark_as_remove
-    @will_remove = true
+  def remove!
+    @removed = true
   end
 
-  def will_remove?
-    will_remove
+  def removed?
+    @removed
   end
 end
