@@ -3,11 +3,13 @@ class TasksController < ApplicationController
 
   def index
     @tag = params[:tag]
-    @tasks = TaskRepository.all_by_tag(@tag)
+    @tasks = TaskRepository.all_by_tag(@tag).map do |task|
+      TaskPresenter.new(task)
+    end
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = TaskPresenter.new(Task.find(params[:id]))
   end
 
   def new

@@ -56,4 +56,19 @@ describe 'タスクを作成する' do
       end
     end
   end
+
+  context 'タグを付加しない場合' do
+    let(:tags_on_page) { first('.tag-personal').text.split(/\s+/) }
+
+    it do
+      create_task_from_ui(title: title)
+      expect(tags_on_page).to eq %w(個人タスク)
+    end
+
+    it do
+      create_task_from_ui(title: title)
+      click_link(title)
+      expect(tags_on_page).to eq %w(個人タスク)
+    end
+  end
 end
