@@ -26,6 +26,7 @@ class TaskEditing < SimpleDelegator
 
   def run
     return false unless valid?
+    @origin.tagging(tags)
     @origin.retitle(title)
     update_description(description)
     @origin.save

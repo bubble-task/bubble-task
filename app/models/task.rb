@@ -35,6 +35,7 @@ class Task < ActiveRecord::Base
   end
 
   def tagging(tags)
+    self.taggings.each(&:destroy)
     tags.each do |tag|
       self.taggings.build(tag: tag)
     end
