@@ -8,6 +8,7 @@ class Task < ActiveRecord::Base
     if task_description && task_description.will_remove?
       task_description.destroy
     end
+    taggings.select(&:removed?).each(&:destroy)
   end
 
   def retitle(title)
@@ -35,13 +36,16 @@ class Task < ActiveRecord::Base
   end
 
   def tagging(tags)
-    self.taggings.each(&:destroy)
     tags.each do |tag|
       self.taggings.build(tag: tag)
     end
   end
 
   def tags
-    taggings.map(&:tag)
+    taggings.reject(&:removed?).map(&:tag)
+  end
+
+  def remove_tags
+    taggings.each(&:remove!)
   end
 end
