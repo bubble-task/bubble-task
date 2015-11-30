@@ -5,9 +5,10 @@ class Task < ActiveRecord::Base
   has_many :taggings
 
   before_save do
-    if task_description && task_description.will_remove?
+    if task_description && task_description.removed?
       task_description.destroy
     end
+    taggings.select(&:removed?).each(&:destroy)
   end
 
   def retitle(title)
@@ -25,12 +26,11 @@ class Task < ActiveRecord::Base
 
   def remove_description
     raise NotDescribed unless description
-    self.task_description.mark_as_remove
+    self.task_description.remove!
   end
 
   def description
     return nil unless task_description
-    return nil if task_description.will_remove?
     task_description.content
   end
 
@@ -41,6 +41,10 @@ class Task < ActiveRecord::Base
   end
 
   def tags
-    taggings.map(&:tag)
+    taggings.reject(&:removed?).map(&:tag)
+  end
+
+  def remove_tags
+    taggings.each(&:remove!)
   end
 end

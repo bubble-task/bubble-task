@@ -50,4 +50,12 @@ describe Task do
       end
     end
   end
+
+  describe 'タグを削除する' do
+    it do
+      task.tagging(%w(タグ1 タグ2))
+      task.remove_tags
+      expect(task.tags).to be_empty
+    end
+  end
 end

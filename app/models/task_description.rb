@@ -1,11 +1,8 @@
 class TaskDescription < ActiveRecord::Base
-  attr_reader :will_remove
+  include RemovableAssociation
 
-  def mark_as_remove
-    @will_remove = true
-  end
-
-  def will_remove?
-    will_remove
+  def content
+    return nil if removed?
+    super
   end
 end
