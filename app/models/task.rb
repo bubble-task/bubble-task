@@ -25,7 +25,7 @@ class Task < ActiveRecord::Base
   end
 
   def remove_description
-    raise NotDescribed unless description
+    return unless task_description
     self.task_description.remove!
   end
 
