@@ -1,8 +1,8 @@
 class TaskDescription < ActiveRecord::Base
-  attr_reader :removed
-  alias_method :removed?, :removed
+  include RemovableAssociation
 
-  def remove!
-    @removed = true
+  def content
+    return nil if removed?
+    super
   end
 end

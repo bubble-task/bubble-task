@@ -31,7 +31,6 @@ class Task < ActiveRecord::Base
 
   def description
     return nil unless task_description
-    return nil if task_description.removed?
     task_description.content
   end
 
