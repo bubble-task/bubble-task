@@ -1,15 +1,23 @@
 require 'rails_helper'
 
-describe 'タスク作成時にバリデーションをかける' do
+describe 'タスク編集時にバリデーションをかける' do
   before do
-    oauth_sign_in
+    user
+    oauth_sign_in(auth_hash: auth_hash)
   end
 
-  let(:valid_title) { 'タスクのタイトル' }
+  let(:user) { create_user_from_oauth_credential(auth_hash) }
+  let(:auth_hash) { generate_auth_hash }
+
+  let(:task) { create_task(user.id, old_title, old_description, old_tags) }
+  let(:old_title) { '編集前のタイトル' }
+  let(:old_description) { '編集前の説明' }
+  let(:old_tags) { %w(タグ1 タグ2) }
+  let(:old_tag_words) { old_tags.join(' ') }
 
   describe 'タイトル' do
     subject do
-      create_task_from_ui(title: title)
+      update_task_from_ui(task, title: title)
       page
     end
 
@@ -18,31 +26,32 @@ describe 'タスク作成時にバリデーションをかける' do
       it { is_expected.to have_content 'タイトルを入力してください' }
     end
 
-    context '最大文字数入力' do
-      let(:title) { 'a' * 40 }
-      it { is_expected.to have_link(title) }
-    end
-
-    context '最大文字数+1入力' do
+    context '最大文字数+1文字入力' do
       let(:title) { 'a' * 41 }
       it { is_expected.to have_content 'タイトルは40文字以内で入力してください' }
+    end
+
+    context '最大文字数入力' do
+      let(:title) { 'a' * 40 }
+      it { is_expected.to have_link title }
     end
   end
 
   describe '説明' do
     subject do
-      create_task_from_ui(title: valid_title, description: description)
+      update_task_from_ui(task, description: description)
       page
+    end
+
+    context '最大文字数+1文字入力' do
+      let(:description) { 'a' * 5001 }
+
+      it { is_expected.to have_content '説明は5000文字以内で入力してください' }
     end
 
     context '最大文字数入力' do
       let(:description) { 'a' * 5000 }
-      it { is_expected.to have_link(valid_title) }
-    end
-
-    context '最大文字数+1入力' do
-      let(:description) { 'a' * 5001 }
-      it { is_expected.to have_content '説明は5000文字以内で入力してください' }
+      it { is_expected.to have_link old_title }
     end
   end
 
@@ -51,13 +60,13 @@ describe 'タスク作成時にバリデーションをかける' do
     let(:inside_of_boundary_length) { 16 }
 
     subject do
-      create_task_from_ui(title: valid_title, tag_words: tag_words)
+      update_task_from_ui(task, tag_words: tag_words)
       page
     end
 
     context '全て最大文字数以内で入力' do
       let(:tag_words) { "#{'a' * 8} #{'b' * 9}" }
-      it { is_expected.to have_link('タスクのタイトル') }
+      it { is_expected.to have_link(old_title) }
     end
 
     context '最大文字数+1を単独で入力' do

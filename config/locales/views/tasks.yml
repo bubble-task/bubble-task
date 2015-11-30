@@ -3,6 +3,8 @@ ja:
     new:
       page_title: 'タスクを作成する'
       tag_words_guide: '空白区切りで複数のタグを入力できます'
+    edit:
+      page_title: 'タスクを編集する'
     show:
       tag_personal: '個人タスク'
       page_title: 'タスクの詳細'

@@ -14,7 +14,7 @@ describe 'タスクを作成する' do
 
   context 'タイトルのみの場合' do
     it do
-      create_task_from_ui(title)
+      create_task_from_ui(title: title)
       click_link title
       expect(title_on_page).to eq(title)
       expect(description_on_page).to eq ''
@@ -23,7 +23,7 @@ describe 'タスクを作成する' do
 
   context '説明を記述する場合' do
     it do
-      create_task_from_ui(title, description)
+      create_task_from_ui(title: title, description: description)
       click_link title
       expect(title_on_page).to eq(title)
       expect(description_on_page).to eq(description)
@@ -32,7 +32,7 @@ describe 'タスクを作成する' do
 
   context 'タグを付加する場合' do
     before do
-      create_task_from_ui(title, nil, tag_words)
+      create_task_from_ui(title: title, tag_words: tag_words)
     end
 
     context '全て違うタグを入力する' do

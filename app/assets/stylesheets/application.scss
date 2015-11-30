@@ -13,7 +13,7 @@ $primary-color: #F7FCBD;
 $secondary-color: #456293 !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "darken-2") !default;
-$link-color: #539fac !default;
+$link-color: $secondary-color !default;
 
 /*** Body ***/
 body { background-color: $bottom-color; }
@@ -42,17 +42,12 @@ html {
   }
 }
 
+.row-no-margin { margin-bottom: 0; }
+
 .container { width: 90%; }
 
 .z-depth-1{
   box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
-}
-
-.dropdown-content {
-  li.nolink {
-    span { color: $primary-font-color; }
-    &:hover, &.active { background-color: $dropdown-bg-color; }
-  }
 }
 
 .fixed-action-btn {

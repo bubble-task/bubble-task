@@ -1,7 +1,6 @@
 var setupMaterialize = function() {
   var d = new $.Deferred;
 
-  Materialize.updateTextFields();
   Waves.displayEffect();
   $('.dropdown-button').dropdown();
   $('.tooltipped').tooltip({delay: 0});

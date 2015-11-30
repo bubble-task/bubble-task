@@ -2,11 +2,22 @@ require 'rails_helper'
 
 describe SessionManager do
   describe '渡されたセッションにユーザのidを保存する' do
-    it do
-      session = {}
-      user = create_user_from_oauth_credential
-      SessionManager.sign_in(session, user)
-      expect(session[:user_id]).to eq(user.id)
+    context 'ログインしていない場合' do
+      it do
+        session = {}
+        user = create_user_from_oauth_credential
+        SessionManager.sign_in(session, user)
+        expect(session[:user_id]).to eq(user.id)
+      end
+    end
+
+    context 'ログインしている場合' do
+      it do
+        user = create_user_from_oauth_credential
+        session = { user_id: user.id - 1 }
+        SessionManager.sign_in(session, user)
+        expect(session[:user_id]).to eq(user.id)
+      end
     end
   end
 

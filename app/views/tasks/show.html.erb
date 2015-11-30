@@ -1,4 +1,4 @@
-<%= content_for(:page_title) { t('.page_title') } %>
+<%= content_for(:page_title, t('.page_title')) %>
 <div class="col s10">
   <div class="container-float container-primary">
     <div class="task-detail">
@@ -12,15 +12,20 @@
         <% end -%>
       </div>
       <h1 class="task-title"><%= @task.title %></h1>
-      <% if @task.description.present? -%>
+      <% if @task.description -%>
         <div class="divider"></div>
+        <%= simple_format(h(@task.description), class: 'task-description') %>
       <% end -%>
-      <%= simple_format(h(@task.description), class: 'task-description') %>
+      <div class="task-actions">
+        <%= link_to edit_task_url(@task), data: { no_turbolink: true }, class: 'waves-effect waves-light btn-flat' do %>
+          <%= t('helpers.actions.edit') %><i class="material-icons left">edit</i>
+        <% end -%>
+      </div>
     </div>
   </div>
 </div>
 <div class="fixed-action-btn">
-  <%= link_to root_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
+  <%= link_to previous_url_for_task, class: 'btn-floating btn-large waves-effect waves-light' do %>
     <i class="large material-icons">keyboard_arrow_left</i>
   <% end -%>
 </div>

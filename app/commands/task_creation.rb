@@ -1,20 +1,7 @@
-class TaskCreation
-  include ActiveModel::Model
+class TaskCreation < SimpleDelegator
 
-  attr_accessor :title, :description, :tag_words
-
-  validates :title,
-            presence: true,
-            length: { maximum: 40 }
-
-  validates :description,
-            length: { maximum: 5000 }
-
-  validates :tag_words, tag_words: true
-
-  def self.tags_from(tag_words)
-    return [] unless tag_words
-    tag_words.split(/\s+/)
+  def initialize(parameters = TaskParameters.new)
+    super(parameters)
   end
 
   def run(user)
@@ -22,9 +9,5 @@ class TaskCreation
     user
       .create_task(title, description, tags)
       .tap(&:save)
-  end
-
-  def tags
-    self.class.tags_from(tag_words)
   end
 end

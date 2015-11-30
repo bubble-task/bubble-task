@@ -1,0 +1,7 @@
+ja:
+  activemodel:
+    attributes:
+      task_parameters:
+        tag_words: タグ
+        title: タイトル
+        description: 説明

@@ -1,4 +1,4 @@
-<% content_for(:page_title) { t('.page_title') } %>
+<% content_for(:page_title, t('.page_title')) %>
 <div class="col s10">
   <div class="container-embedded">
     <% if @tasks.any? -%>
@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="fixed-action-btn">
-  <%= link_to new_task_url, class: 'btn-floating btn-large waves-effect waves-light' do %>
+  <%= link_to new_task_url, data: { no_turbolink: true }, class: 'btn-floating btn-large waves-effect waves-light' do %>
     <i class="large material-icons">create</i>
   <% end -%>
 </div>

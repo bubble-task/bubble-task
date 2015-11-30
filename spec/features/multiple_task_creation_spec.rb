@@ -7,7 +7,7 @@ describe '複数のタスクを作成する' do
     let(:common_tag) { '共通のタグ' }
 
     def create_task_with_tags(title, tag_words)
-      create_task_from_ui(title, nil, tag_words)
+      create_task_from_ui(title: title, tag_words: tag_words)
       Task.last
     end
 
