@@ -64,5 +64,11 @@ describe 'タスクを作成する' do
       create_task_from_ui(title: title)
       expect(tags_on_page).to eq %w(個人タスク)
     end
+
+    it do
+      create_task_from_ui(title: title)
+      click_link(title)
+      expect(tags_on_page).to eq %w(個人タスク)
+    end
   end
 end

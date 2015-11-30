@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = TaskPresenter.new(Task.find(params[:id]))
   end
 
   def new
