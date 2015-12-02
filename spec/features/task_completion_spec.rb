@@ -13,10 +13,15 @@ describe 'タスクの完了', js: true do
 
   it do
     visit root_path
-    puts page.html
     find("#task_#{task.id}_completion", visible: false).click
     visit root_path
     check_box = find("#task_#{task.id}_completion_check", visible: false)
     expect(check_box).to be_checked
+  end
+
+  it do
+    visit root_path
+    check_box = find("#task_#{task.id}_completion_check", visible: false)
+    expect(check_box).to_not be_checked
   end
 end

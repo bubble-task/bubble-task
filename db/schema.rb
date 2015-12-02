@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117090525) do
+ActiveRecord::Schema.define(version: 20151202093350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "completed_tasks", force: :cascade do |t|
+    t.integer  "task_id",      null: false
+    t.datetime "completed_at", null: false
+  end
 
   create_table "oauth_credentials", force: :cascade do |t|
     t.integer  "user_id",    null: false
