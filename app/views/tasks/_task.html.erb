@@ -1,6 +1,12 @@
 <div id="task_<%= task.id %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
-    <div class="col s11">
+    <div class="col s1">
+      <form action="#">
+        <input type="checkbox" id="task_<%= task.id %>_completion_check" />
+        <label id="task_<%= task.id %>_completion" for="task_<%= task.id %>_completion_check"></label>
+      </form>
+    </div>
+    <div class="col s10">
       <div class="tags">
         <% task.tags.each do |tag| %>
           <%= tag.present(self) %>
