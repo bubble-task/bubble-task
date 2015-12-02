@@ -11,11 +11,12 @@ describe 'タスクの完了', js: true do
   let(:task) { create_task(user.id, 'タスクのタイトル', nil, []) }
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
-  let(:completed_checkbox) { find("#task_#{task.id}_completion_check", visible: false)
-}
+  let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
+  let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
+  let(:completed_checkbox_label_id) { "#task_#{task.id}_completion" }
 
   it do
-    find("#task_#{task.id}_completion", visible: false).click
+    find(completed_checkbox_label_id, visible: false).click
     visit root_path
     expect(completed_checkbox).to be_checked
   end
