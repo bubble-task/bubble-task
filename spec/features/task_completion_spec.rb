@@ -5,23 +5,20 @@ describe 'タスクの完了', js: true do
     user
     oauth_sign_in(auth_hash: auth_hash)
     task
+    visit root_path
   end
 
   let(:task) { create_task(user.id, 'タスクのタイトル', nil, []) }
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
+  let(:completed_checkbox) { find("#task_#{task.id}_completion_check", visible: false)
+}
 
   it do
-    visit root_path
     find("#task_#{task.id}_completion", visible: false).click
     visit root_path
-    check_box = find("#task_#{task.id}_completion_check", visible: false)
-    expect(check_box).to be_checked
+    expect(completed_checkbox).to be_checked
   end
 
-  it do
-    visit root_path
-    check_box = find("#task_#{task.id}_completion_check", visible: false)
-    expect(check_box).to_not be_checked
-  end
+  it { expect(completed_checkbox).to_not be_checked }
 end
