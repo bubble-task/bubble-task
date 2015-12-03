@@ -28,7 +28,12 @@ describe 'タスクの完了', js: true do
     it { expect(completed_checkbox).to_not be_checked }
   end
 
-  describe '完了後のページ' do
+  describe '完了後は遷移元のページに戻る' do
+    let(:current_path_with_query) do
+      uri = URI.parse(current_url)
+      "#{uri.path}?#{uri.query}"
+    end
+
     it do
       visit root_path
       find(completed_checkbox_label_id, visible: false).click
@@ -38,8 +43,7 @@ describe 'タスクの完了', js: true do
     it do
       visit tasks_path(tag: 'タグ')
       find(completed_checkbox_label_id, visible: false).click
-      uri = URI.parse(current_url)
-      expect("#{uri.path}?#{uri.query}").to eq(tasks_path(tag: 'タグ'))
+      expect(current_path_with_query).to eq(tasks_path(tag: 'タグ'))
     end
   end
 end
