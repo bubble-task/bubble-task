@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   def index
     @tag = params[:tag]
     @tasks = TaskRepository.all_by_tag(@tag).map do |task|
-      TaskPresenter.new(task)
+      TaskPresenter.new(task, @tag)
     end
   end
 
@@ -42,7 +42,11 @@ class TasksController < ApplicationController
 
   def complete
     task = Task.find(params[:id])
-    TaskCompletion.new(task: task).run
-    redirect_to root_url
+    TaskCompletion.new(task: task, tag: params[:task_completion][:tag]).run
+    if params[:task_completion][:tag].present?
+      redirect_to tasks_url(tag: params[:task_completion][:tag])
+    else
+      redirect_to root_url
+    end
   end
 end

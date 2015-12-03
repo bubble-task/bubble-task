@@ -1,7 +1,8 @@
 <div id="task_<%= task.id %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s1">
-      <%= form_for(task.completion_command, url: complete_task_url(task), method: :put) do %>
+      <%= form_for(task.completion_command, url: complete_task_url(task), method: :put) do |f| %>
+        <%= f.hidden_field(:tag) %>
         <input type="checkbox" id="task_<%= task.id %>_completion_check" class="task_completion" <%= task.completion_checkbox_state %> />
         <label id="task_<%= task.id %>_completion" for="task_<%= task.id %>_completion_check"></label>
       <% end %>
