@@ -1,7 +1,7 @@
 class TaskCompletion
   include ActiveModel::Model
 
-  attr_accessor :task, :tag
+  attr_accessor :task
 
   def run
     @task.complete

@@ -17,9 +17,8 @@ class TaskPresenter < SimpleDelegator
     end
   end
 
-  def initialize(task, tag = nil)
+  def initialize(task)
     super(task)
-    @tag = tag
   end
 
   def tags
@@ -30,7 +29,7 @@ class TaskPresenter < SimpleDelegator
   end
 
   def completion_command
-    TaskCompletion.new(tag: @tag)
+    TaskCompletion.new
   end
 
   def completion_checkbox_state
