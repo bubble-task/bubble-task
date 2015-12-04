@@ -3,7 +3,6 @@ class TasksController < ApplicationController
 
   def index
     @tag = params[:tag]
-    p oooooooooo:Task.all
     @tasks = TaskRepository.all_by_tag(@tag).map do |task|
       TaskPresenter.new(task)
     end
@@ -50,7 +49,8 @@ class TasksController < ApplicationController
 
   def destroy
     task = Task.find(params[:id])
-    task.destroy
+    task.remove
+    task.save
     redirect_to root_path
   end
 end

@@ -1,4 +1,4 @@
-module RemovableAssociation
+module Removable
   extend ActiveSupport::Concern
 
   included do

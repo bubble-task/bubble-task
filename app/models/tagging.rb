@@ -1,5 +1,5 @@
 class Tagging < ActiveRecord::Base
-  include RemovableAssociation
+  include Removable
 
   belongs_to :task
 end

@@ -70,4 +70,15 @@ describe Task do
   describe 'デフォルトでは未完了の状態' do
     it { expect(task).to_not be_completed }
   end
+
+  describe '削除する' do
+    it do
+      task.remove!
+      expect(task).to be_removed
+    end
+  end
+
+  describe 'デフォルトでは削除されていない状態' do
+    it { expect(task).to_not be_removed }
+  end
 end
