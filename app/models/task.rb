@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
 
   has_one :task_description, autosave: true
   has_many :taggings
+  has_one :completed_task, autosave: true
 
   before_save do
     if task_description && task_description.removed?
@@ -46,5 +47,13 @@ class Task < ActiveRecord::Base
 
   def remove_tags
     taggings.each(&:remove!)
+  end
+
+  def complete
+    self.build_completed_task(completed_at: Time.current)
+  end
+
+  def completed?
+    completed_task
   end
 end

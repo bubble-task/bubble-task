@@ -38,6 +38,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'dotenv-rails'
+  gem 'poltergeist'
+  gem 'database_rewinder'
 end
 
 group :test do

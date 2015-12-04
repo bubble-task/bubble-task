@@ -39,4 +39,11 @@ class TasksController < ApplicationController
       render :edit
     end
   end
+
+  def complete
+    task = Task.find(params[:id])
+    TaskCompletion.new(task: task).run
+    transition_rule = TaskActionTransitionRule.new(params[:tag], self)
+    redirect_to transition_rule.completion_url
+  end
 end

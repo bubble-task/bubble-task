@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    member do
+      put 'complete'
+    end
+  end
   get     'tags', to: 'tags#index', as: :tags
   get     'sign_in', to: 'sessions#new', as: :new_session
   delete  'sign_out', to: 'sessions#destroy', as: :session

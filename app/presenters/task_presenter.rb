@@ -27,4 +27,13 @@ class TaskPresenter < SimpleDelegator
       SharedTag.new(tag)
     end
   end
+
+  def completion_command
+    TaskCompletion.new
+  end
+
+  def completion_checkbox_state
+    return %(checked="checked" disabled="disabled").html_safe if completed?
+    nil
+  end
 end

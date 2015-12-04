@@ -59,4 +59,15 @@ describe Task do
       expect(task.tags).to be_empty
     end
   end
+
+  describe '完了状態にする' do
+    it do
+      task.complete
+      expect(task).to be_completed
+    end
+  end
+
+  describe 'デフォルトでは未完了の状態' do
+    it { expect(task).to_not be_completed }
+  end
 end
