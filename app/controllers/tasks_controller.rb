@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tag = params[:tag]
+    p oooooooooo:Task.all
     @tasks = TaskRepository.all_by_tag(@tag).map do |task|
       TaskPresenter.new(task)
     end
@@ -45,5 +46,11 @@ class TasksController < ApplicationController
     TaskCompletion.new(task: task).run
     transition_rule = TaskActionTransitionRule.new(params[:tag], self)
     redirect_to transition_rule.completion_url
+  end
+
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy
+    redirect_to root_path
   end
 end
