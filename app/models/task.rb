@@ -59,12 +59,4 @@ class Task < ActiveRecord::Base
   def completed?
     completed_task
   end
-
-  def remove
-    @removed = true
-  end
-
-  def removed?
-    @removed
-  end
 end
