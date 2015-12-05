@@ -1,22 +1,27 @@
 <%= content_for(:page_title, t('.page_title')) %>
 <div class="col s10">
   <div class="container-float container-primary">
-    <div class="task-detail">
-      <div class="row row-no-margin">
-        <div class="col s11 tags">
-          <% @task.tags.each do |tag| %>
-            <%= tag.present(self) %>
-          <% end -%>
-        </div>
-        <div class="col s1 task-actions">
-          <%= render partial: 'tasks/task_actions', locals: { task: @task } %>
-        </div>
+    <div class="row row-no-margin">
+      <div class="col s1">
+        <%= render partial: 'tasks/task_completion', locals: { task: @task, tag: nil } %>
       </div>
-      <h1 class="task-title"><%= @task.title %></h1>
-      <% if @task.description -%>
-        <div class="divider"></div>
-        <%= simple_format(h(@task.description), class: 'task-description') %>
-      <% end -%>
+      <div class="col s11 task-detail">
+        <div class="row row-no-margin">
+          <div class="col s11 tags">
+            <% @task.tags.each do |tag| %>
+              <%= tag.present(self) %>
+            <% end -%>
+          </div>
+          <div class="col s1 task-actions">
+            <%= render partial: 'tasks/task_actions', locals: { task: @task } %>
+          </div>
+        </div>
+        <h1 class="task-title"><%= @task.title %></h1>
+        <% if @task.description -%>
+          <div class="divider"></div>
+          <%= simple_format(h(@task.description), class: 'task-description') %>
+        <% end -%>
+      </div>
     </div>
   </div>
 </div>
