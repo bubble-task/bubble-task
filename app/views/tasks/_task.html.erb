@@ -1,7 +1,7 @@
 <div id="task_<%= task.id %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s1">
-      <%= render partial: 'tasks/task_completion', locals: { task: task } %>
+      <%= render partial: 'tasks/task_completion', locals: { task: task, tag: @tag } %>
     </div>
     <div class="col s10">
       <div class="tags">
