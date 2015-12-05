@@ -3,6 +3,18 @@
   background-color: $primary-bg-color;
 }
 
+.task-title {
+  font-size: 1.3rem;
+  color: $primary-font-color;
+}
+
+.task-actions {
+  @extend .right-align;
+  i { opacity: 0.6; }
+
+  .modal { @extend .left-align; }
+}
+
 .task-summary {
   padding: 1.3rem 1.4rem 0.9rem 1.4rem;
 
@@ -13,18 +25,6 @@
   .task-title {
     margin-left: 0.25rem;
   }
-
-  .task-actions {
-    @extend .right-align;
-    i { opacity: 0.6; }
-
-    .modal { @extend .left-align; }
-  }
-}
-
-.task-title {
-  font-size: 1.3rem;
-  color: $primary-font-color;
 }
 
 .task-summary-primary {
@@ -39,7 +39,7 @@
 
 .task-detail {
   .tags {
-    margin: 0.5rem 0 1.5rem 0;
+    margin: 0.5rem 0 0 0;
   }
 
   .task-title {
@@ -53,7 +53,6 @@
   }
 
   .task-actions {
-    margin-top: 1rem;
-    text-align: right;
+    margin-top: 0.2rem;
   }
 }
