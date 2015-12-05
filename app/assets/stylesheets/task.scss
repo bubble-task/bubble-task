@@ -38,10 +38,6 @@
 }
 
 .task-detail {
-  .tags {
-    margin: 0.5rem 0 0 0;
-  }
-
   .task-title {
     font-size: 1.5rem;
     margin-left: 0.2rem;
@@ -50,9 +46,5 @@
   .task-description {
     word-wrap: break-word;
     font-size: 1.1rem;
-  }
-
-  .task-actions {
-    margin-top: 0.2rem;
   }
 }
