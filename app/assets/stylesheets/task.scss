@@ -17,6 +17,8 @@
   .task-actions {
     @extend .right-align;
     i { opacity: 0.6; }
+
+    .modal { @extend .left-align; }
   }
 }
 
