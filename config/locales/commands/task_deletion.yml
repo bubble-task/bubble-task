@@ -1,0 +1,6 @@
+ja:
+  activemodel:
+    messages:
+      task_deletion:
+        success: 'タスクを削除しました'
+        confirm: '次のタスクを削除します。よろしいですか？'

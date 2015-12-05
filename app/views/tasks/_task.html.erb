@@ -1,3 +1,4 @@
+<% task_deletion_modal_id = "task-deletion-modal-#{task.id}" %>
 <div id="task_<%= task.id %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s1">
@@ -26,7 +27,24 @@
             <i class="material-icons left">edit</i>
           <% end -%>
         </li>
+        <li class="divider"></li>
+        <li>
+          <%= link_to "##{task_deletion_modal_id}", class: 'modal-trigger' do %>
+            <%= t('helpers.actions.remove') %>
+            <i class="material-icons left">delete</i>
+          <% end -%>
+        </li>
       </ul>
     </div>
+  </div>
+</div>
+<div id="<%= task_deletion_modal_id %>" class="modal">
+  <div class="modal-content">
+    <h4><%= t('activemodel.messages.task_deletion.confirm') %></h4>
+    <p><%= task.title %></p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to t('helpers.submit.cancel'), '#!', class: 'modal-action modal-close waves-effect btn-flat' %>
+    <%= link_to t('helpers.submit.continue'), task_url(task.id), method: :delete, class: 'modal-action waves-effect btn-flat' %>
   </div>
 </div>
