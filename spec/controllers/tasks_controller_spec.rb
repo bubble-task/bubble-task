@@ -85,6 +85,19 @@ describe TasksController do
     end
   end
 
+  describe '#complete' do
+    subject { xhr :post, :complete, id: task.id }
+
+    context 'ログインしていない場合' do
+      it { is_expected.to redirect_to(new_session_url) }
+    end
+
+    context 'ログインしている場合' do
+      before { sign_in }
+      it { is_expected.to render_template(:complete, format: :js) }
+    end
+  end
+
   describe '#destroy' do
     context 'ログインしている場合' do
       before { sign_in(user) }
