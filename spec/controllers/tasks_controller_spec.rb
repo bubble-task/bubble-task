@@ -6,10 +6,7 @@ describe TasksController do
   let(:task) { create_task(user.id, 'title', '', []) }
 
   describe '#new' do
-    subject do
-      get :new
-      response
-    end
+    subject { get :new }
 
     context 'ログインしていない場合' do
       it { is_expected.to redirect_to(new_session_url) }
@@ -22,10 +19,7 @@ describe TasksController do
   end
 
   describe '#create' do
-    subject do
-      post :create
-      response
-    end
+    subject { post :create }
 
     context 'ログインしていない場合' do
       it { is_expected.to redirect_to(new_session_url) }
@@ -38,10 +32,7 @@ describe TasksController do
   end
 
   describe '#show' do
-    subject do
-      get :show, id: task.id
-      response
-    end
+    subject { get :show, id: task.id }
 
     let(:task) { Task.create(author_id: 1, title: 'title') }
 
@@ -56,10 +47,7 @@ describe TasksController do
   end
 
   describe '#index' do
-    subject do
-      get :index
-      response
-    end
+    subject { get :index }
 
     context 'ログインしていない場合' do
       it { is_expected.to redirect_to(new_session_url) }
@@ -72,10 +60,7 @@ describe TasksController do
   end
 
   describe '#edit' do
-    subject do
-      get :edit, id: task.id
-      response
-    end
+    subject { get :edit, id: task.id }
 
     context 'ログインしていない場合' do
       it { is_expected.to redirect_to(new_session_url) }
