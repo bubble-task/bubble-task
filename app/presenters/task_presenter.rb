@@ -36,4 +36,8 @@ class TaskPresenter < SimpleDelegator
     return %(checked="checked" disabled="disabled").html_safe if completed?
     nil
   end
+
+  def completion_state_css_id
+    @completion_state_css_id ||= "task_#{id}_completion_state"
+  end
 end

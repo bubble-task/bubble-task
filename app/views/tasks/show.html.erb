@@ -2,7 +2,7 @@
 <div class="col s10">
   <div class="container-float container-primary">
     <div class="row row-no-margin">
-      <div class="col s1">
+      <div class="col s1" id="<%= @task.completion_state_css_id %>">
         <%= render partial: 'tasks/task_completion', locals: { task: @task, tag: nil } %>
       </div>
       <div class="col s11 task-detail">
