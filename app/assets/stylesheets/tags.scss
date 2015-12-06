@@ -21,6 +21,7 @@ $tag-font-color: #92977E;
 
   background-color: $tag-bg-color;
   color: $tag-font-color;
+  font-weight: 600;
 
   a { color: $tag-font-color; }
 }
@@ -28,6 +29,7 @@ $tag-font-color: #92977E;
 .tag-personal {
   @extend .chip;
   border-radius: 0.2rem;
+  font-weight: 600;
 }
 
 .tag-individual {
