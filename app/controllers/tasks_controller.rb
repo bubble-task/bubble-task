@@ -50,6 +50,12 @@ class TasksController < ApplicationController
     task = Task.find(params[:id])
     task.remove!
     task.save
-    redirect_to root_path
+    respond_to do |f|
+      f.html { redirect_to root_path }
+      f.js do
+        @task = TaskPresenter.new(task)
+        render 'destroy'
+      end
+    end
   end
 end

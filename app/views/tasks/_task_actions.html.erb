@@ -23,7 +23,7 @@
     <p><%= task.title %></p>
   </div>
   <div class="modal-footer">
-    <%= link_to t('helpers.submit.continue'), task_url(task.id), method: :delete, class: 'modal-action waves-effect btn-flat' %>
+    <%= link_to t('helpers.submit.continue'), task_url(task.id), method: :delete, remote: remote, class: 'modal-action modal-close waves-effect btn-flat' %>
     <%= link_to t('helpers.submit.cancel'), '#!', class: 'modal-action modal-close waves-effect btn-flat' %>
   </div>
 </div>
