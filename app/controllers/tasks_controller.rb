@@ -51,7 +51,7 @@ class TasksController < ApplicationController
     task.remove!
     task.save
     respond_to do |f|
-      f.html { redirect_to root_path }
+      f.html { redirect_to root_path, notice: I18n.t('activemodel.messages.task_deletion.success') }
       f.js do
         @task = TaskPresenter.new(task)
         render 'destroy'
