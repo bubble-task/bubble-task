@@ -43,8 +43,7 @@ class TasksController < ApplicationController
   def complete
     task = Task.find(params[:id])
     TaskCompletion.new(task: task).run
-    transition_rule = TaskActionTransitionRule.new(params[:tag], self)
-    redirect_to transition_rule.completion_url
+    @task = TaskPresenter.new(task)
   end
 
   def destroy
