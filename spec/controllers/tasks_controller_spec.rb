@@ -72,6 +72,19 @@ describe TasksController do
     end
   end
 
+  describe '#update' do
+    subject { put :update, id: task.id }
+
+    context 'ログインしていない場合' do
+      it { is_expected.to redirect_to(new_session_url) }
+    end
+
+    context 'ログインしている場合' do
+      before { sign_in }
+      it { is_expected.to be_ok }
+    end
+  end
+
   describe '#destroy' do
     context 'ログインしている場合' do
       before { sign_in(user) }
