@@ -24,7 +24,11 @@ module SignInHelper
   end
 
   def sign_in(user_params = { email: nil, name: nil })
-    user = User.new(generate_auth_hash['info'].merge(user_params))
+    user = if user_params.is_a?(Hash)
+             User.new(generate_auth_hash['info'].merge(user_params))
+           else
+             user_params
+           end
     allow(controller).to receive(:current_user) { user }
   end
 
