@@ -26,11 +26,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @command = TaskEditing.from_origin(task)
+    @command = TaskEditing.setup_with_origin(params[:id])
   end
 
   def update
-    @command = TaskEditing.new(task, TaskParameters.new(params[:task_parameters]))
+    @command = TaskEditing.setup(params[:id], TaskParameters.new(params[:task_parameters]))
     if @command.run
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_editing.success')
     else
