@@ -1,4 +1,6 @@
 class Task < ActiveRecord::Base
+  include Removable
+
   NotDescribed = Class.new(StandardError)
 
   has_one :task_description, autosave: true
@@ -10,6 +12,7 @@ class Task < ActiveRecord::Base
       task_description.destroy
     end
     taggings.select(&:removed?).each(&:destroy)
+    destroy if removed?
   end
 
   def retitle(title)

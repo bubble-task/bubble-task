@@ -1,11 +1,7 @@
-<div id="task_<%= task.id %>" class="task-summary task-summary-primary">
+<div id="<%= task.css_id %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
-    <div class="col s1">
-      <%= form_for(task.completion_command, url: complete_task_url(task), method: :put) do |f| %>
-        <input type="hidden" name="tag" value="<%= @tag %>">
-        <input type="checkbox" id="task_<%= task.id %>_completion_check" class="task_completion" <%= task.completion_checkbox_state %> />
-        <label id="task_<%= task.id %>_completion" for="task_<%= task.id %>_completion_check"></label>
-      <% end %>
+    <div class="col s1" id="<%= task.completion_state_css_id %>">
+      <%= render partial: 'tasks/task_completion', locals: { task: task } %>
     </div>
     <div class="col s10">
       <div class="tags">
@@ -16,17 +12,7 @@
       <%= link_to task.title, task_url(task), class: 'task-title' %>
     </div>
     <div class="col s1 task-actions">
-      <%= link_to '#!', class: 'dropdown-button', data: { activates: "task-actions-#{task.id}", constrainWidth: false, beloworigin: true } do %>
-        <i class="material-icons">more_vert</i>
-      <% end -%>
-      <ul id="task-actions-<%= task.id -%>" class="dropdown-content">
-        <li>
-          <%= link_to edit_task_url(task.id), data: { no_turbolink: true } do %>
-            <%= t('helpers.actions.edit') %>
-            <i class="material-icons left">edit</i>
-          <% end -%>
-        </li>
-      </ul>
+      <%= render partial: 'tasks/task_actions', locals: { task: task, remote: true } %>
     </div>
   </div>
 </div>

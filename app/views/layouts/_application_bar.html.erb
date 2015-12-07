@@ -21,7 +21,7 @@
     <%= link_to '#!', class: 'dropdown-button', data: { activates: 'side-user-menu', beloworigin: 'true' } do %>
       <img id="current-user-avatar" class="circle" />
       <%= current_user.name %>
-      <%= javascript_tag "$('#current-user-avatar').attr({ src: Gravtastic('#{current_user.email}') })" %>
+      <%= show_avatar_image(current_user) %>
       <i class="material-icons right">keyboard_arrow_down</i>
     <% end -%>
     <ul id="side-user-menu" class="dropdown-content dropdown-side-nav">

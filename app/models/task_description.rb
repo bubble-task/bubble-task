@@ -1,5 +1,5 @@
 class TaskDescription < ActiveRecord::Base
-  include RemovableAssociation
+  include Removable
 
   def content
     return nil if removed?

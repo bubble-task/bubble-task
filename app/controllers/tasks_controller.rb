@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = TaskPresenter.new(Task.find(params[:id]))
+    @task = TaskPresenter.new(task)
   end
 
   def new
@@ -26,12 +26,10 @@ class TasksController < ApplicationController
   end
 
   def edit
-    task = TaskRepository.find_by_id(params[:id])
     @command = TaskEditing.from_origin(task)
   end
 
   def update
-    task = TaskRepository.find_by_id(params[:id])
     @command = TaskEditing.new(task, TaskParameters.new(params[:task_parameters]))
     if @command.run
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_editing.success')
@@ -41,9 +39,24 @@ class TasksController < ApplicationController
   end
 
   def complete
-    task = Task.find(params[:id])
     TaskCompletion.new(task: task).run
-    transition_rule = TaskActionTransitionRule.new(params[:tag], self)
-    redirect_to transition_rule.completion_url
+    @task = TaskPresenter.new(task)
   end
+
+  def destroy
+    TaskDeletion.new(task).run
+    respond_to do |f|
+      f.html { redirect_to root_path, notice: I18n.t('activemodel.messages.task_deletion.success') }
+      f.js do
+        @task = TaskPresenter.new(task)
+        render 'destroy'
+      end
+    end
+  end
+
+  private
+
+    def task
+      @_task ||= TaskRepository.find_by_id(params[:id])
+    end
 end
