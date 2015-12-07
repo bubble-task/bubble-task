@@ -17,7 +17,6 @@ describe 'タスクを作成する' do
       create_task_from_ui(title: title)
       click_link title
       expect(title_on_page).to eq(title)
-      expect(description_on_page).to eq ''
     end
   end
 

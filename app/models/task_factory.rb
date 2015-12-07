@@ -1,6 +1,6 @@
 class TaskFactory
 
-  def self.create(author_id, title, description = nil, tags = [])
+  def self.create(author_id, title, description = '', tags = [])
     new(author_id, title).with do
       write_description(description)
       tagging(tags.uniq)
@@ -17,7 +17,7 @@ class TaskFactory
   end
 
   def write_description(description)
-    return unless description
+    return if description.blank?
     @task.write_description(description)
   end
 

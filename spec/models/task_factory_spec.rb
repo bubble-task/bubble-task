@@ -7,6 +7,7 @@ describe TaskFactory do
         task = TaskFactory.create(1, 'タスクのタイトル')
         expect(task.title).to eq('タスクのタイトル')
         expect(task.author_id).to eq(1)
+        expect(task.description).to be_nil
       end
     end
 
