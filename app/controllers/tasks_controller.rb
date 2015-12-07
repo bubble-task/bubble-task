@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = TaskPresenter.new(task)
+    @task = TaskPresenter.new(TaskRepository.find_by_id(params[:id]))
   end
 
   def new
@@ -51,10 +51,4 @@ class TasksController < ApplicationController
       f.js { render 'destroy' }
     end
   end
-
-  private
-
-    def task
-      @_task ||= TaskRepository.find_by_id(params[:id])
-    end
 end
