@@ -37,10 +37,6 @@ class TaskPresenter < SimpleDelegator
     nil
   end
 
-  def css_id
-    @css_id ||= "task_#{id}"
-  end
-
   def completion_state_css_id
     @completion_state_css_id ||= "task_#{id}_completion_state"
   end
