@@ -29,7 +29,7 @@ class TaskPresenter < SimpleDelegator
   end
 
   def completion_command
-    TaskCompletion.new
+    TaskCompletion.new(task_id: id)
   end
 
   def completion_checkbox_state

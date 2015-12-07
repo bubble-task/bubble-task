@@ -3,18 +3,17 @@ class TaskCompletion
 
   attr_accessor :task_id
 
+  def initialize(*params)
+    super
+    @task = TaskRepository.find_by_id(task_id)
+  end
+
   def run
-    task.complete
-    task.save
+    @task.complete
+    @task.save
   end
 
   def result
-    task
+    @task
   end
-
-  private
-
-    def task
-      @task ||= TaskRepository.find_by_id(task_id)
-    end
 end
