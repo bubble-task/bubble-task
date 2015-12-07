@@ -55,6 +55,7 @@ RSpec.configure do |config|
   end
 
   config.after :each do
+    Capybara.reset_sessions!
     DatabaseRewinder.clean
   end
 

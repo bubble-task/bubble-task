@@ -9,7 +9,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = TaskPresenter.new(task)
+    @task = TaskPresenter.new(TaskRepository.find_by_id(params[:id]))
   end
 
   def new
@@ -26,11 +26,11 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @command = TaskEditing.from_origin(task)
+    @command = TaskEditing.setup_with_origin(params[:id])
   end
 
   def update
-    @command = TaskEditing.new(task, TaskParameters.new(params[:task_parameters]))
+    @command = TaskEditing.setup(params[:id], TaskParameters.new(params[:task_parameters]))
     if @command.run
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_editing.success')
     else
@@ -39,24 +39,16 @@ class TasksController < ApplicationController
   end
 
   def complete
-    TaskCompletion.new(task: task).run
-    @task = TaskPresenter.new(task)
+    command = TaskCompletion.new(task_id: params[:id])
+    command.run
+    @task = TaskPresenter.new(command.result)
   end
 
   def destroy
-    TaskDeletion.new(task).run
+    TaskDeletion.new(task_id: params[:id]).run
     respond_to do |f|
       f.html { redirect_to root_path, notice: I18n.t('activemodel.messages.task_deletion.success') }
-      f.js do
-        @task = TaskPresenter.new(task)
-        render 'destroy'
-      end
+      f.js { render 'destroy' }
     end
   end
-
-  private
-
-    def task
-      @_task ||= TaskRepository.find_by_id(params[:id])
-    end
 end

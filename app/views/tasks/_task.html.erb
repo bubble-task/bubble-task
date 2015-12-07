@@ -1,4 +1,4 @@
-<div id="<%= task.css_id %>" class="task-summary task-summary-primary">
+<div id="task_<%= task.id %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s1" id="<%= task.completion_state_css_id %>">
       <%= render partial: 'tasks/task_completion', locals: { task: task } %>

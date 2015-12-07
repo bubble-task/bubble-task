@@ -1,7 +1,7 @@
 class TaskDeletion
 
-  def initialize(task)
-    @task = task
+  def initialize(task_id: task_id)
+    @task = TaskRepository.find_by_id(task_id)
   end
 
   def run

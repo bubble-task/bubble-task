@@ -1,7 +1,8 @@
 class TaskEditing < SimpleDelegator
   class << self
 
-    def from_origin(origin)
+    def setup_with_origin(task_id)
+      origin = fetch_task(task_id)
       parameters = TaskParameters.new(
         title: origin.title,
         description: origin.description,
@@ -10,14 +11,24 @@ class TaskEditing < SimpleDelegator
       new(origin, parameters)
     end
 
+    def setup(task_id, params)
+      new(fetch_task(task_id), params)
+    end
+
     def build_tag_words(tags)
       tags.join(' ')
     end
+
+    private
+
+      def fetch_task(task_id)
+        TaskRepository.find_by_id(task_id)
+      end
   end
 
-  def initialize(origin, parameters)
+  def initialize(task, parameters)
     super(parameters)
-    @origin = origin
+    @origin = task
   end
 
   def task_id
