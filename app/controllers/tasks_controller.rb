@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    TaskDeletion.new(task).run
+    TaskDeletion.new(task_id: params[:id]).run
     respond_to do |f|
       f.html { redirect_to root_path, notice: I18n.t('activemodel.messages.task_deletion.success') }
       f.js { render 'destroy' }
