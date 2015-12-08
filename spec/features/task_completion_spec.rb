@@ -42,5 +42,14 @@ describe 'タスクの完了', js: true do
         expect(completed_checkbox).to be_checked
       end
     end
+
+    context 'タスク詳細画面で操作する場合' do
+      before { visit task_path(task.id) }
+
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        expect(completed_checkbox).to be_checked
+      end
+    end
   end
 end
