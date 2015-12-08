@@ -16,7 +16,7 @@ module TaskCreationHelper
     click_button I18n.t('helpers.submit.update')
   end
 
-  def create_task(author_id, title, description, tags)
+  def create_task(author_id:, title:, description: nil, tags: [])
     TaskFactory
       .create(author_id, title, description.to_s, tags)
       .tap(&:save)

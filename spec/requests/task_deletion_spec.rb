@@ -10,7 +10,7 @@ describe 'DELETE /tasks/:id' do
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
-  let(:task) { create_task(user.id, title, '説明', []) }
+  let(:task) { create_task(author_id: user.id, title: title, description: '説明') }
   let(:title) { 'タスクのタイトル' }
 
   it do

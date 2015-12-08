@@ -20,7 +20,7 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
 
   describe '各一覧画面からの遷移' do
     before { task }
-    let(:task) { create_task(user.id, 'タスクのタイトル', nil, %w(タグ)) }
+    let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: %w(タグ)) }
     let(:tag) { find('nav').text.sub(/タスク: /, '') }
 
     context 'タスク一覧のタグをクリックした場合' do
@@ -50,9 +50,9 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
 
   describe 'タグに紐づくタスク一覧画面の表示' do
     it do
-      create_task(user.id, 'タスクのタイトルC', nil, %w(タグ3 タグ1))
-      create_task(user.id, 'タスクのタイトルB', nil, %w(タグ2))
-      create_task(user.id, 'タスクのタイトルA', nil, %w(タグ1 タグ2 タグ4))
+      create_task(author_id: user.id, title: 'タスクのタイトルC', tags: %w(タグ3 タグ1))
+      create_task(author_id: user.id, title: 'タスクのタイトルB', tags: %w(タグ2))
+      create_task(author_id: user.id, title: 'タスクのタイトルA', tags: %w(タグ1 タグ2 タグ4))
       visit tasks_path(tag: 'タグ1')
 
       task_summary1 = task_summary_by_order(1)
