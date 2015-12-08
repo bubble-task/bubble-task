@@ -1,0 +1,1 @@
+$('#<%= task_summary_css_id(@task.id) %>_assignees').html('<%= j(render(partial: 'tasks/task_assignees', locals: { task: @task })) %>');

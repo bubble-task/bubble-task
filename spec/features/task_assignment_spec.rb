@@ -15,13 +15,20 @@ describe 'タスクのアサイン', js: true do
   describe '自分のタスク一覧から操作する' do
     it do
       visit root_path
-      within("#task_#{task.id}") do
-        find('a', text: '自分をアサインする', visible: false).trigger('click')
-      end
-      within("#task_#{task.id}") do
-        assignee_avatar = first(".assignee_#{user.id}")
-        expect(assignee_avatar).to_not be_nil
-      end
+      task_summary_id = "task_#{task.id}"
+      find('a', text: '自分をアサインする', visible: false).trigger('click')
+      assignee_avatar = find(".assignee_#{user.id}")
+      expect(assignee_avatar).to_not be_nil
+    end
+
+    it do
+      visit root_path
+      task_summary_id = "task_#{task.id}"
+      find('a', text: '自分をアサインする', visible: false).trigger('click')
+
+      visit root_path
+      assignee_avatar = find(".assignee_#{user.id}")
+      expect(assignee_avatar).to_not be_nil
     end
   end
 end

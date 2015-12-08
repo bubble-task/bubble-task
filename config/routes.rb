@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :tasks do
     member do
       put 'complete'
+      put 'assign'
     end
   end
   get     'tags', to: 'tags#index', as: :tags
