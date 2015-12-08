@@ -10,7 +10,7 @@ describe 'タスクの完了', js: true do
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
-  let(:task) { create_task(user.id, 'タスクのタイトル', nil, [tag]) }
+  let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: [tag]) }
   let(:tag) { 'タグ' }
 
   let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }

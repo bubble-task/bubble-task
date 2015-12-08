@@ -3,7 +3,7 @@ require 'rails_helper'
 describe TasksController do
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
-  let(:task) { create_task(user.id, 'title', '', []) }
+  let(:task) { create_task(author_id: user.id, title: 'title') }
 
   describe '#new' do
     subject { get :new }
