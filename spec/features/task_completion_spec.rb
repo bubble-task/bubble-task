@@ -12,19 +12,23 @@ describe 'タスクの完了', js: true do
   let(:auth_hash) { generate_auth_hash }
   let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
   let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
-  let(:completed_checkbox_label_id) { "#task_#{task.id}_completion" }
+  let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
+
+  describe 'タスクの作成直後' do
+    it do
+      visit root_path
+      expect(completed_checkbox).to_not be_checked
+    end
+  end
 
   describe 'タスクを完了にする' do
-    before do
-      visit root_path
-    end
+    context '自分のタスク一覧画面で操作する場合' do
+      before { visit root_path }
 
-    it do
-      find(completed_checkbox_label_id, visible: false).click
-      visit root_path
-      expect(completed_checkbox).to be_checked
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        expect(completed_checkbox).to be_checked
+      end
     end
-
-    it { expect(completed_checkbox).to_not be_checked }
   end
 end
