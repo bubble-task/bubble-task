@@ -1,5 +1,6 @@
 <% task_completion_checkbox_id = "task_#{task.id}_completion_check" %>
+<% task_completion_label_id = "task_#{task.id}_completion_mark" %>
 <%= form_for(task.completion_command, url: complete_task_url(task), method: :put, remote: true) do |f| %>
   <input type="checkbox" id="<%= task_completion_checkbox_id %>" class="task_completion" <%= task.completion_checkbox_state %> />
-  <label id="task_<%= task.id %>_completion" for="<%= task_completion_checkbox_id %>"></label>
+  <label id="<%= task_completion_label_id %>" for="<%= task_completion_checkbox_id %>"></label>
 <% end %>

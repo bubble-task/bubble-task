@@ -2,7 +2,7 @@ module TaskRepository
   class << self
 
     def find_by_id(task_id)
-      task_with_taggings.find(task_id)
+      task_with_taggings.find_by(id: task_id)
     end
 
     def all_by_author_id(author_id)
