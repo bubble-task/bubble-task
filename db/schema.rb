@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202093350) do
+ActiveRecord::Schema.define(version: 20151208091443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer "task_id", null: false
+    t.integer "user_id", null: false
+  end
 
   create_table "completed_tasks", force: :cascade do |t|
     t.integer  "task_id",      null: false
@@ -29,10 +34,14 @@ ActiveRecord::Schema.define(version: 20151202093350) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "oauth_credentials", ["provider", "uid"], name: "index_oauth_credentials_on_provider_and_uid", unique: true, using: :btree
+
   create_table "taggings", force: :cascade do |t|
     t.integer "task_id", null: false
     t.string  "tag",     null: false
   end
+
+  add_index "taggings", ["tag", "task_id"], name: "index_taggings_on_tag_and_task_id", unique: true, using: :btree
 
   create_table "task_descriptions", force: :cascade do |t|
     t.integer "task_id", null: false
