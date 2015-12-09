@@ -15,7 +15,6 @@ describe 'タスクのアサイン', js: true do
   describe '自分のタスク一覧から操作する' do
     it do
       visit root_path
-      task_summary_id = "task_#{task.id}"
       find('a', text: '自分をアサインする', visible: false).trigger('click')
       assignee_avatar = find(".assignee_#{user.id}")
       expect(assignee_avatar).to_not be_nil
@@ -23,7 +22,6 @@ describe 'タスクのアサイン', js: true do
 
     it do
       visit root_path
-      task_summary_id = "task_#{task.id}"
       find('a', text: '自分をアサインする', visible: false).trigger('click')
 
       visit root_path
@@ -33,7 +31,6 @@ describe 'タスクのアサイン', js: true do
 
     it do
       visit root_path
-      task_summary_id = "task_#{task.id}"
       find('a', text: '自分をアサインする', visible: false).trigger('click')
       find(".assignee_#{user.id}")
       assign_link = first('a', text: '自分をアサインする', visible: false)
@@ -45,7 +42,6 @@ describe 'タスクのアサイン', js: true do
       task.assign(user2.id)
       task.save
       visit root_path
-      task_summary_id = "task_#{task.id}"
       find('a', text: '自分をアサインする', visible: false).trigger('click')
       assignee_avatar = find(".assignee_#{user.id}")
       expect(assignee_avatar).to_not be_nil
