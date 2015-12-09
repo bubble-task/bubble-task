@@ -53,4 +53,13 @@ describe 'タスクのアサイン', js: true do
       expect(assignee_avatar).to_not be_nil
     end
   end
+
+  describe 'タグのタスク一覧から操作する' do
+    before { visit tasks_path(tag: tag) }
+
+    it do
+      find(assign_link_css_path).trigger('click')
+      expect(assignee_avatar).to_not be_nil
+    end
+  end
 end
