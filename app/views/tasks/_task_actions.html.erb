@@ -3,7 +3,7 @@
   <i class="material-icons">more_vert</i>
 <% end -%>
 <ul id="task-actions-<%= task.id -%>" class="dropdown-content">
-  <% unless task.assignees.include?(current_user) %>
+  <% unless task.assigned?(current_user.id) %>
     <li>
       <%= link_to assign_task_url(task.id), method: :put, remote: true do %>
         <%= t('helpers.actions.assign_self') %>

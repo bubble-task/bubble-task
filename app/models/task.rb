@@ -63,10 +63,15 @@ class Task < ActiveRecord::Base
   end
 
   def assign(user_id)
+    return if assigned?(user_id)
     assignments.build(user_id: user_id)
   end
 
   def assignees
     assignments.map(&:user)
+  end
+
+  def assigned?(user_id)
+    assignments.detect { |a| a.user_id == user_id }
   end
 end
