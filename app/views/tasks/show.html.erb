@@ -16,8 +16,10 @@
           <%= render partial: 'tasks/task_assignees', locals: { task: @task } %>
         </div>
         <% if @task.description -%>
-          <div class="divider"></div>
-          <%= simple_format(h(@task.description), class: 'task-description') %>
+          <div class="task-description">
+            <div class="divider"></div>
+            <%= simple_format(h(@task.description)) %>
+          </div>
         <% end -%>
       </div>
       <div class="col s1 task-actions">
