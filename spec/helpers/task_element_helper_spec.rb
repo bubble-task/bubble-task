@@ -3,9 +3,9 @@ require 'rails_helper'
 describe TaskElementHelper do
   let(:view) { Class.new.extend(described_class) }
 
-  describe '#task_summary_css_id' do
+  describe '#task_css_id' do
     it do
-      r = view.task_summary_css_id(123)
+      r = view.task_css_id(123)
       expect(r).to eq('task_123')
     end
   end
