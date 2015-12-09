@@ -1,3 +1,4 @@
 <% css_id = task_summary_css_id(@task.id) %>
 $('#<%= css_id %>_assignees').html('<%= j(render(partial: 'tasks/task_assignees', locals: { task: @task })) %>');
 $('#<%= css_id %> .task-actions').html('<%= j(render(partial: 'tasks/task_actions', locals: { task: @task, remote: true })) %>');
+setupMaterialize();
