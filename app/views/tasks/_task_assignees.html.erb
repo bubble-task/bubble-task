@@ -1,3 +1,5 @@
 <% task.assignees.each do |assignee| %>
-  <p class="assignee_<%= assignee.id %>"><%= assignee.name %></p>
+  <% assignee_img_class = "assignee_#{assignee.id}" %>
+  <img class="assignee <%= assignee_img_class %> circle" />
+  <%= javascript_tag("$('.#{assignee_img_class}').attr({ src: Gravtastic('#{assignee.email}') })") %>
 <% end -%>

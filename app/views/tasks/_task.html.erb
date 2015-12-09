@@ -10,7 +10,7 @@
         <% end -%>
       </div>
       <%= link_to task.title, task_url(task), class: 'task-title' %>
-      <div id="<%= task_summary_css_id(task.id) %>_assignees">
+      <div id="<%= task_summary_css_id(task.id) %>_assignees" class="task-assignees">
         <%= render partial: 'tasks/task_assignees', locals: { task: task } %>
       </div>
     </div>

@@ -16,14 +16,19 @@
 }
 
 .task-summary {
-  padding: 1.3rem 1.4rem 1.0rem 1.4rem;
+  padding: 1.0rem 1.4rem 1.0rem 1.4rem;
 
   .tags {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
   }
 
   .task-title {
-    margin-left: 0.25rem;
+    margin-left: 0.2rem;
+  }
+
+  .task-assignees {
+    margin-left: 0.2rem;
+    margin-top: 0.7rem;
   }
 }
 
