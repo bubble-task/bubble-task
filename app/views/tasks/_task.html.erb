@@ -1,4 +1,4 @@
-<div id="<%= task_summary_css_id(task.id) %>" class="task-summary task-summary-primary">
+<div id="<%= task_css_id(task.id) %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s1" id="<%= task_completion_css_id(task.id) %>">
       <%= render partial: 'tasks/task_completion', locals: { task: task } %>
@@ -10,6 +10,9 @@
         <% end -%>
       </div>
       <%= link_to task.title, task_url(task), class: 'task-title' %>
+      <div class="task-assignees">
+        <%= render partial: 'tasks/task_assignees', locals: { task: task } %>
+      </div>
     </div>
     <div class="col s1 task-actions">
       <%= render partial: 'tasks/task_actions', locals: { task: task, remote: true } %>
