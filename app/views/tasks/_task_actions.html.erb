@@ -1,4 +1,4 @@
-<% task_deletion_modal_id = "task-deletion-modal-#{task.id}" %>
+<% task_deletion_modal_id = "task-deletion-modal-#{task.id}" -%>
 <%= link_to '#!', class: 'dropdown-button', data: { activates: "task-actions-#{task.id}", constrainWidth: false, beloworigin: true } do %>
   <i class="material-icons">more_vert</i>
 <% end -%>
@@ -17,6 +17,11 @@
     <% end -%>
   </li>
 </ul>
+<% unless task.assigned?(current_user.id) %>
+  <%= link_to assign_task_url(task.id), method: :put, remote: true, class: 'assign_myself' do %>
+    <i class="material-icons">account_circle</i>
+  <% end -%>
+<% end -%>
 <div id="<%= task_deletion_modal_id %>" class="modal">
   <div class="modal-content">
     <h5 class="danger"><i class="material-icons icon-heading">delete</i><%= t('activemodel.messages.task_deletion.confirm') %></h5>
@@ -27,8 +32,3 @@
     <%= link_to t('helpers.submit.cancel'), '#!', class: 'modal-action modal-close waves-effect btn-flat' %>
   </div>
 </div>
-<% unless task.assigned?(current_user.id) %>
-  <%= link_to assign_task_url(task.id), method: :put, remote: true, class: 'assign_myself' do %>
-    <i class="material-icons left">account_circle</i>
-  <% end -%>
-<% end -%>
