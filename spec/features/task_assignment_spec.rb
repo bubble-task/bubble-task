@@ -11,27 +11,27 @@ describe 'タスクのアサイン', js: true do
   let(:auth_hash) { generate_auth_hash }
   let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: [tag]) }
   let(:tag) { 'タグ' }
-  let(:assign_link_finding_params) { ['a', text: '自分をアサインする', visible: false] }
+  let(:assign_link_css_path) { '.assign_myself' }
   let(:assignee_avatar) { find(".assignee_#{user.id}") }
 
   describe '自分のタスク一覧から操作する' do
     before { visit root_path }
 
     it do
-      find(*assign_link_finding_params).trigger('click')
+      find(assign_link_css_path).trigger('click')
       expect(assignee_avatar).to_not be_nil
     end
 
     it do
-      find(*assign_link_finding_params).trigger('click')
+      find(assign_link_css_path).trigger('click')
       visit root_path
       expect(assignee_avatar).to_not be_nil
     end
 
     it do
-      find(*assign_link_finding_params).trigger('click')
+      find(assign_link_css_path).trigger('click')
       find(".assignee_#{user.id}")
-      assign_link = first(*assign_link_finding_params)
+      assign_link = first(assign_link_css_path)
       expect(assign_link).to be_nil
     end
 
@@ -40,7 +40,7 @@ describe 'タスクのアサイン', js: true do
     it do
       task.assign(other_user.id)
       task.save
-      find(*assign_link_finding_params).trigger('click')
+      find(assign_link_css_path).trigger('click')
       expect(assignee_avatar).to_not be_nil
     end
   end
