@@ -30,5 +30,14 @@ describe 'タスクのアサイン', js: true do
       assignee_avatar = find(".assignee_#{user.id}")
       expect(assignee_avatar).to_not be_nil
     end
+
+    it do
+      visit root_path
+      task_summary_id = "task_#{task.id}"
+      find('a', text: '自分をアサインする', visible: false).trigger('click')
+      find(".assignee_#{user.id}")
+      assign_link = first('a', text: '自分をアサインする', visible: false)
+      expect(assign_link).to be_nil
+    end
   end
 end

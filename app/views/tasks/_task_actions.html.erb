@@ -3,12 +3,14 @@
   <i class="material-icons">more_vert</i>
 <% end -%>
 <ul id="task-actions-<%= task.id -%>" class="dropdown-content">
-  <li>
-    <%= link_to assign_task_url(task.id), method: :put, remote: true do %>
-      <%= t('helpers.actions.assign_self') %>
-      <i class="material-icons left">account_circle</i>
-    <% end -%>
-  </li>
+  <% unless task.assignees.include?(current_user) %>
+    <li>
+      <%= link_to assign_task_url(task.id), method: :put, remote: true do %>
+        <%= t('helpers.actions.assign_self') %>
+        <i class="material-icons left">account_circle</i>
+      <% end -%>
+    </li>
+  <% end %>
   <li class="divider"></li>
   <li>
     <%= link_to edit_task_url(task.id), data: { no_turbolink: true } do %>
