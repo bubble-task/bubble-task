@@ -39,5 +39,16 @@ describe 'タスクのアサイン', js: true do
       assign_link = first('a', text: '自分をアサインする', visible: false)
       expect(assign_link).to be_nil
     end
+
+    it do
+      user2 = create_user_from_oauth_credential(generate_auth_hash(email: 'user2@emai.l'))
+      task.assign(user2.id)
+      task.save
+      visit root_path
+      task_summary_id = "task_#{task.id}"
+      find('a', text: '自分をアサインする', visible: false).trigger('click')
+      assignee_avatar = find(".assignee_#{user.id}")
+      expect(assignee_avatar).to_not be_nil
+    end
   end
 end
