@@ -1,4 +1,5 @@
 <% css_id = task_summary_css_id(@task.id) %>
+<% remote_deletion = request.referer =~ %r{tasks/\d+\z} ? false : true %>
 $('#<%= css_id %>_assignees').html('<%= j(render(partial: 'tasks/task_assignees', locals: { task: @task })) %>');
-$('#<%= css_id %> .task-actions').html('<%= j(render(partial: 'tasks/task_actions', locals: { task: @task, remote: true })) %>');
+$('#<%= css_id %> .task-actions').html('<%= j(render(partial: 'tasks/task_actions', locals: { task: @task, remote: remote_deletion })) %>');
 setupMaterialize();
