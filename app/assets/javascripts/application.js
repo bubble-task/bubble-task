@@ -30,4 +30,3 @@ $(document).on('page:change', function() {
     .then(function() { setupForm(); })
     .then(function() { setupTagsInput(); });
 });
-
