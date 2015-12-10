@@ -99,7 +99,7 @@ describe 'タスクを作成する' do
     let(:tag) { 'タグ' }
 
     it do
-      first('.task_creation').click
+      first('.task_creation_on_tags').click
       selected_tag_words = find('#task_tag_words', visible: false).value
       expect(selected_tag_words).to eq(tag)
     end

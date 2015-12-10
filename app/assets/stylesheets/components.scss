@@ -32,3 +32,16 @@
   width: 28px;
   height: 28px;
 }
+
+.task_creation_on_tags {
+  $button-size: 38px;
+
+  width: $button-size !important;
+  height: $button-size !important;
+  
+  i {
+    vertical-align: top;
+    line-height: $button-size !important;
+    font-size: 1.0rem;
+  }
+}
