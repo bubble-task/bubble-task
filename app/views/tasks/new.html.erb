@@ -1,5 +1,6 @@
 <%= content_for(:navigation_title, t('.navigation_title')) %>
 <%= content_for(:page_title, t('.page_title')) %>
+<%= content_for(:navigation_size, 's10') %>
 <div class="col s10">
   <div class="container-float container-primary">
     <%= form_for @command, as: :task_parameters, url: tasks_url do |f| %>
