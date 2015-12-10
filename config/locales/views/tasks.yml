@@ -1,7 +1,8 @@
 ja:
   tasks:
     new:
-      page_title: 'タスクを作成する'
+      navigation_title: 'タスク'
+      page_title: '新しくタスクを作成する'
       tag_words_guide: '空白区切りで複数のタグを入力できます'
     edit:
       page_title: 'タスクを編集する'
