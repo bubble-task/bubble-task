@@ -140,7 +140,7 @@ ja:
     actions:
       edit: 編集する
       remove: 削除する
-      assign_self: 自分をアサインする
+      assign_myself: 自分をアサインする
     navigations:
       back: もどる
   sessions:
