@@ -4,15 +4,21 @@
       <%= render partial: 'tasks/task_completion', locals: { task: task } %>
     </div>
     <div class="col s10">
-      <div class="tags">
-        <% task.tags.each do |tag| %>
-          <%= tag.present(self) %>
-        <% end -%>
+      <div class="row row-no-margin">
+        <div class="col s7">
+          <div class="tags">
+            <% task.tags.each do |tag| %>
+              <%= tag.present(self) %>
+            <% end -%>
+          </div>
+        </div>
+        <div class="col s5 right-align">
+          <div class="task-assignees">
+            <%= render partial: 'tasks/task_assignees', locals: { task: task } %>
+          </div>
+        </div>
       </div>
       <%= link_to task.title, task_url(task), class: 'task-title' %>
-      <div class="task-assignees">
-        <%= render partial: 'tasks/task_assignees', locals: { task: task } %>
-      </div>
     </div>
     <div class="col s1 task-actions">
       <%= render partial: 'tasks/task_actions', locals: { task: task, remote: true } %>
