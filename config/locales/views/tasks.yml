@@ -1,14 +1,18 @@
 ja:
   tasks:
     new:
-      page_title: 'タスクを作成する'
+      navigation_title: 'タスク'
+      page_title: '新しくタスクを作成する'
       tag_words_guide: '空白区切りで複数のタグを入力できます'
     edit:
+      navigation_title: 'タスク'
       page_title: 'タスクを編集する'
     show:
+      navigation_title: 'タスク'
       tag_personal: '個人タスク'
       page_title: 'タスクの詳細'
     list:
       empty: 'いまのところタスクはありません'
     index:
-      page_title: "タスク: %{tag}"
+      navigation_title: "タスク"
+      page_title: "%{tag} タグが付けられたタスク"

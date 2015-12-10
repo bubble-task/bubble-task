@@ -1,4 +1,5 @@
 ja:
   home:
     index:
-      page_title: 'タスク'
+      navigation_title: 'タスク'
+      page_title: 'あなたが作成したタスク'

@@ -34,14 +34,14 @@
 }
 
 .task_creation_on_tags {
-  $button-size: 38px;
+  $line-height: 2.5rem;
 
-  width: $button-size !important;
-  height: $button-size !important;
+  padding: none;
+  line-height: $line-height;
 
   i {
-    vertical-align: top;
-    line-height: $button-size !important;
-    font-size: 1.0rem;
+    line-height: $line-height;
+    font-size: 1.5rem;
+    opacity: 0.7;
   }
 }

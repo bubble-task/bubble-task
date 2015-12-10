@@ -1,4 +1,6 @@
+<%= content_for(:navigation_title, t('.navigation_title')) %>
 <%= content_for(:page_title, t('.page_title')) %>
+<%= content_for(:navigation_size, 's10') %>
 <div id="<%= task_css_id(@task.id) %>" class="col s10">
   <div class="container-float container-primary">
     <div class="row row-no-margin">
