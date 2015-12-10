@@ -3,3 +3,8 @@
     <%= render partial: 'tasks/task', locals: { task: task } %>
   <% end -%>
 </div>
+<div class="fixed-action-btn">
+  <%= link_to new_task_url(tag: @tag), data: { no_turbolink: true }, class: 'btn-floating btn-large waves-effect waves-light' do %>
+    <i class="large material-icons">create</i>
+  <% end -%>
+</div>

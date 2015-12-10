@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @command = TaskCreation.new(TaskParameters.new)
+    @command = TaskCreation.new(TaskParameters.new(tag_words: params[:tag]))
   end
 
   def create

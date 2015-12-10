@@ -70,4 +70,21 @@ describe 'タスクを作成する' do
       expect(tags_on_page).to eq %w(個人タスク)
     end
   end
+
+  context 'タグを選んでから作成する場合' do
+    before do
+      task
+      visit tasks_path(tag: tag)
+    end
+
+    let(:user) { create_user_from_oauth_credential(generate_auth_hash) }
+    let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: [tag]) }
+    let(:tag) { 'タグ' }
+
+    it do
+      first('.btn-floating').click
+      selected_tag_words = find('#task_tag_words', visible: false).value
+      expect(selected_tag_words).to eq(tag)
+    end
+  end
 end
