@@ -82,3 +82,18 @@ a.button-collapse.top-nav {
 .dropdown-side-nav {
   background-color: $secondary-color;
 }
+
+.page-navigation {
+  padding-left: 1.5rem;
+}
+
+.page-navigation-default {
+  background-color: darken($primary-color, 6%);
+}
+
+.page-navigation-title {
+  color: $primary-font-color;
+  font-size: 1rem;
+  font-weight: 700;
+  opacity: 0.5;
+}
