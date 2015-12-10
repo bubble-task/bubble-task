@@ -38,7 +38,7 @@ describe 'タスクのアサイン', js: true do
     let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@emai.l')) }
 
     it do
-      task.assign(other_user.id)
+      task.assign(other_user)
       task.save
       find(assign_link_css_path).trigger('click')
       expect(assignee_avatar).to_not be_nil

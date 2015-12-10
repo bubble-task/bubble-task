@@ -82,10 +82,10 @@ describe Task do
     it { expect(task).to_not be_removed }
   end
 
-  describe 'タスクをアサインする' do
+  describe 'ユーザをアサインする' do
     it do
       user = User.create(email: 'user.a@mai.l', name: 'User AAA')
-      task.assign(user.id)
+      task.assign(user)
       assignees = task.assignees
       expect(assignees).to eq([user])
     end
@@ -98,8 +98,8 @@ describe Task do
   describe 'アサイン済みの場合はアサインを行わない' do
     it do
       user = User.create(email: 'user.a@mai.l', name: 'User AAA')
-      task.assign(user.id)
-      task.assign(user.id)
+      task.assign(user)
+      task.assign(user)
       assignees = task.assignees
       expect(assignees).to eq([user])
     end

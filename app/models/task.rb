@@ -62,16 +62,16 @@ class Task < ActiveRecord::Base
     completed_task
   end
 
-  def assign(user_id)
-    return if assigned?(user_id)
-    assignments.build(user_id: user_id)
+  def assign(user)
+    return if assigned?(user)
+    assignments.build(user: user)
   end
 
   def assignees
     assignments.map(&:user)
   end
 
-  def assigned?(user_id)
-    assignments.detect { |a| a.user_id == user_id }
+  def assigned?(user)
+    assignments.detect { |a| a.associated?(user) }
   end
 end
