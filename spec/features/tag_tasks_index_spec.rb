@@ -21,7 +21,7 @@ describe 'タスクのタグからタグに紐づくタスクの一覧ページ�
   describe '各一覧画面からの遷移' do
     before { task }
     let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: %w(タグ)) }
-    let(:tag) { find('nav').text.sub(/タスク: /, '') }
+    let(:tag) { first('.page-navigation').text.sub(/\s.+$/, '') }
 
     context 'タスク一覧のタグをクリックした場合' do
       it do
