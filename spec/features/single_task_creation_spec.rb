@@ -71,7 +71,7 @@ describe 'タスクを作成する' do
     end
   end
 
-  context 'タグを選んでから作成する場合' do
+  context 'タグのタスク一覧画面から作成する' do
     before do
       task
       visit tasks_path(tag: tag)
@@ -83,6 +83,23 @@ describe 'タスクを作成する' do
 
     it do
       first('.btn-floating').click
+      selected_tag_words = find('#task_tag_words', visible: false).value
+      expect(selected_tag_words).to eq(tag)
+    end
+  end
+
+  context 'タグ一覧から作成する' do
+    before do
+      task
+      visit tags_path
+    end
+
+    let(:user) { create_user_from_oauth_credential(generate_auth_hash) }
+    let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: [tag]) }
+    let(:tag) { 'タグ' }
+
+    it do
+      first('.task_creation').click
       selected_tag_words = find('#task_tag_words', visible: false).value
       expect(selected_tag_words).to eq(tag)
     end
