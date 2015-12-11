@@ -16,10 +16,9 @@ describe AssignmentList do
 
     context '2回目に追加する場合' do
       it do
-        new_list = empty_list
-                     .add(assignment)
-                     .add(assignment)
-        expect(new_list).to eq([assignment])
+        first_list = empty_list.add(assignment)
+        second_list = first_list.add(assignment)
+        expect(second_list).to eq([assignment])
       end
     end
   end
