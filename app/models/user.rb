@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_one :oauth_credential
-  has_many :assignments
 
   delegate :provider, :uid, to: :oauth_credential
 
