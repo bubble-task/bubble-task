@@ -8,13 +8,6 @@ class User < ActiveRecord::Base
   end
 
   def take_task(task, assignment_list)
-    return assignment_list if assignment_list.include?(new_assignment(task))
-    assignment_list.add(new_assignment(task))
+    assignment_list.add(Assignment.new(task: task, user: self))
   end
-
-  private
-
-    def new_assignment(task)
-      @new_assignment ||= Assignment.new(user: self, task: task)
-    end
 end
