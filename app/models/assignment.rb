@@ -17,7 +17,7 @@ class Assignment < ActiveRecord::Base
   private
 
     def same_attributes?(other)
-      self.user_id == other.task_id &&
-        self.task_id == other.task_id
+      self.task_id == other.task_id &&
+        self.user_id == other.user_id
     end
 end
