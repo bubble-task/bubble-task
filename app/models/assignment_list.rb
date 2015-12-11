@@ -7,4 +7,8 @@ class AssignmentList < SimpleDelegator
   def add(assignment)
     self.class.new(self + [assignment])
   end
+
+  def save
+    reject(&:persisted?).each(&:save)
+  end
 end
