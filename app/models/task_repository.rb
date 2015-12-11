@@ -16,7 +16,7 @@ module TaskRepository
     private
 
       def task_with_taggings
-        Task.includes(:taggings)
+        Task.includes(:taggings, { assignments: :user })
       end
   end
 end
