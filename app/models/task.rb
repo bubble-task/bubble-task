@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   has_many :taggings
   has_one :completed_task, autosave: true
   has_many :assignments
-  has_many :users, through: :assignments
+  has_many :assignees, through: :assignments, source: :user
 
   before_save do
     if task_description && task_description.removed?
@@ -60,18 +60,5 @@ class Task < ActiveRecord::Base
 
   def completed?
     completed_task
-  end
-
-  def assign(user_id)
-    return if assigned?(user_id)
-    assignments.build(user_id: user_id)
-  end
-
-  def assignees
-    assignments.map(&:user)
-  end
-
-  def assigned?(user_id)
-    assignments.detect { |a| a.user_id == user_id }
   end
 end

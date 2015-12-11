@@ -38,8 +38,10 @@ describe 'タスクのアサイン', js: true do
     let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@emai.l')) }
 
     it do
-      task.assign(other_user.id)
-      task.save
+      assignment_list = AssignmentRepository.for_user(other_user.id)
+      new_assignment_list = other_user.take_task(task, assignment_list)
+      new_assignment_list.save
+
       find(assign_link_css_path).trigger('click')
       expect(assignee_avatar).to_not be_nil
     end

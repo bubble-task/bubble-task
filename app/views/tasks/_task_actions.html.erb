@@ -17,8 +17,8 @@
     <% end -%>
   </li>
 </ul>
-<% unless task.assigned?(current_user.id) %>
-  <%= link_to assign_task_url(task.id), method: :put, remote: true, class: 'assign_myself tooltipped', data: { tooltip: t('helpers.actions.assign_myself') } do %>
+<% unless task.assigned?(current_user) %>
+  <%= link_to assign_task_url(task.id), method: :put, remote: true, class: 'assign_myself' do %>
     <i class="material-icons">account_circle</i>
   <% end -%>
 <% end -%>

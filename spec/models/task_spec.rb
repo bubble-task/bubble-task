@@ -81,27 +81,4 @@ describe Task do
   describe 'デフォルトでは削除されていない状態' do
     it { expect(task).to_not be_removed }
   end
-
-  describe 'タスクをアサインする' do
-    it do
-      user = User.create(email: 'user.a@mai.l', name: 'User AAA')
-      task.assign(user.id)
-      assignees = task.assignees
-      expect(assignees).to eq([user])
-    end
-  end
-
-  describe 'デフォルトではアサインされていない状態' do
-    it { expect(task.assignees).to be_empty }
-  end
-
-  describe 'アサイン済みの場合はアサインを行わない' do
-    it do
-      user = User.create(email: 'user.a@mai.l', name: 'User AAA')
-      task.assign(user.id)
-      task.assign(user.id)
-      assignees = task.assignees
-      expect(assignees).to eq([user])
-    end
-  end
 end
