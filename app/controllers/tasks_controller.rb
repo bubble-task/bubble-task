@@ -53,9 +53,10 @@ class TasksController < ApplicationController
   end
 
   def assign
-    @task = TaskRepository.find_by_id(params[:id])
+    task = TaskRepository.find_by_id(params[:id])
     assignment_list = AssignmentRepository.for_user(current_user.id)
-    assignment = current_user.take_task(@task, assignment_list)
+    assignment = current_user.take_task(task, assignment_list)
     assignment.save
+    @task = TaskPresenter.new(task)
   end
 end
