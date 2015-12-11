@@ -1,6 +1,6 @@
 class TaskAssignment
 
-  def initialize(task: task, assignee: assignee)
+  def initialize(task:, assignee:)
     @task = task
     @assignee = assignee
   end
