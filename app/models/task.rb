@@ -62,11 +62,6 @@ class Task < ActiveRecord::Base
     completed_task
   end
 
-  def assign(user)
-    return if assigned?(user)
-    assignments.build(user: user)
-  end
-
   def assignees
     assignments.map(&:user)
   end
