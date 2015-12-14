@@ -15,7 +15,7 @@ class TagCollection
     @tags = []
   end
 
-  def save(task)
+  def associate_with_task(task)
     task.taggings.destroy_all
     @tags.each do |tag|
       task.taggings.build(tag: tag)

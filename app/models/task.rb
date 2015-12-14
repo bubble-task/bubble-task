@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
     if task_description && task_description.removed?
       task_description.destroy
     end
-    tag_collection.save(self)
+    tag_collection.associate_with_task(self)
     destroy if removed?
   end
 
