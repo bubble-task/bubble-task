@@ -17,7 +17,7 @@ class TagCollection
   end
 
   def associate_with_task(task)
-    task.taggings.destroy_all
+    task.taggings.destroy_all unless @tags.empty?
     @tags.each do |tag|
       task.taggings.build(tag: tag)
     end
