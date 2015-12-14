@@ -24,7 +24,7 @@ class TagCollection
   private
 
     def clear_association(task)
-      task.taggings.destroy_all unless @tags.empty?
+      task.taggings.destroy_all
     end
 
     def build_association(task)
