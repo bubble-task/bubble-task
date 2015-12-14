@@ -10,11 +10,9 @@ class Task < ActiveRecord::Base
   has_many :assignees, through: :assignments, source: :user
 
   before_save do
-    if task_description && task_description.removed?
-      task_description.destroy
-    end
+    task_description.try!(:apply_removed!)
     tag_collection.associate_with_task(self)
-    destroy if removed?
+    apply_removed!
   end
 
   def retitle(title)
@@ -31,13 +29,11 @@ class Task < ActiveRecord::Base
   end
 
   def remove_description
-    return unless task_description
-    self.task_description.remove!
+    self.task_description.try!(:remove!)
   end
 
   def description
-    return nil unless task_description
-    task_description.content
+    task_description.try!(:content)
   end
 
   def tagging_by(tags)
@@ -60,6 +56,6 @@ class Task < ActiveRecord::Base
   private
 
     def tag_collection
-      @tags ||= TagCollection.create_from_taggings(taggings)
+      @tag_collection ||= TagCollection.create_from_taggings(taggings)
     end
 end
