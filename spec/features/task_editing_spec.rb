@@ -99,6 +99,18 @@ describe 'タスクの編集' do
       end
     end
 
+    context 'タグを全て削除' do
+      let(:new_tag_words) { '' }
+
+      it do
+        update_task_from_ui(task, tag_words: new_tag_words)
+        click_link old_title
+        expect(title_on_page).to eq(old_title)
+        expect(description_on_page).to eq(old_description)
+        expect(tags_on_page).to eq(%w(個人タスク))
+      end
+    end
+
     context 'タグを全て入れ替え' do
       let(:new_tag_words) { 'タグ3 タグ4' }
 
