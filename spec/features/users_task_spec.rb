@@ -4,7 +4,7 @@ describe '自身が作成したタスクの一覧' do
   let(:user_a_auth_hash) { generate_auth_hash }
   let(:user_a) { create_user_from_oauth_credential(user_a_auth_hash) }
   let(:user_b) { create_user_from_oauth_credential(generate_auth_hash) }
-  let(:create_task_for_user_b) { user_b.create_task('ユーザBのタスク').tap(&:save) }
+  let(:create_task_for_user_b) { create_task(author_id: user_b.id, title: 'ユーザBのタスク') }
 
   before do
     user_a

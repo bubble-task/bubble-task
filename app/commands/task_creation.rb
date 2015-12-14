@@ -6,8 +6,8 @@ class TaskCreation < SimpleDelegator
 
   def run(user)
     return nil unless valid?
-    user
-      .create_task(title, description, tags)
+    TaskFactory
+      .create(user.id, title, description, tags)
       .tap(&:save)
   end
 end
