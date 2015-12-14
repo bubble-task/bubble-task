@@ -51,11 +51,4 @@ class TasksController < ApplicationController
       f.js { render 'destroy' }
     end
   end
-
-  def assign
-    task = TaskRepository.find_by_id(params[:id])
-    command = TaskAssignment.new(task: task, assignee: current_user)
-    command.run
-    @task = TaskPresenter.new(task)
-  end
 end
