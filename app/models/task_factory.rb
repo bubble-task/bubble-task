@@ -3,7 +3,7 @@ class TaskFactory
   def self.create(author_id, title, description = '', tags = [])
     new(author_id, title).with do
       write_description(description)
-      tagging(tags.uniq)
+      tagging_by(tags.uniq)
     end
   end
 
@@ -21,8 +21,8 @@ class TaskFactory
     @task.write_description(description)
   end
 
-  def tagging(tags)
+  def tagging_by(tags)
     return if tags.empty?
-    @task.tagging(tags)
+    @task.tagging_by(tags)
   end
 end

@@ -40,16 +40,13 @@ class Task < ActiveRecord::Base
     task_description.content
   end
 
-  def tagging(tags)
+  def tagging_by(tags)
+    tag_collection.remove_all!
     tag_collection.add(tags)
   end
 
   def tags
     tag_collection.tags
-  end
-
-  def remove_tags
-    tag_collection.remove_all!
   end
 
   def complete
