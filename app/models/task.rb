@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
     if task_description && task_description.removed?
       task_description.destroy
     end
-    taggings.select(&:removed?).each(&:destroy)
+    tag_collection.associate_with_task(self)
     destroy if removed?
   end
 
@@ -40,18 +40,13 @@ class Task < ActiveRecord::Base
     task_description.content
   end
 
-  def tagging(tags)
-    tags.each do |tag|
-      self.taggings.build(tag: tag)
-    end
+  def tagging_by(tags)
+    tag_collection.remove_all!
+    tag_collection.add(tags)
   end
 
   def tags
-    taggings.reject(&:removed?).map(&:tag)
-  end
-
-  def remove_tags
-    taggings.each(&:remove!)
+    tag_collection.to_a
   end
 
   def complete
@@ -61,4 +56,10 @@ class Task < ActiveRecord::Base
   def completed?
     completed_task
   end
+
+  private
+
+    def tag_collection
+      @tags ||= TagCollection.create_from_taggings(taggings)
+    end
 end

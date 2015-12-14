@@ -50,8 +50,7 @@ class TaskEditing < SimpleDelegator
     end
 
     def update_tags(tags)
-      @origin.remove_tags
-      @origin.tagging(tags)
+      @origin.tagging_by(tags)
     end
 
     def update_description(description)
