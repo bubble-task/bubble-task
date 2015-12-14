@@ -29,13 +29,11 @@ class Task < ActiveRecord::Base
   end
 
   def remove_description
-    return unless task_description
-    self.task_description.remove!
+    self.task_description.try!(:remove!)
   end
 
   def description
-    return nil unless task_description
-    task_description.content
+    task_description.try!(:content)
   end
 
   def tagging_by(tags)
