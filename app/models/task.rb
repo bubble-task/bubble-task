@@ -46,7 +46,7 @@ class Task < ActiveRecord::Base
   end
 
   def tags
-    tag_collection.tags
+    tag_collection.to_a
   end
 
   def complete

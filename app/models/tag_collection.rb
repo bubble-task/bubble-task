@@ -1,5 +1,6 @@
 class TagCollection
   attr_reader :tags
+  alias_method :to_a, :tags
 
   def self.create_from_taggings(taggings)
     new.tap do |me|
