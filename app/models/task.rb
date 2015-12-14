@@ -60,6 +60,6 @@ class Task < ActiveRecord::Base
   private
 
     def tag_collection
-      @tags ||= TagCollection.create_from_taggings(taggings)
+      @tag_collection ||= TagCollection.create_from_taggings(taggings)
     end
 end
