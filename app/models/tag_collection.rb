@@ -17,9 +17,19 @@ class TagCollection
   end
 
   def associate_with_task(task)
-    task.taggings.destroy_all unless @tags.empty?
-    @tags.each do |tag|
-      task.taggings.build(tag: tag)
-    end
+    clear_association(task)
+    build_association(task)
   end
+
+  private
+
+    def clear_association(task)
+      task.taggings.destroy_all unless @tags.empty?
+    end
+
+    def build_association(task)
+      @tags.each do |tag|
+        task.taggings.build(tag: tag)
+      end
+    end
 end
