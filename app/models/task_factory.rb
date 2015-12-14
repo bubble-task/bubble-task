@@ -23,6 +23,6 @@ class TaskFactory
 
   def tagging(tags)
     return if tags.empty?
-    @task.tagging(tags)
+    @task = TaggedTask.new(@task, tags)
   end
 end
