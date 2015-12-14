@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
 
   NotDescribed = Class.new(StandardError)
 
-  has_one :task_description, { autosave: true }
+  has_one :task_description, autosave: true
   has_many :taggings
   has_one :completed_task, autosave: true
   has_many :assignments
