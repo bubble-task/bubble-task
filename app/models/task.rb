@@ -12,7 +12,7 @@ class Task < ActiveRecord::Base
   before_save do
     task_description.try!(:apply_removed!)
     tag_collection.associate_with_task(self)
-    destroy if removed?
+    apply_removed!
   end
 
   def retitle(title)
