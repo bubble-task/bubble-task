@@ -8,5 +8,9 @@ module Removable
     def remove!
       @removed = true
     end
+
+    def apply_removed!
+      destroy! if @removed
+    end
   end
 end

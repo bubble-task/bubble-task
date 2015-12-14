@@ -3,16 +3,14 @@ class Task < ActiveRecord::Base
 
   NotDescribed = Class.new(StandardError)
 
-  has_one :task_description, autosave: true
+  has_one :task_description, { autosave: true }
   has_many :taggings
   has_one :completed_task, autosave: true
   has_many :assignments
   has_many :assignees, through: :assignments, source: :user
 
   before_save do
-    if task_description && task_description.removed?
-      task_description.destroy
-    end
+    task_description.try!(:apply_removed!)
     tag_collection.associate_with_task(self)
     destroy if removed?
   end
