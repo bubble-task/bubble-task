@@ -10,8 +10,11 @@ module TaskRepository
     end
 
     def all_by_tag(tag)
-      Task.includes(:completed_task, :taggings, { assignments: :user })
+      Task
+        .joins(:taggings)
         .where(taggings: { tag: tag })
+        .preload(:taggings)
+        .includes(:completed_task, { assignments: :user })
         .where(completed_tasks: { id: nil })
         .order(:id)
     end
