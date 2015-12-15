@@ -11,7 +11,7 @@ describe 'タスクの完了', js: true do
   let(:auth_hash) { generate_auth_hash }
 
   let(:task) { create_task(author_id: user.id, title: title, tags: [tag]) }
-  let(:title) { 'タスクのタイトル'}
+  let(:title) { 'タスクのタイトル' }
   let(:tag) { 'タグ' }
 
   let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
