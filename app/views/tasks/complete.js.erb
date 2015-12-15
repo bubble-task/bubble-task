@@ -1,9 +1,7 @@
-<% must_remove = request.referer =~ %r{tasks/\d+\z} ? false : true %>
-
 Materialize.toast('<%= t('activemodel.messages.task_completion.success') %>', 3000, 'success');
 
-<% if must_remove -%>
-  $('#<%= task_css_id(@task.id) %>').remove();
+<% if from_show_task? -%>
+  $('#<%= task_css_id(@task.id) %>_completion_state').html('<%= j(render(partial: 'tasks/task_completion', locals: { task: @task })) %>');
 <% else -%>
-  $('#task_<%= @task.id %>_completion_state').html('<%= j(render(partial: 'tasks/task_completion', locals: { task: @task })) %>');
+  $('#<%= task_css_id(@task.id) %>').remove();
 <% end -%>
