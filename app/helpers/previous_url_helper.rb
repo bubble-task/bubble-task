@@ -12,6 +12,6 @@ module PreviousUrlHelper
   private
 
     def from_path_match?(regexp, referrer: request.referrer)
-      Regexp.new(regexp).match(referrer).present?
+      regexp.match(referrer).present?
     end
 end
