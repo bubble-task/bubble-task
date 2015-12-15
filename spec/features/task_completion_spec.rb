@@ -35,6 +35,13 @@ describe 'タスクの完了', js: true do
         title_link = first('.task-title')
         expect(title_link).to be_nil
       end
+
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        visit root_path
+        title_link = first('.task-title')
+        expect(title_link).to be_nil
+      end
     end
 
     context 'タグのタスク一覧画面で操作する場合' do
@@ -43,6 +50,13 @@ describe 'タスクの完了', js: true do
       it do
         find(completed_checkbox_label_id, visible: false).click
         find('#toast-container')
+        title_link = first('.task-title')
+        expect(title_link).to be_nil
+      end
+
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        visit tasks_path(tag: tag)
         title_link = first('.task-title')
         expect(title_link).to be_nil
       end
