@@ -12,7 +12,7 @@ describe 'GET /achievements' do
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
-  let(:uncompleted_task) { [create_task(author_id: user.id, title: '未完了タスク')] }
+  let(:uncompleted_task) { create_task(author_id: user.id, title: '未完了タスク') }
 
   let(:other_users_task) do
     other_user = create_user_from_oauth_credential(generate_auth_hash)
@@ -20,14 +20,10 @@ describe 'GET /achievements' do
   end
 
   context '期間を指定しない' do
-    let(:unexpected_tasks) { [uncompleted_task] }
+    let(:unexpected_tasks) { [ uncompleted_task ] }
 
     let(:expected_tasks) do
-      [
-        create_task(author_id: user.id, title: '完了A').tap do |t|
-          TaskCompletion.new(task_id: t.id).run
-        end
-      ]
+      [ create_task(author_id: user.id, title: 'a', completed_at: :now) ]
     end
 
     it do
@@ -41,19 +37,13 @@ describe 'GET /achievements' do
     let(:unexpected_tasks) do
       [
         uncompleted_task,
-        create_task(author_id: user.id, title: 'b').tap do |t|
-          t.complete(Time.zone.parse('2015-11-30'))
-          t.save
-        end
+        create_task(author_id: user.id, title: 'b', completed_at: '2015-11-30')
       ]
     end
 
     let(:expected_tasks) do
       [
-        create_task(author_id: user.id, title: 'c').tap do |t|
-          t.complete(Time.zone.parse('2015-12-01'))
-          t.save
-        end
+        create_task(author_id: user.id, title: 'c', completed_at: '2015-12-01')
       ]
     end
 
@@ -68,19 +58,13 @@ describe 'GET /achievements' do
     let(:unexpected_tasks) do
       [
         uncompleted_task,
-        create_task(author_id: user.id, title: 'b').tap do |t|
-          t.complete(Time.zone.parse('2015-12-01'))
-          t.save
-        end
+        create_task(author_id: user.id, title: 'b', completed_at: '2015-12-01')
       ]
     end
 
     let(:expected_tasks) do
       [
-        create_task(author_id: user.id, title: 'c').tap do |t|
-          t.complete(Time.zone.parse('2015-11-30 12:00'))
-          t.save
-        end
+        create_task(author_id: user.id, title: 'c', completed_at: '2015-11-30 12:00')
       ]
     end
 
@@ -95,27 +79,15 @@ describe 'GET /achievements' do
     let(:unexpected_tasks) do
       [
         uncompleted_task,
-        create_task(author_id: user.id, title: 'b').tap do |t|
-          t.complete(Time.zone.parse('2015-11-30'))
-          t.save
-        end,
-        create_task(author_id: user.id, title: 'c').tap do |t|
-          t.complete(Time.zone.parse('2016-01-01'))
-          t.save
-        end
+        create_task(author_id: user.id, title: 'b', completed_at: '2015-11-30'),
+        create_task(author_id: user.id, title: 'c', completed_at: '2016-01-01')
       ]
     end
 
     let(:expected_tasks) do
       [
-        create_task(author_id: user.id, title: 'd').tap do |t|
-          t.complete(Time.zone.parse('2015-12-01'))
-          t.save
-        end,
-        create_task(author_id: user.id, title: 'e').tap do |t|
-          t.complete(Time.zone.parse('2015-12-31'))
-          t.save
-        end
+        create_task(author_id: user.id, title: 'd', completed_at: '2015-12-01'),
+        create_task(author_id: user.id, title: 'e', completed_at: '2015-12-31')
       ]
     end
 

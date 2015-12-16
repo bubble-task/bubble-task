@@ -28,11 +28,11 @@ module TaskCreationHelper
       .tap(&:save!)
   end
 
-  def make_task_completion(task, _completed_at)
-    completed_at = if _completed_at.is_a?(String)
-                     Time.zone.parse(_completed_at)
+  def make_task_completion(task, completed_at_param)
+    completed_at = if completed_at_param.is_a?(String)
+                     Time.zone.parse(completed_at_param)
                    else
-                     nil
+                     Time.current
                    end
     task.tap do |t|
       t.complete(completed_at)
