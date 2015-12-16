@@ -3,6 +3,7 @@ var setupDatepicker = function() {
 
   $('.datepicker').pickadate({
     hiddenSuffix: '',
+    hiddenName: true,
     showWeekdaysShort: true,
     selectMonths: true,
     selectYears: 10
