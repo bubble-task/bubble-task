@@ -3,10 +3,13 @@
     <div class="col s4">
       <%= f.date_field :from_date, class: 'datepicker', data: { value: command.from_date } %>
     </div>
+    <div class="col s1 center" style="line-height: 4rem;">
+      〜
+    </div>
     <div class="col s4">
       <%= f.date_field :to_date, class: 'datepicker', data: { value: command.to_date } %>
     </div>
-    <div class="col s4 actions actions-inline">
+    <div class="col s3 actions actions-inline">
       <button class="waves-effect waves-light btn-flat" type="submit">
         この期間で絞り込む
         <i class="material-icons left">filter_list</i>
