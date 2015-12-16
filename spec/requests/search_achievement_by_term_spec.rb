@@ -4,29 +4,55 @@ describe 'GET /achievements' do
   before do
     user
     request_oauth_sign_in(auth_hash: auth_hash)
-    tasks
+    expected_tasks
+    unexpected_tasks
   end
 
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
-  let(:tasks) do
-    uncompleted_a
-    completed_a
-  end
+  context '期間を指定しない' do
+    let(:unexpected_tasks) { [create_task(author_id: user.id, title: '未完了A')] }
 
-  let(:uncompleted_a) { create_task(author_id: user.id, title: '未完了A') }
+    let(:expected_tasks) do
+      [
+        create_task(author_id: user.id, title: '完了A').tap do |t|
+          TaskCompletion.new(task_id: t.id).run
+        end
+      ]
+    end
 
-  let(:completed_a) do
-    create_task(author_id: user.id, title: '完了A').tap do |t|
-      TaskCompletion.new(task_id: t.id).run
+    it do
+      get achievements_path(from: nil, to: nil)
+      tasks = assigns(:tasks)
+      expect(tasks).to eq(expected_tasks)
     end
   end
 
-  context '期間を指定しない' do
-    skip do
-      get achievements_path(start_on: nil, end_on: nil)
-      expect(response).to assigns
+  context '期間の始まりの日付を指定' do
+    let(:unexpected_tasks) do
+      [
+        create_task(author_id: user.id, title: 'a'),
+        create_task(author_id: user.id, title: 'b').tap do |t|
+          t.complete(Time.zone.parse('2015-11-30'))
+          t.save
+        end
+      ]
+    end
+
+    let(:expected_tasks) do
+      [
+        create_task(author_id: user.id, title: 'c').tap do |t|
+          t.complete(Time.zone.parse('2015-12-01'))
+          t.save
+        end
+      ]
+    end
+
+    it do
+      get achievements_path(from: '2015-12-01', to: nil)
+      tasks = assigns(:tasks)
+      expect(tasks).to eq(expected_tasks)
     end
   end
 end

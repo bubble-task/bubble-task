@@ -45,8 +45,8 @@ class Task < ActiveRecord::Base
     tag_collection.to_a
   end
 
-  def complete
-    self.build_completed_task(completed_at: Time.current)
+  def complete(completed_at = Time.current)
+    self.build_completed_task(completed_at: completed_at)
   end
 
   def completed?
