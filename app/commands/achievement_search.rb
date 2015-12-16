@@ -5,9 +5,7 @@ class AchievementSearch
   attr_reader :result
 
   def run(user_id)
-    @result = TaskRepository.all_completed_by_author_id(user_id, from_date_time: from_date_time, to_date_time: to_date_time).map do |task|
-      TaskPresenter.new(task)
-    end
+    @result = TaskRepository.all_completed_by_author_id(user_id, from_date_time: from_date_time, to_date_time: to_date_time)
   end
 
   def param_name

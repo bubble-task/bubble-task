@@ -4,6 +4,6 @@ class AchievementsController < ApplicationController
   def index
     @command = AchievementSearch.new(params[:q])
     @command.run(current_user.id)
-    @tasks = @command.result
+    @tasks = @command.result.map { |t| TaskPresenter.new(t) }
   end
 end
