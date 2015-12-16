@@ -4,11 +4,7 @@
       <%= render partial: 'tasks/task_completion', locals: { task: task } %>
     </div>
     <div class="col s10">
-      <div class="tags">
-        <% task.tags.each do |tag| %>
-          <%= tag.present(self) %>
-        <% end -%>
-      </div>
+      <%= render partial: 'tasks/task_tags', locals: { tags: task.tags } %>
       <%= link_to task.title, task_url(task), class: 'task-title' %>
       <div class="task-assignees">
         <%= render partial: 'tasks/task_assignees', locals: { task: task } %>
