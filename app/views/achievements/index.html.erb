@@ -16,5 +16,8 @@
         </div>
       </div>
     </form>
+    <% @tasks.each do |task| %>
+      <p class="task-title"><%= task.title %></p>
+    <% end %>
   </div>
 </div>

@@ -13,6 +13,12 @@ module TaskRepository
         .order('tasks.id, taggings.id')
     end
 
+    def all_completed_by_author_id(author_id)
+      Task.includes(:completed_task, :taggings)
+        .where(author_id: author_id)
+        .where.not(completed_tasks: { id: nil })
+    end
+
     def all_by_tag(tag)
       Task
         .includes(:completed_task, { assignments: :user })
