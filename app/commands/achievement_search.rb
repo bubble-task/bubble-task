@@ -5,7 +5,7 @@ class AchievementSearch
   attr_reader :result
 
   def run(user_id)
-    @result = TaskRepository.all_completed_by_author_id(user_id, from_date_time: from_date_time, to_date_time: to_date_time)
+    @result = TaskRepository.all_completed_by_author_id(user_id, from_datetime: from_datetime, to_datetime: to_datetime)
   end
 
   def param_name
@@ -14,12 +14,12 @@ class AchievementSearch
 
   private
 
-    def from_date_time
+    def from_datetime
       return nil if from_date.blank?
       Time.zone.parse(from_date)
     end
 
-    def to_date_time
+    def to_datetime
       return nil if to_date.blank?
       Time.zone.parse(to_date).end_of_day
     end
