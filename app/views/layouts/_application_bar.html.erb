@@ -40,6 +40,12 @@
       <i class="material-icons left">view_list</i>
     <% end -%>
   </li>
+  <li<%= activate_menu([{ 'achievements' => 'index' }]) %>>
+    <%= link_to achievements_url do %>
+      <%= t('achievements.index.navigation_title') %>
+      <i class="material-icons left">view_list</i>
+    <% end -%>
+  </li>
   <li<%= activate_menu([{ 'tags' => 'index' }]) %>>
     <%= link_to tags_url do %>
       <%= t('tags.index.page_title') %>

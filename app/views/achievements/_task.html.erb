@@ -1,0 +1,15 @@
+<div id="<%= task_css_id(task.id) %>" class="task-summary task-summary-primary">
+  <div class="row row-no-margin">
+    <div class="col s1" id="<%= task_completion_css_id(task.id) %>">
+      <%= render partial: 'tasks/task_completion', locals: { task: task } %>
+    </div>
+    <div class="col s10">
+      <div class="tags">
+        <% task.tags.each do |tag| %>
+          <%= tag.present(self) %>
+        <% end -%>
+      </div>
+      <%= link_to task.title, task_url(task), class: 'task-title' %>
+    </div>
+  </div>
+</div>

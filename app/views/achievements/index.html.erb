@@ -17,7 +17,7 @@
       </div>
     </form>
     <% @tasks.each do |task| %>
-      <p class="task-title"><%= task.title %></p>
+      <%= render partial: 'task', locals: { task: task } %>
     <% end %>
   </div>
 </div>
