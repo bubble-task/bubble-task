@@ -1,16 +1,16 @@
 <%= content_for(:navigation_title, t('.navigation_title')) %>
 <%= content_for(:page_title, t('.page_title', tag: (@tag || t('.all')))) %>
 <div class="col s12">
-  <div class="container-float container-primary">
+  <div class="container-float-slim container-primary">
     <form>
-      <div class="row">
+      <div class="row row-no-margin">
         <div class="col s4">
           <input type="date" class="datepicker" name="start_on" />
         </div>
         <div class="col s4">
           <input type="date" class="datepicker" name="end_on" />
         </div>
-        <div class="col s4 actions">
+        <div class="col s4 actions actions-inline">
           <button class="waves-effect waves-light btn-flat" type="submit" name="action">
             この期間で絞り込む
             <i class="material-icons left">filter_list</i>

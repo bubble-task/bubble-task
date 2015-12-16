@@ -7,6 +7,10 @@ form .actions {
   }
 }
 
+form .actions-inline {
+  padding-top: 0.8rem !important;
+}
+
 .error-explanation {
   color: $error-color;
   margin-bottom: 3rem;
