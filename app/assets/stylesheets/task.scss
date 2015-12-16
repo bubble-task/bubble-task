@@ -70,3 +70,15 @@
     font-size: 1.1rem;
   }
 }
+
+.achievement {
+  $bottom-margin: 1.0rem;
+  $tag-bottom-margin: 0.3rem;
+  $task-bottom-margin: $bottom-margin - $tag-bottom-margin;
+
+  padding: 1.0rem 1.4rem $task-bottom-margin 1.4rem;
+
+  .tag {
+    margin-bottom: $tag-bottom-margin;
+  }
+}

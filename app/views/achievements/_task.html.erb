@@ -1,7 +1,9 @@
-<div id="<%= task_css_id(task.id) %>" class="task-summary task-summary-primary">
+<div id="<%= task_css_id(task.id) %>" class="achievement task-summary-primary">
   <div class="row row-no-margin">
-    <div class="col s12">
+    <div class="col s3">
       <%= render partial: 'tasks/task_tags', locals: { tags: task.tags } %>
+    </div>
+    <div class="col s9">
       <%= link_to task.title, task_url(task), class: 'task-title' %>
     </div>
   </div>
