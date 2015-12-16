@@ -15,10 +15,18 @@ describe '完了したタスクの一覧' do
   let(:title_text_on_page) { title_on_page.text }
 
   context '完了したタスクがある場合' do
-    it do
+    before do
       TaskCompletion.new(task_id: task.id).run
       visit achievements_path
+    end
+
+    it do
       expect(title_text_on_page).to eq(task.title)
+    end
+
+    it '完了日付が表示されていること' do
+      completed_on = first('.task-completed-on').text
+      expect(completed_on).to eq(I18n.l(task.completed_task.completed_at.to_date, format: :default))
     end
   end
 

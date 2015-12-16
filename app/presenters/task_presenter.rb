@@ -36,6 +36,11 @@ class TaskPresenter < SimpleDelegator
     assignees.include?(user)
   end
 
+  def completed_on
+    return nil unless completed?
+    completed_task.completed_at.to_date
+  end
+
   def completion_checkbox_state
     return %(checked="checked" disabled="disabled").html_safe if completed?
     nil
