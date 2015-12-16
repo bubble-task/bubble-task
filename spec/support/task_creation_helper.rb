@@ -16,13 +16,27 @@ module TaskCreationHelper
     click_button I18n.t('helpers.submit.update')
   end
 
-  def create_task(author_id:, title:, description: nil, tags: [], completed: false, completed_at: nil)
-    create_task_record(author_id: author_id, title: title, description: description, tags: tags)
+  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil)
+    task = create_task_record(author_id: author_id, title: title, description: description, tags: tags)
+    return task unless completed_at
+    make_task_completion(task, completed_at)
   end
 
   def create_task_record(author_id:, title:, description: nil, tags: [])
     TaskFactory
       .create(author_id, title, description.to_s, tags)
       .tap(&:save!)
+  end
+
+  def make_task_completion(task, _completed_at)
+    completed_at = if _completed_at.is_a?(String)
+                     Time.zone.parse(_completed_at)
+                   else
+                     nil
+                   end
+    task.tap do |t|
+      t.complete(completed_at)
+      t.save!
+    end
   end
 end
