@@ -16,6 +16,8 @@
         </div>
       </div>
     </form>
+  </div>
+  <div class="task-summary-list-primary">
     <% @tasks.each do |task| %>
       <%= render partial: 'task', locals: { task: task } %>
     <% end %>
