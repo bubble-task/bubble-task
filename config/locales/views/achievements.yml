@@ -3,3 +3,5 @@ ja:
     index:
       navigation_title: '完了したタスク'
       page_title: 'あなたが作成したタスク'
+      actions:
+        search: 'この期間で絞り込む'
