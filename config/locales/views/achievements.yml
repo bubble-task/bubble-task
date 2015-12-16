@@ -5,3 +5,4 @@ ja:
       page_title: 'あなたが作成したタスク'
       actions:
         search: 'この期間で絞り込む'
+        reset: '絞り込みを解除'
