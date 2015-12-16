@@ -3,6 +3,8 @@ ja:
     index:
       navigation_title: '完了したタスク'
       page_title: 'あなたが作成したタスク'
+      conditions:
+        term: '期間'
       actions:
-        search: 'この期間で絞り込む'
-        reset: '絞り込みを解除'
+        search: '絞り込む'
+        reset: '解除'

@@ -24,3 +24,11 @@ form .actions-inline {
 label.invalid {
   color: $error-color;
 }
+
+.achievement-search {
+  .label {
+    display: inline-block;
+    line-height: 3.5rem;
+    opacity: 0.8;
+  }
+}
