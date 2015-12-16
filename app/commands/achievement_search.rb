@@ -16,10 +16,12 @@ class AchievementSearch
   private
 
     def from_date_time
-      from_date && Time.zone.parse(from_date)
+      return nil if from_date.blank?
+      Time.zone.parse(from_date)
     end
 
     def to_date_time
-      to_date && Time.zone.parse(to_date)
+      return nil if to_date.blank?
+      Time.zone.parse(to_date).end_of_day
     end
 end

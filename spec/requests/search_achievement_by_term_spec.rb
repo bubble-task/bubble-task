@@ -70,7 +70,7 @@ describe 'GET /achievements' do
     let(:expected_tasks) do
       [
         create_task(author_id: user.id, title: 'c').tap do |t|
-          t.complete(Time.zone.parse('2015-11-30'))
+          t.complete(Time.zone.parse('2015-11-30 12:00'))
           t.save
         end
       ]

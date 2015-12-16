@@ -2,13 +2,13 @@
 <%= content_for(:page_title, t('.page_title', tag: (@tag || t('.all')))) %>
 <div class="col s12">
   <div class="container-float-slim container-primary">
-    <form>
+    <%= form_for @command, url: achievements_url, method: :get do |f| %>
       <div class="row row-no-margin">
         <div class="col s4">
-          <input type="date" class="datepicker" name="start_on" />
+          <%= f.date_field :from_date, class: 'datepicker' %>
         </div>
         <div class="col s4">
-          <input type="date" class="datepicker" name="end_on" />
+          <%= f.date_field :to_date, class: 'datepicker' %>
         </div>
         <div class="col s4 actions actions-inline">
           <button class="waves-effect waves-light btn-flat" type="submit" name="action">
@@ -17,7 +17,7 @@
           </button>
         </div>
       </div>
-    </form>
+    <% end %>
   </div>
   <div class="task-summary-list-primary">
     <% @tasks.each do |task| %>
