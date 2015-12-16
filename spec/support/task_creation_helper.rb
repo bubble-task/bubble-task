@@ -16,11 +16,13 @@ module TaskCreationHelper
     click_button I18n.t('helpers.submit.update')
   end
 
-  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil)
-    task = TaskFactory.create(author_id, title, description.to_s, tags)
-    task.tap do |task|
-      task.complete(completed_at) if completed_at
-      task.save!
-    end
+  def create_task(author_id:, title:, description: nil, tags: [], completed: false, completed_at: nil)
+    create_task_record(author_id: author_id, title: title, description: description, tags: tags)
+  end
+
+  def create_task_record(author_id:, title:, description: nil, tags: [])
+    TaskFactory
+      .create(author_id, title, description.to_s, tags)
+      .tap(&:save!)
   end
 end
