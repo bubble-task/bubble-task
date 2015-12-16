@@ -20,10 +20,10 @@ describe 'GET /achievements' do
   end
 
   context '期間を指定しない' do
-    let(:unexpected_tasks) { [ uncompleted_task ] }
+    let(:unexpected_tasks) { [uncompleted_task] }
 
     let(:expected_tasks) do
-      [ create_task(author_id: user.id, title: 'a', completed_at: :now) ]
+      [create_task(author_id: user.id, title: 'a', completed_at: :now)]
     end
 
     it do
@@ -37,13 +37,13 @@ describe 'GET /achievements' do
     let(:unexpected_tasks) do
       [
         uncompleted_task,
-        create_task(author_id: user.id, title: 'b', completed_at: '2015-11-30')
+        create_task(author_id: user.id, title: 'b', completed_at: '2015-11-30'),
       ]
     end
 
     let(:expected_tasks) do
       [
-        create_task(author_id: user.id, title: 'c', completed_at: '2015-12-01')
+        create_task(author_id: user.id, title: 'c', completed_at: '2015-12-01'),
       ]
     end
 
@@ -58,13 +58,13 @@ describe 'GET /achievements' do
     let(:unexpected_tasks) do
       [
         uncompleted_task,
-        create_task(author_id: user.id, title: 'b', completed_at: '2015-12-01')
+        create_task(author_id: user.id, title: 'b', completed_at: '2015-12-01'),
       ]
     end
 
     let(:expected_tasks) do
       [
-        create_task(author_id: user.id, title: 'c', completed_at: '2015-11-30 12:00')
+        create_task(author_id: user.id, title: 'c', completed_at: '2015-11-30 12:00'),
       ]
     end
 
@@ -80,14 +80,14 @@ describe 'GET /achievements' do
       [
         uncompleted_task,
         create_task(author_id: user.id, title: 'b', completed_at: '2015-11-30'),
-        create_task(author_id: user.id, title: 'c', completed_at: '2016-01-01')
+        create_task(author_id: user.id, title: 'c', completed_at: '2016-01-01'),
       ]
     end
 
     let(:expected_tasks) do
       [
         create_task(author_id: user.id, title: 'd', completed_at: '2015-12-01'),
-        create_task(author_id: user.id, title: 'e', completed_at: '2015-12-31')
+        create_task(author_id: user.id, title: 'e', completed_at: '2015-12-31'),
       ]
     end
 

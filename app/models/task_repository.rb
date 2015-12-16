@@ -15,8 +15,8 @@ module TaskRepository
 
     def all_completed_by_author_id(author_id, from_date_time: nil, to_date_time: nil)
       base = Task.includes(:completed_task, :taggings)
-               .where(author_id: author_id)
-               .where.not(completed_tasks: { id: nil })
+             .where(author_id: author_id)
+             .where.not(completed_tasks: { id: nil })
       return base if from_date_time.nil? && to_date_time.nil?
       base = base.where('completed_tasks.completed_at >= ?', from_date_time) if from_date_time
       return base unless to_date_time
