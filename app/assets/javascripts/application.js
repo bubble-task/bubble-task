@@ -15,6 +15,7 @@
 //= require materialize-sprockets
 //= require jquery-tags-input
 //= require gravtastic
+//= require datepicker-ja
 //= require turbolinks
 //= require_tree .
 
@@ -31,5 +32,6 @@ $(document).on('ready page:load', function() {
 $(document).on('page:change', function() {
   setupMaterialize()
     .then(function() { setupForm(); })
-    .then(function() { setupTagsInput(); });
+    .then(function() { setupTagsInput(); })
+    .then(function() { setupDatepicker(); });
 });
