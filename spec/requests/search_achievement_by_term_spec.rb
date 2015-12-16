@@ -6,12 +6,18 @@ describe 'GET /achievements' do
     request_oauth_sign_in(auth_hash: auth_hash)
     expected_tasks
     unexpected_tasks
+    other_users_task
   end
 
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
   let(:uncompleted_task) { [create_task(author_id: user.id, title: '未完了タスク')] }
+
+  let(:other_users_task) do
+    other_user = create_user_from_oauth_credential(generate_auth_hash)
+    create_task(author_id: other_user.id, title: '他ユーザのタスク')
+  end
 
   context '期間を指定しない' do
     let(:unexpected_tasks) { [uncompleted_task] }
