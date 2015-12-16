@@ -27,7 +27,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(achievement_search: { from_date: nil, to_date: nil })
+      get achievements_path(q: { from_date: nil, to_date: nil })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -48,7 +48,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(achievement_search: { from_date: '2015-12-01', to_date: nil })
+      get achievements_path(q: { from_date: '2015-12-01', to_date: nil })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -69,7 +69,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(achievement_search: { from_date: nil, to_date: '2015-11-30' })
+      get achievements_path(q: { from_date: nil, to_date: '2015-11-30' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -92,7 +92,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(achievement_search: { from_date: '2015-12-01', to_date: '2015-12-31' })
+      get achievements_path(q: { from_date: '2015-12-01', to_date: '2015-12-31' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end

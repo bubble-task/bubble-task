@@ -13,6 +13,10 @@ class AchievementSearch
     @tasks
   end
 
+  def param_name
+    :q
+  end
+
   private
 
     def from_date_time
