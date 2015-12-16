@@ -1,0 +1,16 @@
+<%= form_for command, url: achievements_url, method: :get do |f| %>
+  <div class="row row-no-margin">
+    <div class="col s4">
+      <%= f.date_field :from_date, class: 'datepicker' %>
+    </div>
+    <div class="col s4">
+      <%= f.date_field :to_date, class: 'datepicker' %>
+    </div>
+    <div class="col s4 actions actions-inline">
+      <button class="waves-effect waves-light btn-flat" type="submit" name="action">
+        この期間で絞り込む
+        <i class="material-icons left">filter_list</i>
+      </button>
+    </div>
+  </div>
+<% end %>

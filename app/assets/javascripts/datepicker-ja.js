@@ -10,6 +10,6 @@ jQuery.extend( jQuery.fn.pickadate.defaults, {
 
   firstDay: 1,
 
-  format: 'yyyy年mm月dd日',
+  format: 'yyyy/mm/dd',
   formatSubmit: 'yyyy-mm-dd'
 });

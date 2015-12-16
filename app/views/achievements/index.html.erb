@@ -1,23 +1,8 @@
 <%= content_for(:navigation_title, t('.navigation_title')) %>
-<%= content_for(:page_title, t('.page_title', tag: (@tag || t('.all')))) %>
+<%= content_for(:page_title, t('.page_title')) %>
 <div class="col s12">
   <div class="container-float-slim container-primary">
-    <%= form_for @command, url: achievements_url, method: :get do |f| %>
-      <div class="row row-no-margin">
-        <div class="col s4">
-          <%= f.date_field :from_date, class: 'datepicker' %>
-        </div>
-        <div class="col s4">
-          <%= f.date_field :to_date, class: 'datepicker' %>
-        </div>
-        <div class="col s4 actions actions-inline">
-          <button class="waves-effect waves-light btn-flat" type="submit" name="action">
-            この期間で絞り込む
-            <i class="material-icons left">filter_list</i>
-          </button>
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: 'search_form', locals: { command: @command } %>
   </div>
   <div class="task-summary-list-primary">
     <% @tasks.each do |task| %>
