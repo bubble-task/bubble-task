@@ -8,6 +8,10 @@ class AchievementSearch
     @result = TaskRepository.all_completed_by_author_id(user_id, from_datetime: from_datetime, to_datetime: to_datetime)
   end
 
+  def has_condition?
+    from_date.present? || to_date.present?
+  end
+
   def param_name
     :q
   end
