@@ -97,4 +97,21 @@ describe 'GET /achievements' do
       expect(tasks).to eq(expected_tasks)
     end
   end
+
+  context '検索結果は並び順' do
+    let(:unexpected_tasks) { [uncompleted_task] }
+
+    let(:expected_tasks) { [task2, task3, task1] }
+    let(:expected_ordered_tasks) { [task1, task2, task3] }
+
+    let(:task1) { create_task(author_id: user.id, title: '1', completed_at: '2015-12-01 00:00:00') }
+    let(:task2) { create_task(author_id: user.id, title: '2', completed_at: '2015-12-01 00:00:01') }
+    let(:task3) { create_task(author_id: user.id, title: '3', completed_at: '2015-12-05') }
+
+    it do
+      get achievements_path(q: { from_date: '2015-12-01', to_date: '2015-12-31' })
+      tasks = assigns(:tasks)
+      expect(tasks).to eq(expected_ordered_tasks)
+    end
+  end
 end
