@@ -16,17 +16,10 @@
       <%= f.date_field :to_date, class: 'datepicker', data: { value: command.to_date } %>
     </div>
     <div class="col s3 actions actions-inline">
-      <% if command.has_condition? -%>
-        <%= link_to achievements_url, class: 'waves-effect waves-light btn-flat' do %>
-          <%= t('achievements.index.actions.reset') %>
-          <i class="material-icons left">cancel</i>
-        <% end -%>
-      <% else -%>
-        <button class="waves-effect waves-light btn-flat" type="submit">
-          <%= t('achievements.index.actions.search') %>
-          <i class="material-icons left">filter_list</i>
-        </button>
-      <% end -%>
+      <button class="waves-effect waves-light btn-flat" type="submit">
+        <%= t('achievements.index.actions.search') %>
+        <i class="material-icons left">filter_list</i>
+      </button>
     </div>
   </div>
 <% end -%>
