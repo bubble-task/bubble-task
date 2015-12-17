@@ -1,8 +1,8 @@
-<%= form_for command, as: command.param_name, url: achievements_url, method: :get, html: { enforce_utf8: false } do |f| %>
-  <div class="row row-no-margin achievement-search">
+<%= form_for command, as: command.param_name, url: achievements_url, method: :get, html: { enforce_utf8: false, class: 'inline' } do |f| %>
+  <div class="row row-no-margin">
     <div class="col s2">
       <span class="label">
-        <i class="material-icons prefix">access_time</i>
+        <i class="material-icons">access_time</i>
         <%= t('achievements.index.conditions.term') %>
       </span>
     </div>
@@ -15,7 +15,7 @@
     <div class="col s3">
       <%= f.date_field :to_date, class: 'datepicker', data: { value: command.to_date } %>
     </div>
-    <div class="col s3 actions actions-inline">
+    <div class="col s3 actions">
       <button class="waves-effect waves-light btn-flat" type="submit">
         <%= t('achievements.index.actions.search') %>
         <i class="material-icons left">filter_list</i>

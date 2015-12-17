@@ -7,10 +7,6 @@ form .actions {
   }
 }
 
-form .actions-inline {
-  padding-top: 0.8rem !important;
-}
-
 .error-explanation {
   color: $error-color;
   margin-bottom: 3rem;
@@ -25,10 +21,11 @@ label.invalid {
   color: $error-color;
 }
 
-.achievement-search {
+form.inline {
+  height: $primary-height * 2;
+  line-height: $primary-height * 2;
+
   .label {
-    display: inline-block;
-    line-height: 3.5rem;
     opacity: 0.8;
   }
 }
