@@ -1,5 +1,5 @@
 <% css_id = task_css_id(@task.id) %>
-<% remote_deletion = request.referer =~ %r{tasks/\d+\z} ? false : true %>
+<% remote_deletion = from_show_task? ? false : true %>
 $('#<%= css_id %> .task-assignees').html('<%= j(render(partial: 'tasks/task_assignees', locals: { task: @task })) %>');
 $('#<%= css_id %> .task-actions').html('<%= j(render(partial: 'tasks/task_actions', locals: { task: @task, remote: remote_deletion })) %>');
 

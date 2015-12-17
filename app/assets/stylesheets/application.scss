@@ -21,6 +21,8 @@ body { background-color: $bottom-color; }
 @import "materialize";
 @import "material_icons";
 
+$primary-height: $navbar-height;
+
 @import "navigation";
 @import "containers";
 @import "components";

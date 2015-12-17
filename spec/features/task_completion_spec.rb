@@ -10,7 +10,8 @@ describe 'タスクの完了', js: true do
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
-  let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: [tag]) }
+  let(:task) { create_task(author_id: user.id, title: title, tags: [tag]) }
+  let(:title) { 'タスクのタイトル' }
   let(:tag) { 'タグ' }
 
   let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
@@ -30,7 +31,16 @@ describe 'タスクの完了', js: true do
 
       it do
         find(completed_checkbox_label_id, visible: false).click
-        expect(completed_checkbox).to be_checked
+        find('#toast-container')
+        title_link = first('.task-title')
+        expect(title_link).to be_nil
+      end
+
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        visit root_path
+        title_link = first('.task-title')
+        expect(title_link).to be_nil
       end
     end
 
@@ -39,7 +49,16 @@ describe 'タスクの完了', js: true do
 
       it do
         find(completed_checkbox_label_id, visible: false).click
-        expect(completed_checkbox).to be_checked
+        find('#toast-container')
+        title_link = first('.task-title')
+        expect(title_link).to be_nil
+      end
+
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        visit tasks_path(tag: tag)
+        title_link = first('.task-title')
+        expect(title_link).to be_nil
       end
     end
 
@@ -48,6 +67,7 @@ describe 'タスクの完了', js: true do
 
       it do
         find(completed_checkbox_label_id, visible: false).click
+        find('#toast-container')
         expect(completed_checkbox).to be_checked
       end
     end

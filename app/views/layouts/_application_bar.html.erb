@@ -46,4 +46,10 @@
       <i class="material-icons left">local_offer</i>
     <% end -%>
   </li>
+  <li<%= activate_menu([{ 'achievements' => 'index' }]) %>>
+    <%= link_to achievements_url do %>
+      <%= t('achievements.index.navigation_title') %>
+      <i class="material-icons left">done</i>
+    <% end -%>
+  </li>
 </ul>

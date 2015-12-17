@@ -20,3 +20,12 @@ form .actions {
 label.invalid {
   color: $error-color;
 }
+
+form.inline {
+  height: $primary-height * 2;
+  line-height: $primary-height * 2;
+
+  .label {
+    opacity: 0.8;
+  }
+}

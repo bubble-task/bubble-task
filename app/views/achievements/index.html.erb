@@ -1,0 +1,15 @@
+<%= content_for(:navigation_title, t('.navigation_title')) %>
+<%= content_for(:page_title, t('.page_title')) %>
+<div class="col s12">
+  <div class="container-float-slim container-primary">
+    <%= render partial: 'search_form', locals: { command: @command } %>
+  </div>
+  <div class="section-header section-header-default">
+    <%= render partial: 'result_header', locals: { size: @tasks.size, conditioned: @command.has_condition? } %>
+  </div>
+  <div class="task-summary-list-primary">
+    <% @tasks.each do |task| %>
+      <%= render partial: 'task', locals: { task: task } %>
+    <% end %>
+  </div>
+</div>

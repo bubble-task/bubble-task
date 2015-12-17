@@ -33,4 +33,22 @@ describe PreviousUrlHelper do
       it { is_expected.to eq(root_url) }
     end
   end
+
+  describe '#from_show_task?' do
+    subject do
+      view.from_show_task?
+    end
+
+    let(:view) { described_class::DummyView.new(referer) }
+
+    context 'from show task' do
+      let(:referer) { '/tasks/123' }
+      it { is_expected.to be_truthy }
+    end
+
+    context 'from index tasks' do
+      let(:referer) { '/tasks' }
+      it { is_expected.to be_falsey }
+    end
+  end
 end

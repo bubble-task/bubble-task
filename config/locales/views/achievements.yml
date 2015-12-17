@@ -1,0 +1,12 @@
+ja:
+  achievements:
+    index:
+      navigation_title: '完了したタスク'
+      page_title: 'あなたが作成したタスク'
+      result_header: '%{size}件あります'
+      result_header_empty: '完了したタスクはありません'
+      conditions:
+        term: '期間'
+      actions:
+        search: '絞り込む'
+        reset: '解除'
