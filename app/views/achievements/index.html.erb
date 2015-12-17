@@ -5,9 +5,7 @@
     <%= render partial: 'search_form', locals: { command: @command } %>
   </div>
   <div class="section-header section-header-default">
-    <div class="nav-wrapper">
-      <span class="title"><%= @tasks.size %>件完了しました</span>
-    </div>
+    <span class="title"><%= t('.result_header', size: @tasks.size) %></span>
   </div>
   <div class="task-summary-list-primary">
     <% @tasks.each do |task| %>

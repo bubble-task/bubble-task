@@ -3,6 +3,7 @@ ja:
     index:
       navigation_title: '完了したタスク'
       page_title: 'あなたが作成したタスク'
+      result_header: '%{size}件あります'
       conditions:
         term: '期間'
       actions:
