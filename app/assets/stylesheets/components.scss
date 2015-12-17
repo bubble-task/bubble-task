@@ -1,3 +1,10 @@
+.title {
+  color: $primary-font-color;
+  font-size: 1rem;
+  font-weight: 700;
+  opacity: 0.5;
+}
+
 .message-embedded {
   line-height: 1rem;
   font-size: 1.5rem;
@@ -44,4 +51,15 @@
     font-size: 1.5rem;
     opacity: 0.7;
   }
+}
+
+.section-header {
+  @extend .z-depth-1;
+  height: $primary-height;
+  line-height: $primary-height;
+  padding-left: 1.5rem;
+}
+
+.section-header-default {
+  background-color: darken($primary-color, 6%);
 }

@@ -4,6 +4,11 @@
   <div class="container-float-slim container-primary">
     <%= render partial: 'search_form', locals: { command: @command } %>
   </div>
+  <div class="section-header section-header-default">
+    <div class="nav-wrapper">
+      <span class="title"><%= @tasks.size %>件完了しました</span>
+    </div>
+  </div>
   <div class="task-summary-list-primary">
     <% @tasks.each do |task| %>
       <%= render partial: 'task', locals: { task: task } %>
