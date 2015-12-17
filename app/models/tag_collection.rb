@@ -4,7 +4,7 @@ class TagCollection
 
   def self.create_from_taggings(taggings)
     new.tap do |me|
-      me.add(taggings.map(&:tag))
+      me.add(taggings.sort_by(&:id).map(&:tag))
     end
   end
 

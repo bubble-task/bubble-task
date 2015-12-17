@@ -10,7 +10,7 @@ module TaskRepository
       Task.includes(:completed_task, :taggings, { assignments: :user })
         .where(author_id: author_id)
         .where(completed_tasks: { id: nil })
-        .order('tasks.id, taggings.id')
+        .order('tasks.id')
     end
 
     def all_completed_by_author_id(author_id, from_datetime: nil, to_datetime: nil)
@@ -31,7 +31,7 @@ module TaskRepository
         .joins(:taggings)
         .where(taggings: { tag: tag })
         .preload(:taggings)
-        .order('tasks.id, taggings.id')
+        .order('tasks.id')
     end
   end
 end
