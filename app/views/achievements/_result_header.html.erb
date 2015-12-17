@@ -1,6 +1,10 @@
 <div class="row row-no-margin">
   <div class="col s9">
-    <span class="title"><%= t('achievements.index.result_header', size: size) %></span>
+    <% if size > 0 %>
+      <span class="title"><%= t('achievements.index.result_header', size: size) %></span>
+    <% else -%>
+      <span class="title"><%= t('achievements.index.result_header_empty') %></span>
+    <% end -%>
   </div>
   <div class="col s3 right-align">
     <% if conditioned -%>
