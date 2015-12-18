@@ -32,10 +32,10 @@ describe 'タスクの完了', js: true do
     context '自分のタスク一覧画面で操作する場合' do
       before { visit root_path }
 
-      it '完了直後はタスクが表示されたままでチェックマークが入っていること' do
+      it 'タスクが非表示になっていること' do
         find(completed_checkbox_label_id, visible: false).click
         wait_completion
-        expect(completed_checkbox).to be_checked
+        expect(title_link).to be_nil
       end
 
       it '一覧画面に再度アクセスするとタスクが非表示になっていること' do
@@ -48,10 +48,10 @@ describe 'タスクの完了', js: true do
     context 'タグのタスク一覧画面で操作する場合' do
       before { visit tasks_path(tag: tag) }
 
-      it '完了直後はタスクが表示されたままでチェックマークが入っていること' do
+      it 'タスクが非表示になっていること' do
         find(completed_checkbox_label_id, visible: false).click
         wait_completion
-        expect(completed_checkbox).to be_checked
+        expect(title_link).to be_nil
       end
 
       it '一覧画面に再度アクセスするとタスクが非表示になっていること' do
