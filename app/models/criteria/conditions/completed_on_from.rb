@@ -4,7 +4,7 @@ module Criteria
       extend Creatable
 
       def satisfy(relation)
-        relation.where('completed_tasks.completed_at >= ?', datetime)
+        relation.restrict_by_complated_after(datetime)
       end
     end
   end

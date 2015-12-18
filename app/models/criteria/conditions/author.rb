@@ -4,7 +4,7 @@ module Criteria
       extend Creatable
 
       def satisfy(relation)
-        relation.where(author_id: id)
+        relation.restrict_by_author(id)
       end
     end
   end
