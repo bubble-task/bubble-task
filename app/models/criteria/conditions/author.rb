@@ -1,5 +1,5 @@
 module Criteria
-  class Achievement
+  module Conditions
     Author = Struct.new(:id) do
       extend Creatable
 

@@ -1,5 +1,5 @@
 module Criteria
-  class Achievement
+  module Conditions
     CompletedOnFrom = Struct.new(:datetime) do
       extend Creatable
 
