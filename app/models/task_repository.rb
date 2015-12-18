@@ -33,5 +33,13 @@ module TaskRepository
         .preload(:taggings)
         .order('tasks.id')
     end
+
+    def search_by_criteria(criteria)
+      all_completed_by_author_id(
+        criteria.author_id,
+        from_datetime: criteria.from_datetime,
+        to_datetime: criteria.to_datetime
+      )
+    end
   end
 end
