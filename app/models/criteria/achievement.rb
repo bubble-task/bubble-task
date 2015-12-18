@@ -3,6 +3,7 @@ module Criteria
 
     def initialize
       @conditions = []
+      yield(self) if block_given?
     end
 
     def add_condition(condition)

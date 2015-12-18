@@ -10,11 +10,11 @@ class AchievementCriteriaForm
   end
 
   def criteria
-    criteria = Criteria::Achievement.new
-    criteria.add_condition(Criteria::Achievement::Author.new(author_id))
-    criteria.add_condition(Criteria::Achievement::CompletedOnFrom.create(from_datetime))
-    criteria.add_condition(Criteria::Achievement::CompletedOnTo.create(to_datetime))
-    criteria
+    Criteria::Achievement.new do |c|
+      c.add_condition(Criteria::Achievement::Author.new(author_id))
+      c.add_condition(Criteria::Achievement::CompletedOnFrom.create(from_datetime))
+      c.add_condition(Criteria::Achievement::CompletedOnTo.create(to_datetime))
+    end
   end
 
   def has_condition?
