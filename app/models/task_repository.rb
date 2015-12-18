@@ -24,10 +24,7 @@ module TaskRepository
     end
 
     def search_by_criteria(criteria)
-      criteria.satisfy(
-        Task.includes(:completed_task, :taggings)
-          .order('completed_tasks.completed_at')
-      )
+      criteria.satisfy(Task.includes(:completed_task, :taggings))
     end
   end
 end

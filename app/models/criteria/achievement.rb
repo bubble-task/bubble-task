@@ -11,8 +11,8 @@ module Criteria
     end
 
     def satisfy(relation)
-      relation = relation.restrict_by_complated
-      @conditions.reduce(relation) { |r, c| c.satisfy(r) }
+      initial_relation = relation.restrict_by_complated.order('completed_tasks.completed_at')
+      @conditions.inject(initial_relation) { |r, c| c.satisfy(r) }
     end
   end
 end

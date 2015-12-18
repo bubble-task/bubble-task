@@ -1,6 +1,5 @@
 module Criteria
   module Creatable
-
     module NilCondition
       module_function
 

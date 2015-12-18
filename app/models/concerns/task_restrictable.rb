@@ -2,7 +2,6 @@ module TaskRestrictable
   extend ActiveSupport::Concern
 
   class_methods do
-
     def restrict_by_complated
       where.not(completed_tasks: { id: nil })
     end
