@@ -43,6 +43,11 @@ a.button-collapse.top-nav {
     line-height: $line-height;
   }
 
+  i.updated {
+    color: $success-color;
+    font-weight: 900;
+  }
+
   li.active {
     background-color: transparent;
     border-right: 3px solid $primary-color;
