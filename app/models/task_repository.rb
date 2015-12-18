@@ -26,7 +26,6 @@ module TaskRepository
     def search_by_criteria(criteria)
       criteria.satisfy(
         Task.includes(:completed_task, :taggings)
-          .where.not(completed_tasks: { id: nil })
           .order('completed_tasks.completed_at')
       )
     end

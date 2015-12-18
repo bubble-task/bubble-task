@@ -3,6 +3,10 @@ module TaskRestrictable
 
   class_methods do
 
+    def restrict_by_complated
+      where.not(completed_tasks: { id: nil })
+    end
+
     def restrict_by_complated_after(datetime)
       where('completed_tasks.completed_at >= ?', datetime)
     end

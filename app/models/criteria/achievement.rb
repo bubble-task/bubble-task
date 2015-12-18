@@ -11,6 +11,7 @@ module Criteria
     end
 
     def satisfy(relation)
+      relation = relation.restrict_by_complated
       @conditions.reduce(relation) { |r, c| c.satisfy(r) }
     end
   end
