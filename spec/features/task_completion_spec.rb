@@ -18,6 +18,9 @@ describe 'タスクの完了', js: true do
   let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
   let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
 
+  let(:wait_completion) { find('#toast-container') }
+  let(:title_link) { first('.task-title') }
+
   describe 'タスクの作成直後' do
     it do
       visit root_path
@@ -29,16 +32,15 @@ describe 'タスクの完了', js: true do
     context '自分のタスク一覧画面で操作する場合' do
       before { visit root_path }
 
-      it '完了直後は対象タスクにチェックマークが入っている' do
+      it '完了直後はタスクが表示されたままでチェックマークが入っていること' do
         find(completed_checkbox_label_id, visible: false).click
-        find('#toast-container')
+        wait_completion
         expect(completed_checkbox).to be_checked
       end
 
-      it do
+      it '一覧画面に再度アクセスするとタスクが非表示になっていること' do
         find(completed_checkbox_label_id, visible: false).click
         visit root_path
-        title_link = first('.task-title')
         expect(title_link).to be_nil
       end
     end
@@ -46,16 +48,15 @@ describe 'タスクの完了', js: true do
     context 'タグのタスク一覧画面で操作する場合' do
       before { visit tasks_path(tag: tag) }
 
-      it do
+      it '完了直後はタスクが表示されたままでチェックマークが入っていること' do
         find(completed_checkbox_label_id, visible: false).click
-        find('#toast-container')
+        wait_completion
         expect(completed_checkbox).to be_checked
       end
 
-      it do
+      it '一覧画面に再度アクセスするとタスクが非表示になっていること' do
         find(completed_checkbox_label_id, visible: false).click
         visit tasks_path(tag: tag)
-        title_link = first('.task-title')
         expect(title_link).to be_nil
       end
     end
@@ -65,7 +66,7 @@ describe 'タスクの完了', js: true do
 
       it do
         find(completed_checkbox_label_id, visible: false).click
-        find('#toast-container')
+        wait_completion
         expect(completed_checkbox).to be_checked
       end
     end
