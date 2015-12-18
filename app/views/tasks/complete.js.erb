@@ -1,6 +1,7 @@
 Materialize.toast('<%= t('activemodel.messages.task_completion.success') %>', 3000, 'success');
+$('#achievements-nav-icon').addClass("updated");
 
-<% if from_show_task? -%>
+<% if from_show_task? %>
   $('#<%= task_css_id(@task.id) %>_completion_state').html('<%= j(render(partial: 'tasks/task_completion', locals: { task: @task })) %>');
 <% else -%>
   $('#<%= task_css_id(@task.id) %>').remove();
