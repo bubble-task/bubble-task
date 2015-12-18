@@ -2,10 +2,10 @@
 <%= content_for(:page_title, t('.page_title')) %>
 <div class="col s12">
   <div class="container-float-slim container-primary">
-    <%= render partial: 'search_form', locals: { command: @command } %>
+    <%= render partial: 'search_form', locals: { form: @form } %>
   </div>
   <div class="section-header section-header-default">
-    <%= render partial: 'result_header', locals: { size: @tasks.size, conditioned: @command.has_condition? } %>
+    <%= render partial: 'result_header', locals: { size: @tasks.size, conditioned: @form.has_condition? } %>
   </div>
   <div class="task-summary-list-primary">
     <% @tasks.each do |task| %>

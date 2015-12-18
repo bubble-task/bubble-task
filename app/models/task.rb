@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   include Removable
+  include TaskRestrictable
 
   NotDescribed = Class.new(StandardError)
 
