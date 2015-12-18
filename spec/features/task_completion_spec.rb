@@ -29,11 +29,10 @@ describe 'タスクの完了', js: true do
     context '自分のタスク一覧画面で操作する場合' do
       before { visit root_path }
 
-      it do
+      it '完了直後は対象タスクにチェックマークが入っている' do
         find(completed_checkbox_label_id, visible: false).click
         find('#toast-container')
-        title_link = first('.task-title')
-        expect(title_link).to be_nil
+        expect(completed_checkbox).to be_checked
       end
 
       it do
@@ -50,8 +49,7 @@ describe 'タスクの完了', js: true do
       it do
         find(completed_checkbox_label_id, visible: false).click
         find('#toast-container')
-        title_link = first('.task-title')
-        expect(title_link).to be_nil
+        expect(completed_checkbox).to be_checked
       end
 
       it do
