@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   include Removable
+  include TaskRestrictable
 
   NotDescribed = Class.new(StandardError)
 
@@ -13,18 +14,6 @@ class Task < ActiveRecord::Base
     task_description.try!(:apply_removed!)
     tag_collection.associate_with_task(self)
     apply_removed!
-  end
-
-  def self.restrict_by_complated_after(datetime)
-    where('completed_tasks.completed_at >= ?', datetime)
-  end
-
-  def self.restrict_by_complated_before(datetime)
-    where('completed_tasks.completed_at <= ?', datetime)
-  end
-
-  def self.restrict_by_author(author_id)
-    where(author_id: author_id)
   end
 
   def retitle(title)
