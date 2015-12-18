@@ -11,7 +11,7 @@ class AchievementCriteriaForm
 
   def criteria
     Criteria::Achievement.new do |c|
-      c.add_condition(Criteria::Achievement::Author.new(author_id))
+      c.add_condition(Criteria::Achievement::Author.create(author_id))
       c.add_condition(Criteria::Achievement::CompletedOnFrom.create(from_datetime))
       c.add_condition(Criteria::Achievement::CompletedOnTo.create(to_datetime))
     end
