@@ -3,11 +3,6 @@
   background-color: $primary-bg-color;
 }
 
-.task-title {
-  font-size: 1.3rem;
-  color: $primary-font-color;
-}
-
 .task-actions {
   @extend .right-align;
 
@@ -23,23 +18,31 @@
 
 .assign_myself {
   display: block;
-  margin-top: 0.3rem;
+  margin-top: 0.8rem;
+}
+
+.task-title {
+  font-size: 1.3rem;
+  color: $primary-font-color;
 }
 
 .task-summary {
-  padding: 1.0rem 1.4rem 0.8rem 1.4rem;
+  padding: 1.3rem 1.4rem 0.8rem 1.4rem;
 
-  .tags {
-    margin-bottom: 0.7rem;
+  .task-main {
+    margin-top: 1.0rem;
+    padding-left: 0.3rem;
   }
 
-  .task-title {
-    margin-left: 0.2rem;
-  }
+  .tags-avatars {
+    .tags {
+      @extend .left;
+      margin-right: 0.4rem;
+    }
 
-  .assignee-avatars {
-    margin-left: 0.2rem;
-    margin-top: 0.7rem;
+    .assignee-avatars {
+      padding-top: 0.1rem;
+    }
   }
 }
 
@@ -63,6 +66,10 @@
     margin: 1.5rem 0 1.5rem 0.2rem;
   }
 
+  .assignee-avatars {
+    margin-left: 0.2rem;
+  }
+
   .task-description {
     margin-top: 1rem;
     margin-left: 0.2rem;
@@ -72,14 +79,14 @@
 }
 
 .achievement {
-  padding: 1.0rem 1.4rem 1.0rem 1.4rem;
+  padding: 1.3rem 1.4rem 0.8rem 1.4rem;
 
   .tags {
     margin-bottom: 0.7rem;
   }
 
   .task-title {
-    margin-left: 0.2rem;
+    margin-left: 0.3rem;
   }
 }
 

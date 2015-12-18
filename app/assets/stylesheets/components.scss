@@ -35,9 +35,10 @@
 }
 
 .assignee {
+  $size: 30px;
   vertical-align: middle;
-  width: 28px;
-  height: 28px;
+  width: $size;
+  height: $size;
 }
 
 .task_creation_on_tags {
