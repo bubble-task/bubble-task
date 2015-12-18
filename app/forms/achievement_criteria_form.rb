@@ -3,6 +3,8 @@ class AchievementCriteriaForm
 
   attr_accessor :author_id, :from_date, :to_date
 
+  delegate :param_name, to: self
+
   def self.param_name
     :c
   end
@@ -17,10 +19,6 @@ class AchievementCriteriaForm
 
   def has_condition?
     from_date.present? || to_date.present?
-  end
-
-  def param_name
-    self.class.param_name
   end
 
   def from_datetime
