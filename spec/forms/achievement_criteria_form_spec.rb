@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AchievementSearch do
+describe AchievementCriteriaForm do
   describe '#has_condition?' do
     subject do
       described_class

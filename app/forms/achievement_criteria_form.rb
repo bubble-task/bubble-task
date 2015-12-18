@@ -3,6 +3,10 @@ class AchievementCriteriaForm
 
   attr_accessor :author_id, :from_date, :to_date
 
+  def self.param_name
+    :c
+  end
+
   def criteria
     self
   end
@@ -12,7 +16,7 @@ class AchievementCriteriaForm
   end
 
   def param_name
-    :q
+    self.class.param_name
   end
 
   def from_datetime

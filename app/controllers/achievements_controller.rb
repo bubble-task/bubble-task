@@ -10,6 +10,6 @@ class AchievementsController < ApplicationController
   private
 
     def form_params
-      params[:q] || {}
+      params[AchievementCriteriaForm.param_name] || {}
     end
 end
