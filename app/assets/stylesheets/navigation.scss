@@ -86,6 +86,10 @@ a.button-collapse.top-nav {
 
 .dropdown-side-nav {
   background-color: $secondary-color;
+
+  li > a {
+    line-height: $primary-height;
+  }
 }
 
 .page-navigation {
