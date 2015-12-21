@@ -17,13 +17,14 @@
     <% end -%>
   </li>
 </ul>
-<% unless task.assigned?(current_user) %>
+<% if task.assigned?(current_user) %>
+  <%= link_to assignment_url(task_id: task.id), method: :delete, class: 'cancel_assignment_myself tooltipped', data: { tooltip: t('helpers.actions.cancel_assignment_myself') } do %>
+    <i class="material-icons">account_circle</i>
+  <% end -%>
+<% else %>
   <%= link_to assignments_url(task_id: task.id), method: :post, remote: true, class: 'assign_myself tooltipped', data: { tooltip: t('helpers.actions.assign_myself') } do %>
     <i class="material-icons">account_circle</i>
   <% end -%>
-<% end -%>
-<%= link_to assignment_url(task_id: task.id), method: :delete, remote: true, class: 'cancel_assignment_myself tooltipped', data: { tooltip: t('helpers.actions.cancel_assignment_myself') } do %>
-  <i class="material-icons">account_circle</i>
 <% end -%>
 <div id="<%= task_deletion_modal_id %>" class="modal">
   <div class="modal-content">

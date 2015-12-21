@@ -1,9 +1,0 @@
-Materialize.toast('<%= t('activemodel.messages.task_cancellation_assignment.success') %>', 3000, 'success');
-
-<% css_id = task_css_id(@task.id) %>
-$('#<%= css_id %> .task-assignees').html('<%= j(render(partial: 'tasks/task_assignees', locals: { task: @task })) %>');
-
-// for Materialize
-$('#<%= css_id %> .dropdown-button').dropdown();
-$('#<%= css_id %> .modal-trigger').leanModal();
-$('.tooltipped').tooltip({delay: 0});

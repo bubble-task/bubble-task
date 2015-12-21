@@ -13,5 +13,6 @@ class AssignmentsController < ApplicationController
     command = TaskCancellationAssignment.new(task: task, assignee: current_user)
     command.run
     @task = TaskPresenter.new(task)
+    redirect_to task_url(@task), notice: I18n.t('activemodel.messages.task_cancellation_assignment.success')
   end
 end
