@@ -22,6 +22,9 @@
     <i class="material-icons">account_circle</i>
   <% end -%>
 <% end -%>
+<%= link_to assignment_url(task_id: task.id), method: :delete, remote: true, class: 'cancel_assignment_myself tooltipped', data: { tooltip: t('helpers.actions.cancel_assignment_myself') } do %>
+  <i class="material-icons">account_circle</i>
+<% end -%>
 <div id="<%= task_deletion_modal_id %>" class="modal">
   <div class="modal-content">
     <h5 class="danger"><i class="material-icons icon-heading">delete</i><%= t('activemodel.messages.task_deletion.confirm') %></h5>

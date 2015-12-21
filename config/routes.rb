@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get     'tags', to: 'tags#index', as: :tags
 
   post    'assignments/:task_id', to: 'assignments#create', as: :assignments
+  delete  'assignments/:task_id', to: 'assignments#destroy', as: :assignment
 
   get     'achievements', to: 'achievements#index', as: :achievements
 

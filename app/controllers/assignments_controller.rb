@@ -7,4 +7,11 @@ class AssignmentsController < ApplicationController
     command.run
     @task = TaskPresenter.new(task)
   end
+
+  def destroy
+    task = TaskRepository.find_by_id(params[:task_id])
+    command = TaskCancellationAssignment.new(task: task, assignee: current_user)
+    command.run
+    @task = TaskPresenter.new(task)
+  end
 end
