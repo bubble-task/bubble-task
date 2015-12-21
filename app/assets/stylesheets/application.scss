@@ -27,10 +27,11 @@ $primary-height: $navbar-height;
 @import "containers";
 @import "components";
 @import "form";
+@import "tags_input";
 @import "sign_in";
 @import "task";
-@import "tags_input";
 @import "tags";
+@import "achievements";
 
 html {
   color: $primary-font-color;
