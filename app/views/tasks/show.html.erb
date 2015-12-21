@@ -25,7 +25,7 @@
         <% end -%>
       </div>
       <div class="col s1 task-actions">
-        <%= render partial: 'tasks/task_actions', locals: { task: @task, remote: false } %>
+        <%= render partial: 'tasks/task_actions', locals: { task: @task, show_cancellation_assignment: true, remote: false } %>
       </div>
     </div>
   </div>

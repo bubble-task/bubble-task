@@ -24,4 +24,13 @@ describe 'タスクのアサインを解除' do
     cancel_assingment_link = first('.cancel_assignment_myself')
     expect(cancel_assingment_link).to be_nil
   end
+
+  it do
+    assignment = TaskAssignment.new(task: task, assignee: user)
+    assignment.run
+
+    visit root_path
+    cancel_assingment_link = first('.cancel_assignment_myself')
+    expect(cancel_assingment_link).to be_nil
+  end
 end
