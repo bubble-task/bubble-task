@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
 
   delegate :provider, :uid, to: :oauth_credential
 
-  def take_task(task, assignment_list)
-    assignment_list.add(Assignment.new(task: task, user: self))
+  def take_task(task)
+    Assignment.new(task: task, user: self)
   end
 
   def abandon_task(task, assignment_list)

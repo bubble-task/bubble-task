@@ -1,4 +1,6 @@
 class Assignment < ActiveRecord::Base
+  include Removable
+
   belongs_to :task
   belongs_to :user
 

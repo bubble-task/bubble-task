@@ -6,15 +6,20 @@ class AssignmentList < SimpleDelegator
 
   def add(assignment)
     return self if include?(assignment)
-    self.class.new(self + [assignment])
+    self.tap { |me| me << assignment }
   end
 
   def remove(assignment)
-    new_list = self.dup.tap { |me| me.delete(assignment) }
-    self.class.new(new_list)
+    self.tap do |me|
+      me.detect { |a| a == assignment }.remove!
+    end
+  end
+
+  def empty?
+    reject(&:removed?).empty?
   end
 
   def save
-    reject(&:persisted?).each(&:save)
+    each(&:save)
   end
 end
