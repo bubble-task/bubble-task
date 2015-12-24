@@ -15,13 +15,11 @@ class AssignmentList < SimpleDelegator
 
   def add(assignment)
     return self if include?(assignment)
-    self.tap { |me| me << assignment }
+    self << assignment
   end
 
   def remove(assignment)
-    self.tap do |me|
-      me.detect { |a| a == assignment }.remove!
-    end
+    self.detect { |a| a == assignment }.remove!
   end
 
   def empty?
