@@ -8,7 +8,10 @@ describe '複数のタスクを作成する' do
 
     def create_task_with_tags(title, tag_words)
       create_task_from_ui(title: title, tag_words: tag_words)
-      Task.last
+      task = Task.last
+      assignment = TaskAssignment.new(task: task, assignee: User.last)
+      assignment.run
+      task
     end
 
     def extract_tags(task_id)
@@ -18,6 +21,7 @@ describe '複数のタスクを作成する' do
     it do
       task1 = create_task_with_tags('タスク1のタイトル', common_tag)
       task2 = create_task_with_tags('タスク2のタイトル', common_tag)
+      visit root_path
 
       task1_tag_on_page = extract_tags(task1.id)
       task2_tag_on_page = extract_tags(task2.id)

@@ -57,7 +57,11 @@ describe 'タスク作成時にバリデーションをかける' do
 
     context '全て最大文字数以内で入力' do
       let(:tag_words) { "#{'a' * 8} #{'b' * 9}" }
-      it { is_expected.to have_link('タスクのタイトル') }
+      it do
+        subject
+        visit tasks_path(tag: 'a' * 8)
+        expect(page).to have_link('タスクのタイトル')
+      end
     end
 
     context '最大文字数+1を単独で入力' do

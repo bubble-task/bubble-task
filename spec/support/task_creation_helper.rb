@@ -16,8 +16,11 @@ module TaskCreationHelper
     click_button I18n.t('helpers.submit.update')
   end
 
-  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil)
+  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [])
     task = create_task_record(author_id: author_id, title: title, description: description, tags: tags)
+    assignees.each do |user|
+      TaskAssignment.new(task: task, assignee: user).run
+    end
     return task unless completed_at
     make_task_completion(task, completed_at)
   end
