@@ -32,6 +32,11 @@ describe PreviousUrlHelper do
       let(:previous_url) { edit_task_url(1) }
       it { is_expected.to eq(root_url) }
     end
+
+    context 'リファラがタスク詳細ページのURL' do
+      let(:previous_url) { task_url(1) }
+      it { is_expected.to eq(root_url) }
+    end
   end
 
   describe '#from_show_task?' do

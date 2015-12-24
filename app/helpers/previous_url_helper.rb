@@ -1,8 +1,12 @@
 module PreviousUrlHelper
   def previous_url_for_task
-    referrer = request.referrer
-    return root_url if from_path_match?(%r{/tasks/\d+/edit$}, referrer: referrer)
-    referrer
+    return root_url if from_show_task?
+    return root_url if from_edit_task?
+    request.referrer
+  end
+
+  def from_edit_task?
+    from_path_match?(%r{/tasks/\d+/edit$})
   end
 
   def from_show_task?
@@ -11,7 +15,7 @@ module PreviousUrlHelper
 
   private
 
-    def from_path_match?(regexp, referrer: request.referrer)
-      regexp.match(referrer).present?
+    def from_path_match?(regexp)
+      regexp.match(request.referrer).present?
     end
 end
