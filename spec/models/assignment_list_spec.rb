@@ -23,35 +23,10 @@ describe AssignmentList do
     end
   end
 
-  describe '#add' do
-    context '初めて追加する場合' do
-      it do
-        list.add(assignment)
-        expect(list).to eq([assignment])
-      end
-    end
-
-    context '2回目に追加する場合' do
-      it do
-        list.add(assignment)
-        list.add(assignment)
-        expect(list).to eq([assignment])
-      end
-    end
-  end
-
   describe '#remove_assignee' do
     it do
       list.add_assignee(user.id)
       list.remove_assignee(user.id)
-      expect(list).to be_empty
-    end
-  end
-
-  describe '#remove' do
-    it do
-      list.add(assignment)
-      list.remove(assignment)
       expect(list).to be_empty
     end
   end
