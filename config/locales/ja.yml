@@ -141,6 +141,7 @@ ja:
       edit: 編集する
       remove: 削除する
       assign_myself: 自分をアサインする
+      cancel_assignment_myself: アサインを解除する
     navigations:
       back: もどる
   sessions:

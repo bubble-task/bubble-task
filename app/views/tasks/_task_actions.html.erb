@@ -17,7 +17,13 @@
     <% end -%>
   </li>
 </ul>
-<% unless task.assigned?(current_user) %>
+<% if task.assigned?(current_user) %>
+  <% if show_cancellation_assignment %>
+    <%= link_to assignment_url(task_id: task.id), method: :delete, class: 'cancel_assignment_myself tooltipped', data: { tooltip: t('helpers.actions.cancel_assignment_myself') } do %>
+      <i class="material-icons">remove_circle</i>
+    <% end -%>
+  <% end -%>
+<% else %>
   <%= link_to assignments_url(task_id: task.id), method: :post, remote: true, class: 'assign_myself tooltipped', data: { tooltip: t('helpers.actions.assign_myself') } do %>
     <i class="material-icons">account_circle</i>
   <% end -%>
