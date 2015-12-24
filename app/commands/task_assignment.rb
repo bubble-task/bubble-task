@@ -6,13 +6,8 @@ class TaskAssignment
   end
 
   def run
-    new_assignment_list = @assignee.take_task(@task, current_assignment_list)
-    new_assignment_list.save
+    assignment_list = AssignmentRepository.for_task(@task.id)
+    assignment_list.add_assignee(@assignee.id)
+    assignment_list.save
   end
-
-  private
-
-    def current_assignment_list
-      AssignmentRepository.for_user(@assignee.id)
-    end
 end

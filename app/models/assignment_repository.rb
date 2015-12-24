@@ -1,7 +1,7 @@
 module AssignmentRepository
   module_function
 
-  def for_user(user_id)
-    AssignmentList.new(Assignment.where(user_id: user_id))
+  def for_task(task_id)
+    AssignmentList.new(task_id, Assignment.where(task_id: task_id))
   end
 end
