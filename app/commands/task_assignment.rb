@@ -6,8 +6,8 @@ class TaskAssignment
   end
 
   def run
-    assignment_list = AssignmentRepository.for_user(@assignee.id)
-    assignment_list.add(@assignee.take_task(@task))
+    assignment_list = AssignmentRepository.for_task(@task.id)
+    assignment_list.add_assignee(@assignee.id)
     assignment_list.save
   end
 end
