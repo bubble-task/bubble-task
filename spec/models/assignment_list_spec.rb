@@ -40,6 +40,14 @@ describe AssignmentList do
     end
   end
 
+  describe '#remove_assignee' do
+    it do
+      list.add_assignee(user.id)
+      list.remove_assignee(user.id)
+      expect(list).to be_empty
+    end
+  end
+
   describe '#remove' do
     it do
       list.add(assignment)

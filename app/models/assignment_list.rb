@@ -9,6 +9,10 @@ class AssignmentList < SimpleDelegator
     add(Assignment.new(task_id: @task_id, user_id: user_id))
   end
 
+  def remove_assignee(user_id)
+    remove(Assignment.new(task_id: @task_id, user_id: user_id))
+  end
+
   def add(assignment)
     return self if include?(assignment)
     self.tap { |me| me << assignment }
@@ -25,6 +29,11 @@ class AssignmentList < SimpleDelegator
   end
 
   def save
-    each(&:save)
+    ActiveRecord::Base.transaction do
+      each do |assignment|
+        assignment.destroy! if assignment.removed?
+        assignment.save!
+      end
+    end
   end
 end
