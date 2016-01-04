@@ -4,7 +4,7 @@
 <% end -%>
 <ul id="task-actions-<%= task.id -%>" class="dropdown-content">
   <li>
-    <%= link_to edit_task_url(task.id), data: { no_turbolink: true } do %>
+    <%= link_to edit_task_url(task.id), data: { no_turbolink: true }, class: 'task-editing-link' do %>
       <%= t('helpers.actions.edit') %>
       <i class="material-icons left">edit</i>
     <% end -%>
