@@ -32,6 +32,8 @@ describe 'タスクを作成する' do
   context 'タグを付加する場合' do
     before do
       create_task_from_ui(title: title, tag_words: tag_words)
+      TaskAssignment.new(task: Task.last, assignee: User.last).run
+      visit root_path
     end
 
     context '全て違うタグを入力する' do

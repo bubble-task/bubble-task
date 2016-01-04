@@ -13,8 +13,7 @@ describe 'タスクのアサインを解除' do
   let(:tag) { 'タグ' }
 
   it do
-    assignment = TaskAssignment.new(task: task, assignee: user)
-    assignment.run
+    TaskAssignment.new(task: task, assignee: user).run
 
     visit task_path(task.id)
     find('.cancel_assignment_myself').click
@@ -26,8 +25,7 @@ describe 'タスクのアサインを解除' do
   end
 
   it do
-    assignment = TaskAssignment.new(task: task, assignee: user)
-    assignment.run
+    TaskAssignment.new(task: task, assignee: user).run
 
     visit root_path
     cancel_assingment_link = first('.cancel_assignment_myself')

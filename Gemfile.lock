@@ -45,6 +45,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    bullet (4.14.10)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (8.0.0)
     capybara (2.5.0)
       mime-types (>= 1.16)
@@ -101,7 +104,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     material_icons (1.0.0)
-    materialize-sass (0.97.3)
+    materialize-sass (0.97.5)
       sass (~> 3.3)
     mime-types (2.6.2)
     mini_portile (0.6.2)
@@ -243,6 +246,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
+    uniform_notifier (1.9.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -258,6 +262,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bullet
   byebug
   capybara
   coffee-rails (~> 4.1.0)

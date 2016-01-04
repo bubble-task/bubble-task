@@ -9,7 +9,7 @@ describe 'タスク編集時にバリデーションをかける' do
   let(:user) { create_user_from_oauth_credential(auth_hash) }
   let(:auth_hash) { generate_auth_hash }
 
-  let(:task) { create_task(author_id: user.id, title: old_title, description: old_description, tags: old_tags) }
+  let(:task) { create_task(author_id: user.id, title: old_title, description: old_description, tags: old_tags, assignees: [user]) }
   let(:old_title) { '編集前のタイトル' }
   let(:old_description) { '編集前の説明' }
   let(:old_tags) { %w(タグ1 タグ2) }

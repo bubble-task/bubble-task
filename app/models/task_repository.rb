@@ -6,9 +6,9 @@ module TaskRepository
         .find_by(id: task_id)
     end
 
-    def all_uncompleted_by_author_id(author_id)
+    def all_uncompleted_by_assignee(user_id)
       Task.includes(:completed_task, :taggings, { assignments: :user })
-        .where(author_id: author_id)
+        .where('(assignments.user_id = ? AND taggings.id IS NOT NULL) OR (tasks.author_id = ? AND taggings.id IS NULL)', user_id, user_id)
         .where(completed_tasks: { id: nil })
         .order('tasks.id')
     end

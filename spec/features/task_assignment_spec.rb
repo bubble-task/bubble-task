@@ -14,8 +14,8 @@ describe 'タスクのアサイン', js: true do
   let(:assign_link_css_path) { '.assign_myself' }
   let(:assignee_avatar) { find(".assignee_#{user.id}") }
 
-  describe '自分のタスク一覧から操作する' do
-    before { visit root_path }
+  describe 'タグのタスク一覧から操作する' do
+    before { visit tasks_path(tag: tag) }
 
     it do
       find(assign_link_css_path).trigger('click')
@@ -38,8 +38,7 @@ describe 'タスクのアサイン', js: true do
     let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@emai.l')) }
 
     it do
-      command = TaskAssignment.new(task: task, assignee: other_user)
-      command.run
+      TaskAssignment.new(task: task, assignee: other_user).run
 
       find(assign_link_css_path).trigger('click')
       expect(assignee_avatar).to_not be_nil
@@ -48,15 +47,6 @@ describe 'タスクのアサイン', js: true do
 
   describe 'タスク詳細から操作する' do
     before { visit task_path(task) }
-
-    it do
-      find(assign_link_css_path).trigger('click')
-      expect(assignee_avatar).to_not be_nil
-    end
-  end
-
-  describe 'タグのタスク一覧から操作する' do
-    before { visit tasks_path(tag: tag) }
 
     it do
       find(assign_link_css_path).trigger('click')
