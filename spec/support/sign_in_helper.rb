@@ -13,6 +13,10 @@ module SignInHelper
     visit oauth_callbacks_path(provider: provider)
   end
 
+  def request_sign_in_as(user)
+    request_oauth_sign_in(auth_hash: retrieve_auth_hash(user))
+  end
+
   def request_oauth_sign_in(auth_hash: nil, provider: :google)
     credential = prepare_oauth_sign_in(auth_hash)
     setup_omniauth_mock(provider, credential)

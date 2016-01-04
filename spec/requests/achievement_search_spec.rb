@@ -2,20 +2,18 @@ require 'rails_helper'
 
 describe 'GET /achievements' do
   before do
-    user
-    request_oauth_sign_in(auth_hash: auth_hash)
+    request_sign_in_as(user)
     expected_tasks
     unexpected_tasks
     other_users_task
   end
 
-  let(:user) { create_user_from_oauth_credential(auth_hash) }
-  let(:auth_hash) { generate_auth_hash }
+  let(:user) { create_user_from_oauth_credential }
 
   let(:uncompleted_task) { create_task(author_id: user.id, title: '未完了タスク') }
 
   let(:other_users_task) do
-    other_user = create_user_from_oauth_credential(generate_auth_hash)
+    other_user = create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com'))
     create_task(author_id: other_user.id, title: '他ユーザのタスク')
   end
 
