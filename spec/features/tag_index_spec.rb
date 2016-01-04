@@ -1,12 +1,7 @@
 require 'rails_helper'
 
 describe 'タグの一覧画面' do
-  before do
-    create_user_from_oauth_credential(auth_hash)
-    oauth_sign_in(auth_hash: auth_hash)
-  end
-
-  let(:auth_hash) { generate_auth_hash }
+  before { oauth_sign_in }
 
   let(:tags) { all('.tag').map(&:text) }
 

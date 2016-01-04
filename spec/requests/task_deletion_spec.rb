@@ -2,13 +2,11 @@ require 'rails_helper'
 
 describe 'DELETE /tasks/:id' do
   before do
-    user
-    request_oauth_sign_in(auth_hash: auth_hash)
+    request_sign_in_as(user)
     task
   end
 
-  let(:user) { create_user_from_oauth_credential(auth_hash) }
-  let(:auth_hash) { generate_auth_hash }
+  let(:user) { create_user_from_oauth_credential }
 
   let(:task) { create_task(author_id: user.id, title: title, description: '説明') }
   let(:title) { 'タスクのタイトル' }

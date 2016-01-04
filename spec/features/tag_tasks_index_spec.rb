@@ -2,12 +2,10 @@ require 'rails_helper'
 
 describe 'タスクのタグからタグに紐づくタスクの一覧ページを表示する' do
   before do
-    user
-    oauth_sign_in(auth_hash: auth_hash)
+    sign_in_as(user)
   end
 
-  let(:user) { create_user_from_oauth_credential(auth_hash) }
-  let(:auth_hash) { generate_auth_hash }
+  let(:user) { create_user_from_oauth_credential }
 
   def task_summary_by_order(order)
     index = order - 1

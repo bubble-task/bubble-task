@@ -2,12 +2,10 @@ require 'rails_helper'
 
 describe 'タスク編集時にバリデーションをかける' do
   before do
-    user
-    oauth_sign_in(auth_hash: auth_hash)
+    sign_in_as(user)
   end
 
-  let(:user) { create_user_from_oauth_credential(auth_hash) }
-  let(:auth_hash) { generate_auth_hash }
+  let(:user) { create_user_from_oauth_credential }
 
   let(:task) { create_task(author_id: user.id, title: old_title, description: old_description, tags: old_tags, assignees: [user]) }
   let(:old_title) { '編集前のタイトル' }
