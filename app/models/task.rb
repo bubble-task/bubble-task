@@ -11,7 +11,7 @@ class Task < ActiveRecord::Base
   has_many :assignees, through: :assignments, source: :user
 
   before_save do
-    task_description.try!(:apply_removed!)
+    task_description&.apply_removed!
     tag_collection.associate_with_task(self)
     apply_removed!
   end
@@ -30,11 +30,11 @@ class Task < ActiveRecord::Base
   end
 
   def remove_description
-    self.task_description.try!(:remove!)
+    self.task_description&.remove!
   end
 
   def description
-    task_description.try!(:content)
+    task_description&.content
   end
 
   def tagging_by(tags)
