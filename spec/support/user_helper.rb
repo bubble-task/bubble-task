@@ -16,6 +16,18 @@ module UserHelper
     }
   end
 
+  def retrieve_auth_hash(user)
+    oauth_credential = user.oauth_credential
+    {
+      'provider' => oauth_credential.provider,
+      'uid' => oauth_credential.uid,
+      'info' => {
+        'email' => user.email,
+        'name' => user.name
+      }
+    }
+  end
+
   def generate_uid
     (1..16).to_a.shuffle.join
   end

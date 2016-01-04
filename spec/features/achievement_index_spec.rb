@@ -2,13 +2,11 @@ require 'rails_helper'
 
 describe '完了したタスクの一覧' do
   before do
-    user
-    oauth_sign_in(auth_hash: auth_hash)
+    sign_in_as(user)
     task
   end
 
-  let(:user) { create_user_from_oauth_credential(auth_hash) }
-  let(:auth_hash) { generate_auth_hash }
+  let(:user) { create_user_from_oauth_credential }
 
   let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: %w(タグ)) }
   let(:title_on_page) { first('.task-title') }

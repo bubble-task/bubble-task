@@ -3,6 +3,10 @@ require_relative './user_helper'
 module SignInHelper
   include UserHelper
 
+  def sign_in_as(user)
+    oauth_sign_in(auth_hash: retrieve_auth_hash(user))
+  end
+
   def oauth_sign_in(auth_hash: nil, provider: :google)
     credential = prepare_oauth_sign_in(auth_hash)
     setup_omniauth_mock(provider, credential)
