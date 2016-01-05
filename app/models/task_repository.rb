@@ -24,7 +24,7 @@ module TaskRepository
     end
 
     def search_by_criteria(criteria)
-      criteria.satisfy(Task.includes(:completed_task, :taggings))
+      criteria.satisfy(Task.includes(:completed_task, :taggings, :assignments))
     end
   end
 end

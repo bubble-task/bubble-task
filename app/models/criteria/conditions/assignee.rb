@@ -1,10 +1,10 @@
 module Criteria
   module Conditions
-    Author = Struct.new(:id) do
+    Assignee = Struct.new(:id) do
       extend Creatable
 
       def satisfy(relation)
-        relation.restrict_by_author(id)
+        relation.restrict_by_assignee(id)
       end
     end
   end
