@@ -65,8 +65,12 @@ describe Task do
 
   describe '削除する' do
     it do
+      task.tagging_by(%w(タグ))
+      task.write_description('タスクの説明')
       task.remove!
       expect(task).to be_removed
+      expect(task.description).to be_nil
+      expect(task.tags).to be_empty
     end
   end
 
