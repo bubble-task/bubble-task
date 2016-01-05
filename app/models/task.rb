@@ -56,6 +56,7 @@ class Task < ActiveRecord::Base
 
   def remove!
     tag_collection.remove_all!
+    remove_description
     super
   end
 
