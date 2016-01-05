@@ -5,7 +5,7 @@ describe 'GET /achievements' do
     request_sign_in_as(assignee)
     expected_tasks
     unexpected_tasks
-    other_users_task
+    other_users_completed_task
   end
 
   let(:task_author) { create_user_from_oauth_credential(generate_auth_hash(email: 'task@auth.or')) }
@@ -14,9 +14,9 @@ describe 'GET /achievements' do
 
   let(:uncompleted_task) { create_task(author_id: task_author.id, title: '未完了タスク', assignees: [assignee]) }
 
-  let(:other_users_task) do
+  let(:other_users_completed_task) do
     other_user = create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com'))
-    create_task(author_id: other_user.id, title: '他ユーザのタスク', assignees: [other_user])
+    create_task(author_id: other_user.id, title: '他ユーザのタスク', completed_at: :now, assignees: [other_user])
   end
 
   context '期間を指定しない' do
