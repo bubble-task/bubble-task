@@ -98,7 +98,7 @@ describe 'GET /achievements' do
     end
   end
 
-  context '検索結果は並び順' do
+  context '検索結果は完了日時の昇順' do
     let(:unexpected_tasks) { [uncompleted_task] }
 
     let(:expected_tasks) { [task2, task3, task1] }
