@@ -1,16 +1,12 @@
 module Removable
-  extend ActiveSupport::Concern
+  attr_reader :removed
+  alias_method :removed?, :removed
 
-  included do
-    attr_reader :removed
-    alias_method :removed?, :removed
+  def remove!
+    @removed = true
+  end
 
-    def remove!
-      @removed = true
-    end
-
-    def apply_removed!
-      destroy! if @removed
-    end
+  def apply_removed!
+    destroy! if @removed
   end
 end
