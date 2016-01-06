@@ -10,8 +10,6 @@ module Criteria
       def satisfy(relation)
         tags = TaskParameters.tags_from(tag_words)
         relation
-          .except(:select)
-          .select('tasks.*')
           .where(taggings: { tag: tags })
           .group('tasks.id')
           .having("COUNT(tasks.id) = #{tags.size}")
