@@ -12,7 +12,7 @@ module Criteria
     end
 
     def satisfy(relation)
-      prepared_relation = @conditions.inject(RelationWrapper.new(relation)) { |r, c| c.prepare(r)  }.prepare
+      prepared_relation = @conditions.inject(RelationWrapper.new(relation)) { |r, c| c.prepare(r) }.prepare
       satisfied_task_ids = @conditions.inject(prepared_relation.select('tasks.id')) { |r, c| c.satisfy(r) }
       Task
         .joins(:completed_task)
