@@ -15,7 +15,7 @@ module TaskRestrictable
     end
 
     def restrict_by_assignee(assignee_id)
-      where('assignments.user_id = ?', assignee_id)
+      where(assignments: { user_id: assignee_id })
     end
 
     def restrict_by_tag(tag)

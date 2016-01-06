@@ -15,6 +15,9 @@
     <div class="col s3">
       <%= f.date_field :to_date, class: 'datepicker', data: { value: form.to_date } %>
     </div>
+    <div class="col s7">
+      <%= f.text_field :tag_words %>
+    </div>
     <div class="col s3 actions">
       <button class="waves-effect waves-light btn-flat" type="submit">
         <%= t('achievements.index.actions.search') %>
