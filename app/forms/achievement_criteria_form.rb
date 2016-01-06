@@ -1,7 +1,7 @@
 class AchievementCriteriaForm
   include ActiveModel::Model
 
-  attr_accessor :assignee_id, :from_date, :to_date
+  attr_accessor :assignee_id, :from_date, :to_date, :tags
 
   delegate :param_name, to: self
 
@@ -14,6 +14,7 @@ class AchievementCriteriaForm
       c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
       c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_datetime))
       c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_datetime))
+      c.add_condition(Criteria::Conditions::Tag.create(tags))
     end
   end
 
