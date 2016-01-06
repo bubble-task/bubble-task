@@ -14,8 +14,8 @@ module TaskRestrictable
       where('completed_tasks.completed_at <= ?', datetime)
     end
 
-    def restrict_by_author(author_id)
-      where(author_id: author_id)
+    def restrict_by_assignee(assignee_id)
+      where('assignments.user_id = ?', assignee_id)
     end
   end
 end
