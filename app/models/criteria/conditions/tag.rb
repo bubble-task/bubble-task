@@ -8,7 +8,7 @@ module Criteria
       end
 
       def satisfy(relation)
-        relation.where(taggings: { tag: tag })
+        relation.restrict_by_tag(tag)
       end
     end
   end
