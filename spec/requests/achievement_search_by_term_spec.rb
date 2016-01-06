@@ -9,14 +9,13 @@ describe 'GET /achievements' do
   end
 
   let(:task_author) { create_user_from_oauth_credential(generate_auth_hash(email: 'task@auth.or')) }
-
   let(:assignee) { create_user_from_oauth_credential }
-
   let(:uncompleted_task) { create_task(author_id: task_author.id, title: '未完了タスク', assignees: [assignee]) }
 
   let(:other_users_completed_task) do
-    other_user = create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com'))
-    create_task(author_id: other_user.id, title: '他ユーザのタスク', completed_at: :now, assignees: [other_user])
+    create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com')) do |u|
+      create_task(author_id: u.id, title: '他ユーザのタスク', completed_at: :now, assignees: [u])
+    end
   end
 
   context '期間を指定しない' do
