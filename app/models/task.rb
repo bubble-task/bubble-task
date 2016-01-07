@@ -10,6 +10,8 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :assignees, through: :assignments, source: :user
 
+  delegate :completed_at, to: :completed_task
+
   before_save do
     task_description&.apply_removed!
     tag_collection.associate_with_task(self)

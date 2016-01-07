@@ -1,13 +1,11 @@
 form.achievement-search {
-  height: $primary-height + 2;
-  line-height: $primary-height;
+  margin-top: 0.5rem;
 
-  .label {
-    opacity: 0.8;
+  #task_tag_words_tag {
+    margin-bottom: 0.5rem;
   }
 
-  input {
-    height: 2rem;
-    margin-bottom: 0;
+  .actions {
+    margin-top: 1.6rem;
   }
 }

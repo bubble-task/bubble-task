@@ -3,6 +3,10 @@ module Criteria
     module NilCondition
       module_function
 
+      def prepare(relation)
+        relation
+      end
+
       def satisfy(relation)
         relation
       end

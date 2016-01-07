@@ -21,6 +21,8 @@
 
 
 $(document).on('ready page:load', function() {
+  setupDatepicker();
+
   $('.task_completion').change(function() {
     $(this).parent().submit();
   });
@@ -32,6 +34,5 @@ $(document).on('ready page:load', function() {
 $(document).on('page:change', function() {
   setupMaterialize()
     .then(function() { setupForm(); })
-    .then(function() { setupTagsInput(); })
-    .then(function() { setupDatepicker(); });
+    .then(function() { setupTagsInput(); });
 });
