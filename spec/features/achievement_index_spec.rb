@@ -27,7 +27,8 @@ describe '完了したタスクの一覧' do
 
     it '完了日付が表示されていること' do
       completed_on = first('.task-completed-on').text
-      expect(completed_on).to eq(I18n.l(task.completed_task.completed_at.to_date, format: :default))
+      expected_completed_on = I18n.l(task.reload.completed_task.completed_at.to_date, format: :default)
+      expect(completed_on).to eq(expected_completed_on)
     end
   end
 

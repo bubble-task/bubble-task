@@ -54,6 +54,6 @@ class TasksController < ApplicationController
 
   def cancel_completion
     task = Task.find(params[:id])
-    task.completed_task.destroy
+    TaskCancellationCompletion.new(task).run
   end
 end
