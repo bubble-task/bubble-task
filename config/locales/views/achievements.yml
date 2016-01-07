@@ -9,5 +9,5 @@ ja:
         term: '期間'
         tags: 'タグ'
       actions:
-        search: '絞り込む'
+        search: '検索'
         reset: '解除'

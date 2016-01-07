@@ -1,5 +1,8 @@
+$tags-input-top-margin: 0.45rem;
+
 #task_tag_words_tag {
   height: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .tag-words-guide {
@@ -9,7 +12,7 @@
 }
 
 label.tags-input.active {
-  top: 0.2rem;
+  top: 0.80rem;
 }
 
 div.for-tags-input {
@@ -18,7 +21,7 @@ div.for-tags-input {
 
 div.tagsinput {
   // Adjust
-  margin: 0 0 30px 3rem;
+  margin: $tags-input-top-margin 0 0 3rem;
   width: calc(100% - 3rem);
 
   // jquery tags inut
@@ -37,6 +40,8 @@ div.tagsinput input {
   border: 0;
   outline: none;
   background: transparent;
+
+  margin-top: $tags-input-top-margin;
 }
 
 @mixin tag-in-input {
@@ -45,8 +50,8 @@ div.tagsinput input {
   line-height: 2rem;
   padding: 0 12px;
 
+  margin-top: $tags-input-top-margin;
   margin-right: 5px;
-  margin-bottom: 5px;
 }
 
 div.tagsinput span.tag {
