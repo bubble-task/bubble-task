@@ -34,7 +34,10 @@ describe 'GET /achievements' do
 
   context 'タグを1つ指定する場合' do
     let(:unexpected_tasks) do
-      [create_task(author_id: task_author.id, title: 'a', tags: ['指定しないタグ'], completed_at: :now, assignees: [assignee])]
+      [
+        uncompleted_task,
+        create_task(author_id: task_author.id, title: 'a', tags: ['指定しないタグ'], completed_at: :now, assignees: [assignee])
+      ]
     end
 
     let(:expected_tasks) do
@@ -51,6 +54,7 @@ describe 'GET /achievements' do
   context 'タグを2つ指定する場合' do
     let(:unexpected_tasks) do
       [
+        uncompleted_task,
         create_task(author_id: task_author.id, title: '1', tags: %w(タグA), completed_at: :now, assignees: [assignee]),
         create_task(author_id: task_author.id, title: '2', tags: %w(タグB), completed_at: :now, assignees: [assignee]),
         create_task(author_id: task_author.id, title: '3', tags: %w(タグB タグC), completed_at: :now, assignees: [assignee]),
