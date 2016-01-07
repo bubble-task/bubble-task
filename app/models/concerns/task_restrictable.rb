@@ -18,8 +18,10 @@ module TaskRestrictable
       where(assignments: { user_id: assignee_id })
     end
 
-    def restrict_by_tag(tag)
-      where(taggings: { tag: tag })
+    def restrict_by_tags(tags)
+      where(taggings: { tag: tags })
+        .group('tasks.id')
+        .having("COUNT(tasks.id) = #{tags.size}")
     end
   end
 end
