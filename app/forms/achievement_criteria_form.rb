@@ -19,7 +19,7 @@ class AchievementCriteriaForm
   end
 
   def has_condition?
-    from_date.present? || to_date.present?
+    from_date.present? || to_date.present? || tag_words.present?
   end
 
   def from_datetime
