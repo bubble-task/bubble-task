@@ -51,4 +51,9 @@ class TasksController < ApplicationController
       f.js { render 'destroy' }
     end
   end
+
+  def cancel_completion
+    task = Task.find(params[:id])
+    task.completed_task.destroy
+  end
 end
