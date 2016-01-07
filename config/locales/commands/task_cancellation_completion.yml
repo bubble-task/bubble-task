@@ -1,0 +1,5 @@
+ja:
+  activemodel:
+    messages:
+      task_cancellation_completion:
+        success: 'タスクを未完了にしました'
