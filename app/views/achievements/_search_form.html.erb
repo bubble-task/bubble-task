@@ -15,6 +15,14 @@
     <div class="col s3">
       <%= f.date_field :to_date, class: 'datepicker', data: { value: form.to_date } %>
     </div>
+  </div>
+  <div class="row row-no-margin">
+    <div class="col s2">
+      <span class="label">
+        <i class="material-icons">local_offer</i>
+        <%= t('achievements.index.conditions.tags') %>
+      </span>
+    </div>
     <div class="col s7">
       <%= f.text_field :tag_words %>
     </div>

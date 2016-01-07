@@ -7,6 +7,7 @@ ja:
       result_header_empty: '完了したタスクはありません'
       conditions:
         term: '期間'
+        tags: 'タグ'
       actions:
         search: '絞り込む'
         reset: '解除'
