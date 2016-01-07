@@ -1,5 +1,5 @@
 module Criteria
-  class RelationWrapper
+  class RelationPreparer
 
     def initialize(relation)
       @relation = relation
@@ -12,7 +12,7 @@ module Criteria
       self
     end
 
-    def prepare
+    def relation
       return @relation.joins(*@additionals) if @use_joins
       @relation.includes(*@additionals)
     end
