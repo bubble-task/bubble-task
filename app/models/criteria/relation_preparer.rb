@@ -4,7 +4,7 @@ module Criteria
     def initialize(relation)
       @relation = relation
       @use_joins = false
-      @additionals = %i(completed_task assignments taggings)
+      @associations = %i(completed_task assignments taggings)
     end
 
     def use_joins
@@ -13,8 +13,8 @@ module Criteria
     end
 
     def relation
-      return @relation.joins(*@additionals) if @use_joins
-      @relation.includes(*@additionals)
+      return @relation.joins(*@associations).preload(*@associations) if @use_joins
+      @relation.includes(*@associations)
     end
   end
 end
