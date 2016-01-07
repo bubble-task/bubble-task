@@ -8,10 +8,10 @@ module Criteria
 
     def add_condition(condition)
       @conditions << condition
-      @conditions.flatten!
     end
 
     def satisfy(relation)
+      @conditions.flatten!
       prepared_relation = @conditions.inject(relation) { |r, c| c.prepare(r) }.relation
       default_relation = prepared_relation.restrict_by_complated
       tasks = @conditions.inject(default_relation) { |r, c| c.satisfy(r) }
