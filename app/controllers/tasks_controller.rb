@@ -53,7 +53,8 @@ class TasksController < ApplicationController
   end
 
   def cancel_completion
-    task = Task.find(params[:id])
-    TaskCancellationCompletion.new(task).run
+    @task = TaskPresenter.new(Task.find(params[:id]))
+    TaskCancellationCompletion.new(@task).run
+    redirect_to task_url(@task), notice: I18n.t('activemodel.messages.task_cancellation_completion.success')
   end
 end

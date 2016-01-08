@@ -1,7 +1,12 @@
 <% task_completion_checkbox_id = "task_#{task.id}_completion_check" %>
 <% task_completion_label_id = "task_#{task.id}_completion_mark" %>
-<% action_url = task.completed? ? cancel_completion_task_url(task) : complete_task_url(task) %>
-<%= form_for(task.completion_command, url: action_url, method: :put, remote: true) do |f| %>
-  <input type="checkbox" id="<%= task_completion_checkbox_id %>" class="task_completion" <%= task.completion_checkbox_state %> />
-  <label id="<%= task_completion_label_id %>" for="<%= task_completion_checkbox_id %>"></label>
-<% end %>
+<% if task.completed? -%>
+  <%= link_to cancel_completion_task_url(task), method: :put, class: 'cancel-completion', data: { tooltip: t('helpers.actions.cancel_assignment_myself') } do %>
+    <i class="material-icons">done</i>
+  <% end -%>
+<% else -%>
+  <%= form_for(task.completion_command, url: complete_task_url(task), method: :put, remote: true) do |f| %>
+    <input type="checkbox" id="<%= task_completion_checkbox_id %>" class="task_completion" <%= task.completion_checkbox_state %> />
+    <label id="<%= task_completion_label_id %>" for="<%= task_completion_checkbox_id %>"></label>
+  <% end -%>
+<% end -%>

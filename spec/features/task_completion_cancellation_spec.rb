@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'タスクの完了のキャンセル', js: true do
+describe 'タスクの完了のキャンセル' do
   before do
     sign_in_as(user)
     task
@@ -18,20 +18,7 @@ describe 'タスクの完了のキャンセル', js: true do
 
   it do
     visit task_path(task)
-    find(completed_checkbox_label_id, visible: false).click
-    wait_completion
+    first('.cancel-completion').click
     expect(completed_checkbox).to_not be_checked
-
-    visit task_path(task)
-    expect(completed_checkbox).to_not be_checked
-  end
-
-  it do
-    visit task_path(task)
-    find(completed_checkbox_label_id, visible: false).click
-    wait_completion
-
-    visit root_path
-    expect(title_on_page).to eq(title)
   end
 end
