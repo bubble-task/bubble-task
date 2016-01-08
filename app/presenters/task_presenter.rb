@@ -42,7 +42,7 @@ class TaskPresenter < SimpleDelegator
   end
 
   def completion_checkbox_state
-    return %(checked="checked").html_safe if completed?
+    return %(checked="checked" disabled="disabled").html_safe if completed?
     nil
   end
 end

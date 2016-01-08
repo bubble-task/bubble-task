@@ -65,8 +65,7 @@ describe 'タスクの完了', js: true do
       it do
         find(completed_checkbox_label_id, visible: false).click
         wait_completion
-        check_mark = first('.cancel-completion')
-        expect(check_mark).to_not be_nil
+        expect(completed_checkbox).to be_checked
       end
     end
   end
