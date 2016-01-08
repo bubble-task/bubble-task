@@ -62,10 +62,11 @@ describe 'タスクの完了', js: true do
     context 'タスク詳細画面で操作する場合' do
       before { visit task_path(task.id) }
 
-      skip do
+      it do
         find(completed_checkbox_label_id, visible: false).click
         wait_completion
-        expect(completed_checkbox).to be_checked
+        check_mark = first('.cancel-completion')
+        expect(check_mark).to_not be_nil
       end
     end
   end
