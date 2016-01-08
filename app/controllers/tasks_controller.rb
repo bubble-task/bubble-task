@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  include PathFilter
+
   before_action :authorize!
 
   def index
@@ -51,4 +53,16 @@ class TasksController < ApplicationController
       f.js { render 'destroy' }
     end
   end
+
+  def cancel_completion
+    @task = TaskPresenter.new(Task.find(params[:id]))
+    TaskCancellationCompletion.new(@task).run
+    redirect_to filter_for_achievement(referer_path), notice: I18n.t('activemodel.messages.task_cancellation_completion.success')
+  end
+
+  private
+
+    def referer_path
+      "#{URI(request.referer).path}?#{URI(request.referer).query}"
+    end
 end

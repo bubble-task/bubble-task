@@ -15,6 +15,7 @@ class Task < ActiveRecord::Base
   before_save do
     task_description&.apply_removed!
     tag_collection.associate_with_task(self)
+    completed_task&.apply_removed!
     apply_removed!
   end
 
@@ -53,13 +54,18 @@ class Task < ActiveRecord::Base
   end
 
   def completed?
-    completed_task
+    return false unless completed_task
+    !completed_task.removed?
   end
 
   def remove!
     tag_collection.remove_all!
     remove_description
     super
+  end
+
+  def cancel_completion
+    completed_task.remove!
   end
 
   private

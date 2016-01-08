@@ -15,6 +15,11 @@ $success-color: color("green", "base") !default;
 $error-color: color("red", "darken-2") !default;
 $link-color: $secondary-color !default;
 
+/*** Turbolinks Progress Bar ***/
+html.turbolinks-progress-bar::before {
+  background-color: $success-color !important;
+}
+
 /*** Body ***/
 body { background-color: $bottom-color; }
 

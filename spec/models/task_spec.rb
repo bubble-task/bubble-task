@@ -77,4 +77,12 @@ describe Task do
   describe 'デフォルトでは削除されていない状態' do
     it { expect(task).to_not be_removed }
   end
+
+  describe '完了を取り消す' do
+    it do
+      task.complete
+      task.cancel_completion
+      expect(task).to_not be_completed
+    end
+  end
 end

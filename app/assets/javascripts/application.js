@@ -19,6 +19,7 @@
 //= require turbolinks
 //= require_tree .
 
+Turbolinks.enableProgressBar();
 
 $(document).on('ready page:load', function() {
   setupDatepicker();

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :tasks do
     member do
       put 'complete'
+      put 'cancel_completion'
     end
   end
 

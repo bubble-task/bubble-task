@@ -3,7 +3,12 @@
     <div class="col s2">
       <span class="task-completed-on"><%= l(task.completed_on, format: :default) %></span>
     </div>
-    <div class="col s10">
+    <div class="col s1">
+      <%= link_to cancel_completion_task_url(task), method: :put, class: 'cancel-completion', data: { tooltip: t('helpers.actions.cancel_assignment_myself') } do %>
+        <i class="material-icons">done</i>
+      <% end -%>
+    </div>
+    <div class="col s9">
       <%= render partial: 'tasks/task_tags', locals: { tags: task.tags } %>
       <%= link_to task.title, task_url(task), class: 'task-title' %>
     </div>
