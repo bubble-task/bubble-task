@@ -9,3 +9,16 @@ form.achievement-search {
     margin-top: 1.6rem;
   }
 }
+
+.cancel-completion {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-right: 1.0rem;
+}
+
+.task-completed-on {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: 700;
+  opacity: 0.4;
+}
