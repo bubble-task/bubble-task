@@ -2,26 +2,30 @@ require 'rails_helper'
 
 describe 'GET /achievements' do
   before do
-    request_sign_in_as(assignee)
+    request_sign_in_as(assignee_a)
     expected_tasks
     unexpected_tasks
   end
 
-  let(:assignee) { create_user_from_oauth_credential }
+  let(:assignee_a) { create_user_from_oauth_credential }
+  let(:assignee_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com')) }
 
-  context '' do
+  context '完了日時とタグを指定する場合' do
     let(:expected_tasks) do
-      [create_task(author_id: assignee.id, title: 'タスクA', tags: %w(タグA タグB), completed_at: '2016-01-01', assignees: [assignee])]
+      [
+        create_task(author_id: assignee_a.id, title: 'タスク1', tags: %w(タグA タグB), completed_at: '2016-01-01', assignees: [assignee_a]),
+        create_task(author_id: assignee_a.id, title: 'タスク2', tags: %w(タグA タグB タグC), completed_at: '2016-01-02', assignees: [assignee_b]),
+      ]
     end
 
     let(:unexpected_tasks) do
       [
-        create_task(author_id: assignee.id, title: 'タスクB', tags: %w(タグA タグB), completed_at: '2015-12-30', assignees: [assignee]),
-        create_task(author_id: assignee.id, title: 'タスクC', tags: %w(タグA タグB), completed_at: '2016-01-03', assignees: [assignee]),
-        create_task(author_id: assignee.id, title: 'タスクD', completed_at: '2016-01-01', assignees: [assignee]),
-        create_task(author_id: assignee.id, title: 'タスクE', tags: %w(タグA タグC), completed_at: '2016-01-01', assignees: [assignee]),
-        create_task(author_id: assignee.id, title: 'タスクF', tags: %w(タグA), completed_at: '2016-01-01', assignees: [assignee]),
-        create_task(author_id: assignee.id, title: 'タスクG', tags: %w(タグC), completed_at: '2016-01-01', assignees: [assignee]),
+        create_task(author_id: assignee_a.id, title: 'タスク3', tags: %w(タグA タグB), completed_at: '2015-12-30', assignees: [assignee_a]),
+        create_task(author_id: assignee_a.id, title: 'タスク4', tags: %w(タグA タグB), completed_at: '2016-01-03', assignees: [assignee_a]),
+        create_task(author_id: assignee_a.id, title: 'タスク5', completed_at: '2016-01-01', assignees: [assignee_a]),
+        create_task(author_id: assignee_a.id, title: 'タスク6', tags: %w(タグA タグC), completed_at: '2016-01-01', assignees: [assignee_b]),
+        create_task(author_id: assignee_a.id, title: 'タスク7', tags: %w(タグA), completed_at: '2016-01-01', assignees: [assignee_b]),
+        create_task(author_id: assignee_a.id, title: 'タスク8', tags: %w(タグC), completed_at: '2016-01-01', assignees: [assignee_b]),
       ]
     end
 
