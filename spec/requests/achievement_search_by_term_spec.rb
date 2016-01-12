@@ -26,7 +26,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: nil })
+      get achievements_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -47,7 +47,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: '2015-12-01', to_date: nil })
+      get achievements_path(c: { from_date: '2015-12-01', to_date: nil, is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -68,7 +68,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: '2015-11-30' })
+      get achievements_path(c: { from_date: nil, to_date: '2015-11-30', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -91,7 +91,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: '2015-12-01', to_date: '2015-12-31' })
+      get achievements_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -108,7 +108,7 @@ describe 'GET /achievements' do
     let(:task3) { create_task(author_id: task_author.id, title: '3', completed_at: '2015-12-05', assignees: [assignee]) }
 
     it do
-      get achievements_path(c: { from_date: '2015-12-01', to_date: '2015-12-31' })
+      get achievements_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_ordered_tasks)
     end

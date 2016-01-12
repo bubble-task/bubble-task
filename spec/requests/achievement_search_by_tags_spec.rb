@@ -26,7 +26,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: nil })
+      get achievements_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -45,7 +45,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: nil, tag_words: '指定するタグ' })
+      get achievements_path(c: { from_date: nil, to_date: nil, tag_words: '指定するタグ', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -66,7 +66,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: nil, tag_words: 'タグA タグB' })
+      get achievements_path(c: { from_date: nil, to_date: nil, tag_words: 'タグA タグB', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
