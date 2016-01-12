@@ -10,6 +10,6 @@ class AchievementsController < ApplicationController
   private
 
     def form_params
-      params[AchievementCriteriaForm.param_name] || { is_signed_up_only: '1' }
+      params[AchievementCriteriaForm.param_name] || {}
     end
 end
