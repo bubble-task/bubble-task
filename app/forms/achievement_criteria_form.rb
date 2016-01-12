@@ -1,7 +1,7 @@
 class AchievementCriteriaForm
   include ActiveModel::Model
 
-  attr_accessor :assignee_id, :from_date, :to_date, :tag_words
+  attr_accessor :assignee_id, :from_date, :to_date, :tag_words, :is_signed_up_only
 
   delegate :param_name, to: self
 
@@ -11,7 +11,9 @@ class AchievementCriteriaForm
 
   def criteria
     Criteria::Achievement.new do |c|
-      c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
+      if is_signed_up_only.present?
+        c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
+      end
       c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_datetime))
       c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_datetime))
       c.add_condition(Criteria::Conditions::Tags.create(tag_words))
