@@ -10,15 +10,13 @@ class AchievementCriteriaForm
   end
 
   def initialize(params)
-    params[:is_signed_up_only] = true if params[:is_signed_up_only].nil?
+    params[:is_signed_up_only] = '1' if params[:is_signed_up_only].nil?
     super(params)
   end
 
   def criteria
     Criteria::Achievement.new do |c|
-      if is_signed_up_only.present?
-        c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
-      end
+      signed_up_only? && c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
       c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_datetime))
       c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_datetime))
       c.add_condition(Criteria::Conditions::Tags.create(tag_words))
@@ -38,4 +36,10 @@ class AchievementCriteriaForm
     return nil if to_date.blank?
     Time.zone.parse(to_date).end_of_day
   end
+
+  private
+
+    def signed_up_only?
+      is_signed_up_only == '1'
+    end
 end

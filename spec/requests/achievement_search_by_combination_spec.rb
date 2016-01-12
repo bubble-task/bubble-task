@@ -30,7 +30,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: '2015-12-31', to_date: '2016-01-02', tag_words: 'タグA タグB' })
+      get achievements_path(c: { from_date: '2015-12-31', to_date: '2016-01-02', tag_words: 'タグA タグB', is_signed_up_only: '0' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
