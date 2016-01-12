@@ -5,12 +5,14 @@ class AchievementCriteriaForm
 
   delegate :param_name, to: self
 
+  TRUE_VALUE = '1'.freeze
+
   def self.param_name
     :c
   end
 
   def initialize(params)
-    params[:is_signed_up_only] = '1' if params[:is_signed_up_only].nil?
+    params[:is_signed_up_only] = TRUE_VALUE if params[:is_signed_up_only].nil?
     super(params)
   end
 
@@ -40,6 +42,6 @@ class AchievementCriteriaForm
   private
 
     def signed_up_only?
-      is_signed_up_only == '1'
+      is_signed_up_only == TRUE_VALUE
     end
 end
