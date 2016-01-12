@@ -21,4 +21,13 @@ describe 'タスクの詳細画面から戻る' do
       expect(current_path).to eq(root_path)
     end
   end
+
+  context 'タグのタスク一覧から遷移した場合' do
+    it do
+      visit tasks_path(tag: tag)
+      task_title.click
+      back_link.click
+      expect(current_url).to include(tasks_path(tag: tag))
+    end
+  end
 end
