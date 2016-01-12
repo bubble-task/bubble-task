@@ -9,6 +9,11 @@ class AchievementCriteriaForm
     :c
   end
 
+  def initialize(params)
+    params[:is_signed_up_only] = true if params[:is_signed_up_only].nil?
+    super(params)
+  end
+
   def criteria
     Criteria::Achievement.new do |c|
       if is_signed_up_only.present?
