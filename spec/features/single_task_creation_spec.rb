@@ -2,8 +2,10 @@ require 'rails_helper'
 
 describe 'タスクを作成する' do
   before do
-    oauth_sign_in
+    sign_in_as(user)
   end
+
+  let(:user) { create_user_from_oauth_credential }
 
   let(:title) { 'タスクのタイトル' }
   let(:description) { 'タスクの説明' }
@@ -70,6 +72,21 @@ describe 'タスクを作成する' do
       create_task_from_ui(title: title)
       click_link(title)
       expect(tags_on_page).to eq %w(個人タスク)
+    end
+  end
+
+  context '作成と同時にサインアップする場合', js: true do
+    let(:assignee_avatar) { find(".assignee_#{user.id}") }
+
+    it do
+      visit new_task_path
+      fill_in 'task_parameters[tag_words]', with: 'タグ1'
+      fill_in 'task_parameters[title]', with: title
+      find('#task_parameters_with_sign_up_label', visible: false).click
+      click_button '作成する'
+
+      expect(title_on_page).to eq(title)
+      expect(assignee_avatar).to_not be_nil
     end
   end
 

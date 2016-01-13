@@ -20,6 +20,8 @@
         <%= f.label :description %>
         <%= f.text_area :description, class: 'materialize-textarea' %>
       </div>
+      <%= f.check_box :with_sign_up, class: 'filled-in' %>
+      <%= f.label :with_sign_up, id: 'task_parameters_with_sign_up_label' %>
       <div class="actions">
         <button class="waves-effect waves-light btn-flat" type="submit" name="action">
           <%= t('helpers.submit.create') %>
