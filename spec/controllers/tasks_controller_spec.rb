@@ -19,7 +19,7 @@ describe TasksController do
   end
 
   describe '#create' do
-    subject { post :create }
+    subject { post :create, { task_parameters: {} } }
 
     context 'ログインしていない場合' do
       it { is_expected.to redirect_to(new_session_url) }
