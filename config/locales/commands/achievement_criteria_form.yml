@@ -5,3 +5,4 @@ ja:
         from_date: この日から
         to_date: この日まで
         tag_words: タグ
+        is_signed_up_only: 自分がサインアップしたタスクのみ

@@ -2,17 +2,23 @@
   <div class="row row-no-margin">
     <div class="col s12">
       <div class="row row-no-margin">
-        <div class="col s2 input-field">
+        <div class="col s4 input-field">
           <i class="material-icons prefix">access_time</i>
           <%= f.label :from_date %>
           <%= f.date_field :from_date, class: 'datepicker', data: { value: form.from_date } %>
         </div>
-        <div class="col s2 input-field">
+        <div class="col s4 input-field">
           <i class="material-icons prefix">access_time</i>
           <%= f.label :to_date %>
           <%= f.date_field :to_date, class: 'datepicker', data: { value: form.to_date } %>
         </div>
-        <div class="col s6 input-field">
+        <div class="col s4 input-field">
+          <%= f.check_box :is_signed_up_only, class: 'filled-in' %>
+          <%= f.label :is_signed_up_only %>
+        </div>
+      </div>
+      <div class="row row-no-margin">
+        <div class="col s10 input-field">
           <i class="material-icons prefix">local_offer</i>
           <%= f.label :tag_words, class: 'tags-input' %>
           <%= f.text_field :tag_words, placeholder: t('tasks.new.tag_words_guide'), id: 'task_tag_words' %>
