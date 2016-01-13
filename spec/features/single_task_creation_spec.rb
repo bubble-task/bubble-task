@@ -79,12 +79,7 @@ describe 'タスクを作成する' do
     let(:assignee_avatar) { find(".assignee_#{user.id}") }
 
     it do
-      visit new_task_path
-      fill_in 'task_parameters[tag_words]', with: 'タグ1'
-      fill_in 'task_parameters[title]', with: title
-      find('#task_parameters_with_sign_up_label', visible: false).click
-      click_button '作成する'
-
+      create_task_from_ui(title: title, tag_words: 'タグ1', with_sign_up: true)
       expect(title_on_page).to eq(title)
       expect(assignee_avatar).to_not be_nil
     end
