@@ -2,7 +2,7 @@ class AchievementsController < ApplicationController
   before_action :authorize!
 
   def index
-    @form = AchievementCriteriaForm.new(form_params.merge(assignee_id: current_user.id))
+    @form = AchievementCriteriaForm.new(current_user.id, form_params)
     tasks = TaskRepository.search_by_criteria(@form.criteria)
     @tasks = tasks.map { |t| TaskPresenter.new(t) }
   end

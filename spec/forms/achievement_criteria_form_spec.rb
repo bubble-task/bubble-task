@@ -1,34 +1,46 @@
 require 'rails_helper'
 
 describe AchievementCriteriaForm do
-  describe '#has_condition?' do
+  describe '#has_additional_condition?' do
     subject do
       described_class
-        .new(from_date: from_date, to_date: to_date)
-        .has_condition?
+        .new(1, conditions)
+        .has_additional_condition?
+    end
+
+    let(:base_conditions) do
+      { from_date: nil, to_date: nil, tag_words: nil, is_signed_up_only: '1' }
     end
 
     context 'given from_date' do
-      let(:from_date) { '2015-01-23' }
-      let(:to_date) { nil }
+      let(:conditions) { base_conditions.merge(from_date: '2015-01-23') }
       it { is_expected.to be_truthy }
     end
 
     context 'given to_date' do
-      let(:from_date) { nil }
-      let(:to_date) { '2015-01-23' }
+      let(:conditions) { base_conditions.merge(to_date: '2015-01-23') }
       it { is_expected.to be_truthy }
     end
 
-    context 'given from_date and to_date' do
-      let(:from_date) { '2015-01-23' }
-      let(:to_date) { '2015-02-12' }
+    context 'given tag_words' do
+      let(:conditions) { base_conditions.merge(tag_words: 'aaa bbb ccc') }
+      it { is_expected.to be_truthy }
+    end
+
+    context 'given is_signed_up_only' do
+      let(:conditions) { base_conditions.merge(is_signed_up_only: '0') }
+      it { is_expected.to be_truthy }
+    end
+
+    context 'given all additional conditions' do
+      let(:conditions) do
+        { from_date: '2015-01-23', to_date: '2015-03-21', tag_words: 'aaa', is_signed_up_only: '0' }
+      end
       it { is_expected.to be_truthy }
     end
 
     context 'NOT given any params' do
-      let(:from_date) { nil }
-      let(:to_date) { nil }
+      let(:conditions) { base_conditions }
       it { is_expected.to be_falsey }
     end
   end

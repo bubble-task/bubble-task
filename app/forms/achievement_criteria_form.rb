@@ -1,7 +1,7 @@
 class AchievementCriteriaForm
   include ActiveModel::Model
 
-  attr_accessor :assignee_id, :from_date, :to_date, :tag_words, :is_signed_up_only
+  attr_accessor :from_date, :to_date, :tag_words, :is_signed_up_only
 
   delegate :param_name, to: self
 
@@ -11,22 +11,23 @@ class AchievementCriteriaForm
     :c
   end
 
-  def initialize(params)
-    params[:is_signed_up_only] = TRUE_VALUE if params[:is_signed_up_only].nil?
+  def initialize(assignee_id, params)
+    @assignee_id = assignee_id
+    fill_is_signed_up_only(params)
     super(params)
   end
 
   def criteria
     Criteria::Achievement.new do |c|
-      signed_up_only? && c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
+      signed_up_only? && c.add_condition(Criteria::Conditions::Assignee.create(@assignee_id))
       c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_datetime))
       c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_datetime))
       c.add_condition(Criteria::Conditions::Tags.create(tag_words))
     end
   end
 
-  def has_condition?
-    from_date.present? || to_date.present? || tag_words.present?
+  def has_additional_condition?
+    from_date.present? || to_date.present? || tag_words.present? || !signed_up_only?
   end
 
   def from_datetime
@@ -40,6 +41,10 @@ class AchievementCriteriaForm
   end
 
   private
+
+    def fill_is_signed_up_only(params)
+      params[:is_signed_up_only] = TRUE_VALUE if params[:is_signed_up_only].nil?
+    end
 
     def signed_up_only?
       is_signed_up_only == TRUE_VALUE
