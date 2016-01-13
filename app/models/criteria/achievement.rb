@@ -1,6 +1,15 @@
 module Criteria
   class Achievement
 
+    def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil)
+      Criteria::Achievement.new do |c|
+        c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
+        c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
+        c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
+        c.add_condition(Criteria::Conditions::Tags.create(tag_words))
+      end
+    end
+
     def initialize
       @conditions = []
       yield(self) if block_given?
