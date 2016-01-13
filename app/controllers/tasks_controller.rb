@@ -15,14 +15,15 @@ class TasksController < ApplicationController
   end
 
   def new
-    @command = TaskCreation.new(tag_words: params[:tag])
+    @form = TaskCreationForm.new(tag_words: params[:tag])
   end
 
   def create
-    @command = TaskCreation.new(params[:task_parameters])
-    if @command.run(current_user)
+    command = TaskCreation.new(TaskCreationForm.new(params[:task_parameters]))
+    if command.run(current_user)
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_creation.success')
     else
+      @form = command.form
       render :new
     end
   end
