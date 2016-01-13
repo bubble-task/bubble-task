@@ -18,12 +18,12 @@ class AchievementCriteriaForm
   end
 
   def criteria
-    Criteria::Achievement.new do |c|
-      signed_up_only? && c.add_condition(Criteria::Conditions::Assignee.create(@assignee_id))
-      c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_datetime))
-      c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_datetime))
-      c.add_condition(Criteria::Conditions::Tags.create(tag_words))
-    end
+    Criteria::Achievement.create(
+      assignee_id: signed_up_only? && @assignee_id,
+      from_date: from_datetime,
+      to_date: to_datetime,
+      tag_words: tag_words,
+    )
   end
 
   def has_additional_condition?
