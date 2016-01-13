@@ -90,6 +90,17 @@ describe 'タスクを作成する' do
     end
   end
 
+  context '作成と同時にサインアップをしない場合' do
+    let(:assignee_avatar) { first(".assignee_#{user.id}") }
+
+    it do
+      create_task_from_ui(title: title, tag_words: 'タグ1')
+      visit tasks_path(tag: 'タグ1')
+      expect(title_on_page).to eq(title)
+      expect(assignee_avatar).to be_nil
+    end
+  end
+
   context 'タグのタスク一覧画面から作成する' do
     before do
       task
