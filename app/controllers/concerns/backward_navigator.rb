@@ -1,16 +1,14 @@
 class BackwardNavigator
   STORE_KEY = 'backward_path'.freeze
 
-  def initialize(storage, backable_paths = [RequestPath.new('/')])
+  def initialize(storage, backable_paths = ['/'])
     @storage = storage
-    @storage[STORE_KEY] = backable_paths.first
     @backable_paths = backable_paths
+    initialize_storage
   end
 
   def update_backward_path(path)
-    if backable_path?(path)
-      @storage[STORE_KEY] = path
-    end
+    @storage[STORE_KEY] = path
   end
 
   def backward_path
@@ -19,7 +17,9 @@ class BackwardNavigator
 
   private
 
-    def backable_path?(candidate)
-      @backable_paths.detect { |p| p.match?(candidate) }
+    def initialize_storage
+      unless @storage.has_key?(STORE_KEY)
+        @storage[STORE_KEY] = @backable_paths.first
+      end
     end
 end

@@ -1,4 +1,5 @@
 RequestPath = Struct.new(:origin, :path, :query) do
+  alias_method :to_s, :origin
 
   def initialize(origin)
     path, query = parse_as_uri(origin)
