@@ -1,6 +1,6 @@
 <% css_id = task_css_id(@task.id) %>
 $('#<%= css_id %> .task-assignees').html('<%= j(render(partial: 'tasks/task_assignees', locals: { task: @task })) %>');
-$('#<%= css_id %> .task-actions').html('<%= j(render(partial: 'tasks/task_actions', locals: { task: @task, show_cancellation_assignment: true, remote: false })) %>');
+$('#<%= css_id %> .task-actions').html('<%= j(render(partial: 'tasks/task_actions', locals: { task: @task, cancel_sign_up_available: true, remote: false })) %>');
 
 // for Materialize
 $('#<%= css_id %> .dropdown-button').dropdown();
