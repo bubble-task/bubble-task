@@ -12,12 +12,12 @@ describe 'タスクのアサインを解除' do
   let(:tag) { 'タグ' }
 
   let(:cancel_sign_up_link) { first('.cancel_sign_up') }
-  let(:assigned_avatar) { first(".assignee_#{user.id}") }
+  let(:assignee_avatar) { first(".assignee_#{user.id}") }
 
   it do
     visit task_path(task.id)
     find('.cancel_sign_up').click
-    expect(assigned_avatar).to be_nil
+    expect(assignee_avatar).to be_nil
     expect(cancel_sign_up_link).to be_nil
   end
 
