@@ -39,5 +39,15 @@ describe 'タスクの作成画面から戻る' do
       back_link.click
       expect(current_url).to include(tasks_path(tag: tag))
     end
+
+    context 'エラーになった場合' do
+      it do
+        visit tasks_path(tag: tag)
+        task_creation_link.click
+        create_task_from_ui_without_visit(title: nil)
+        back_link.click
+        expect(current_url).to include(tasks_path(tag: tag))
+      end
+    end
   end
 end
