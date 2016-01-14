@@ -22,6 +22,11 @@ describe BackwardNavigator, type: :model do
         it { is_expected.to eq('/tasks') }
       end
 
+      context 'visit /tasks?tag=ABC' do
+        let(:current_path) { '/tasks?tag=ABC' }
+        it { is_expected.to eq(current_path) }
+      end
+
       context 'visit /tasks/new' do
         let(:current_path) { '/tasks/new' }
         it { is_expected.to eq('/') }

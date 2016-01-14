@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  before_action :update_backward_path
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -11,7 +13,11 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
-  helper_method :current_user, :signed_in?
+  def backward_path
+    backward_navigator.backward_path
+  end
+
+  helper_method :current_user, :signed_in?, :backward_path
 
   protected
 
@@ -21,5 +27,16 @@ class ApplicationController < ActionController::Base
 
     def sign_in(user)
       SessionManager.sign_in(session, user)
+    end
+
+    def update_backward_path
+      return unless request.get?
+      backward_navigator.update_backward_path(request.fullpath)
+    end
+
+  private
+
+    def backward_navigator
+      @backward_navigator ||= BackwardNavigator.new(session, %w(/ /tasks))
     end
 end

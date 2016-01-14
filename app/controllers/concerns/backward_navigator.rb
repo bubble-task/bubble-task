@@ -2,9 +2,9 @@ class BackwardNavigator
   STORE_KEY = 'backward_path'.freeze
 
   def initialize(storage, backable_paths = ['/'])
-    @backable_paths = backable_paths
     @storage = storage
-    @storage[STORE_KEY] = default_backward_path
+    @storage[STORE_KEY] = backable_paths.first
+    @backable_paths_for_matching = backable_paths.sort_by(&:size).reverse
   end
 
   def update_backward_path(path)
@@ -20,10 +20,16 @@ class BackwardNavigator
   private
 
     def backable_path?(path)
-      @backable_paths.include?(path)
+      if path.include?('?')
+        match_with_query?(path)
+      else
+        @backable_paths_for_matching.include?(path)
+      end
     end
 
-    def default_backward_path
-      @backable_paths.first
+    def match_with_query?(path)
+      @backable_paths_for_matching.detect do |backable_path|
+        path =~ /#{backable_path}/
+      end
     end
 end

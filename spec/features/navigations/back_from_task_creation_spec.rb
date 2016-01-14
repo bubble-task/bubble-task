@@ -25,7 +25,7 @@ describe 'タスクの作成画面から戻る' do
       it do
         visit root_path
         task_creation_link.click
-        create_task_from_ui_without_visit(title: '')
+        create_task_from_ui_without_visit(title: nil)
         back_link.click
         expect(current_path).to eq(root_path)
       end
