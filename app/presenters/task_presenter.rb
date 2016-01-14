@@ -32,7 +32,7 @@ class TaskPresenter < SimpleDelegator
     TaskCompletion.new(task_id: id)
   end
 
-  def assigned?(user)
+  def signed_up?(user)
     assignees.include?(user)
   end
 
