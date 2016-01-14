@@ -1,4 +1,22 @@
 class BackwardNavigator
+  class << self
+
+    def detect_backward_path(current_path, referer_path)
+      return current_path unless referer_path
+      return referer_path if backable_path?(referer_path)
+      current_path
+    end
+
+    def backable_path?(path_as_string)
+      candidate = RequestPath.new(path_as_string)
+      @backable_paths.one? { |p| p.match?(candidate) }
+    end
+
+    def register_backable_paths(paths)
+      @backable_paths = paths.map { |p| RequestPath.new(p) }
+    end
+  end
+
   STORE_KEY = 'backward_path'.freeze
 
   def initialize(storage, backable_paths = ['/'])

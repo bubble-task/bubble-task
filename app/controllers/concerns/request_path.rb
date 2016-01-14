@@ -1,17 +1,11 @@
-RequestPath = Struct.new(:origin, :path, :query) do
-  alias_method :to_s, :origin
+RequestPath = Struct.new(:path, :query) do
 
   def initialize(origin)
-    path, query = parse_as_uri(origin)
-    super(origin, path, query)
+    super(*parse_as_uri(origin))
   end
 
   def match?(other)
-    if other.has_query?
-      self.path == other.path
-    else
-      self.origin == other.origin
-    end
+    self.path == other.path
   end
 
   def has_query?

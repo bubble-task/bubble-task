@@ -28,7 +28,9 @@ class ApplicationController < ActionController::Base
     end
 
     def update_backward_path
-      backward_navigator.update_backward_path(request.fullpath)
+      backward_navigator.update_backward_path(
+        BackwardNavigator.detect_backward_path(request.fullpath, request.referer)
+      )
     end
 
   private

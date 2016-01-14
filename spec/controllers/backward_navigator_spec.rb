@@ -1,6 +1,49 @@
 require 'rails_helper'
 
 describe BackwardNavigator, type: :model do
+  describe '.detect_backward_path' do
+    context 'register "/" and "/tasks" as backable_paths' do
+      before do
+        described_class.register_backable_paths(%w(/ /tasks))
+      end
+
+      context 'current is backable referer is nil' do
+        it do
+          r = described_class.detect_backward_path('/tasks', nil)
+          expect(r).to eq('/tasks')
+        end
+      end
+
+      context 'current == referer' do
+        it do
+          r = described_class.detect_backward_path('/tasks', '/tasks')
+          expect(r).to eq('/tasks')
+        end
+      end
+
+      context 'current is backable referer is NOT backable"' do
+        it do
+          r = described_class.detect_backward_path('/tasks', '/tasks/123')
+          expect(r).to eq('/tasks')
+        end
+      end
+
+      context 'current is backable referer is other backable' do
+        it do
+          r = described_class.detect_backward_path('/', '/tasks')
+          expect(r).to eq('/tasks')
+        end
+      end
+
+      context 'current is backable referer is other backable with QUERY_STRING' do
+        it do
+          r = described_class.detect_backward_path('/', '/tasks?tag=ABC')
+          expect(r).to eq('/tasks?tag=ABC')
+        end
+      end
+    end
+  end
+
   describe '#backward_path' do
     let(:navigator) { described_class.new(storage) }
 
