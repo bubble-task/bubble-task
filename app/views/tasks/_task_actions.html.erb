@@ -24,7 +24,7 @@
     <% end -%>
   <% end -%>
 <% else %>
-  <%= link_to assignments_url(task_id: task.id), method: :post, remote: true, class: 'assign_myself tooltipped', data: { tooltip: t('helpers.actions.assign_myself') } do %>
+  <%= link_to assignments_url(task_id: task.id), method: :post, remote: true, class: 'assign_myself tooltipped', data: { tooltip: t('helpers.actions.sign_up') } do %>
     <i class="material-icons">account_circle</i>
   <% end -%>
 <% end -%>
