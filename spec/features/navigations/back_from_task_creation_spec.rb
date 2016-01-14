@@ -21,7 +21,7 @@ describe 'タスクの作成画面から戻る' do
       expect(current_path).to eq(root_path)
     end
 
-    skip 'エラーになった場合' do
+    context 'エラーになった場合' do
       it do
         visit root_path
         task_creation_link.click

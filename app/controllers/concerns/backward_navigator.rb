@@ -1,29 +1,29 @@
-BackwardNavigator = Struct.new(:backward_path) do
-  class << self
+class BackwardNavigator
+  STORE_KEY = 'backward_path'.freeze
 
-    def register_backable_paths(paths)
-      @backward_paths = paths
+  def initialize(storage, backable_paths = ['/'])
+    @backable_paths = backable_paths
+    @storage = storage
+    @storage[STORE_KEY] = default_backward_path
+  end
+
+  def update_backward_path(path)
+    if backable_path?(path)
+      @storage[STORE_KEY] = path
     end
+  end
 
-    def backward_paths
-      @backward_paths ||= ['/']
-    end
+  def backward_path
+    @storage[STORE_KEY]
+  end
 
-    def registered_backable_path?(path)
-      backward_paths.include?(path)
+  private
+
+    def backable_path?(path)
+      @backable_paths.include?(path)
     end
 
     def default_backward_path
-      backward_paths.first
+      @backable_paths.first
     end
-
-    def update_backable_path(path)
-      backable_path = if registered_backable_path?(path)
-                        path
-                      else
-                        default_backward_path
-                      end
-      new(backable_path)
-    end
-  end
 end
