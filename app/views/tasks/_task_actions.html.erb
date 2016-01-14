@@ -18,7 +18,7 @@
   </li>
 </ul>
 <% if task.assigned?(current_user) %>
-  <% if show_cancellation_assignment %>
+  <% if cancel_sign_up_available %>
     <%= link_to assignment_url(task_id: task.id), method: :delete, class: 'cancel_sign_up tooltipped', data: { tooltip: t('helpers.actions.cancel_sign_up') } do %>
       <i class="material-icons">remove_circle</i>
     <% end -%>
