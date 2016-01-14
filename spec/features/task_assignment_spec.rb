@@ -29,8 +29,8 @@ describe 'タスクのアサイン', js: true do
     it do
       find(sign_up_link_css_path).trigger('click')
       find(".assignee_#{user.id}")
-      assign_link = first(sign_up_link_css_path)
-      expect(assign_link).to be_nil
+      sign_up_link = first(sign_up_link_css_path)
+      expect(sign_up_link).to be_nil
     end
 
     let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@emai.l')) }
