@@ -17,7 +17,7 @@ $link-color: $secondary-color !default;
 
 /*** Turbolinks Progress Bar ***/
 html.turbolinks-progress-bar::before {
-  background-color: $success-color !important;
+  background-color: $primary-bg-color !important;
 }
 
 /*** Body ***/
