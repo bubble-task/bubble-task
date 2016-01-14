@@ -9,7 +9,7 @@ describe 'タスクのアサイン', js: true do
   let(:user) { create_user_from_oauth_credential }
   let(:task) { create_task(author_id: user.id, title: 'タスクのタイトル', tags: [tag]) }
   let(:tag) { 'タグ' }
-  let(:assign_link_css_path) { '.assign_myself' }
+  let(:assign_link_css_path) { '.sign_up' }
   let(:assignee_avatar) { find(".assignee_#{user.id}") }
 
   describe 'タグのタスク一覧から操作する' do

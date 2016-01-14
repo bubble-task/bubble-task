@@ -27,7 +27,7 @@ $(document).on('ready page:load', function() {
   $('.task_completion').change(function() {
     $(this).parent().submit();
   });
-  $('.assign_myself').on('ajax:beforeSend', function() {
+  $('.sign_up').on('ajax:beforeSend', function() {
     $(this).tooltip('remove');
   });
 });
