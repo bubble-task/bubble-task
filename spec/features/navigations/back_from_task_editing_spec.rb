@@ -13,19 +13,22 @@ describe 'タスクの編集画面から戻る' do
   let(:task_editing_link) { first('.task-editing-link', visible: false) }
   let(:back_link) { first('.back-link') }
 
+  let(:invoke_validation_error) { update_task_from_ui_without_visit(title: 'a' * 100) }
+
   context 'ホーム画面から遷移した場合' do
-    it do
+    before do
       visit root_path
       task_editing_link.click
+    end
+
+    it do
       back_link.click
       expect(current_path).to eq(root_path)
     end
 
     context 'エラーになった場合' do
       it do
-        visit root_path
-        task_editing_link.click
-        update_task_from_ui_without_visit(title: 'a' * 100)
+        invoke_validation_error
         back_link.click
         expect(current_path).to eq(root_path)
       end
@@ -33,18 +36,19 @@ describe 'タスクの編集画面から戻る' do
   end
 
   context 'タグのタスク一覧から遷移した場合' do
-    it do
+    before do
       visit tasks_path(tag: tag)
       task_editing_link.click
+    end
+
+    it do
       back_link.click
       expect(current_url).to include(tasks_path(tag: tag))
     end
 
     context 'エラーになった場合' do
       it do
-        visit tasks_path(tag: tag)
-        task_editing_link.click
-        update_task_from_ui_without_visit(title: 'a' * 100)
+        invoke_validation_error
         back_link.click
         expect(current_url).to include(tasks_path(tag: tag))
       end
@@ -52,18 +56,19 @@ describe 'タスクの編集画面から戻る' do
   end
 
   context 'タスク詳細画面から遷移した場合' do
-    it do
+    before do
       visit task_path(task)
       task_editing_link.click
+    end
+
+    it do
       back_link.click
       expect(current_path).to eq(task_path(task))
     end
 
     context 'エラーになった場合' do
       it do
-        visit task_path(task)
-        task_editing_link.click
-        update_task_from_ui_without_visit(title: 'a' * 100)
+        invoke_validation_error
         back_link.click
         expect(current_path).to eq(task_path(task))
       end
