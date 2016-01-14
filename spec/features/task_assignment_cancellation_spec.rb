@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'タスクのアサインを解除' do
+describe 'タスクへのサインアップを取り消し' do
   before do
     sign_in_as(user)
     task

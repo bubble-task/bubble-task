@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'タスクのアサイン', js: true do
+describe 'タスクへのサインアップ', js: true do
   before do
     sign_in_as(user)
     task
