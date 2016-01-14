@@ -14,11 +14,11 @@ describe 'タスクのアサインを解除' do
     TaskAssignment.new(task: task, assignee: user).run
 
     visit task_path(task.id)
-    find('.cancel_assignment_myself').click
+    find('.cancel_sign_up').click
 
     assigned_avatar = first(".assignee_#{user.id}")
     expect(assigned_avatar).to be_nil
-    cancel_assingment_link = first('.cancel_assignment_myself')
+    cancel_assingment_link = first('.cancel_sign_up')
     expect(cancel_assingment_link).to be_nil
   end
 
@@ -26,7 +26,7 @@ describe 'タスクのアサインを解除' do
     TaskAssignment.new(task: task, assignee: user).run
 
     visit root_path
-    cancel_assingment_link = first('.cancel_assignment_myself')
+    cancel_assingment_link = first('.cancel_sign_up')
     expect(cancel_assingment_link).to be_nil
   end
 end
