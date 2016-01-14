@@ -8,10 +8,6 @@ RequestPath = Struct.new(:path, :query) do
     self.path == other.path
   end
 
-  def has_query?
-    !query.nil?
-  end
-
   private
 
     def parse_as_uri(origin)
