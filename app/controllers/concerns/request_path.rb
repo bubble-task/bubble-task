@@ -1,9 +1,8 @@
-class RequestPath
-  attr_reader :origin, :path
+RequestPath = Struct.new(:origin, :path, :query) do
 
   def initialize(origin)
-    @origin = origin
-    parse_as_uri(origin)
+    path, query = parse_as_uri(origin)
+    super(origin, path, query)
   end
 
   def match?(other)
@@ -15,14 +14,13 @@ class RequestPath
   end
 
   def has_query?
-    !@query.nil?
+    !query.nil?
   end
 
   private
 
     def parse_as_uri(origin)
       as_uri = URI(origin)
-      @path = as_uri.path
-      @query = as_uri.query
+      [as_uri.path, as_uri.query]
     end
 end
