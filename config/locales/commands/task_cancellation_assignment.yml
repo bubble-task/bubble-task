@@ -2,4 +2,4 @@ ja:
   activemodel:
     messages:
       task_cancellation_assignment:
-        success: 'アサインを解除しました'
+        success: 'サインアップを取り消しました'

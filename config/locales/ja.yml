@@ -141,7 +141,7 @@ ja:
       edit: 編集する
       remove: 削除する
       sign_up: サインアップする
-      cancel_assignment_myself: アサインを解除する
+      cancel_sign_up: サインアップを取り消す
       cancel_completion: 未完了にもどす
     navigations:
       back: もどる
