@@ -72,7 +72,7 @@ input.not_valid {
 
 .ui-autocomplete.ui-widget-content {
   opacity: 0.8;
-  background-color: darken($primary-bg-color, 10%);
+  background-color: lighten($primary-bg-color, 5%);
 
   .ui-menu-item {
     padding: 0.3rem 0.3rem;
@@ -85,6 +85,6 @@ input.not_valid {
 
   .ui-state-focus {
     font-weight: 600;
-    background-color: $primary-bg-color;
+    background-color: darken($primary-bg-color, 10%);
   }
 }
