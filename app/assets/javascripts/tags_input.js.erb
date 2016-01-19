@@ -1,17 +1,6 @@
 var tagWordsOriginInputId = '#task_tag_words';
 var tagWordsInputId = '#task_tag_words_tag';
 
-var tagCandidates = [
-  'aaa',
-  'abb',
-  'abc',
-  'bbb',
-  'baa',
-  'bba',
-  'ccc',
-  'cab'
-];
-
 var activateTagsInput = function(element) {
   var d = new $.Deferred;
 
@@ -28,10 +17,22 @@ var activateTagsInput = function(element) {
 
 var activateAutoCompletion = function(element) {
   var d = new $.Deferred;
+  var cache = {}
 
   $(element).autocomplete({
-    source: tagCandidates,
-    open: function() { $('.ui-menu').width(260) }
+    open: function() { $('.ui-menu').width(260) },
+    source: function( request, response ) {
+      var term = request.term;
+      if ( term in cache ) {
+        response( cache[ term ] );
+        return;
+      }
+
+      $.getJSON('/tags/filter', request, function( data, status, xhr ) {
+        cache[ term ] = data;
+        response( data );
+      });
+    }
   });
 
   d.resolve();
