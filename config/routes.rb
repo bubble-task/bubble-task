@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   get     'tags', to: 'tags#index', as: :tags
+  get     'tags/filter', to: 'tags#filter'
 
   post    'assignments/:task_id', to: 'assignments#create', as: :assignments
   delete  'assignments/:task_id', to: 'assignments#destroy', as: :assignment
