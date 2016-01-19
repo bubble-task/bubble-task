@@ -71,12 +71,16 @@ input.not_valid {
 .ui-helper-hidden-accessible { display: none; }
 
 .ui-autocomplete.ui-widget-content {
-  opacity: 0.8;
-  background-color: darken($primary-bg-color, 10%);
+  $bg-color: lighten($secondary-color, 35%);
+  $item-color: darken(white, 5%);
+  $active-item-bg-color: darken($bg-color, 10%);
+
+  opacity: 0.9;
+  background-color: $bg-color;
 
   .ui-menu-item {
     padding: 0.3rem 0.3rem;
-    color: $primary-font-color;
+    color: $item-color;
 
     &:first-child {
       padding-top: 0.5rem;
@@ -84,7 +88,7 @@ input.not_valid {
   }
 
   .ui-state-focus {
-    font-weight: 600;
-    background-color: $primary-bg-color;
+    color: lighten($item-color, 5%);
+    background-color: $active-item-bg-color;
   }
 }

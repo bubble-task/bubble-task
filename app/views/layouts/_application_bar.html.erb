@@ -47,7 +47,7 @@
     <% end -%>
   </li>
   <li<%= activate_menu([{ 'achievements' => 'index' }]) %>>
-    <%= link_to achievements_url do %>
+    <%= link_to achievements_url, data: { no_turbolink: true } do %>
       <%= t('achievements.index.navigation_title') %>
       <i id="achievements-nav-icon" class="material-icons left">done</i>
     <% end -%>
