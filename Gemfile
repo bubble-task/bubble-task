@@ -67,4 +67,5 @@ gem 'gravtastic'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-tags-input'
+  gem 'rails-assets-jquery-ui'
 end
