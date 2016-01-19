@@ -66,3 +66,25 @@ input.not_valid {
   background: $error-color !important;
   color: #FFF !important;
 }
+
+/*** autocompletion ***/
+.ui-helper-hidden-accessible { display: none; }
+
+.ui-autocomplete.ui-widget-content {
+  opacity: 0.8;
+  background-color: darken($primary-bg-color, 10%);
+
+  .ui-menu-item {
+    padding: 0.3rem 0.3rem;
+    color: $primary-font-color;
+
+    &:first-child {
+      padding-top: 0.5rem;
+    }
+  }
+
+  .ui-state-focus {
+    font-weight: 600;
+    background-color: $primary-bg-color;
+  }
+}
