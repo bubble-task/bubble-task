@@ -25,19 +25,19 @@ describe TagsController do
 
     before do
       sign_in
-      Tagging.create(task_id: 1, tag: 'タグ1')
-      Tagging.create(task_id: 1, tag: 'タグ2')
+      Tagging.create(task_id: 1, tag: 'tag1')
+      Tagging.create(task_id: 1, tag: 'tag2')
       Tagging.create(task_id: 1, tag: 'AAA')
     end
 
     context 'パラメータが存在しない' do
       let(:term) { nil }
-      it { is_expected.to eq(%w(AAA タグ1 タグ2)) }
+      it { is_expected.to eq(%w(AAA tag1 tag2)) }
     end
 
     context 'パラメータが存在する場合' do
-      let(:term) { 'タグ' }
-      it { is_expected.to eq(%w(タグ1 タグ2)) }
+      let(:term) { 'tag' }
+      it { is_expected.to eq(%w(tag1 tag2)) }
     end
 
     context 'パラメータの文字列を含むタグが存在しない場合' do
