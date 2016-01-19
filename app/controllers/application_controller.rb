@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
     current_user != nil
   end
 
-  helper_method :current_user, :signed_in?
+  def backward_path
+    backward_navigator.backward_path
+  end
+
+  helper_method :current_user, :signed_in?, :backward_path
 
   protected
 
@@ -21,5 +25,17 @@ class ApplicationController < ActionController::Base
 
     def sign_in(user)
       SessionManager.sign_in(session, user)
+    end
+
+    def update_backward_path
+      backward_navigator.update_backward_path(
+        BackwardNavigator.detect_backward_path(request.fullpath, request.referer)
+      )
+    end
+
+  private
+
+    def backward_navigator
+      @backward_navigator ||= BackwardNavigator.new(session)
     end
 end

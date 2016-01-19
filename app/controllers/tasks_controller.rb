@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   include PathFilter
 
   before_action :authorize!
+  before_action :update_backward_path, only: %i(index show)
 
   def index
     @tag = params[:tag]
