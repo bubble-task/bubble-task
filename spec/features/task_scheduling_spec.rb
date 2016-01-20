@@ -24,4 +24,20 @@ describe 'タスクのスケジューリング' do
       expect(target_task_in_someday).to be_nil
     end
   end
+
+  context 'タスクが2つある場合' do
+    let(:tasks) { [task_a, task_b] }
+
+    it do
+      visit root_path
+      first('.somedays-tasks .move-to-todays-tasks').click
+      first('.somedays-tasks .move-to-todays-tasks').click
+
+      tasks_in_today = all('.todays-tasks .task-summary').size
+      expect(tasks_in_today).to eq(2)
+
+      tasks_in_someday = all('.somedays-tasks .task-summary').size
+      expect(tasks_in_someday).to eq(0)
+    end
+  end
 end
