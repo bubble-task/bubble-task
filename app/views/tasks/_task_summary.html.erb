@@ -3,7 +3,7 @@
     <div class="col s1" id="<%= task_completion_css_id(task.id) %>">
       <%= render partial: 'tasks/task_completion', locals: { task: task } %>
     </div>
-    <div class="col s10">
+    <div class="col s9">
       <div class="row row-no-margin">
         <div class="col s12 tags-avatars">
           <div class="row row-no-margin">
@@ -17,6 +17,14 @@
           <%= link_to task.title, task_url(task), class: 'task-title' %>
         </div>
       </div>
+    </div>
+    <div class="col s1">
+      <%= form_tag todays_tasks_url do %>
+        <%= hidden_field_tag :task_id, task.id %>
+        <%= button_tag type: :submit, class: 'move-to-todays-tasks' do %>
+          <i class="material-icons">send</i>
+        <% end -%>
+      <% end -%>
     </div>
     <div class="col s1 task-actions">
       <%= render partial: 'tasks/task_actions', locals: { task: task, cancel_sign_up_available: false, remote: true } %>

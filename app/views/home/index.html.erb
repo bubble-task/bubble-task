@@ -2,7 +2,15 @@
 <% content_for(:page_title, t('.page_title')) %>
 <div class="col s12">
   <div class="container-embedded">
-      <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
+    <div class="todays-tasks">
+      <%= render partial: 'tasks/list', locals: { tasks: @todays_tasks } %>
+    </div>
+    <div class="section-header section-header-default">
+      Somedays tasks
+    </div>
+    <div class="somedays-tasks">
+      <%= render partial: 'tasks/list', locals: { tasks: @somedays_tasks } %>
+    </div>
   </div>
 </div>
 <div class="fixed-action-btn">
