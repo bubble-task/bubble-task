@@ -20,7 +20,7 @@
     </div>
     <div class="col s2 task-actions">
       <%= link_to todays_tasks_url(task_id: task.id), method: :post, class: 'move-to-todays-task tooltipped', data: { tooltip: t('helpers.actions.move_to_todays_task') } do %>
-        <i class="material-icons">send</i>
+        <i class="material-icons">keyboard_arrow_up</i>
       <% end -%>
       <%= render partial: 'tasks/task_actions', locals: { task: task, cancel_sign_up_available: false, remote: true } %>
     </div>
