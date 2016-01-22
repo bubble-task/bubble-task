@@ -56,22 +56,4 @@ describe PreviousUrlHelper do
       it { is_expected.to be_falsey }
     end
   end
-
-  describe '#from_home?' do
-    subject do
-      view.from_home?
-    end
-
-    let(:view) { described_class::DummyView.new(referer) }
-
-    context 'from home' do
-      let(:referer) { '/' }
-      it { is_expected.to be_truthy }
-    end
-
-    context 'from index tasks' do
-      let(:referer) { '/tasks' }
-      it { is_expected.to be_falsey }
-    end
-  end
 end
