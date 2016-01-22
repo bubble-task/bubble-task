@@ -16,8 +16,13 @@
   .modal { @extend .left-align; }
 }
 
-.move-to-todays-task {
-  margin-right: 2.0rem;
+.task-schedule-actions {
+  @extend .right-align;
+
+  i {
+    font-size: 1.8rem;
+    opacity: 0.8;
+  }
 }
 
 .sign_up {

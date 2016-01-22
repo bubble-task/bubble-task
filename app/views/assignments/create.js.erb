@@ -1,6 +1,7 @@
 <% css_id = task_css_id(@task.id) %>
 <% remote_deletion = from_show_task? ? false : true %>
 <% cancel_sign_up_available = from_show_task? ? true : false %>
+
 $('#<%= css_id %> .task-assignees').html('<%= j(render(partial: 'tasks/task_assignees', locals: { task: @task })) %>');
 $('#<%= css_id %> .task-actions').html('<%= j(render(partial: 'tasks/task_actions', locals: { task: @task, cancel_sign_up_available: cancel_sign_up_available, remote: remote_deletion })) %>');
 

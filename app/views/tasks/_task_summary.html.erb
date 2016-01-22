@@ -1,9 +1,10 @@
+<% task_main_grid_size = show_schedule_actions ? 9 : 10 %>
 <div id="<%= task_css_id(task.id) %>" class="task-summary task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s1" id="<%= task_completion_css_id(task.id) %>">
       <%= render partial: 'tasks/task_completion', locals: { task: task } %>
     </div>
-    <div class="col s9">
+    <div class="col s<%= task_main_grid_size %>">
       <div class="row row-no-margin">
         <div class="col s12 tags-avatars">
           <div class="row row-no-margin">
@@ -18,12 +19,14 @@
         </div>
       </div>
     </div>
-    <div class="col s2 task-actions">
-      <% if show_schedule_actions -%>
+    <% if show_schedule_actions -%>
+      <div class="col s1 task-schedule-actions">
         <%= link_to todays_tasks_url(task_id: task.id), method: :post, class: 'move-to-todays-task tooltipped', data: { tooltip: t('helpers.actions.move_to_todays_task') } do %>
           <i class="material-icons">keyboard_arrow_up</i>
         <% end -%>
-      <% end -%>
+      </div>
+    <% end -%>
+    <div class="col s1 task-actions">
       <%= render partial: 'tasks/task_actions', locals: { task: task, cancel_sign_up_available: false, remote: true } %>
     </div>
   </div>
