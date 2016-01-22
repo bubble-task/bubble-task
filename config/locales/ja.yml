@@ -143,7 +143,7 @@ ja:
       sign_up: サインアップする
       cancel_sign_up: サインアップを取り消す
       cancel_completion: 未完了にもどす
-      move_to_todays_task: 今日やるタスクに移す
+      move_to_todays_task: 今日のタスクに移す
     navigations:
       back: もどる
   sessions:

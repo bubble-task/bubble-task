@@ -1,12 +1,12 @@
 <% content_for(:navigation_title, t('.navigation_title')) %>
-<% content_for(:page_title, t('.page_title')) %>
+<% content_for(:page_title, t('.section_titles.todays_tasks')) %>
 <div class="col s12">
   <div class="container-embedded">
     <div class="todays-tasks">
       <%= render partial: 'tasks/list', locals: { tasks: @todays_tasks } %>
     </div>
     <div class="section-header section-header-default">
-      Somedays tasks
+      <span class="title"><%= t('.section_titles.somedays_tasks') %></span>
     </div>
     <div class="somedays-tasks">
       <%= render partial: 'tasks/list', locals: { tasks: @somedays_tasks } %>
