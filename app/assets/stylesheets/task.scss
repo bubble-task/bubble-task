@@ -16,6 +16,15 @@
   .modal { @extend .left-align; }
 }
 
+.task-schedule-actions {
+  @extend .right-align;
+
+  i {
+    font-size: 1.8rem;
+    opacity: 0.8;
+  }
+}
+
 .sign_up {
   display: block;
   margin-top: 0.8rem;

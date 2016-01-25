@@ -2,4 +2,6 @@ ja:
   home:
     index:
       navigation_title: 'タスク'
-      page_title: 'あなたのタスク'
+      section_titles:
+        todays_tasks: '今日のタスク'
+        somedays_tasks: 'あなたのタスク'
