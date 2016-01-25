@@ -44,18 +44,38 @@ describe 'タスクのスケジューリング' do
   end
 
   describe '今日のタスクから削除' do
-    let(:tasks) { [task_a] }
+    context '今日のタスクが1つの場合' do
+      let(:tasks) { [task_a] }
 
-    it do
-      visit root_path
-      first('.somedays-tasks .move-to-todays-tasks').click
-      first('.todays-tasks .move-to-somedays-tasks').click
+      it do
+        visit root_path
+        first('.somedays-tasks .move-to-todays-tasks').click
+        first('.todays-tasks .move-to-somedays-tasks').click
 
-      target_task_css_id_in_someday = first('.somedays-tasks .task-summary')[:id]
-      expect(target_task_css_id_in_someday).to eq("task_#{task_a.id}")
+        target_task_css_id_in_someday = first('.somedays-tasks .task-summary')[:id]
+        expect(target_task_css_id_in_someday).to eq("task_#{task_a.id}")
 
-      target_task_in_today = first('.todays-tasks .task-summary')
-      expect(target_task_in_today).to be_nil
+        target_task_in_today = first('.todays-tasks .task-summary')
+        expect(target_task_in_today).to be_nil
+      end
+    end
+
+    context '今日のタスクが2つある場合' do
+      let(:tasks) { [task_a, task_b] }
+
+      it do
+        visit root_path
+        first('.somedays-tasks .move-to-todays-tasks').click
+        first('.somedays-tasks .move-to-todays-tasks').click
+        first('.todays-tasks .move-to-somedays-tasks').click
+        first('.todays-tasks .move-to-somedays-tasks').click
+
+        tasks_in_today = all('.todays-tasks .task-summary').size
+        expect(tasks_in_today).to eq(0)
+
+        tasks_in_someday = all('.somedays-tasks .task-summary').size
+        expect(tasks_in_someday).to eq(2)
+      end
     end
   end
 
