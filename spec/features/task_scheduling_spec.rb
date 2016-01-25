@@ -2,13 +2,14 @@ require 'rails_helper'
 
 describe 'タスクのスケジューリング' do
   before do
-    sign_in_as(user)
+    sign_in_as(user_a)
     tasks
   end
 
-  let(:user) { create_user_from_oauth_credential }
-  let(:task_a) { create_task(author_id: user.id, title: 'A', tags: ['TAG'], assignees: [user]) }
-  let(:task_b) { create_task(author_id: user.id, title: 'B', tags: ['TAG'], assignees: [user]) }
+  let(:user_a) { create_user_from_oauth_credential }
+  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'user@b.com')) }
+  let(:task_a) { create_task(author_id: user_a.id, title: 'A', tags: ['TAG'], assignees: [user_a, user_b]) }
+  let(:task_b) { create_task(author_id: user_a.id, title: 'B', tags: ['TAG'], assignees: [user_a, user_b]) }
 
   let(:move_to_todays_tasks_css) { '.somedays-tasks .move-to-todays-tasks' }
   let(:move_to_somedays_tasks_css) { '.todays-tasks .move-to-somedays-tasks' }
@@ -27,6 +28,16 @@ describe 'タスクのスケジューリング' do
         first(move_to_todays_tasks_css).click
         expect(target_task_css_id_in_today).to eq("task_#{task_a.id}")
         expect(tasks_in_someday).to be_empty
+      end
+
+      it do
+        visit root_path
+        first(move_to_todays_tasks_css).click
+        first('.user-sign-out', visible: false).click
+        sign_in_as(user_b)
+        visit root_path
+        expect(tasks_in_today).to be_empty
+        expect(tasks_in_someday.size).to eq(1)
       end
     end
 

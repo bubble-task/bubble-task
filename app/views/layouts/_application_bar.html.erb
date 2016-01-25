@@ -1,4 +1,4 @@
-<header>
+<header
   <div class="navbar-fixed">
     <nav>
       <div class="container">
@@ -26,7 +26,7 @@
     <% end -%>
     <ul id="side-user-menu" class="dropdown-content dropdown-side-nav">
       <li>
-        <%= link_to session_url, method: :delete do %>
+        <%= link_to session_url, method: :delete, class: 'user-sign-out' do %>
           <%= t('sessions.actions.sign_out') %>
           <i class="material-icons left">exit_to_app</i>
         <% end -%>
