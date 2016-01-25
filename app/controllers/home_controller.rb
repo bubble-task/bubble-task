@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     tasks = TaskRepository.all_uncompleted_by_assignee(current_user.id).map do |task|
       TaskPresenter.new(task)
     end
-    tasks.group_by { |t| t.todays_task.present? }.tap do |group|
+    tasks.group_by { |t| t.todays_task_for_user?(current_user.id) }.tap do |group|
       @todays_tasks = Array(group[true])
       @somedays_tasks = Array(group[false])
     end

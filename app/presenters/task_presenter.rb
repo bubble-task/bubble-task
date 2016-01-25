@@ -45,4 +45,8 @@ class TaskPresenter < SimpleDelegator
     return %(checked="checked" disabled="disabled").html_safe if completed?
     nil
   end
+
+  def todays_task_for_user?(user_id)
+    todays_task&.user_id == user_id
+  end
 end
