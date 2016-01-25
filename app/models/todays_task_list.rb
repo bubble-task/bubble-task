@@ -1,7 +1,7 @@
 class TodaysTaskList < SimpleDelegator
 
-  def initialize(user_id)
-    super([])
+  def initialize(user_id, tasks = [])
+    super(tasks.dup)
     @user_id = user_id
   end
 
@@ -11,8 +11,7 @@ class TodaysTaskList < SimpleDelegator
 
   def save
     ActiveRecord::Base.transaction do
-      TodaysTask.where(user_id: @user_id).each(&:destroy!)
-      each(&:save!)
+      select { |t| t.id.nil? }.each(&:save!)
     end
   end
 end

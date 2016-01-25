@@ -25,7 +25,7 @@ describe 'タスクのスケジューリング' do
     end
   end
 
-  skip 'タスクが2つある場合' do
+  context 'タスクが2つある場合' do
     let(:tasks) { [task_a, task_b] }
 
     it do
