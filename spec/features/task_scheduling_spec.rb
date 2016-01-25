@@ -10,19 +10,23 @@ describe 'タスクのスケジューリング' do
   let(:task_a) { create_task(author_id: user.id, title: 'A', tags: ['TAG'], assignees: [user]) }
   let(:task_b) { create_task(author_id: user.id, title: 'B', tags: ['TAG'], assignees: [user]) }
 
+  let(:move_to_todays_tasks_css) { '.somedays-tasks .move-to-todays-tasks' }
+  let(:move_to_somedays_tasks_css) { '.todays-tasks .move-to-somedays-tasks' }
+  let(:wait_moving) { find('#toast-container') }
+  let(:target_task_css_id_in_today) { first('.todays-tasks .task-summary')[:id] }
+  let(:target_task_css_id_in_someday) { first('.somedays-tasks .task-summary')[:id] }
+  let(:tasks_in_today) { all('.todays-tasks .task-summary') }
+  let(:tasks_in_someday) { all('.somedays-tasks .task-summary') }
+
   describe '今日のタスクに追加' do
     context 'タスクが1つしかない場合' do
       let(:tasks) { [task_a] }
 
       it do
         visit root_path
-        first('.somedays-tasks .move-to-todays-tasks').click
-
-        target_task_css_id_in_today = first('.todays-tasks .task-summary')[:id]
+        first(move_to_todays_tasks_css).click
         expect(target_task_css_id_in_today).to eq("task_#{task_a.id}")
-
-        target_task_in_someday = first('.somedays-tasks .task-summary')
-        expect(target_task_in_someday).to be_nil
+        expect(tasks_in_someday).to be_empty
       end
     end
 
@@ -31,14 +35,10 @@ describe 'タスクのスケジューリング' do
 
       it do
         visit root_path
-        first('.somedays-tasks .move-to-todays-tasks').click
-        first('.somedays-tasks .move-to-todays-tasks').click
-
-        tasks_in_today = all('.todays-tasks .task-summary').size
-        expect(tasks_in_today).to eq(2)
-
-        tasks_in_someday = all('.somedays-tasks .task-summary').size
-        expect(tasks_in_someday).to eq(0)
+        first(move_to_todays_tasks_css).click
+        first(move_to_todays_tasks_css).click
+        expect(tasks_in_today.size).to eq(2)
+        expect(tasks_in_someday).to be_empty
       end
     end
   end
@@ -49,14 +49,10 @@ describe 'タスクのスケジューリング' do
 
       it do
         visit root_path
-        first('.somedays-tasks .move-to-todays-tasks').click
-        first('.todays-tasks .move-to-somedays-tasks').click
-
-        target_task_css_id_in_someday = first('.somedays-tasks .task-summary')[:id]
+        first(move_to_todays_tasks_css).click
+        first(move_to_somedays_tasks_css).click
         expect(target_task_css_id_in_someday).to eq("task_#{task_a.id}")
-
-        target_task_in_today = first('.todays-tasks .task-summary')
-        expect(target_task_in_today).to be_nil
+        expect(tasks_in_today).to be_empty
       end
     end
 
@@ -65,16 +61,12 @@ describe 'タスクのスケジューリング' do
 
       it do
         visit root_path
-        first('.somedays-tasks .move-to-todays-tasks').click
-        first('.somedays-tasks .move-to-todays-tasks').click
-        first('.todays-tasks .move-to-somedays-tasks').click
-        first('.todays-tasks .move-to-somedays-tasks').click
-
-        tasks_in_today = all('.todays-tasks .task-summary').size
-        expect(tasks_in_today).to eq(0)
-
-        tasks_in_someday = all('.somedays-tasks .task-summary').size
-        expect(tasks_in_someday).to eq(2)
+        first(move_to_todays_tasks_css).click
+        first(move_to_todays_tasks_css).click
+        first(move_to_somedays_tasks_css).click
+        first(move_to_somedays_tasks_css).click
+        expect(tasks_in_today).to be_empty
+        expect(tasks_in_someday.size).to eq(2)
       end
     end
   end
@@ -84,12 +76,8 @@ describe 'タスクのスケジューリング' do
 
     it do
       visit root_path
-
-      tasks_in_today = all('.todays-tasks .task-summary').size
-      expect(tasks_in_today).to eq(0)
-
-      tasks_in_someday = all('.somedays-tasks .task-summary').size
-      expect(tasks_in_someday).to eq(1)
+      expect(tasks_in_today).to be_empty
+      expect(tasks_in_someday.size).to eq(1)
     end
   end
 end
