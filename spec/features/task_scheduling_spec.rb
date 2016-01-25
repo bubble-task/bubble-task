@@ -40,4 +40,18 @@ describe 'タスクのスケジューリング' do
       expect(tasks_in_someday).to eq(0)
     end
   end
+
+  context 'デフォルト' do
+    let(:tasks) { [task_a] }
+
+    it do
+      visit root_path
+
+      tasks_in_today = all('.todays-tasks .task-summary').size
+      expect(tasks_in_today).to eq(0)
+
+      tasks_in_someday = all('.somedays-tasks .task-summary').size
+      expect(tasks_in_someday).to eq(1)
+    end
+  end
 end
