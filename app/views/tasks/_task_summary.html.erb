@@ -20,17 +20,7 @@
       </div>
     </div>
     <% if show_schedule_actions -%>
-      <div class="col s1 task-schedule-actions">
-        <% if todays_task %>
-          <%= link_to todays_task_url(task_id: task.id), method: :delete, class: 'move-to-somedays-tasks tooltipped', data: { tooltip: t('helpers.actions.move_to_somedays_task') } do %>
-            <i class="material-icons">keyboard_arrow_down</i>
-          <% end -%>
-        <% else %>
-          <%= link_to todays_tasks_url(task_id: task.id), method: :post, class: 'move-to-todays-tasks tooltipped', data: { tooltip: t('helpers.actions.move_to_todays_task') } do %>
-            <i class="material-icons">keyboard_arrow_up</i>
-          <% end -%>
-        <% end %>
-      </div>
+      <%= render partial: 'home/task_schedule_actions', locals: { task: task, todays_task: todays_task } %>
     <% end -%>
     <div class="col s1 task-actions">
       <%= render partial: 'tasks/task_actions', locals: { task: task, cancel_sign_up_available: false, remote: true } %>
