@@ -47,6 +47,6 @@ class TaskPresenter < SimpleDelegator
   end
 
   def todays_task_for_user?(user_id)
-    todays_task&.user_id == user_id
+    todays_tasks.any? { |t| t.user_id == user_id } 
   end
 end

@@ -14,6 +14,14 @@ describe TodaysTaskList do
         expect(list).to eq([TodaysTask.new(task_id: task_id, user_id: user_id)])
       end
     end
+
+    describe '#remove_task' do
+      it do
+        list.add_task(task_id)
+        list.remove_task(task_id)
+        expect(list).to be_empty
+      end
+    end
   end
 
   context '1つタスクがある場合' do
@@ -24,6 +32,13 @@ describe TodaysTaskList do
         list.add_task(task_id)
         expected_tasks = initial_tasks + [TodaysTask.new(task_id: task_id, user_id: user_id)]
         expect(list).to eq(expected_tasks)
+      end
+    end
+
+    describe '#add_task' do
+      it do
+        list.add_task(1)
+        expect(list).to eq(initial_tasks)
       end
     end
   end

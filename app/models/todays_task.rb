@@ -1,4 +1,5 @@
 class TodaysTask < ActiveRecord::Base
+  include Removable
 
   def ==(other)
     super || same_attributes?(other)

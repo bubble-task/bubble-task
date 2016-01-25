@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
   has_one :completed_task, autosave: true
   has_many :assignments
   has_many :assignees, through: :assignments, source: :user
-  has_one :todays_task
+  has_many :todays_tasks
 
   delegate :completed_at, to: :completed_task
 
