@@ -18,4 +18,9 @@ class HomeController < ApplicationController
     todays_tasks.save
     redirect_to root_url
   end
+
+  def destroy_todays_task
+    TodaysTask.find(params[:id]).destroy!
+    redirect_to root_url
+  end
 end

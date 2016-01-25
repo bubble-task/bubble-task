@@ -3,13 +3,13 @@
 <div class="col s12">
   <div class="container-embedded">
     <div class="todays-tasks">
-      <%= render partial: 'tasks/list', locals: { tasks: @todays_tasks, show_schedule_actions: true } %>
+      <%= render partial: 'tasks/list', locals: { tasks: @todays_tasks, show_schedule_actions: true, todays_tasks: true } %>
     </div>
     <div class="section-header section-header-default">
       <span class="title"><%= t('.section_titles.somedays_tasks') %></span>
     </div>
     <div class="somedays-tasks">
-      <%= render partial: 'tasks/list', locals: { tasks: @somedays_tasks, show_schedule_actions: true } %>
+      <%= render partial: 'tasks/list', locals: { tasks: @somedays_tasks, show_schedule_actions: true, todays_tasks: false } %>
     </div>
   </div>
 </div>

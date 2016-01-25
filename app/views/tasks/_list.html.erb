@@ -1,7 +1,7 @@
 <% if tasks.any? -%>
   <div class="task-summary-list-primary">
     <% tasks.each do |task| %>
-      <%= render partial: 'tasks/task_summary', locals: { task: task, show_schedule_actions: show_schedule_actions } %>
+      <%= render partial: 'tasks/task_summary', locals: { task: task, show_schedule_actions: show_schedule_actions, todays_task: todays_tasks } %>
     <% end -%>
   </div>
 <% else -%>

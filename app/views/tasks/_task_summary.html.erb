@@ -21,9 +21,15 @@
     </div>
     <% if show_schedule_actions -%>
       <div class="col s1 task-schedule-actions">
-        <%= link_to todays_tasks_url(task_id: task.id), method: :post, class: 'move-to-todays-tasks tooltipped', data: { tooltip: t('helpers.actions.move_to_todays_task') } do %>
-          <i class="material-icons">keyboard_arrow_up</i>
-        <% end -%>
+        <% if todays_task %>
+          <%= link_to todays_task_url(id: task.todays_task.id), method: :delete, class: 'move-to-somedays-tasks tooltipped', data: { tooltip: t('helpers.actions.move_to_somedays_task') } do %>
+            <i class="material-icons">keyboard_arrow_up</i>
+          <% end -%>
+        <% else %>
+          <%= link_to todays_tasks_url(task_id: task.id), method: :post, class: 'move-to-todays-tasks tooltipped', data: { tooltip: t('helpers.actions.move_to_todays_task') } do %>
+            <i class="material-icons">keyboard_arrow_up</i>
+          <% end -%>
+        <% end %>
       </div>
     <% end -%>
     <div class="col s1 task-actions">
