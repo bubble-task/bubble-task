@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   post    'todays_tasks', to: 'home#create_todays_task', as: :todays_tasks
   delete  'todays_task/:task_id', to: 'home#destroy_todays_task', as: :todays_task
 
+  get     'search', to: 'achievements#index', as: :search
+
   root 'home#index'
 end
