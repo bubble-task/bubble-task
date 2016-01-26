@@ -26,7 +26,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '1' })
+      get achievements_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '1', completion_state: 'completed' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end

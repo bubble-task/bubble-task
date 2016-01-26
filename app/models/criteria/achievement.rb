@@ -31,12 +31,7 @@ module Criteria
                          else
                            prepared_relation
                          end
-      satisfied_relation = satisfy_relation(default_relation)
-      if @completion_state == 'completed'
-        satisfied_relation.sort_by(&:completed_at)
-      else
-        satisfied_relation
-      end
+      satisfy_relation(default_relation)
     end
 
     private
