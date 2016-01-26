@@ -19,8 +19,7 @@ class HomeController < ApplicationController
 
   def destroy_todays_task
     todays_tasks = TodaysTaskList.load(current_user.id)
-    todays_tasks.remove_task(params[:task_id].to_i)
-    todays_tasks.save
+    TaskCancellationScheduling.new(params[:task_id], todays_tasks).run
     redirect_to root_url
   end
 end
