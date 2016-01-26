@@ -1,7 +1,7 @@
 ja:
   activemodel:
     attributes:
-      achievement_criteria_form:
+      task_criteria_form:
         from_date: この日から
         to_date: この日まで
         tag_words: タグ

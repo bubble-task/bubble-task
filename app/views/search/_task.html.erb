@@ -1,4 +1,4 @@
-<div id="<%= task_css_id(task.id) %>" class="achievement task-summary-primary">
+<div id="<%= task_css_id(task.id) %>" class="compact task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s2">
       <%= link_to cancel_completion_task_url(task), method: :put, class: 'cancel-completion tooltipped', data: { tooltip: t('helpers.actions.cancel_completion') } do %>
