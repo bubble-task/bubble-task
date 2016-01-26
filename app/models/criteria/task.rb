@@ -1,8 +1,8 @@
 module Criteria
-  class Achievement
+  class Task
 
     def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
-      Criteria::Achievement.new do |c|
+      new do |c|
         c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
         c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
         c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))

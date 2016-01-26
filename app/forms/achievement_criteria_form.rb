@@ -18,7 +18,7 @@ class AchievementCriteriaForm
   end
 
   def criteria
-    Criteria::Achievement.create(
+    Criteria::Task.create(
       assignee_id: signed_up_only? && @assignee_id,
       from_date: from_datetime,
       to_date: to_datetime,
