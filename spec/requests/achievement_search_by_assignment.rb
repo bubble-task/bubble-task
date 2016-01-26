@@ -23,7 +23,7 @@ describe 'GET /achievements' do
     let(:unexpected_tasks) { [uncompleted_task] }
 
     it do
-      get achievements_path(c: { is_signed_up_only: nil })
+      get search_path(c: { is_signed_up_only: nil })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -40,7 +40,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { is_signed_up_only: '1' })
+      get search_path(c: { is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end

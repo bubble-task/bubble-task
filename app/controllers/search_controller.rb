@@ -1,4 +1,4 @@
-class AchievementsController < ApplicationController
+class SearchController < ApplicationController
   before_action :authorize!
 
   def index

@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   post    'assignments/:task_id', to: 'assignments#create', as: :assignments
   delete  'assignments/:task_id', to: 'assignments#destroy', as: :assignment
 
-  get     'achievements', to: 'achievements#index', as: :achievements
-
   get     'sign_in', to: 'sessions#new', as: :new_session
   delete  'sign_out', to: 'sessions#destroy', as: :session
   match   '/auth/:provider/callback', to: 'oauth_callbacks#create', via: [:get, :post], as: :oauth_callbacks
@@ -21,7 +19,7 @@ Rails.application.routes.draw do
   post    'todays_tasks', to: 'home#create_todays_task', as: :todays_tasks
   delete  'todays_task/:task_id', to: 'home#destroy_todays_task', as: :todays_task
 
-  get     'search', to: 'achievements#index', as: :search
+  get     'search', to: 'search#index', as: :search
 
   root 'home#index'
 end
