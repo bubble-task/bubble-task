@@ -1,5 +1,9 @@
 class TodaysTaskList < SimpleDelegator
 
+  def self.load(user_id)
+    new(user_id, TodaysTask.where(user_id: user_id))
+  end
+
   def initialize(user_id, tasks = [])
     super(tasks.dup)
     @user_id = user_id
