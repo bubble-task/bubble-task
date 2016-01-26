@@ -8,7 +8,7 @@ module Criteria
       end
 
       def satisfy(relation)
-        relation.restrict_by_complated_after(datetime)
+        relation.restrict_by_completed_after(datetime)
       end
     end
   end
