@@ -1,8 +1,8 @@
 module Criteria
   class Achievement
 
-    def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil)
-      Criteria::Achievement.new do |c|
+    def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
+      Criteria::Achievement.new(completion_state) do |c|
         c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
         c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
         c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
@@ -10,8 +10,9 @@ module Criteria
       end
     end
 
-    def initialize
+    def initialize(completion_state)
       @conditions = []
+      @completion_state = completion_state
       yield(self) if block_given?
     end
 
@@ -22,9 +23,20 @@ module Criteria
     def satisfy(relation)
       finalize_conditions
       prepared_relation = prepare_relation(relation)
-      default_relation = prepared_relation.restrict_by_complated
+      default_relation = case @completion_state
+                         when 'completed'
+                           prepared_relation.restrict_by_complated
+                         when 'uncompleted'
+                           prepared_relation.restrict_by_uncompleted
+                         else
+                           prepared_relation
+                         end
       satisfied_relation = satisfy_relation(default_relation)
-      satisfied_relation.sort_by(&:completed_at)
+      if @completion_state == 'completed'
+        satisfied_relation.sort_by(&:completed_at)
+      else
+        satisfied_relation
+      end
     end
 
     private

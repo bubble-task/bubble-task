@@ -1,7 +1,7 @@
 class AchievementCriteriaForm
   include ActiveModel::Model
 
-  attr_accessor :from_date, :to_date, :tag_words, :is_signed_up_only
+  attr_accessor :from_date, :to_date, :tag_words, :is_signed_up_only, :completion_state
 
   delegate :param_name, to: self
 
@@ -23,6 +23,7 @@ class AchievementCriteriaForm
       from_date: from_datetime,
       to_date: to_datetime,
       tag_words: tag_words,
+      completion_state: completion_state,
     )
   end
 
