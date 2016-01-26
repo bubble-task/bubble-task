@@ -13,12 +13,7 @@ class HomeController < ApplicationController
 
   def create_todays_task
     todays_tasks = TodaysTaskList.load(current_user.id)
-    #TaskScheduling.new(current_user.id, todays_tasks).run
-    #redirect_to root_url
-    #old_todays_tasks = TodaysTask.where(user_id: current_user.id)
-    #todays_tasks = TodaysTaskList.new(current_user.id, old_todays_tasks)
-    todays_tasks.add_task(params[:task_id])
-    todays_tasks.save
+    TaskScheduling.new(params[:task_id], todays_tasks).run
     redirect_to root_url
   end
 
