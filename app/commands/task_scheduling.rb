@@ -1,7 +1,7 @@
 class TaskScheduling
 
   def initialize(task_id, todays_tasks)
-    @task_id = task_id
+    @task_id = task_id.to_i
     @todays_tasks = todays_tasks
   end
 
