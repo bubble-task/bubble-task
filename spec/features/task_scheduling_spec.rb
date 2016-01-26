@@ -58,9 +58,12 @@ describe 'タスクのスケジューリング' do
     context '今日のタスクが1つの場合' do
       let(:tasks) { [task_a] }
 
+      before do
+        TaskScheduling.new(task_a.id, TodaysTaskList.load(user_a.id)).run
+      end
+
       it do
         visit root_path
-        first(move_to_todays_tasks_css).click
         first(move_to_somedays_tasks_css).click
         expect(target_task_css_id_in_someday).to eq("task_#{task_a.id}")
         expect(tasks_in_today).to be_empty
@@ -70,10 +73,13 @@ describe 'タスクのスケジューリング' do
     context '今日のタスクが2つある場合' do
       let(:tasks) { [task_a, task_b] }
 
+      before do
+        TaskScheduling.new(task_a.id, TodaysTaskList.load(user_a.id)).run
+        TaskScheduling.new(task_b.id, TodaysTaskList.load(user_a.id)).run
+      end
+
       it do
         visit root_path
-        first(move_to_todays_tasks_css).click
-        first(move_to_todays_tasks_css).click
         first(move_to_somedays_tasks_css).click
         first(move_to_somedays_tasks_css).click
         expect(tasks_in_today).to be_empty
