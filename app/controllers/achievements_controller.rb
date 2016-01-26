@@ -2,7 +2,7 @@ class AchievementsController < ApplicationController
   before_action :authorize!
 
   def index
-    @form = AchievementCriteriaForm.new(current_user.id, form_params)
+    @form = TaskCriteriaForm.new(current_user.id, form_params)
     tasks = if form_params.empty?
               []
             else
@@ -14,6 +14,6 @@ class AchievementsController < ApplicationController
   private
 
     def form_params
-      params[AchievementCriteriaForm.param_name] || {}
+      params[TaskCriteriaForm.param_name] || {}
     end
 end

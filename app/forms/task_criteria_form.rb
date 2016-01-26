@@ -1,4 +1,4 @@
-class AchievementCriteriaForm
+class TaskCriteriaForm
   include ActiveModel::Model
 
   attr_accessor :from_date, :to_date, :tag_words, :is_signed_up_only, :completion_state
