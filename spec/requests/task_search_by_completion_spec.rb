@@ -47,5 +47,23 @@ describe 'GET /search' do
       tasks = assigns(:tasks)
       expect(tasks).to eq([completed_task, uncompleted_task])
     end
+
+    context 'タグを指定する' do
+      before do
+        task1
+        task2
+        task3
+      end
+
+      let(:task1) { create_task(author_id: user.id, title: '1', tags: ['ABC'], completed_at: :now, assignees: [user]) }
+      let(:task2) { create_task(author_id: user.id, title: '2', tags: ['ABC'], assignees: [user]) }
+      let(:task3) { create_task(author_id: user.id, title: '3', tags: ['XYZ'], assignees: [user]) }
+
+      it do
+        get search_path(c: { completion_state: 'any', tag_words: 'ABC' })
+        tasks = assigns(:tasks)
+        expect(tasks).to eq([task1, task2])
+      end
+    end
   end
 end
