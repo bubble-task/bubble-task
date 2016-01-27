@@ -1,10 +1,10 @@
 ja:
   search:
     index:
-      navigation_title: '完了したタスク'
+      navigation_title: 'タスクの検索'
       page_title: 'あなたがサインアップしたタスク'
       result_header: '%{size}件あります'
-      result_header_empty: '完了したタスクはありません'
+      result_header_empty: '条件に一致したタスクはありません'
       conditions:
         term: '期間'
         tags: 'タグ'
