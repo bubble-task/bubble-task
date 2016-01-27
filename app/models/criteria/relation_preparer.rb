@@ -18,7 +18,9 @@ module Criteria
           .joins('LEFT OUTER JOIN completed_tasks ON completed_tasks.task_id = tasks.id LEFT OUTER JOIN assignments ON assignments.task_id = tasks.id INNER JOIN taggings ON taggings.task_id = tasks.id')
           .preload(*@associations)
       else
-        @relation.includes(*@associations)
+        @relation
+          .includes(*@associations)
+          .references(*@associations)
       end
     end
   end
