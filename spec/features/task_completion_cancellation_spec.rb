@@ -11,7 +11,7 @@ describe 'タスクの完了のキャンセル' do
   let(:title) { 'タスクのタイトル' }
 
   it do
-    visit achievements_path
+    visit search_path(c: { completion_state: 'completed' })
     first('.cancel-completion').click
     achievement = first('.achievement')
     expect(achievement).to be_nil

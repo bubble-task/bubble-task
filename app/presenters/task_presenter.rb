@@ -49,4 +49,11 @@ class TaskPresenter < SimpleDelegator
   def todays_task_for_user?(user_id)
     todays_tasks.any? { |t| t.user_id == user_id }
   end
+
+  def cancel_completion_link(view)
+    return '' unless completed?
+    view.link_to view.cancel_completion_task_url(self), method: :put, class: 'cancel-completion tooltipped', data: { tooltip: I18n.t('helpers.actions.cancel_completion') } do
+      view.content_tag(:i, 'done', class: 'material-icons')
+    end
+  end
 end

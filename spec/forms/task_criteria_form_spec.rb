@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AchievementCriteriaForm do
+describe TaskCriteriaForm do
   describe '#has_additional_condition?' do
     subject do
       described_class

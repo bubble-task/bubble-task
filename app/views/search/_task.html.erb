@@ -1,0 +1,16 @@
+<div id="<%= task_css_id(task.id) %>" class="compact task-summary-primary">
+  <div class="row row-no-margin">
+    <div class="col s2">
+      <%= task.cancel_completion_link(self) %>
+      <span class="task-completed-on">
+        <% if task.completed_on -%>
+          <%= l(task.completed_on, format: :default) %>
+        <% end -%>
+      </span>
+    </div>
+    <div class="col s10">
+      <%= render partial: 'tasks/task_tags', locals: { tags: task.tags } %>
+      <%= link_to task.title, task_url(task), class: 'task-title' %>
+    </div>
+  </div>
+</div>

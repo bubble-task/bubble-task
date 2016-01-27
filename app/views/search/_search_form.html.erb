@@ -1,4 +1,4 @@
-<%= form_for form, as: form.param_name, url: achievements_url, method: :get, html: { enforce_utf8: false, class: 'achievement-search' } do |f| %>
+<%= form_for form, as: form.param_name, url: search_url, method: :get, html: { enforce_utf8: false, class: 'task-search' } do |f| %>
   <div class="row row-no-margin">
     <div class="col s12">
       <div class="row row-no-margin">
@@ -19,13 +19,16 @@
         </div>
       </div>
       <div class="row row-no-margin">
-        <div class="col s4 offset-s6 right-align input-field">
+        <div class="col s4 offset-s2 input-field">
+          <%= f.select :completion_state, %w(completed uncompleted any).map { |key| [t("activemodel.attributes.task_criteria_form.completion_status.#{key}"), key] }, {}, class: 'browser-default' %>
+        </div>
+        <div class="col s4 input-field">
           <%= f.check_box :is_signed_up_only, class: 'filled-in' %>
           <%= f.label :is_signed_up_only %>
         </div>
         <div class="col s2 actions">
           <button class="waves-effect waves-light btn-flat" type="submit">
-            <%= t('achievements.index.actions.search') %>
+            <%= t('search.index.actions.search') %>
             <i class="material-icons left">filter_list</i>
           </button>
         </div>

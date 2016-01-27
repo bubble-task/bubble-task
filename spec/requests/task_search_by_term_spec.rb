@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'GET /achievements' do
+describe 'GET /search' do
   before do
     request_sign_in_as(assignee)
     expected_tasks
@@ -26,7 +26,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '1' })
+      get search_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '1', completion_state: 'completed' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -47,7 +47,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: '2015-12-01', to_date: nil, is_signed_up_only: '1' })
+      get search_path(c: { from_date: '2015-12-01', to_date: nil, is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -68,7 +68,7 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: nil, to_date: '2015-11-30', is_signed_up_only: '1' })
+      get search_path(c: { from_date: nil, to_date: '2015-11-30', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -91,24 +91,24 @@ describe 'GET /achievements' do
     end
 
     it do
-      get achievements_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '1' })
+      get search_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
   end
 
-  context '検索結果は完了日時の昇順' do
+  context '検索結果はタスクの作成日時の昇順' do
     let(:unexpected_tasks) { [uncompleted_task] }
 
     let(:expected_tasks) { [task2, task3, task1] }
-    let(:expected_ordered_tasks) { [task1, task2, task3] }
+    let(:expected_ordered_tasks) { [task2, task3, task1] }
 
     let(:task1) { create_task(author_id: task_author.id, title: '1', completed_at: '2015-12-01 00:00:00', assignees: [assignee]) }
     let(:task2) { create_task(author_id: task_author.id, title: '2', completed_at: '2015-12-01 00:00:01', assignees: [assignee]) }
     let(:task3) { create_task(author_id: task_author.id, title: '3', completed_at: '2015-12-05', assignees: [assignee]) }
 
     it do
-      get achievements_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '1' })
+      get search_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '1' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_ordered_tasks)
     end

@@ -46,10 +46,10 @@
       <i class="material-icons left">local_offer</i>
     <% end -%>
   </li>
-  <li<%= activate_menu([{ 'achievements' => 'index' }]) %>>
-    <%= link_to achievements_url, data: { no_turbolink: true } do %>
-      <%= t('achievements.index.navigation_title') %>
-      <i id="achievements-nav-icon" class="material-icons left">done</i>
+  <li<%= activate_menu([{ 'search' => 'index' }]) %>>
+    <%= link_to search_url, data: { no_turbolink: true } do %>
+      <%= t('search.index.navigation_title') %>
+      <i class="material-icons left">search</i>
     <% end -%>
   </li>
 </ul>

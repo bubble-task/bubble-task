@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe '完了したタスクの一覧' do
+  skip do
   before do
     sign_in_as(assignee)
     task
@@ -18,7 +19,7 @@ describe '完了したタスクの一覧' do
     before do
       TaskAssignment.new(task: task, assignee: assignee).run
       TaskCompletion.new(task_id: task.id).run
-      visit achievements_path
+      visit search_path
     end
 
     it do
@@ -35,7 +36,7 @@ describe '完了したタスクの一覧' do
   context 'サインアップしたタスクが完了していない場合' do
     before do
       TaskAssignment.new(task: task, assignee: assignee).run
-      visit achievements_path
+      visit search_path
     end
 
     it do
@@ -55,7 +56,7 @@ describe '完了したタスクの一覧' do
     end
 
     it do
-      visit achievements_path
+      visit search_path
       expect(title_on_page).to be_nil
     end
   end
@@ -71,8 +72,9 @@ describe '完了したタスクの一覧' do
     end
 
     it do
-      visit achievements_path
+      visit search_path
       expect(title_on_page).to be_nil
     end
+  end
   end
 end

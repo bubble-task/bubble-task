@@ -1,12 +1,13 @@
 module Criteria
-  class Achievement
+  class Task
 
-    def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil)
-      Criteria::Achievement.new do |c|
+    def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
+      new do |c|
         c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
         c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
         c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
         c.add_condition(Criteria::Conditions::Tags.create(tag_words))
+        c.add_condition(Criteria::Conditions::Completion.create(completion_state))
       end
     end
 
@@ -22,9 +23,7 @@ module Criteria
     def satisfy(relation)
       finalize_conditions
       prepared_relation = prepare_relation(relation)
-      default_relation = prepared_relation.restrict_by_complated
-      satisfied_relation = satisfy_relation(default_relation)
-      satisfied_relation.sort_by(&:completed_at)
+      satisfy_relation(prepared_relation).order(:id)
     end
 
     private
