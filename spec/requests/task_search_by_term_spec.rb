@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'GET /achievements' do
+describe 'GET /search' do
   before do
     request_sign_in_as(assignee)
     expected_tasks
