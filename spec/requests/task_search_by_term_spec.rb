@@ -86,23 +86,4 @@ describe 'GET /search' do
       expect(tasks).to eq(expected_tasks)
     end
   end
-
-skip do
-  context '検索結果はタスクの作成日時の昇順' do
-    let(:unexpected_tasks) { [uncompleted_task] }
-
-    let(:expected_tasks) { [task2, task3, task1] }
-    let(:expected_ordered_tasks) { [task2, task3, task1] }
-
-    let(:task1) { create_task(author_id: user_a.id, title: '1', completed_at: '2015-12-01 00:00:00', assignees: [user_b]) }
-    let(:task2) { create_task(author_id: user_a.id, title: '2', completed_at: '2015-12-01 00:00:01', assignees: [user_b]) }
-    let(:task3) { create_task(author_id: user_a.id, title: '3', completed_at: '2015-12-05', assignees: [user_b]) }
-
-    it do
-      get search_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '1' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_ordered_tasks)
-    end
-  end
-end
 end
