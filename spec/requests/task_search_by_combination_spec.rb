@@ -3,29 +3,63 @@ require 'rails_helper'
 describe 'GET /search' do
   before do
     request_sign_in_as(user_a)
+    tasks
     expected_tasks
-    unexpected_tasks
   end
 
   let(:user_a) { create_user_from_oauth_credential }
   let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com')) }
 
+  let(:tasks) do
+    [
+      create_task(
+        title: '完了日=2016-01-01,タグ=タグA タグB,サインアップ=user_a',
+        author_id: user_a.id, tags: %w(タグA タグB), completed_at: '2016-01-01', assignees: [user_a]
+      ),
+      create_task(
+        title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_b',
+        author_id: user_a.id, tags: %w(タグA タグB タグC), completed_at: '2016-01-02', assignees: [user_b]
+      ),
+      create_task(
+        title: '完了日=2015-12-30,タグ=タグA タグB,サインアップ=user_a',
+        author_id: user_a.id, tags: %w(タグA タグB), completed_at: '2015-12-30', assignees: [user_a]
+      ),
+      create_task(
+        title: '完了日=2016-01-03,タグ=タグA タグB,サインアップ=user_a',
+        author_id: user_a.id, tags: %w(タグA タグB), completed_at: '2016-01-03', assignees: [user_a]
+      ),
+      create_task(
+        title: '完了日=2016-01-01,タグ=なし,サインアップ=user_a',
+        author_id: user_a.id, completed_at: '2016-01-01', assignees: [user_a]
+      ),
+      create_task(
+        title: '完了日=2016-01-01,タグ=タグA タグC,サインアップ=user_b',
+        author_id: user_a.id, tags: %w(タグA タグC), completed_at: '2016-01-01', assignees: [user_b]
+      ),
+      create_task(
+        title: '完了日=2016-01-01,タグ=タグA,サインアップ=user_b',
+        author_id: user_a.id, tags: %w(タグA), completed_at: '2016-01-01', assignees: [user_b]
+      ),
+      create_task(
+        title: '完了日=2016-01-01,タグ=タグC,サインアップ=user_b',
+        author_id: user_a.id, tags: %w(タグC), completed_at: '2016-01-01', assignees: [user_b]
+      ),
+      create_task(
+        title: '未完了,タグ=タグA タグB,サインアップ=user_a',
+        author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_a]
+      ),
+      create_task(
+        title: '未完了,タグ=タグA,サインアップ=なし',
+        author_id: user_a.id, tags: %w(タグA タグB),
+      ),
+    ]
+  end
+
   context '期間を指定,自分がサインアップ=OFF,タグを複数指定,完了/未完了どちらも' do
     let(:expected_tasks) do
       [
-        create_task(author_id: user_a.id, title: 'タスク1', tags: %w(タグA タグB), completed_at: '2016-01-01', assignees: [user_a]),
-        create_task(author_id: user_a.id, title: 'タスク2', tags: %w(タグA タグB タグC), completed_at: '2016-01-02', assignees: [user_b]),
-      ]
-    end
-
-    let(:unexpected_tasks) do
-      [
-        create_task(author_id: user_a.id, title: 'タスク3', tags: %w(タグA タグB), completed_at: '2015-12-30', assignees: [user_a]),
-        create_task(author_id: user_a.id, title: 'タスク4', tags: %w(タグA タグB), completed_at: '2016-01-03', assignees: [user_a]),
-        create_task(author_id: user_a.id, title: 'タスク5', completed_at: '2016-01-01', assignees: [user_a]),
-        create_task(author_id: user_a.id, title: 'タスク6', tags: %w(タグA タグC), completed_at: '2016-01-01', assignees: [user_b]),
-        create_task(author_id: user_a.id, title: 'タスク7', tags: %w(タグA), completed_at: '2016-01-01', assignees: [user_b]),
-        create_task(author_id: user_a.id, title: 'タスク8', tags: %w(タグC), completed_at: '2016-01-01', assignees: [user_b]),
+        Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグB,サインアップ=user_a'),
+        Task.find_by(title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_b'),
       ]
     end
 
@@ -39,16 +73,12 @@ describe 'GET /search' do
   context '期間を指定,自分がサインアップ=OFF,完了/未完了どちらも' do
     let(:expected_tasks) do
       [
-        create_task(author_id: user_a.id, title: 'タスク1', tags: %w(タグA), completed_at: '2016-01-01', assignees: [user_a]),
-        create_task(author_id: user_a.id, title: 'タスク2', tags: %w(タグA), completed_at: '2016-01-02', assignees: [user_b]),
-      ]
-    end
-
-    let(:unexpected_tasks) do
-      [
-        create_task(author_id: user_a.id, title: 'タスク3', tags: %w(タグA), completed_at: '2015-12-30', assignees: [user_a]),
-        create_task(author_id: user_a.id, title: 'タスク4', tags: %w(タグA), completed_at: '2016-01-03', assignees: [user_a]),
-        create_task(author_id: user_a.id, title: 'タスク5', assignees: [user_a]),
+        Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグB,サインアップ=user_a'),
+        Task.find_by(title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_b'),
+        Task.find_by(title: '完了日=2016-01-01,タグ=なし,サインアップ=user_a'),
+        Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグC,サインアップ=user_b'),
+        Task.find_by(title: '完了日=2016-01-01,タグ=タグA,サインアップ=user_b'),
+        Task.find_by(title: '完了日=2016-01-01,タグ=タグC,サインアップ=user_b'),
       ]
     end
 
