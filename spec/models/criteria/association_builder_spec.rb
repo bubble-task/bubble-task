@@ -15,4 +15,25 @@ describe Criteria::AssociationBuilder do
       builder.build(conditions)
     end
   end
+
+  skip 'タグを指定,自分がサインアップのみ' do
+    it do
+      conditions = [
+        Criteria::Conditions::Assignee.create(123),
+        Criteria::Conditions::Tags.create('ABC'),
+      ]
+
+      relation = double(:relation)
+      builder = described_class.new(relation)
+
+      expect(relation)
+        .to receive(:joins)
+        .with(<<~EOJ
+          OUTER JOIN assignments ON assignments.task_id = tasks.id
+          INNER JOIN taggings ON taggings.task_id = tasks.id
+        EOJ
+             )
+      builder.build(conditions)
+    end
+  end
 end
