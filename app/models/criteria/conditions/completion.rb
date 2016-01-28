@@ -9,7 +9,7 @@ module Criteria
         when 'uncompleted'
           Uncompleted
         else
-          Criteria::Creatable::NilCondition
+          Any
         end
       end
     end
@@ -18,7 +18,7 @@ module Criteria
       module_function
 
       def prepare(relation)
-        relation
+        relation.plan_association(completed_task: :inner)
       end
 
       def satisfy(relation)
@@ -30,11 +30,23 @@ module Criteria
       module_function
 
       def prepare(relation)
-        relation
+        relation.plan_association(completed_task: :left_outer)
       end
 
       def satisfy(relation)
         relation.restrict_by_uncompleted
+      end
+    end
+
+    module Any
+      module_function
+
+      def prepare(relation)
+        relation
+      end
+
+      def satisfy(relation)
+        relation
       end
     end
   end

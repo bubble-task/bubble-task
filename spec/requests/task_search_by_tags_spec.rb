@@ -41,11 +41,11 @@ describe 'GET /search' do
     end
 
     let(:expected_tasks) do
-      [create_task(author_id: task_author.id, title: 'a', tags: ['指定するタグ'], completed_at: :now, assignees: [assignee])]
+      [create_task(author_id: task_author.id, title: 'a', tags: ['指定するタグ'], completed_at: :now, assignees: [assignee, task_author])]
     end
 
     it do
-      get search_path(c: { from_date: nil, to_date: nil, tag_words: '指定するタグ', is_signed_up_only: '1' })
+      get search_path(c: { from_date: nil, to_date: nil, tag_words: '指定するタグ', is_signed_up_only: '0' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end

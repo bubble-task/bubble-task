@@ -23,7 +23,7 @@ module Criteria
     def satisfy(relation)
       finalize_conditions
       prepared_relation = prepare_relation(relation)
-      satisfy_relation(prepared_relation).order(:id)
+      satisfy_relation(prepared_relation).uniq.order(:id)
     end
 
     private
@@ -33,7 +33,7 @@ module Criteria
       end
 
       def prepare_relation(relation)
-        @conditions.inject(relation) { |r, c| c.prepare(r) }.relation
+        AssociationBuilder.new(relation).build(@conditions)
       end
 
       def satisfy_relation(relation)
