@@ -21,7 +21,9 @@ module Criteria
       end
       join_clause = associations.join(' ')
 
-      @relation.joins(join_clause)
+      associated_relations = @associate_plans.map { |p| p.keys.first }
+
+      @relation.joins(join_clause).preload(*associated_relations)
     end
   end
 end
