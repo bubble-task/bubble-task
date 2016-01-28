@@ -14,8 +14,10 @@ module Criteria
     def build(conditions)
       conditions.inject(self) { |b, c| c.prepare(b) }
 
+      @plan_set << { taggings: :left_outer } if @plan_set.empty?
+
       associations = @plan_set.each_with_object([]) do |plan, a|
-        relation = plan.keys.first
+        relation = plan.keys.first.to_s.pluralize
         join_type = plan.values.first.to_s.upcase.tr('_', ' ')
         a << "#{join_type} JOIN #{relation} ON #{relation}.task_id = tasks.id"
       end

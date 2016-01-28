@@ -4,7 +4,7 @@ module Criteria
       extend Creatable
 
       def prepare(relation)
-        relation.plan_association(completed_tasks: :left_outer)
+        relation.plan_association(completed_task: :left_outer)
       end
 
       def satisfy(relation)
