@@ -30,6 +30,11 @@ module Criteria
         unless @plans.include?({ taggings: :inner })
           @plans << { taggings: :left_outer }
         end
+
+        if @plans.include?({ completed_task: :inner }) &&
+          @plans.include?({ completed_task: :left_outer })
+          @plans.delete({ completed_task: :left_outer })
+        end
       end
 
       def join_clause
