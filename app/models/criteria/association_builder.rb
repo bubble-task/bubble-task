@@ -8,6 +8,7 @@ module Criteria
 
     def plan_association(plan)
       @associate_plans << plan
+      self
     end
 
     def build(conditions)
