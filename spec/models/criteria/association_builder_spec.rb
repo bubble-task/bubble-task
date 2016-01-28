@@ -65,6 +65,25 @@ describe Criteria::AssociationBuilder do
       end
     end
 
+    context '期間を指定,完了を問わない' do
+      let(:conditions) do
+        [
+          Criteria::Conditions::Assignee.create(nil),
+          Criteria::Conditions::CompletedOnFrom.create(1.days.ago),
+          Criteria::Conditions::CompletedOnTo.create(Time.current),
+          Criteria::Conditions::Tags.create(''),
+          Criteria::Conditions::Completion.create('any'),
+        ]
+      end
+
+      it do
+        expect(relation.method_calls).to match(
+          joins: 'INNER JOIN completed_tasks ON completed_tasks.task_id = tasks.id LEFT OUTER JOIN taggings ON taggings.task_id = tasks.id',
+          preload: [:completed_task, :taggings],
+        )
+      end
+    end
+
     context '条件なし' do
       let(:conditions) do
         [
