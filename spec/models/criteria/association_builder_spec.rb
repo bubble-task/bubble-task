@@ -19,15 +19,18 @@ class DummyRelation
 end
 
 describe Criteria::AssociationBuilder do
-  context 'タグを指定' do
-    context 'サインアップを問わない' do
+  describe '#build' do
+    before do
+      builder.build(conditions)
+    end
+
+    let(:builder) { described_class.new(relation) }
+    let(:relation) { DummyRelation.new }
+
+    context 'タグを指定,サインアップを問わない' do
+      let(:conditions) { [Criteria::Conditions::Tags.create('ABC')] }
+
       it do
-        conditions = [Criteria::Conditions::Tags.create('ABC')]
-
-        relation = DummyRelation.new
-        builder = described_class.new(relation)
-        builder.build(conditions)
-
         expect(relation.method_calls).to match(
           joins: 'INNER JOIN taggings ON taggings.task_id = tasks.id',
           preload: [:taggings],
@@ -35,17 +38,15 @@ describe Criteria::AssociationBuilder do
       end
     end
 
-    context '自分がサインアップのみ' do
-      it do
-        conditions = [
+    context 'タグを指定,自分がサインアップのみ' do
+      let(:conditions) do
+        [
           Criteria::Conditions::Assignee.create(123),
           Criteria::Conditions::Tags.create('ABC'),
         ]
+      end
 
-        relation = DummyRelation.new
-        builder = described_class.new(relation)
-        builder.build(conditions)
-
+      it do
         expect(relation.method_calls).to match(
           joins: 'OUTER JOIN assignments ON assignments.task_id = tasks.id INNER JOIN taggings ON taggings.task_id = tasks.id',
           preload: [:assignments, :taggings],
