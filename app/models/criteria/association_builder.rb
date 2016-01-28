@@ -43,7 +43,7 @@ module Criteria
           join_type = plan.values.first.to_s.upcase.tr('_', ' ')
           a << "#{join_type} JOIN #{relation} ON #{relation}.task_id = tasks.id"
         end
-        join_clause = associations.join(' ')
+        associations.join(' ')
       end
 
       def associated_relations
