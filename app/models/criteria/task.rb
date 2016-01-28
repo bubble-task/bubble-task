@@ -23,7 +23,7 @@ module Criteria
     def satisfy(relation)
       finalize_conditions
       prepared_relation = prepare_relation(relation)
-      satisfy_relation(prepared_relation).order(:id)
+      satisfy_relation(prepared_relation).uniq.order(:id)
     end
 
     private

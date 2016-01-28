@@ -3,11 +3,11 @@ module Criteria
 
     def initialize(relation)
       @relation = relation
-      @plan_set = Set.new
+      @plans = Set.new
     end
 
     def plan_association(plan)
-      @plan_set << plan
+      @plans << plan
       self
     end
 
@@ -24,11 +24,16 @@ module Criteria
       end
 
       def finalize_plans!
-        @plan_set << { taggings: :left_outer } if @plan_set.empty?
+        unless @plans.include?({ completed_task: :inner })
+          @plans << { completed_task: :left_outer }
+        end
+        unless @plans.include?({ taggings: :inner })
+          @plans << { taggings: :left_outer }
+        end
       end
 
       def join_clause
-        associations = @plan_set.each_with_object([]) do |plan, a|
+        associations = @plans.each_with_object([]) do |plan, a|
           relation = plan.keys.first.to_s.pluralize
           join_type = plan.values.first.to_s.upcase.tr('_', ' ')
           a << "#{join_type} JOIN #{relation} ON #{relation}.task_id = tasks.id"
@@ -37,7 +42,7 @@ module Criteria
       end
 
       def associated_relations
-        @plan_set.map { |p| p.keys.first }
+        @plans.map { |p| p.keys.first }
       end
   end
 end
