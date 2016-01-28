@@ -16,8 +16,8 @@ module Criteria
 
       associations = @plan_set.each_with_object([]) do |plan, a|
         relation = plan.keys.first
-        join_type = plan.values.first
-        a << "#{join_type.upcase} JOIN #{relation} ON #{relation}.task_id = tasks.id"
+        join_type = plan.values.first.to_s.upcase.tr('_', ' ')
+        a << "#{join_type} JOIN #{relation} ON #{relation}.task_id = tasks.id"
       end
       join_clause = associations.join(' ')
 

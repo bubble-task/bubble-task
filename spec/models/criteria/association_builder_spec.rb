@@ -48,7 +48,7 @@ describe Criteria::AssociationBuilder do
 
       it do
         expect(relation.method_calls).to match(
-          joins: 'OUTER JOIN assignments ON assignments.task_id = tasks.id INNER JOIN taggings ON taggings.task_id = tasks.id',
+          joins: 'LEFT OUTER JOIN assignments ON assignments.task_id = tasks.id INNER JOIN taggings ON taggings.task_id = tasks.id',
           preload: [:assignments, :taggings],
         )
       end
@@ -65,7 +65,7 @@ describe Criteria::AssociationBuilder do
 
       it do
         expect(relation.method_calls).to match(
-          joins: 'OUTER JOIN completed_tasks ON completed_tasks.task_id = tasks.id INNER JOIN taggings ON taggings.task_id = tasks.id',
+          joins: 'LEFT OUTER JOIN completed_tasks ON completed_tasks.task_id = tasks.id INNER JOIN taggings ON taggings.task_id = tasks.id',
           preload: [:completed_tasks, :taggings],
         )
       end

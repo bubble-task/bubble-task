@@ -33,7 +33,8 @@ module Criteria
       end
 
       def prepare_relation(relation)
-        @conditions.inject(relation) { |r, c| c.prepare(r) }.relation
+        #@conditions.inject(relation) { |r, c| c.prepare(r) }.relation
+        AssociationBuilder.new(relation).build(@conditions)
       end
 
       def satisfy_relation(relation)
