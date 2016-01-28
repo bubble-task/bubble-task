@@ -18,7 +18,7 @@ module Criteria
       module_function
 
       def prepare(relation)
-        relation
+        relation.plan_association(completed_task: :outer)
       end
 
       def satisfy(relation)
@@ -30,7 +30,7 @@ module Criteria
       module_function
 
       def prepare(relation)
-        relation
+        relation.plan_association(completed_task: :outer)
       end
 
       def satisfy(relation)

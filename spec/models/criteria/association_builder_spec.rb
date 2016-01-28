@@ -53,5 +53,22 @@ describe Criteria::AssociationBuilder do
         )
       end
     end
+
+    context '期間を指定,タグを指定,自分がサインアップを問わない' do
+      let(:conditions) do
+        [
+          Criteria::Conditions::CompletedOnFrom.create(1.days.ago),
+          Criteria::Conditions::CompletedOnTo.create(Time.current),
+          Criteria::Conditions::Tags.create('ABC'),
+        ]
+      end
+
+      it do
+        expect(relation.method_calls).to match(
+          joins: 'OUTER JOIN completed_tasks ON completed_tasks.task_id = tasks.id INNER JOIN taggings ON taggings.task_id = tasks.id',
+          preload: [:completed_tasks, :taggings],
+        )
+      end
+    end
   end
 end

@@ -3,25 +3,25 @@ module Criteria
 
     def initialize(relation)
       @relation = relation
-      @associate_plans = []
+      @plan_set = Set.new
     end
 
     def plan_association(plan)
-      @associate_plans << plan
+      @plan_set << plan
       self
     end
 
     def build(conditions)
       conditions.inject(self) { |b, c| c.prepare(b) }
 
-      associations = @associate_plans.each_with_object([]) do |plan, a|
+      associations = @plan_set.each_with_object([]) do |plan, a|
         relation = plan.keys.first
         join_type = plan.values.first
         a << "#{join_type.upcase} JOIN #{relation} ON #{relation}.task_id = tasks.id"
       end
       join_clause = associations.join(' ')
 
-      associated_relations = @associate_plans.map { |p| p.keys.first }
+      associated_relations = @plan_set.map { |p| p.keys.first }
 
       @relation.joins(join_clause).preload(*associated_relations)
     end
