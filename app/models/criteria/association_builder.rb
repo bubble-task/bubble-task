@@ -45,11 +45,10 @@ module Criteria
       end
 
       def join_clause
-        associations =
-          @plans
-            .map { |p| p.associate(:task) }
-            .map(&:to_sql)
-            .join(' ')
+        @plans
+          .map { |p| p.associate(:task) }
+          .map(&:to_sql)
+          .join(' ')
       end
 
       def associated_relations
