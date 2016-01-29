@@ -2,7 +2,7 @@ module Criteria
   class Task
 
     def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
-      new do |c|
+      new.tap do |c|
         c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
         c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
         c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
@@ -13,7 +13,6 @@ module Criteria
 
     def initialize
       @conditions = []
-      yield(self) if block_given?
     end
 
     def add_condition(condition)
