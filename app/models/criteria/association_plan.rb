@@ -4,11 +4,7 @@ module Criteria
   AssociationPlan = Struct.new(:relation, :join_type) do
 
     def associate(base_relation)
-      Association.new(
-        base_relation.to_s.pluralize,
-        join_type.to_s,
-        relation.to_s.pluralize,
-      )
+      Association.new(base_relation, join_type, relation)
     end
   end
 end
