@@ -46,7 +46,7 @@ module Criteria
 
       def join_clause
         @plans
-          .map { |p| p.associate(:task) }
+          .map { |p| p.associate(@relation.table_name) }
           .map(&:to_sql)
           .join(' ')
       end

@@ -3,6 +3,10 @@ require 'rails_helper'
 class DummyRelation
   attr_reader :method_calls
 
+  def table_name
+    'tasks'
+  end
+
   def initialize
     @method_calls = {}
   end
