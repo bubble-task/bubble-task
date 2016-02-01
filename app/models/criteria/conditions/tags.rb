@@ -10,7 +10,7 @@ module Criteria
       end
 
       def prepare(relation)
-        relation.use_joins
+        relation.plan_association(taggings: :inner)
       end
 
       def satisfy(relation)

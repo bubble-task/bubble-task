@@ -24,7 +24,7 @@ module TaskRepository
     end
 
     def search_by_criteria(criteria)
-      criteria.satisfy(Criteria::RelationPreparer.new(Task))
+      criteria.satisfy(Task)
     end
   end
 end

@@ -32,7 +32,7 @@ describe 'GET /search' do
     end
   end
 
-  skip 'タグを1つ指定する場合' do
+  context 'タグを1つ指定する場合' do
     let(:unexpected_tasks) do
       [
         uncompleted_task,
