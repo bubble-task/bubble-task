@@ -10,7 +10,7 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :assignees, through: :assignments, source: :user
   has_many :todays_tasks
-  has_one :task_deadline
+  has_one :task_deadline, autosave: true
 
   delegate :completed_at, to: :completed_task
 
@@ -75,7 +75,8 @@ class Task < ActiveRecord::Base
   end
 
   def reset_deadline(deadline)
-    set_deadline(deadline)
+    return set_deadline(deadline) unless task_deadline
+    self.task_deadline.datetime = deadline
   end
 
   def deadline

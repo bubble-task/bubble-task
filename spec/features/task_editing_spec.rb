@@ -125,9 +125,22 @@ describe 'タスクの編集' do
       let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
       let(:deadline_text) { first('.deadline').text }
 
-      it do
-        update_task_from_ui(task, deadline: deadline)
-        expect(deadline_text).to eq('2016/02/03 10:00')
+      context '期限が設定されていない場合' do
+        it do
+          update_task_from_ui(task, deadline: deadline)
+          expect(deadline_text).to eq('2016/02/03 10:00')
+        end
+      end
+
+      context '期限がすでに設定されている場合' do
+        before do
+          update_task_from_ui(task, deadline: deadline.advance(days: 1))
+        end
+
+        it do
+          update_task_from_ui(task, deadline: deadline)
+          expect(deadline_text).to eq('2016/02/03 10:00')
+        end
       end
     end
   end
