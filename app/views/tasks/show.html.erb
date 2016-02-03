@@ -13,6 +13,9 @@
             <%= tag.present(self) %>
           <% end -%>
         </div>
+        <div class="deadline">
+          <%= @task.show_deadline %>
+        </div>
         <h1 class="task-title"><%= @task.title %></h1>
         <div class="task-assignees">
           <%= render partial: 'tasks/task_assignees', locals: { task: @task } %>

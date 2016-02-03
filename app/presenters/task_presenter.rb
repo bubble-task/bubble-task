@@ -57,10 +57,8 @@ class TaskPresenter < SimpleDelegator
     end
   end
 
-  def show_deadline(view)
+  def show_deadline
     return unless deadline
-    view.content_tag(:span, class: 'deadline') do
-      view.l(deadline, format: :short)
-    end
+    I18n.l(deadline, format: :short)
   end
 end

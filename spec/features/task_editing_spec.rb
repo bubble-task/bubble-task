@@ -120,5 +120,8 @@ describe 'タスクの編集' do
         expect(tags_on_page).to eq(%w(タグ3 タグ4))
       end
     end
+
+    context '期限を設定' do
+    end
   end
 end
