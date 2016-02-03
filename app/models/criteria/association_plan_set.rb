@@ -29,7 +29,7 @@ module Criteria
         .join(' ')
     end
 
-    def associated_relations
+    def relations
       @plans.map(&:relation)
     end
 

@@ -10,7 +10,7 @@ module Criteria
       finalize_plans(plans)
       @relation
         .joins(plans.join_clause(@relation.table_name))
-        .preload(*plans.associated_relations)
+        .preload(*plans.relations)
     end
 
     private
