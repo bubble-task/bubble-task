@@ -3,38 +3,32 @@ module Criteria
 
     def initialize(relation)
       @relation = relation
-      @plans = Set.new
-    end
-
-    def plan_association(plan)
-      relation, join_type = plan.flatten
-      @plans << AssociationPlan.new(relation, join_type)
-      self
+      @plans = AssociationPlanSet.new
     end
 
     def build(conditions)
       aggregate_plans!(conditions)
       finalize_plans!
-      @relation.joins(join_clause).preload(*associated_relations)
+      @relation.joins(@plans.join_clause(@relation.table_name)).preload(*@plans.associated_relations)
     end
 
     private
 
       def aggregate_plans!(conditions)
-        conditions.inject(self) { |b, c| c.prepare(b) }
+        conditions.inject(@plans) { |p, c| c.prepare(p) }
       end
 
       def finalize_plans!
-        completed_task_inner = AssociationPlan.new(:completed_task, :inner)
-        completed_task_left_outer = AssociationPlan.new(:completed_task, :left_outer)
-        taggings_inner = AssociationPlan.new(:taggings, :inner)
-        taggings_left_outer = AssociationPlan.new(:taggings, :left_outer)
+        completed_task_inner = { completed_task: :inner }
+        completed_task_left_outer = { completed_task: :left_outer }
+        taggings_inner = { taggings: :inner }
+        taggings_left_outer = { taggings: :left_outer }
 
-        unless @plans.include?(completed_task_inner)
+        unless @plans.planed_inner_join?(:completed_task)
           @plans << completed_task_left_outer
         end
 
-        unless @plans.include?(taggings_inner)
+        unless @plans.planed_inner_join?(:taggings)
           @plans << taggings_left_outer
         end
 
@@ -42,17 +36,6 @@ module Criteria
           @plans.include?(completed_task_left_outer)
           @plans.delete(completed_task_left_outer)
         end
-      end
-
-      def join_clause
-        @plans
-          .map { |p| p.associate(@relation.table_name) }
-          .map(&:to_sql)
-          .join(' ')
-      end
-
-      def associated_relations
-        @plans.map(&:relation)
       end
   end
 end
