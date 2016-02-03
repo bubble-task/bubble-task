@@ -40,6 +40,7 @@ class TaskEditing < SimpleDelegator
     update_title(title)
     update_tags(tags)
     update_description(description)
+    @origin.reset_deadline(deadline)
     save
   end
 

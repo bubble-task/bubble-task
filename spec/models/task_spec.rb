@@ -93,4 +93,14 @@ describe Task do
       expect(task.deadline).to eq(deadline)
     end
   end
+
+  describe '期限を再設定する' do
+    context '期限が設定されていない場合' do
+      it do
+        deadline = Time.current
+        task.reset_deadline(deadline)
+        expect(task.deadline).to eq(deadline)
+      end
+    end
+  end
 end

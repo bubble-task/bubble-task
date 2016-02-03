@@ -74,6 +74,10 @@ class Task < ActiveRecord::Base
     self.build_task_deadline(datetime: deadline)
   end
 
+  def reset_deadline(deadline)
+    set_deadline(deadline)
+  end
+
   def deadline
     task_deadline&.datetime
   end

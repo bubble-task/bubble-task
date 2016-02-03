@@ -5,9 +5,9 @@ module TaskCreationHelper
     create_task_from_ui_without_visit(title: title, description: description, tag_words: tag_words, deadline: deadline, with_sign_up: with_sign_up)
   end
 
-  def update_task_from_ui(old_task, title: nil, description: nil, tag_words: nil)
+  def update_task_from_ui(old_task, title: nil, description: nil, tag_words: nil, deadline: nil)
     visit edit_task_path(old_task.id)
-    update_task_from_ui_without_visit(title: title, description: description, tag_words: tag_words)
+    update_task_from_ui_without_visit(title: title, description: description, tag_words: tag_words, deadline: deadline)
   end
 
   def create_task_from_ui_without_visit(title:, description: '', tag_words: '', deadline: nil, with_sign_up: false)
@@ -15,8 +15,8 @@ module TaskCreationHelper
     click_button I18n.t('helpers.submit.create')
   end
 
-  def update_task_from_ui_without_visit(title: nil, description: nil, tag_words: nil)
-    fill_in_task_form(title: title, description: description, tag_words: tag_words)
+  def update_task_from_ui_without_visit(title: nil, description: nil, tag_words: nil, deadline: nil)
+    fill_in_task_form(title: title, description: description, tag_words: tag_words, deadline: deadline)
     click_button I18n.t('helpers.submit.update')
   end
 
