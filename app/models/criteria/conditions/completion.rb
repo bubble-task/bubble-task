@@ -17,8 +17,8 @@ module Criteria
     module Completed
       module_function
 
-      def prepare(relation)
-        relation.plan_association(completed_task: :inner)
+      def prepare(plans)
+        plans.add(completed_task: :inner)
       end
 
       def satisfy(relation)
@@ -29,8 +29,8 @@ module Criteria
     module Uncompleted
       module_function
 
-      def prepare(relation)
-        relation.plan_association(completed_task: :left_outer)
+      def prepare(plans)
+        plans.add(completed_task: :left_outer)
       end
 
       def satisfy(relation)

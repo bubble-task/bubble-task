@@ -3,8 +3,8 @@ module Criteria
     CompletedOnTo = Struct.new(:datetime) do
       extend Creatable
 
-      def prepare(relation)
-        relation.plan_association(completed_task: :inner)
+      def prepare(plans)
+        plans.add(completed_task: :inner)
       end
 
       def satisfy(relation)
