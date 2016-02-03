@@ -5,17 +5,13 @@ module Criteria
       @plans = Set.new
     end
 
-    def plan_association(plan)
-      self << plan
+    def add(plan)
+      @plans << create_plan_from_hash(plan)
       self
     end
 
     def include?(plan)
       @plans.include?(create_plan_from_hash(plan))
-    end
-
-    def <<(plan)
-      @plans << create_plan_from_hash(plan)
     end
 
     def delete(plan)

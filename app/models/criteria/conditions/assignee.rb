@@ -10,8 +10,8 @@ module Criteria
 
     Assigned = Struct.new(:id) do
 
-      def prepare(relation)
-        relation.plan_association(assignments: :inner)
+      def prepare(plans)
+        plans.add(assignments: :inner)
       end
 
       def satisfy(relation)

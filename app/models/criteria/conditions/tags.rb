@@ -9,8 +9,8 @@ module Criteria
         super(tags)
       end
 
-      def prepare(relation)
-        relation.plan_association(taggings: :inner)
+      def prepare(plans)
+        plans.add(taggings: :inner)
       end
 
       def satisfy(relation)
