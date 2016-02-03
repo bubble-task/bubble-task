@@ -143,5 +143,21 @@ describe 'タスクの編集' do
         end
       end
     end
+
+    skip '期限を削除する' do
+      let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
+      let(:deadline_element) { first('.deadline') }
+
+      context '期限がすでに設定されている場合' do
+        before do
+          update_task_from_ui(task, deadline: deadline)
+        end
+
+        it do
+          update_task_from_ui(task, disable_deadline: true)
+          expect(deadline_element).to be_nil
+        end
+      end
+    end
   end
 end

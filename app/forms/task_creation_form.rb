@@ -1,5 +1,4 @@
 class TaskCreationForm < SimpleDelegator
-
   attr_accessor :with_sign_up
 
   def initialize(params)

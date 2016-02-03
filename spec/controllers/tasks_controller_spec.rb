@@ -73,7 +73,7 @@ describe TasksController do
   end
 
   describe '#update' do
-    subject { put :update, id: task.id }
+    subject { put :update, id: task.id, task_parameters: {} }
 
     context 'ログインしていない場合' do
       it { is_expected.to redirect_to(new_session_url) }
