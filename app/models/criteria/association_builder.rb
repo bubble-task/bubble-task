@@ -19,16 +19,16 @@ module Criteria
       end
 
       def finalize_plans!
-        unless @plans.planed_inner_join?(:completed_task)
+        unless @plans.planned_inner_join?(:completed_task)
           @plans << { completed_task: :left_outer }
         end
 
-        unless @plans.planed_inner_join?(:taggings)
+        unless @plans.planned_inner_join?(:taggings)
           @plans << { taggings: :left_outer }
         end
 
-        if @plans.planed_inner_join?(:completed_task) &&
-          @plans.include?(completed_task: :left_outer)
+        if @plans.planned_inner_join?(:completed_task) &&
+          @plans.planned_left_outer_join?(:completed_task)
           @plans.delete(completed_task: :left_outer)
         end
       end

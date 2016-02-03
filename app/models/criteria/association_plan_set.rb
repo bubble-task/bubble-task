@@ -7,8 +7,6 @@ module Criteria
 
     def plan_association(plan)
       self << plan
-      #relation, join_type = plan.flatten
-      #@plans << AssociationPlan.new(relation, join_type)
       self
     end
 
@@ -35,8 +33,12 @@ module Criteria
       @plans.map(&:relation)
     end
 
-    def planed_inner_join?(relation)
+    def planned_inner_join?(relation)
       include?(relation => :inner)
+    end
+
+    def planned_left_outer_join?(relation)
+      include?(relation => :left_outer)
     end
 
     private
