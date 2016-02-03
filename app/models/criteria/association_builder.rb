@@ -3,33 +3,34 @@ module Criteria
 
     def initialize(relation)
       @relation = relation
-      @plans = AssociationPlanSet.new
     end
 
     def build(conditions)
-      aggregate_plans!(conditions)
-      finalize_plans!
-      @relation.joins(@plans.join_clause(@relation.table_name)).preload(*@plans.associated_relations)
+      plans = aggregate_plans(conditions)
+      finalize_plans(plans)
+      @relation
+        .joins(plans.join_clause(@relation.table_name))
+        .preload(*plans.associated_relations)
     end
 
     private
 
-      def aggregate_plans!(conditions)
-        conditions.inject(@plans) { |p, c| c.prepare(p) }
+      def aggregate_plans(conditions)
+        conditions.inject(AssociationPlanSet.new) { |p, c| c.prepare(p) }
       end
 
-      def finalize_plans!
-        unless @plans.planned_inner_join?(:completed_task)
-          @plans << { completed_task: :left_outer }
+      def finalize_plans(plans)
+        unless plans.planned_inner_join?(:completed_task)
+          plans << { completed_task: :left_outer }
         end
 
-        unless @plans.planned_inner_join?(:taggings)
-          @plans << { taggings: :left_outer }
+        unless plans.planned_inner_join?(:taggings)
+          plans << { taggings: :left_outer }
         end
 
-        if @plans.planned_inner_join?(:completed_task) &&
-          @plans.planned_left_outer_join?(:completed_task)
-          @plans.delete(completed_task: :left_outer)
+        if plans.planned_inner_join?(:completed_task) &&
+          plans.planned_left_outer_join?(:completed_task)
+          plans.delete(completed_task: :left_outer)
         end
       end
   end
