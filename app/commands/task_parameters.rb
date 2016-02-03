@@ -1,7 +1,7 @@
 class TaskParameters
   include ActiveModel::Model
 
-  attr_accessor :title, :description, :tag_words
+  attr_accessor :title, :description, :tag_words, :deadline_date, :deadline_hour, :deadline_minutes
 
   validates :title,
             presence: true,
@@ -19,5 +19,9 @@ class TaskParameters
 
   def tags
     self.class.tags_from(tag_words)
+  end
+
+  def deadline
+    Time.zone.parse("#{deadline_date} #{deadline_hour}:#{deadline_minutes}")
   end
 end

@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :assignees, through: :assignments, source: :user
   has_many :todays_tasks
+  has_one :task_deadline
 
   delegate :completed_at, to: :completed_task
 
@@ -67,6 +68,14 @@ class Task < ActiveRecord::Base
 
   def cancel_completion
     completed_task.remove!
+  end
+
+  def set_deadline(deadline)
+    self.build_task_deadline(datetime: deadline)
+  end
+
+  def deadline
+    task_deadline&.datetime
   end
 
   private

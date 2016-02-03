@@ -129,4 +129,12 @@ describe 'タスクを作成する' do
       expect(selected_tag_words).to eq(tag)
     end
   end
+
+  context 'タスクに期限を設定する場合' do
+    it do
+      create_task_from_ui(title: title, deadline: Time.zone.parse('2016/02/03 10:00'))
+      deadline = first('.deadline').text
+      expect(deadline).to eq('2016/02/03 10:00')
+    end
+  end
 end

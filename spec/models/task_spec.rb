@@ -85,4 +85,12 @@ describe Task do
       expect(task).to_not be_completed
     end
   end
+
+  describe '期限を設定する' do
+    it do
+      deadline = Time.current
+      task.set_deadline(deadline)
+      expect(task.deadline).to eq(deadline)
+    end
+  end
 end
