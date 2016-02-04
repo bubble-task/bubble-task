@@ -7,3 +7,4 @@ ja:
         description: 説明
         with_sign_up: サインアップする
         deadline_date: 期限
+        disable_deadline: 期限を削除する
