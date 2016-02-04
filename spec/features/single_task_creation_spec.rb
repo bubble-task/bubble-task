@@ -132,7 +132,7 @@ describe 'タスクを作成する' do
 
   context 'タスクに期限を設定する場合' do
     let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
-    let(:deadline_text) { first('.deadline').text }
+    let(:deadline_text) { first('.task-deadline').text }
 
     it do
       create_task_from_ui(title: title, deadline: deadline)

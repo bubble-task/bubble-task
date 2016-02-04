@@ -140,7 +140,7 @@ describe 'タスクの編集' do
 
     context '期限を設定' do
       let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
-      let(:deadline_text) { first('.deadline').text }
+      let(:deadline_text) { first('.task-deadline').text }
 
       context '期限が設定されていない場合' do
         it do
