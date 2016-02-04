@@ -23,29 +23,21 @@
           <%= f.label :description %>
           <%= f.text_area :description, class: 'materialize-textarea' %>
         </div>
-        <div class="col s6 input-field">
+        <div class="col s3 input-field">
           <i class="material-icons prefix">access_time</i>
           <%= f.label :deadline_date %>
           <%= f.date_field :deadline_date, class: 'datepicker' %>
         </div>
-        <div class="col s4">
-          <div class="row">
-            <div class="col s5 input-field">
-              <%= f.select :deadline_hour, (0..23).map { |h| [sprintf("%02d", h), h] }, {}, class: 'browser-default' %>
-            </div>
-            <div class="col s1 center">
-              <span class="time-separator">:</span>
-            </div>
-            <div class="col s5 input-field">
-              <%= f.select :deadline_minutes, [0, 15, 30, 45].map { |m| [sprintf("%02d", m), m] }, {}, class: 'browser-default' %>
-            </div>
-          </div>
+        <div class="col s3 input-field time-select">
+          <%= f.select :deadline_hour, (0..23).map { |h| [sprintf("%02d", h), h] }, {}, class: 'browser-default' %>
+          <p class="time-separator">:</p>
+          <%= f.select :deadline_minutes, [0, 15, 30, 45].map { |m| [sprintf("%02d", m), m] }, {}, class: 'browser-default' %>
         </div>
-        <div class="col s9 right-align" style="padding-top: 0.4rem;">
+        <div class="col s3 input-field">
           <%= f.check_box :with_sign_up, class: 'filled-in' %>
           <%= f.label :with_sign_up, id: 'task_parameters_with_sign_up_label' %>
         </div>
-        <div class="col s3 actions">
+        <div class="col s3 actions" style="margin-top: 1.3rem;">
           <button class="waves-effect waves-light btn-flat" type="submit" name="action">
             <%= t('helpers.submit.create') %>
             <i class="material-icons left">send</i>
