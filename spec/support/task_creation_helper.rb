@@ -31,8 +31,8 @@ module TaskCreationHelper
     find('#task_parameters_with_sign_up_label', visible: false).click if with_sign_up
   end
 
-  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [])
-    task = create_task_record(author_id: author_id, title: title, description: description, tags: tags)
+  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [], deadline: nil)
+    task = create_task_record(author_id: author_id, title: title, description: description, tags: tags, deadline: deadline)
     assignees.each do |user|
       TaskAssignment.new(task: task, assignee: user).run
     end
@@ -40,9 +40,9 @@ module TaskCreationHelper
     make_task_completion(task, completed_at)
   end
 
-  def create_task_record(author_id:, title:, description: nil, tags: [])
+  def create_task_record(author_id:, title:, description: nil, tags: [], deadline: nil)
     TaskFactory
-      .create(author_id, title, description.to_s, tags)
+      .create(author_id, title, description.to_s, tags, deadline)
       .tap(&:save!)
   end
 

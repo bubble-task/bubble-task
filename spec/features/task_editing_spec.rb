@@ -13,13 +13,21 @@ describe 'タスクの編集' do
   let(:old_description) { '編集前の説明' }
   let(:old_tags) { %w(タグ1 タグ2) }
   let(:old_tag_words) { old_tags.join(' ') }
+  let(:old_deadline) { Time.zone.parse("#{old_deadline_date} #{old_deadline_hour}:#{old_deadline_minutes}") }
+  let(:old_deadline_date) { '2016/02/03' }
+  let(:old_deadline_hour) { '10' }
+  let(:old_deadline_minutes) { '0' }
 
   let(:title_on_page) { first('.task-title').text }
   let(:description_on_page) { first('.task-description').text }
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
 
   describe '編集画面' do
-    it '既存のタグ・タイトル・説明が入力されていること' do
+    let(:task) do
+      create_task(author_id: user.id, title: old_title, description: old_description, tags: old_tags, assignees: [user], deadline: old_deadline)
+    end
+
+    it '既存のタグ・タイトル・説明・期限が入力されていること' do
       visit task_url(task.id)
       click_link(I18n.t('helpers.actions.edit'))
 
@@ -31,6 +39,15 @@ describe 'タスクの編集' do
 
       filled_old_tag_words = find('#task_tag_words', visible: false).value
       expect(filled_old_tag_words).to eq(old_tag_words)
+
+      filled_old_deadline_date = find('#task_parameters_deadline_date')['data-value']
+      expect(filled_old_deadline_date).to eq(old_deadline_date)
+
+      filled_old_deadline_hour = find('#task_parameters_deadline_hour').value
+      expect(filled_old_deadline_hour).to eq(old_deadline_hour)
+
+      filled_old_deadline_minutes = find('#task_parameters_deadline_minutes').value
+      expect(filled_old_deadline_minutes).to eq(old_deadline_minutes)
     end
   end
 
