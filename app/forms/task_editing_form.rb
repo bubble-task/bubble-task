@@ -32,4 +32,8 @@ class TaskEditingForm < SimpleDelegator
     @disable_deadline = params.delete(:disable_deadline)
     super(TaskParameters.new(params))
   end
+
+  def disable_deadline?
+    disable_deadline == '1'
+  end
 end

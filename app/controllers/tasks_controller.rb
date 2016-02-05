@@ -33,6 +33,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    p ooooooooooo:params
     task = Task.find(params[:id])
     command = TaskEditing.new(task, TaskEditingForm.new(params[:task_parameters].merge(task_id: params[:id])))
     if command.run

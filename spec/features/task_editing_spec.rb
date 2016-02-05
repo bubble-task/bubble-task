@@ -161,9 +161,9 @@ describe 'タスクの編集' do
       end
     end
 
-    skip '期限を削除する' do
+    skip '期限を削除する', js: true do
       let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
-      let(:deadline_element) { first('.deadline') }
+      let(:deadline_text) { first('.task-deadline').text }
 
       context '期限がすでに設定されている場合' do
         before do
@@ -172,7 +172,7 @@ describe 'タスクの編集' do
 
         it do
           update_task_from_ui(task, disable_deadline: true)
-          expect(deadline_element).to be_nil
+          expect(deadline_text).to be_nil
         end
       end
     end

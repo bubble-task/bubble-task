@@ -112,4 +112,15 @@ describe Task do
       end
     end
   end
+
+  describe '期限を削除する' do
+    context '期限が設定されている場合' do
+      it do
+        deadline = Time.current
+        task.set_deadline(deadline)
+        task.remove_deadline
+        expect(task.deadline).to be_nil
+      end
+    end
+  end
 end

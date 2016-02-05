@@ -83,6 +83,10 @@ class Task < ActiveRecord::Base
     task_deadline&.datetime
   end
 
+  def remove_deadline
+    self.task_deadline&.remove!
+  end
+
   private
 
     def tag_collection
