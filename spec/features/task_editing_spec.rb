@@ -150,8 +150,8 @@ describe 'タスクの編集' do
       end
 
       context '期限がすでに設定されている場合' do
-        before do
-          update_task_from_ui(task, deadline: deadline.advance(days: 1))
+        let(:task) do
+          create_task(author_id: user.id, title: old_title, assignees: [user], deadline: deadline.advance(days: 1))
         end
 
         it do
@@ -167,9 +167,7 @@ describe 'タスクの編集' do
 
       context '期限がすでに設定されている場合' do
         it do
-          visit edit_task_path(task.id)
-          find('#task_parameters_disable_deadline', visible: false).trigger('click')
-          click_button I18n.t('helpers.submit.update')
+          disable_deadline_from_ui(task)
           expect(deadline_text).to be_blank
         end
       end

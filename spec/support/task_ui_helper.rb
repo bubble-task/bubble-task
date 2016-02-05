@@ -29,4 +29,10 @@ module TaskUIHelper
     select deadline.strftime('%M'), from: 'task_parameters[deadline_minutes]' if deadline
     find('#task_parameters_with_sign_up_label', visible: false).click if with_sign_up
   end
+
+  def disable_deadline_from_ui(old_task)
+    visit edit_task_path(old_task.id)
+    find('#task_parameters_disable_deadline', visible: false).trigger('click')
+    click_button I18n.t('helpers.submit.update')
+  end
 end
