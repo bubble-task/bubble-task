@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
     task_description&.apply_removed!
     tag_collection.associate_with_task(self)
     completed_task&.apply_removed!
+    task_deadline&.apply_removed!
     apply_removed!
   end
 

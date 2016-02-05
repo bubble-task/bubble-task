@@ -161,19 +161,16 @@ describe 'タスクの編集' do
       end
     end
 
-    skip '期限を削除する', js: true do
-      let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
+    context '期限を削除する', js: true do
+      let(:task) { create_task(author_id: user.id, title: old_title, assignees: [user], deadline: Time.current) }
       let(:deadline_text) { first('.task-deadline').text }
 
       context '期限がすでに設定されている場合' do
-        before do
-          update_task_from_ui(task, deadline: deadline)
-        end
-
         it do
           visit edit_task_path(task.id)
-          find('#task_parameters_disable_deadline', visible: false).click
-          expect(deadline_text).to be_nil
+          find('#task_parameters_disable_deadline', visible: false).trigger('click')
+          click_button I18n.t('helpers.submit.update')
+          expect(deadline_text).to be_blank
         end
       end
     end

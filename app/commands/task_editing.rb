@@ -16,7 +16,6 @@ class TaskEditing
     else
       @origin.reset_deadline(@form.deadline)
     end
-
     save
   end
 
