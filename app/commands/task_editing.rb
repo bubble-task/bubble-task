@@ -11,7 +11,6 @@ class TaskEditing
     update_title(@form.title)
     update_tags(@form.tags)
     update_description(@form.description)
-    p oooooooo:@form.disable_deadline
     if @form.disable_deadline?
       @origin.remove_deadline
     else

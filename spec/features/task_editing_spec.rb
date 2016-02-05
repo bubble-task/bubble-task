@@ -171,7 +171,8 @@ describe 'タスクの編集' do
         end
 
         it do
-          update_task_from_ui(task, disable_deadline: true)
+          visit edit_task_path(task.id)
+          find('#task_parameters_disable_deadline', visible: false).click
           expect(deadline_text).to be_nil
         end
       end
