@@ -11,11 +11,7 @@ class TaskEditing
     update_title(@form.title)
     update_tags(@form.tags)
     update_description(@form.description)
-    if @form.disable_deadline?
-      @origin.remove_deadline
-    elsif @form.deadline
-      @origin.reset_deadline(@form.deadline)
-    end
+    update_deadline(@form.deadline, @form.disable_deadline?)
     save
   end
 
@@ -32,6 +28,12 @@ class TaskEditing
     def update_description(description)
       return @origin.remove_description if description.blank?
       @origin.rewrite_description(description)
+    end
+
+    def update_deadline(deadline, is_disable_deadline)
+      return @origin.remove_deadline if is_disable_deadline
+      return unless deadline
+      @origin.reset_deadline(deadline)
     end
 
     def save
