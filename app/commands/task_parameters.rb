@@ -14,11 +14,11 @@ class TaskParameters
 
   validates :deadline_date,
             presence: true,
-            if: 'deadline_hour.present? || deadline_minutes.present?'
+            if: :will_set_deadline?
 
   validates :deadline_hour,
             presence: true,
-            if: 'deadline_date.present? && deadline_minutes.present?'
+            if: :will_set_deadline_time?
 
   def self.tags_from(tag_words)
     return [] unless tag_words
@@ -32,4 +32,14 @@ class TaskParameters
   def deadline
     Time.zone.parse("#{deadline_date} #{deadline_hour}:#{deadline_minutes}")
   end
+
+  private
+
+    def will_set_deadline?
+      deadline_hour.present? || deadline_minutes.present?
+    end
+
+    def will_set_deadline_time?
+      deadline_date.present? && deadline_minutes.present?
+    end
 end
