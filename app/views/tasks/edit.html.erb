@@ -29,9 +29,9 @@
           <%= f.date_field :deadline_date, class: 'datepicker', data: { value: @form.deadline_date } %>
         </div>
         <div class="col s3 input-field time-select">
-          <%= f.select :deadline_hour, (0..23).map { |h| [sprintf("%02d", h), h] }, { prompt: true }, class: 'browser-default' %>
+          <%= f.select :deadline_hour, (0..23).map { |h| [sprintf("%02d", h), h] }, { prompt: '' }, class: 'browser-default' %>
           <p class="time-separator">:</p>
-          <%= f.select :deadline_minutes, [0, 15, 30, 45].map { |m| [sprintf("%02d", m), m] }, { prompt: true }, class: 'browser-default' %>
+          <%= f.select :deadline_minutes, [0, 15, 30, 45].map { |m| [sprintf("%02d", m), m] }, { prompt: '' }, class: 'browser-default' %>
         </div>
         <div class="col s3 input-field">
           <%= f.check_box :disable_deadline, class: 'filled-in' %>
