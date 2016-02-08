@@ -25,9 +25,6 @@ module TaskUIHelper
     fill_in 'task_parameters[title]', with: title if title
     fill_in 'task_parameters[description]', with: description if description
     fill_in_deadline(deadline)
-    #fill_in 'task_parameters[deadline_date]', with: deadline.strftime('%Y/%m/%d') if deadline
-    #select deadline.strftime('%H'), from: 'task_parameters[deadline_hour]' if deadline
-    #select deadline.strftime('%M'), from: 'task_parameters[deadline_minutes]' if deadline
     find('#task_parameters_with_sign_up_label', visible: false).click if with_sign_up
   end
 
