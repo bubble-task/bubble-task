@@ -173,7 +173,7 @@ describe 'タスクの編集' do
         end
       end
 
-      context '期限が設定されていない場合' do
+      context '期限がすでに設定されている場合' do
         it do
           disable_deadline_from_ui(task)
           expect(deadline_text).to be_blank

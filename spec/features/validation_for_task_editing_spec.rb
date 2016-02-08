@@ -79,4 +79,16 @@ describe 'タスク編集時にバリデーションをかける' do
       it { is_expected.to have_content("タグ「#{invalid_tag}」は16文字以内で入力してください") }
     end
   end
+
+  describe '期限' do
+    context '時間のみ入力' do
+      it do
+        visit edit_task_path(task)
+        select '00', from: 'task_parameters[deadline_hour]'
+        select '15', from: 'task_parameters[deadline_minutes]'
+        click_button I18n.t('helpers.submit.update')
+        expect(page).to have_content('期限を入力してください')
+      end
+    end
+  end
 end

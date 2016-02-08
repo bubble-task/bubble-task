@@ -13,7 +13,7 @@ class TaskEditing
     update_description(@form.description)
     if @form.disable_deadline?
       @origin.remove_deadline
-    else
+    elsif @form.deadline
       @origin.reset_deadline(@form.deadline)
     end
     save
