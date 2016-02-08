@@ -24,9 +24,10 @@ module TaskUIHelper
     fill_in 'task_parameters[tag_words]', with: tag_words if tag_words
     fill_in 'task_parameters[title]', with: title if title
     fill_in 'task_parameters[description]', with: description if description
-    fill_in 'task_parameters[deadline_date]', with: deadline.strftime('%Y/%m/%d') if deadline
-    select deadline.strftime('%H'), from: 'task_parameters[deadline_hour]' if deadline
-    select deadline.strftime('%M'), from: 'task_parameters[deadline_minutes]' if deadline
+    fill_in_deadline(deadline)
+    #fill_in 'task_parameters[deadline_date]', with: deadline.strftime('%Y/%m/%d') if deadline
+    #select deadline.strftime('%H'), from: 'task_parameters[deadline_hour]' if deadline
+    #select deadline.strftime('%M'), from: 'task_parameters[deadline_minutes]' if deadline
     find('#task_parameters_with_sign_up_label', visible: false).click if with_sign_up
   end
 
@@ -36,11 +37,28 @@ module TaskUIHelper
     click_button I18n.t('helpers.submit.update')
   end
 
-  def update_task_deadline_from_ui(old_task, date: nil, hour: nil, minutes: nil)
-    visit edit_task_path(old_task.id)
-    fill_in 'task_parameters[deadline_date]', with: date if date
-    select hour, from: 'task_parameters[deadline_hour]' if hour
-    select minutes, from: 'task_parameters[deadline_minutes]' if minutes
-    click_button I18n.t('helpers.submit.update')
-  end
+  private
+
+    def fill_in_deadline(deadline)
+      return unless deadline
+      if deadline.is_a?(Time)
+        fill_in_deadline_fields(
+          date: deadline.strftime('%Y/%m/%d'),
+          hour: deadline.strftime('%H'),
+          minutes: deadline.strftime('%M'),
+        )
+      else
+        fill_in_deadline_fields(
+          date: deadline[:date],
+          hour: deadline[:hour],
+          minutes: deadline[:minutes],
+        )
+      end
+    end
+
+    def fill_in_deadline_fields(date: nil, hour: nil, minutes: nil)
+      fill_in 'task_parameters[deadline_date]', with: date if date
+      select hour, from: 'task_parameters[deadline_hour]' if hour
+      select minutes, from: 'task_parameters[deadline_minutes]' if minutes
+    end
 end

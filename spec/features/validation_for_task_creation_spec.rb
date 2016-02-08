@@ -76,4 +76,13 @@ describe 'タスク作成時にバリデーションをかける' do
       it { is_expected.to have_content("タグ「#{invalid_tag}」は16文字以内で入力してください") }
     end
   end
+
+  skip '期限' do
+    context '日付のみ入力' do
+      it do
+        create_task_from_ui(title: title, deadline: { date: Time.current.strftime('%Y/%m/%d') })
+        expect(page).to have_link(title)
+      end
+    end
+  end
 end

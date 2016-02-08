@@ -83,42 +83,42 @@ describe 'タスク編集時にバリデーションをかける' do
   describe '期限' do
     context '日付のみ入力' do
       it do
-        update_task_deadline_from_ui(task, date: Time.current.strftime('%Y/%m/%d'))
+        update_task_from_ui(task, deadline: { date: Time.current.strftime('%Y/%m/%d') })
         expect(page).to have_link(old_title)
       end
     end
 
     context '日付と時間を入力' do
       it do
-        update_task_deadline_from_ui(task, date: Time.current.strftime('%Y/%m/%d'), hour: '01')
+        update_task_from_ui(task, deadline: { date: Time.current.strftime('%Y/%m/%d'), hour: '01' })
         expect(page).to have_link(old_title)
       end
     end
 
     context '日付と分を入力' do
       it do
-        update_task_deadline_from_ui(task, date: Time.current.strftime('%Y/%m/%d'), minutes: '15')
+        update_task_from_ui(task, deadline: { date: Time.current.strftime('%Y/%m/%d'), minutes: '15' })
         expect(page).to have_content('時間を入力してください')
       end
     end
 
     context '時刻のみ入力' do
       it do
-        update_task_deadline_from_ui(task, minutes: '15')
+        update_task_from_ui(task, deadline: { minutes: '15' })
         expect(page).to have_content('期限を入力してください')
       end
     end
 
     context '時間のみ入力' do
       it do
-        update_task_deadline_from_ui(task, hour: '00')
+        update_task_from_ui(task, deadline: { hour: '00' })
         expect(page).to have_content('期限を入力してください')
       end
     end
 
     context '分のみ入力' do
       it do
-        update_task_deadline_from_ui(task, minutes: '15')
+        update_task_from_ui(task, deadline: { minutes: '15' })
         expect(page).to have_content('期限を入力してください')
       end
     end
