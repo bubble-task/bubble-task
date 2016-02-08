@@ -35,4 +35,12 @@ module TaskUIHelper
     find('#task_parameters_disable_deadline', visible: false).trigger('click')
     click_button I18n.t('helpers.submit.update')
   end
+
+  def update_task_deadline_from_ui(old_task, date: nil, hour: nil, minutes: nil)
+    visit edit_task_path(old_task.id)
+    fill_in 'task_parameters[deadline_date]', with: date if date
+    select hour, from: 'task_parameters[deadline_hour]' if hour
+    select minutes, from: 'task_parameters[deadline_minutes]' if minutes
+    click_button I18n.t('helpers.submit.update')
+  end
 end
