@@ -16,6 +16,10 @@ class TaskParameters
             presence: true,
             if: 'deadline_hour.present? || deadline_minutes.present?'
 
+  validates :deadline_hour,
+            presence: true,
+            if: 'deadline_date.present? && deadline_minutes.present?'
+
   def self.tags_from(tag_words)
     return [] unless tag_words
     tag_words.split(/\s+/)

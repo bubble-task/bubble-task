@@ -81,6 +81,35 @@ describe 'タスク編集時にバリデーションをかける' do
   end
 
   describe '期限' do
+    context '日付のみ入力' do
+      it do
+        visit edit_task_path(task)
+        fill_in 'task_parameters[deadline_date]', with: Time.current.strftime('%Y/%m/%d')
+        click_button I18n.t('helpers.submit.update')
+        expect(page).to have_link(old_title)
+      end
+    end
+
+    context '日付と時間を入力' do
+      it do
+        visit edit_task_path(task)
+        fill_in 'task_parameters[deadline_date]', with: Time.current.strftime('%Y/%m/%d')
+        select '01', from: 'task_parameters[deadline_hour]'
+        click_button I18n.t('helpers.submit.update')
+        expect(page).to have_link(old_title)
+      end
+    end
+
+    context '日付と分を入力' do
+      it do
+        visit edit_task_path(task)
+        fill_in 'task_parameters[deadline_date]', with: Time.current.strftime('%Y/%m/%d')
+        select '15', from: 'task_parameters[deadline_minutes]'
+        click_button I18n.t('helpers.submit.update')
+        expect(page).to have_content('時間を入力してください')
+      end
+    end
+
     context '時刻のみ入力' do
       it do
         visit edit_task_path(task)
