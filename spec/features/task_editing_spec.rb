@@ -162,10 +162,18 @@ describe 'タスクの編集' do
     end
 
     context '期限を削除する', js: true do
-      let(:task) { create_task(author_id: user.id, title: old_title, assignees: [user], deadline: Time.current) }
       let(:deadline_text) { first('.task-deadline').text }
 
       context '期限がすでに設定されている場合' do
+        let(:task) { create_task(author_id: user.id, title: old_title, assignees: [user], deadline: Time.current) }
+
+        it do
+          disable_deadline_from_ui(task)
+          expect(deadline_text).to be_blank
+        end
+      end
+
+      context '期限が設定されていない場合' do
         it do
           disable_deadline_from_ui(task)
           expect(deadline_text).to be_blank
