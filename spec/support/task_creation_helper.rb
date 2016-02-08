@@ -1,34 +1,10 @@
+require_relative './task_ui_helper'
+
 module TaskCreationHelper
+  include TaskUIHelper
 
-  def create_task_from_ui(title:, description: '', tag_words: '', with_sign_up: false)
-    visit new_task_path
-    create_task_from_ui_without_visit(title: title, description: description, tag_words: tag_words, with_sign_up: with_sign_up)
-  end
-
-  def update_task_from_ui(old_task, title: nil, description: nil, tag_words: nil)
-    visit edit_task_path(old_task.id)
-    update_task_from_ui_without_visit(title: title, description: description, tag_words: tag_words)
-  end
-
-  def create_task_from_ui_without_visit(title:, description: '', tag_words: '', with_sign_up: false)
-    fill_in_task_form(title: title, description: description, tag_words: tag_words, with_sign_up: with_sign_up)
-    click_button I18n.t('helpers.submit.create')
-  end
-
-  def update_task_from_ui_without_visit(title: nil, description: nil, tag_words: nil)
-    fill_in_task_form(title: title, description: description, tag_words: tag_words)
-    click_button I18n.t('helpers.submit.update')
-  end
-
-  def fill_in_task_form(title: nil, description: nil, tag_words: nil, with_sign_up: false)
-    fill_in 'task_parameters[tag_words]', with: tag_words if tag_words
-    fill_in 'task_parameters[title]', with: title if title
-    fill_in 'task_parameters[description]', with: description if description
-    find('#task_parameters_with_sign_up_label', visible: false).click if with_sign_up
-  end
-
-  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [])
-    task = create_task_record(author_id: author_id, title: title, description: description, tags: tags)
+  def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [], deadline: nil)
+    task = create_task_record(author_id: author_id, title: title, description: description, tags: tags, deadline: deadline)
     assignees.each do |user|
       TaskAssignment.new(task: task, assignee: user).run
     end
@@ -36,9 +12,9 @@ module TaskCreationHelper
     make_task_completion(task, completed_at)
   end
 
-  def create_task_record(author_id:, title:, description: nil, tags: [])
+  def create_task_record(author_id:, title:, description: nil, tags: [], deadline: nil)
     TaskFactory
-      .create(author_id, title, description.to_s, tags)
+      .create(author_id, title, description.to_s, tags, deadline)
       .tap(&:save!)
   end
 

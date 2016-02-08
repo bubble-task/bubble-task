@@ -1,9 +1,10 @@
 class TaskFactory
 
-  def self.create(author_id, title, description = '', tags = [])
+  def self.create(author_id, title, description = '', tags = [], deadline = nil)
     new(author_id, title).with do
       write_description(description)
-      tagging_by(tags.uniq)
+      tagging_by(Array(tags).uniq)
+      set_deadline(deadline)
     end
   end
 
@@ -24,5 +25,10 @@ class TaskFactory
   def tagging_by(tags)
     return if tags.empty?
     @task.tagging_by(tags)
+  end
+
+  def set_deadline(deadline)
+    return unless deadline
+    @task.set_deadline(deadline)
   end
 end

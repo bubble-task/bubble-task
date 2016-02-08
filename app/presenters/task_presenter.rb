@@ -56,4 +56,9 @@ class TaskPresenter < SimpleDelegator
       view.content_tag(:i, 'done', class: 'material-icons')
     end
   end
+
+  def show_deadline
+    return unless deadline
+    I18n.l(deadline, format: :short)
+  end
 end

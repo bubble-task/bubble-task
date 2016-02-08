@@ -3,28 +3,46 @@
 <%= content_for(:navigation_size, 's10') %>
 <div class="col s10">
   <div class="container-float container-primary">
-    <%= form_for @command, url: task_url(@command.task_id), method: :put do |f| %>
-      <%= render partial: 'layouts/errors', locals: { errors: @command.errors } %>
-      <div class="input-field for-tags-input">
-        <i class="material-icons prefix">local_offer</i>
-        <%= f.label :tag_words, class: 'tags-input' %>
-        <%= f.text_field :tag_words, { id: 'task_tag_words' } %>
-      </div>
-      <div class="input-field">
-        <i class="material-icons prefix">subject</i>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-      </div>
-      <div class="input-field">
-        <i class="material-icons prefix">note_add</i>
-        <%= f.label :description %>
-        <%= f.text_area :description, class: 'materialize-textarea' %>
-      </div>
-      <div class="actions">
-        <button class="waves-effect waves-light btn-flat" type="submit" name="action">
-          <%= t('helpers.submit.update') %>
-          <i class="material-icons left">send</i>
-        </button>
+    <%= form_for @form, url: task_url(@form.task_id), method: :put do |f| %>
+      <div class="row">
+        <div class="col s12">
+          <%= render partial: 'layouts/errors', locals: { errors: @form.errors } %>
+        </div>
+        <div class="col s12 input-field for-tags-input">
+          <i class="material-icons prefix">local_offer</i>
+          <%= f.label :tag_words, class: 'tags-input' %>
+          <%= f.text_field :tag_words, { id: 'task_tag_words' } %>
+        </div>
+        <div class="col s12 input-field">
+          <i class="material-icons prefix">subject</i>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div class="col s12 input-field">
+          <i class="material-icons prefix">note_add</i>
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'materialize-textarea' %>
+        </div>
+        <div class="col s3 input-field">
+          <i class="material-icons prefix">access_time</i>
+          <%= f.label :deadline_date %>
+          <%= f.date_field :deadline_date, class: 'datepicker', data: { value: @form.deadline_date } %>
+        </div>
+        <div class="col s3 input-field time-select">
+          <%= f.select :deadline_hour, (0..23).map { |h| [sprintf("%02d", h), h] }, { prompt: '' }, class: 'browser-default' %>
+          <p class="time-separator">:</p>
+          <%= f.select :deadline_minutes, [0, 15, 30, 45].map { |m| [sprintf("%02d", m), m] }, { prompt: '' }, class: 'browser-default' %>
+        </div>
+        <div class="col s3 input-field">
+          <%= f.check_box :disable_deadline, class: 'filled-in' %>
+          <%= f.label :disable_deadline, id: 'task_parameters_disable_deadline_label' %>
+        </div>
+        <div class="col s3 actions inline-actions">
+          <button class="waves-effect waves-light btn-flat" type="submit" name="action">
+            <%= t('helpers.submit.update') %>
+            <i class="material-icons left">send</i>
+          </button>
+        </div>
       </div>
     <% end %>
   </div>

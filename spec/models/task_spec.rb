@@ -85,4 +85,42 @@ describe Task do
       expect(task).to_not be_completed
     end
   end
+
+  describe '期限を設定する' do
+    it do
+      deadline = Time.current
+      task.set_deadline(deadline)
+      expect(task.deadline).to eq(deadline)
+    end
+  end
+
+  describe '期限を再設定する' do
+    context '期限が設定されていない場合' do
+      it do
+        deadline = Time.current
+        task.reset_deadline(deadline)
+        expect(task.deadline).to eq(deadline)
+      end
+    end
+
+    context '期限が設定されている場合' do
+      it do
+        deadline = Time.current
+        task.set_deadline(deadline.advance(days: 1))
+        task.reset_deadline(deadline)
+        expect(task.deadline).to eq(deadline)
+      end
+    end
+  end
+
+  describe '期限を削除する' do
+    context '期限が設定されている場合' do
+      it do
+        deadline = Time.current
+        task.set_deadline(deadline)
+        task.remove_deadline
+        expect(task.deadline).to be_nil
+      end
+    end
+  end
 end

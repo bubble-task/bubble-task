@@ -13,13 +13,21 @@ describe 'タスクの編集' do
   let(:old_description) { '編集前の説明' }
   let(:old_tags) { %w(タグ1 タグ2) }
   let(:old_tag_words) { old_tags.join(' ') }
+  let(:old_deadline) { Time.zone.parse("#{old_deadline_date} #{old_deadline_hour}:#{old_deadline_minutes}") }
+  let(:old_deadline_date) { '2016/02/03' }
+  let(:old_deadline_hour) { '10' }
+  let(:old_deadline_minutes) { '0' }
 
   let(:title_on_page) { first('.task-title').text }
   let(:description_on_page) { first('.task-description').text }
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
 
   describe '編集画面' do
-    it '既存のタグ・タイトル・説明が入力されていること' do
+    let(:task) do
+      create_task(author_id: user.id, title: old_title, description: old_description, tags: old_tags, assignees: [user], deadline: old_deadline)
+    end
+
+    it '既存のタグ・タイトル・説明・期限が入力されていること' do
       visit task_url(task.id)
       click_link(I18n.t('helpers.actions.edit'))
 
@@ -31,6 +39,15 @@ describe 'タスクの編集' do
 
       filled_old_tag_words = find('#task_tag_words', visible: false).value
       expect(filled_old_tag_words).to eq(old_tag_words)
+
+      filled_old_deadline_date = find('#task_parameters_deadline_date')['data-value']
+      expect(filled_old_deadline_date).to eq(old_deadline_date)
+
+      filled_old_deadline_hour = find('#task_parameters_deadline_hour').value
+      expect(filled_old_deadline_hour).to eq(old_deadline_hour)
+
+      filled_old_deadline_minutes = find('#task_parameters_deadline_minutes').value
+      expect(filled_old_deadline_minutes).to eq(old_deadline_minutes)
     end
   end
 
@@ -118,6 +135,51 @@ describe 'タスクの編集' do
         expect(title_on_page).to eq(old_title)
         expect(description_on_page).to eq(old_description)
         expect(tags_on_page).to eq(%w(タグ3 タグ4))
+      end
+    end
+  end
+
+  describe '期限を編集' do
+    context '期限を設定' do
+      let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
+      let(:deadline_text) { first('.task-deadline').text }
+
+      context '期限が設定されていない場合' do
+        it do
+          update_task_from_ui(task, deadline: deadline)
+          expect(deadline_text).to eq('2016/02/03 10:00')
+        end
+      end
+
+      context '期限がすでに設定されている場合' do
+        let(:task) do
+          create_task(author_id: user.id, title: old_title, assignees: [user], deadline: deadline.advance(days: 1))
+        end
+
+        it do
+          update_task_from_ui(task, deadline: deadline)
+          expect(deadline_text).to eq('2016/02/03 10:00')
+        end
+      end
+    end
+
+    context '期限を削除する', js: true do
+      let(:deadline_text) { first('.task-deadline').text }
+
+      context '期限がすでに設定されている場合' do
+        let(:task) { create_task(author_id: user.id, title: old_title, assignees: [user], deadline: Time.current) }
+
+        it do
+          disable_deadline_from_ui(task)
+          expect(deadline_text).to be_blank
+        end
+      end
+
+      context '期限がすでに設定されている場合' do
+        it do
+          disable_deadline_from_ui(task)
+          expect(deadline_text).to be_blank
+        end
       end
     end
   end

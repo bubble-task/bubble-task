@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :assignees, through: :assignments, source: :user
   has_many :todays_tasks
+  has_one :task_deadline, autosave: true
 
   delegate :completed_at, to: :completed_task
 
@@ -17,6 +18,7 @@ class Task < ActiveRecord::Base
     task_description&.apply_removed!
     tag_collection.associate_with_task(self)
     completed_task&.apply_removed!
+    task_deadline&.apply_removed!
     apply_removed!
   end
 
@@ -67,6 +69,23 @@ class Task < ActiveRecord::Base
 
   def cancel_completion
     completed_task.remove!
+  end
+
+  def set_deadline(deadline)
+    self.build_task_deadline(datetime: deadline)
+  end
+
+  def reset_deadline(deadline)
+    return set_deadline(deadline) unless task_deadline
+    self.task_deadline.datetime = deadline
+  end
+
+  def deadline
+    task_deadline&.datetime
+  end
+
+  def remove_deadline
+    self.task_deadline&.remove!
   end
 
   private

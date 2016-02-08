@@ -129,4 +129,20 @@ describe 'タスクを作成する' do
       expect(selected_tag_words).to eq(tag)
     end
   end
+
+  context 'タスクに期限を設定する場合' do
+    let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
+    let(:deadline_text) { first('.task-deadline').text }
+
+    it do
+      create_task_from_ui(title: title, deadline: deadline)
+      expect(deadline_text).to eq('2016/02/03 10:00')
+    end
+
+    it do
+      create_task_from_ui(title: title, deadline: deadline)
+      click_link title
+      expect(deadline_text).to eq('2016/02/03 10:00')
+    end
+  end
 end

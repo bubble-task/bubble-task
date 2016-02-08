@@ -29,14 +29,16 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @command = TaskEditing.setup_with_origin(params[:id])
+    @form = TaskEditingForm.setup_with_origin(params[:id])
   end
 
   def update
-    @command = TaskEditing.setup(params[:id], TaskParameters.new(params[:task_parameters]))
-    if @command.run
+    task = Task.find(params[:id])
+    command = TaskEditing.new(task, TaskEditingForm.new(params[:task_parameters].merge(task_id: params[:id])))
+    if command.run
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_editing.success')
     else
+      @form = command.form
       render :edit
     end
   end

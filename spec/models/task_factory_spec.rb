@@ -28,5 +28,12 @@ describe TaskFactory do
         expect(task.author_id).to eq(1)
       end
     end
+
+    context '期限が設定されている場合' do
+      it do
+        task = TaskFactory.create(1, 'タスクのタイトル', nil, nil, Time.zone.parse('2016/02/03 10:00'))
+        expect(task.deadline).to eq(Time.zone.parse('2016/02/03 10:00'))
+      end
+    end
   end
 end
