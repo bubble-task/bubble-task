@@ -137,7 +137,9 @@ describe 'タスクの編集' do
         expect(tags_on_page).to eq(%w(タグ3 タグ4))
       end
     end
+  end
 
+  describe '期限を編集' do
     context '期限を設定' do
       let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
       let(:deadline_text) { first('.task-deadline').text }
