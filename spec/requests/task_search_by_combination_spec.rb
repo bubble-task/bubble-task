@@ -57,14 +57,19 @@ describe 'GET /search' do
         author_id: user_a.id, tags: %w(タグA タグB),
       ),
       create_task(
-        title: '未完了,期限=2016-02-01,タグ=タグA タグB,サインアップ=user_b',
+        title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_b',
         author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_b],
+        deadline: Time.zone.parse('2016-01-01'),
+      ),
+      create_task(
+        title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b',
+        author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_a, user_b],
         deadline: Time.zone.parse('2016-02-01'),
       ),
       create_task(
-        title: '未完了,期限=2016-02-01,タグ=タグA タグB,サインアップ=user_a,user_b',
-        author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_a, user_b],
-        deadline: Time.zone.parse('2016-02-01'),
+        title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_b',
+        author_id: user_a.id, assignees: [user_b],
+        deadline: Time.zone.parse('2016-02-12'),
       ),
     ]
   end
@@ -106,7 +111,7 @@ describe 'GET /search' do
   context '期間を指定,自分がサインアップ=ON,未完了のみ' do
     let(:expected_tasks) do
       [
-        Task.find_by(title: '未完了,期限=2016-02-01,タグ=タグA タグB,サインアップ=user_a,user_b'),
+        Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b'),
       ]
     end
 
