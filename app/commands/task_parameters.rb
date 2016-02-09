@@ -5,7 +5,7 @@ class TaskParameters
 
   validates :title,
             presence: true,
-            length: { maximum: 40 }
+            length: { maximum: 80 }
 
   validates :description,
             length: { maximum: 5000 }

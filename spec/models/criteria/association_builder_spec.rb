@@ -88,6 +88,25 @@ describe Criteria::AssociationBuilder do
       end
     end
 
+    context '期間を指定,自分がサインアップ=ON,未完了のみ' do
+      let(:conditions) do
+        [
+          Criteria::Conditions::Assignee.create(123),
+          Criteria::Conditions::DeadlineFrom.create(1.days.ago),
+          Criteria::Conditions::DeadlineTo.create(Time.current),
+          Criteria::Conditions::Tags.create(''),
+          Criteria::Conditions::Completion.create('uncompleted'),
+        ]
+      end
+
+      it do
+        expect(relation.method_calls).to match(
+          joins: 'INNER JOIN assignments ON assignments.task_id = tasks.id LEFT OUTER JOIN task_deadlines ON task_deadlines.task_id = tasks.id LEFT OUTER JOIN completed_tasks ON completed_tasks.task_id = tasks.id LEFT OUTER JOIN taggings ON taggings.task_id = tasks.id',
+          preload: [:assignments, :task_deadline, :completed_task, :taggings],
+        )
+      end
+    end
+
     context '条件なし' do
       let(:conditions) do
         [
@@ -101,8 +120,8 @@ describe Criteria::AssociationBuilder do
 
       it do
         expect(relation.method_calls).to match(
-          joins: 'LEFT OUTER JOIN completed_tasks ON completed_tasks.task_id = tasks.id LEFT OUTER JOIN taggings ON taggings.task_id = tasks.id',
-          preload: [:completed_task, :taggings],
+          joins: 'LEFT OUTER JOIN taggings ON taggings.task_id = tasks.id LEFT OUTER JOIN completed_tasks ON completed_tasks.task_id = tasks.id',
+          preload: [:taggings, :completed_task],
         )
       end
     end

@@ -4,7 +4,7 @@ module Criteria
       extend Creatable
 
       def prepare(plans)
-        plans.add(task_deadline: :inner)
+        plans.add(task_deadline: :left_outer)
       end
 
       def satisfy(relation)

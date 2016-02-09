@@ -20,12 +20,12 @@ module Criteria
       end
 
       def finalize_plans(plans)
-        unless plans.planned_inner_join?(:completed_task)
-          plans.add(completed_task: :left_outer)
-        end
-
         unless plans.planned_inner_join?(:taggings)
           plans.add(taggings: :left_outer)
+        end
+
+        unless plans.planned_inner_join?(:completed_task)
+          plans.add(completed_task: :left_outer)
         end
 
         if plans.planned_inner_join?(:completed_task) &&
