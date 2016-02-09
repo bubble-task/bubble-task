@@ -57,8 +57,8 @@ describe 'GET /search' do
         author_id: user_a.id, tags: %w(タグA タグB),
       ),
       create_task(
-        title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_b',
-        author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_b],
+        title: '未完了,期限=2016-01-01,タグ=タグB,サインアップ=user_b',
+        author_id: user_a.id, tags: %w(タグB), assignees: [user_b],
         deadline: Time.zone.parse('2016-01-01'),
       ),
       create_task(
@@ -79,6 +79,8 @@ describe 'GET /search' do
       [
         Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグB,サインアップ=user_a'),
         Task.find_by(title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_a,user_b'),
+        # TODO: ↓コメントイン
+        #Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b'),
       ]
     end
 
