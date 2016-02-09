@@ -107,4 +107,19 @@ describe 'GET /search' do
       expect(tasks).to eq(expected_tasks)
     end
   end
+
+  context '期間を指定,自分がサインアップ=OFF,完了のみ,タグ=タグA,タグB' do
+    let(:expected_tasks) do
+      [
+        Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグB,サインアップ=user_a'),
+        Task.find_by(title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_b'),
+      ]
+    end
+
+    it do
+      get search_path(c: { from_date: '2016-01-01', to_date: '2016-01-02', tag_words: 'タグA タグB', is_signed_up_only: '0', completion_state: 'completed' })
+      tasks = assigns(:tasks)
+      expect(tasks).to eq(expected_tasks)
+    end
+  end
 end
