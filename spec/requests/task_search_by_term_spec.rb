@@ -131,5 +131,29 @@ describe 'GET /search' do
         expect(tasks).to eq(expected_tasks)
       end
     end
+
+    context '期間の絞り込みの開始日と終了日を指定' do
+      let(:unexpected_tasks) do
+        [
+          create_task(author_id: user_a.id, title: 'a', completed_at: '2015-12-01'),
+          create_task(author_id: user_a.id, title: 'b', completed_at: '2015-12-31'),
+          create_task(author_id: user_a.id, title: 'c', deadline: Time.zone.parse('2015-11-30')),
+          create_task(author_id: user_a.id, title: 'd', deadline: Time.zone.parse('2016-01-01')),
+        ]
+      end
+
+      let(:expected_tasks) do
+        [
+          create_task(author_id: user_a.id, title: 'e', deadline: Time.zone.parse('2015-12-01')),
+          create_task(author_id: user_a.id, title: 'f', deadline: Time.zone.parse('2015-12-31')),
+        ]
+      end
+
+      it do
+        get search_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '0', completion_state: 'uncompleted' })
+        tasks = assigns(:tasks)
+        expect(tasks).to eq(expected_tasks)
+      end
+    end
   end
 end
