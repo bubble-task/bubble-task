@@ -4,12 +4,16 @@ module Criteria
     def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
       new.tap do |c|
         c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
-        if completion_state == 'completed' || completion_state == 'any'
+        case completion_state
+        when 'completed'
           c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
           c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
-        else
+        when 'uncompleted'
           c.add_condition(Criteria::Conditions::DeadlineFrom.create(from_date))
           c.add_condition(Criteria::Conditions::DeadlineTo.create(to_date))
+        when 'any'
+          c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
+          c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
         end
         c.add_condition(Criteria::Conditions::Tags.create(tag_words))
         c.add_condition(Criteria::Conditions::Completion.create(completion_state))
