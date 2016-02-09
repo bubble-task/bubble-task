@@ -22,6 +22,10 @@ module TaskRestrictable
       where('task_deadlines.datetime >= ?', datetime)
     end
 
+    def restrict_by_deadline_before(datetime)
+      where('task_deadlines.datetime <= ?', datetime)
+    end
+
     def restrict_by_assignee(assignee_id)
       where(assignments: { user_id: assignee_id })
     end

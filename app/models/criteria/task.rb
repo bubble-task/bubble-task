@@ -9,6 +9,7 @@ module Criteria
           c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
         else
           c.add_condition(Criteria::Conditions::DeadlineFrom.create(from_date))
+          c.add_condition(Criteria::Conditions::DeadlineTo.create(to_date))
         end
         c.add_condition(Criteria::Conditions::Tags.create(tag_words))
         c.add_condition(Criteria::Conditions::Completion.create(completion_state))
