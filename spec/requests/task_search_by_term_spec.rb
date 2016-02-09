@@ -88,4 +88,27 @@ describe 'GET /search' do
       end
     end
   end
+
+  context '未完了タスクを検索する場合' do
+    context '開始日だけの場合' do
+      let(:unexpected_tasks) do
+        [
+          create_task(author_id: user_a.id, title: 'a', completed_at: '2015-11-30'),
+          create_task(author_id: user_a.id, title: 'b', deadline: Time.zone.parse('2015-11-30')),
+        ]
+      end
+
+      let(:expected_tasks) do
+        [
+          create_task(author_id: user_a.id, title: 'c', deadline: Time.zone.parse('2015-12-01')),
+        ]
+      end
+
+      it do
+        get search_path(c: { from_date: '2015-12-01', to_date: nil, is_signed_up_only: '0', completion_state: 'uncompleted' })
+        tasks = assigns(:tasks)
+        expect(tasks).to eq(expected_tasks)
+      end
+    end
+  end
 end
