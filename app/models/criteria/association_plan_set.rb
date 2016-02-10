@@ -14,10 +14,6 @@ module Criteria
       @plans.include?(create_plan_from_hash(plan))
     end
 
-    def delete(plan)
-      @plans.delete(create_plan_from_hash(plan))
-    end
-
     def join_clause(table_name)
       @plans
         .map { |p| p.associate(table_name) }

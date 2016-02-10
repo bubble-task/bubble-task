@@ -2,41 +2,57 @@ module Criteria
   class Task
 
     def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
-      new.tap do |c|
-        c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
-        c.add_condition(Criteria::Conditions::CompletedOnFrom.create(from_date))
-        c.add_condition(Criteria::Conditions::CompletedOnTo.create(to_date))
-        c.add_condition(Criteria::Conditions::Tags.create(tag_words))
-        c.add_condition(Criteria::Conditions::Completion.create(completion_state))
+      if completion_state == 'completed'
+        c = Criteria::CompletedTask.create(
+          assignee_id: assignee_id,
+          from_date: from_date,
+          to_date: to_date,
+          tag_words: tag_words,
+          completion_state: completion_state,
+        )
+        return new(c)
+      end
+
+      if completion_state == 'uncompleted'
+        c = Criteria::UncompletedTask.create(
+          assignee_id: assignee_id,
+          from_date: from_date,
+          to_date: to_date,
+          tag_words: tag_words,
+          completion_state: completion_state,
+        )
+        return new(c)
+      end
+
+      if completion_state == 'any' || completion_state.nil?
+        c1 = Criteria::CompletedTask.create(
+          assignee_id: assignee_id,
+          from_date: from_date,
+          to_date: to_date,
+          tag_words: tag_words,
+          completion_state: completion_state,
+        )
+        c2 = Criteria::UncompletedTask.create(
+          assignee_id: assignee_id,
+          from_date: from_date,
+          to_date: to_date,
+          tag_words: tag_words,
+          completion_state: completion_state,
+        )
+        return new(c1, c2)
       end
     end
 
-    def initialize
-      @conditions = []
-    end
-
-    def add_condition(condition)
-      @conditions << condition
+    def initialize(*criterias)
+      @criterias = criterias
     end
 
     def satisfy(relation)
-      finalize_conditions
-      prepared_relation = prepare_relation(relation)
-      satisfy_relation(prepared_relation).uniq.order(:id)
+      results =
+        @criterias.each_with_object([]) do |c, r|
+          r << c.satisfy(relation)
+        end
+      results.inject(:+).uniq
     end
-
-    private
-
-      def finalize_conditions
-        @conditions.flatten!
-      end
-
-      def prepare_relation(relation)
-        AssociationBuilder.new(relation).build(@conditions)
-      end
-
-      def satisfy_relation(relation)
-        @conditions.inject(relation) { |r, c| c.satisfy(r) }
-      end
   end
 end
