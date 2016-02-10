@@ -7,7 +7,7 @@ describe '自身が作成したタスクの一覧' do
   end
 
   let(:user_a) { create_user_from_oauth_credential }
-  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com')) }
+  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'other@gaiax.com')) }
   let(:create_task_for_user_b) { create_task(author_id: user_b.id, title: 'ユーザBのタスク') }
 
   it do

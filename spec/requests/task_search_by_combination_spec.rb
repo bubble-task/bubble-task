@@ -8,7 +8,7 @@ describe 'GET /search' do
   end
 
   let(:user_a) { create_user_from_oauth_credential }
-  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com')) }
+  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'other@gaiax.com')) }
 
   let(:tasks) do
     [

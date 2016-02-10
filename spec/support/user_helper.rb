@@ -5,7 +5,7 @@ module UserHelper
     owner.create_user
   end
 
-  def generate_auth_hash(provider: 'google', email: 'user@example.com', name: 'ユーザ 名前')
+  def generate_auth_hash(provider: 'google', email: 'user@gaiax.com', name: 'ユーザ 名前')
     {
       'provider' => provider,
       'uid' => generate_uid,
