@@ -40,11 +40,6 @@ module Criteria
           unless plans.planned_inner_join?(:completed_task)
             plans.add(completed_task: :left_outer)
           end
-
-          if plans.planned_inner_join?(:completed_task) &&
-            plans.planned_left_outer_join?(:completed_task)
-            plans.delete(completed_task: :left_outer)
-          end
         end
       end
 
