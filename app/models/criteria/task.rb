@@ -25,23 +25,34 @@ module Criteria
       end
 
       if completion_state == 'any' || completion_state.nil?
-        c = Criteria::CompletedTask.create(
+        c1 = Criteria::CompletedTask.create(
           assignee_id: assignee_id,
           from_date: from_date,
           to_date: to_date,
           tag_words: tag_words,
           completion_state: completion_state,
         )
-        return new(c)
+        c2 = Criteria::UncompletedTask.create(
+          assignee_id: assignee_id,
+          from_date: from_date,
+          to_date: to_date,
+          tag_words: tag_words,
+          completion_state: completion_state,
+        )
+        return new(c1, c2)
       end
     end
 
-    def initialize(criteria)
-      @criteria = criteria
+    def initialize(*criterias)
+      @criterias = criterias
     end
 
     def satisfy(relation)
-      @criteria.satisfy(relation)
+      results =
+        @criterias.each_with_object([]) do |c, r|
+          r << c.satisfy(relation)
+        end
+      results.inject(:+).uniq
     end
   end
 end

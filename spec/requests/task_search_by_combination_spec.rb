@@ -79,8 +79,7 @@ describe 'GET /search' do
       [
         Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグB,サインアップ=user_a'),
         Task.find_by(title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_a,user_b'),
-        # TODO: ↓コメントイン
-        #Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b'),
+        Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b'),
       ]
     end
 
@@ -100,6 +99,9 @@ describe 'GET /search' do
         Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグC,サインアップ=user_b'),
         Task.find_by(title: '完了日=2016-01-01,タグ=タグA,サインアップ=user_a,user_b'),
         Task.find_by(title: '完了日=2016-01-01,タグ=タグC,サインアップ=user_b'),
+        Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグB,サインアップ=user_b'),
+        Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b'),
+        Task.find_by(title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_b'),
       ]
     end
 

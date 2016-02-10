@@ -32,7 +32,11 @@ module Criteria
       end
 
       def prepare_relation(relation)
-        AssociationBuilder.new(relation).build(@conditions)
+        AssociationBuilder.new(relation).build(@conditions) do |plans|
+          unless plans.planned_inner_join?(:taggings)
+            plans.add(taggings: :left_outer)
+          end
+        end
       end
 
       def satisfy_relation(relation)
