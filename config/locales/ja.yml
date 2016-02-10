@@ -155,6 +155,7 @@ ja:
       signed_out: ログアウトしました
     alert:
       must_sign_in: ログインしてください
+      unavailable_email: お使いのメールアドレスではご利用いただけません
   number:
     currency:
       format:

@@ -33,7 +33,7 @@ describe 'タスクへのサインアップ', js: true do
       expect(sign_up_link).to be_nil
     end
 
-    let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@emai.l')) }
+    let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@gaiax.com')) }
 
     it do
       TaskAssignment.new(task: task, assignee: other_user).run

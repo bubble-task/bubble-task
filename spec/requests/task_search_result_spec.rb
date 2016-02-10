@@ -6,8 +6,8 @@ describe 'GET /search' do
     expected_tasks
   end
 
-  let(:user_a) { create_user_from_oauth_credential(generate_auth_hash(email: 'a@u.ser')) }
-  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'b@u.ser')) }
+  let(:user_a) { create_user_from_oauth_credential(generate_auth_hash(email: 'a@gaiax.com')) }
+  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'b@gaiax.com')) }
 
   context '検索結果はタスクの作成日時の昇順' do
     let(:expected_tasks) { [task2, task3, task1] }

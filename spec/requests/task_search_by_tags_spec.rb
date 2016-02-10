@@ -8,12 +8,12 @@ describe 'GET /search' do
     other_users_completed_task
   end
 
-  let(:task_author) { create_user_from_oauth_credential(generate_auth_hash(email: 'task@auth.or')) }
+  let(:task_author) { create_user_from_oauth_credential(generate_auth_hash(email: 'task@gaiax.com')) }
   let(:assignee) { create_user_from_oauth_credential }
   let(:uncompleted_task) { create_task(author_id: task_author.id, title: '未完了タスク', assignees: [assignee]) }
 
   let(:other_users_completed_task) do
-    create_user_from_oauth_credential(generate_auth_hash(email: 'other@user.com')).tap do |u|
+    create_user_from_oauth_credential(generate_auth_hash(email: 'other@gaiax.com')).tap do |u|
       create_task(author_id: u.id, title: '他ユーザのタスク', completed_at: :now, assignees: [u])
     end
   end

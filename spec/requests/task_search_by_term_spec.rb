@@ -7,8 +7,8 @@ describe 'GET /search' do
     unexpected_tasks
   end
 
-  let(:user_a) { create_user_from_oauth_credential(generate_auth_hash(email: 'a@u.ser')) }
-  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'b@u.ser')) }
+  let(:user_a) { create_user_from_oauth_credential(generate_auth_hash(email: 'a@gaiax.com')) }
+  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'b@gaiax.com')) }
   let(:uncompleted_task) { create_task(author_id: user_a.id, title: '未完了タスク', assignees: [user_b]) }
 
   context '完了タスクを検索する場合' do

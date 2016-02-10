@@ -7,7 +7,7 @@ describe 'タスクのスケジューリング' do
   end
 
   let(:user_a) { create_user_from_oauth_credential }
-  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'user@b.com')) }
+  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'user@gaiax.com')) }
   let(:task_a) { create_task(author_id: user_a.id, title: 'A', tags: ['TAG'], assignees: [user_a, user_b]) }
   let(:task_b) { create_task(author_id: user_a.id, title: 'B', tags: ['TAG'], assignees: [user_a, user_b]) }
 
