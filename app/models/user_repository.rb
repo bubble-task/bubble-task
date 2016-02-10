@@ -1,11 +1,18 @@
 module UserRepository
-  module_function
+  class << self
 
-  def find_by_oauth_credential(auth_hash)
-    return nil unless auth_hash['info']['email'] =~ /@gaiax\.com\z/ || auth_hash['info']['email'] =~ /@adish\.co\.jp\z/
-    resource_owner = ResourceOwner.new(auth_hash)
-    user = resource_owner.find_user
-    return user if user
-    resource_owner.create_user
+    def find_by_oauth_credential(auth_hash)
+      resource_owner = ResourceOwner.new(auth_hash)
+      return nil unless permitted_email_domain?(resource_owner.email_domain)
+      user = resource_owner.find_user
+      return user if user
+      resource_owner.create_user
+    end
+
+    private
+
+      def permitted_email_domain?(email_domain)
+        %w(gaiax.com adish.co.jp).include?(email_domain)
+      end
   end
 end

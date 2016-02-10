@@ -18,4 +18,8 @@ class ResourceOwner
     return nil unless oauth_credential
     oauth_credential.user
   end
+
+  def email_domain
+    @email.split('@').last
+  end
 end
