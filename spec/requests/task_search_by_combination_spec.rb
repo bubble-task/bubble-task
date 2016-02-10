@@ -64,12 +64,12 @@ describe 'GET /search' do
       create_task(
         title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b',
         author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_a, user_b],
-        deadline: Time.zone.parse('2016-02-01'),
+        deadline: Time.zone.parse('2016-01-01'),
       ),
       create_task(
         title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_b',
         author_id: user_a.id, assignees: [user_b],
-        deadline: Time.zone.parse('2016-02-12'),
+        deadline: Time.zone.parse('2016-01-02'),
       ),
     ]
   end
@@ -118,7 +118,7 @@ describe 'GET /search' do
     end
 
     it do
-      get search_path(c: { from_date: '2016-01-15', to_date: '2016-02-01', is_signed_up_only: '1', completion_state: 'uncompleted' })
+      get search_path(c: { from_date: '2015-12-15', to_date: '2016-01-01', is_signed_up_only: '1', completion_state: 'uncompleted' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
