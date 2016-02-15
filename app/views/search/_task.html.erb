@@ -5,6 +5,8 @@
       <span class="task-completed-on">
         <% if task.completed_on -%>
           <%= l(task.completed_on, format: :default) %>
+        <% elsif task.deadline -%>
+          <%= task.show_deadline %>
         <% end -%>
       </span>
     </div>

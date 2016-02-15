@@ -36,6 +36,9 @@ module Criteria
           unless plans.planned_inner_join?(:taggings)
             plans.add(taggings: :left_outer)
           end
+          unless plans.planned_left_outer_join?(:task_deadline)
+            plans.add(task_deadline: :left_outer)
+          end
         end
       end
 
