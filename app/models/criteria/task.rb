@@ -8,8 +8,8 @@ module Criteria
           when 'uncompleted'
             Criteria::UncompletedTask.create(options)
           else
-            [ 
-              Criteria::CompletedTask.create(options), 
+            [
+              Criteria::CompletedTask.create(options),
               Criteria::UncompletedTask.create(options),
             ]
           end
