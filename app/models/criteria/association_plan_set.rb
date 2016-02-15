@@ -29,6 +29,10 @@ module Criteria
       include?(relation => :inner)
     end
 
+    def planned_left_outer_join?(relation)
+      include?(relation => :left_outer)
+    end
+
     private
 
       def create_plan_from_hash(spec)
