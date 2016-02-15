@@ -26,7 +26,8 @@ module Criteria
       end
 
       def prepare_relation(relation)
-        @preparation.call(relation, @conditions)
+        builder = AssociationBuilder.new(relation)
+        builder.build(@conditions, &@preparation)
       end
 
       def satisfy_relation(relation)
