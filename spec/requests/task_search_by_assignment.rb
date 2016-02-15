@@ -23,7 +23,7 @@ describe 'GET /search' do
     let(:unexpected_tasks) { [uncompleted_task] }
 
     it do
-      get search_path(c: { is_signed_up_only: nil })
+      get search_path(c: { is_signed_up_only: nil, completion_state: 'completed' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
@@ -40,7 +40,7 @@ describe 'GET /search' do
     end
 
     it do
-      get search_path(c: { is_signed_up_only: '1' })
+      get search_path(c: { is_signed_up_only: '1', completion_state: 'completed' })
       tasks = assigns(:tasks)
       expect(tasks).to eq(expected_tasks)
     end
