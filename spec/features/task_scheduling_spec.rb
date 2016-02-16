@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'タスクのスケジューリング' do
+  skip do
   before do
     sign_in_as(user_a)
     tasks
@@ -96,5 +97,6 @@ describe 'タスクのスケジューリング' do
       expect(tasks_in_today).to be_empty
       expect(tasks_in_someday.size).to eq(1)
     end
+  end
   end
 end

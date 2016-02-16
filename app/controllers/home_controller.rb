@@ -12,14 +12,14 @@ class HomeController < ApplicationController
   end
 
   def create_todays_task
-    todays_tasks = TodaysTaskList.load(current_user.id)
-    TaskScheduling.new(params[:task_id], todays_tasks).run
+    #todays_tasks = TodaysTaskList.load(current_user.id)
+    #TaskScheduling.new(params[:task_id], todays_tasks).run
     redirect_to root_url
   end
 
   def destroy_todays_task
-    todays_tasks = TodaysTaskList.load(current_user.id)
-    TaskCancellationScheduling.new(params[:task_id], todays_tasks).run
+    #todays_tasks = TodaysTaskList.load(current_user.id)
+    #TaskCancellationScheduling.new(params[:task_id], todays_tasks).run
     redirect_to root_url
   end
 end
