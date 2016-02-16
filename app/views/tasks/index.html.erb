@@ -2,7 +2,7 @@
 <%= content_for(:page_title, t('.page_title', tag: (@tag || t('.all')))) %>
 <div class="col s12">
   <div class="container-embedded">
-    <%= render partial: 'tasks/list', locals: { tasks: @tasks, show_schedule_actions: false, todays_tasks: false } %>
+    <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
   </div>
 </div>
 <div class="fixed-action-btn">
