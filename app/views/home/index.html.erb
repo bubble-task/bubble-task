@@ -2,11 +2,9 @@
 <div class="col s12">
   <div class="container-embedded">
     <div class="section-header section-header-default">
-      <span class="title"><%= t('.section_titles.somedays_tasks') %></span>
+      <span class="title"><%= t('.section_titles.tasks') %></span>
     </div>
-    <div class="somedays-tasks">
-      <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
-    </div>
+    <%= render partial: 'tasks/list', locals: { tasks: @tasks } %>
   </div>
 </div>
 <div class="fixed-action-btn">
