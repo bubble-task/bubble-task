@@ -3,5 +3,4 @@ ja:
     index:
       navigation_title: 'タスク'
       section_titles:
-        todays_tasks: '今日のタスク'
-        somedays_tasks: 'あなたのタスク'
+        tasks: 'あなたのタスク'
