@@ -117,12 +117,25 @@ describe 'タスクの編集' do
     context 'タグを全て削除' do
       let(:new_tag_words) { '' }
 
-      it do
-        update_task_from_ui(task, tag_words: new_tag_words)
-        click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(個人タスク))
+      context '自分が作成したタスク' do
+        it do
+          update_task_from_ui(task, tag_words: new_tag_words)
+          click_link old_title
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(個人タスク))
+        end
+      end
+
+      context '他人が作成したタスク' do
+        let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'other_user@gaiax.com')) }
+        let(:task) { create_task(author_id: other_user.id, title: old_title, tags: old_tags, assignees: [other_user]) }
+
+        it do
+          update_task_from_ui(task, tag_words: new_tag_words)
+          expect(title_on_page).to eq(old_title)
+          expect(tags_on_page).to eq(%w(個人タスク))
+        end
       end
     end
 

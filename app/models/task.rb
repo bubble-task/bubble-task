@@ -11,6 +11,7 @@ class Task < ActiveRecord::Base
   has_many :assignees, through: :assignments, source: :user
   has_one :task_deadline, autosave: true
   has_one :personal_task, autosave: true
+  has_one :personal_task_owner, through: :personal_task, source: :user
 
   delegate :completed_at, to: :completed_task
 
@@ -50,6 +51,16 @@ class Task < ActiveRecord::Base
     else
       return if personal?
       self.build_personal_task(user_id: author_id)
+    end
+  end
+
+  def tagging_by_user(tags, user)
+    tag_collection.remove_all!
+    if tags.any?
+      tag_collection.add(tags)
+    else
+      return if personal?
+      self.build_personal_task(user_id: user.id)
     end
   end
 

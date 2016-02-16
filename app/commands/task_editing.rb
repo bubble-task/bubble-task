@@ -6,10 +6,10 @@ class TaskEditing
     @form = form
   end
 
-  def run
+  def run(user)
     return false unless @form.valid?
     update_title(@form.title)
-    update_tags(@form.tags)
+    update_tags(@form.tags, user)
     update_description(@form.description)
     update_deadline(@form.deadline, @form.disable_deadline?)
     save
@@ -21,8 +21,9 @@ class TaskEditing
       @origin.retitle(title)
     end
 
-    def update_tags(tags)
-      @origin.tagging_by(tags)
+    def update_tags(tags, user)
+      @origin.tagging_by_user(tags, user)
+      #@origin.tagging_by(tags)
     end
 
     def update_description(description)

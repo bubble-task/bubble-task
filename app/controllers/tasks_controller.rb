@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     command = TaskEditing.new(task, TaskEditingForm.new(params[:task_parameters].merge(task_id: params[:id])))
-    if command.run
+    if command.run(current_user)
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_editing.success')
     else
       @form = command.form
