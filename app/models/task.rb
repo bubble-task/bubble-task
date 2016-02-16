@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   has_one :task_description, autosave: true
   has_many :taggings
   has_one :completed_task, autosave: true
-  has_many :assignments
+  has_many :assignments, dependent: :destroy
   has_many :assignees, through: :assignments, source: :user
   has_one :task_deadline, autosave: true
   has_one :personal_task, autosave: true
@@ -61,6 +61,7 @@ class Task < ActiveRecord::Base
     else
       return if personal?
       self.build_personal_task(user_id: user.id)
+      self.assignments.clear
     end
   end
 

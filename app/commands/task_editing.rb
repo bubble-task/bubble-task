@@ -23,7 +23,6 @@ class TaskEditing
 
     def update_tags(tags, user)
       @origin.tagging_by_user(tags, user)
-      #@origin.tagging_by(tags)
     end
 
     def update_description(description)

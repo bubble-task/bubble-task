@@ -137,6 +137,18 @@ describe 'タスクの編集' do
           expect(tags_on_page).to eq(%w(個人タスク))
         end
       end
+
+      context 'サインアップしたタスクを他人の個人タスクに変更された場合' do
+        let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'other_user@gaiax.com')) }
+        let(:task) { create_task(author_id: other_user.id, title: old_title, tags: old_tags, assignees: [user]) }
+
+        it do
+          command = TaskEditing.new(task, TaskEditingForm.new({ title: 'タイトル', tag_words: '' }.merge(task_id: task.id)))
+          command.run(other_user)
+          visit root_path
+          expect(all('.task-summary').size).to eq(0)
+        end
+      end
     end
 
     context 'タグを全て入れ替え' do
