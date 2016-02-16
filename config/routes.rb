@@ -16,9 +16,6 @@ Rails.application.routes.draw do
   delete  'sign_out', to: 'sessions#destroy', as: :session
   match   '/auth/:provider/callback', to: 'oauth_callbacks#create', via: [:get, :post], as: :oauth_callbacks
 
-  post    'todays_tasks', to: 'home#create_todays_task', as: :todays_tasks
-  delete  'todays_task/:task_id', to: 'home#destroy_todays_task', as: :todays_task
-
   get     'search', to: 'search#index', as: :search
 
   root 'home#index'
