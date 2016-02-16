@@ -23,7 +23,6 @@ class TaskFactory
   end
 
   def tagging_by(tags)
-    return if tags.empty?
     @task.tagging_by(tags)
   end
 

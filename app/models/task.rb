@@ -10,6 +10,7 @@ class Task < ActiveRecord::Base
   has_many :assignments
   has_many :assignees, through: :assignments, source: :user
   has_one :task_deadline, autosave: true
+  has_one :personal_task, autosave: true
 
   delegate :completed_at, to: :completed_task
 
@@ -44,7 +45,12 @@ class Task < ActiveRecord::Base
 
   def tagging_by(tags)
     tag_collection.remove_all!
-    tag_collection.add(tags)
+    if tags.any?
+      tag_collection.add(tags)
+    else
+      return if personal?
+      self.build_personal_task(user_id: author_id)
+    end
   end
 
   def tags
@@ -85,6 +91,10 @@ class Task < ActiveRecord::Base
 
   def remove_deadline
     self.task_deadline&.remove!
+  end
+
+  def personal?
+    personal_task
   end
 
   private

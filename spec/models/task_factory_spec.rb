@@ -35,5 +35,21 @@ describe TaskFactory do
         expect(task.deadline).to eq(Time.zone.parse('2016/02/03 10:00'))
       end
     end
+
+    context '個人タスクを作成する場合' do
+      it do
+        task = TaskFactory.create(1, 'タスクのタイトル', 'タスクの説明')
+        expect(task.author_id).to eq(1)
+        expect(task.personal?).to be_truthy
+      end
+    end
+
+    context '通常のタスクを作成する場合' do
+      it do
+        task = TaskFactory.create(1, 'タスクのタイトル', 'タスクの説明', %w(タグ1))
+        expect(task.author_id).to eq(1)
+        expect(task.personal?).to be_falsey
+      end
+    end
   end
 end
