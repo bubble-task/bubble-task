@@ -35,5 +35,17 @@ module TaskRestrictable
         .group('tasks.id')
         .having("COUNT(tasks.id) = #{tags.size}")
     end
+
+    def restrict_by_assignee_or_personal_task(user_id)
+      where(
+        '(personal_tasks.id IS NULL AND assignments.user_id = ?) OR personal_tasks.user_id = ?',
+        user_id,
+        user_id
+      )
+    end
+
+    def restrict_by_public_task_or_searchers_personal_task(user_id)
+      where('personal_tasks.id IS NULL OR personal_tasks.user_id = ?', user_id)
+    end
   end
 end

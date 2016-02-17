@@ -15,12 +15,7 @@ module Criteria
       end
 
       def satisfy(relation)
-        #relation.restrict_by_assignee(id)
-        relation.where(
-          '(personal_tasks.id IS NULL AND assignments.user_id = ?) OR personal_tasks.user_id = ?',
-          user_id,
-          user_id
-        )
+        relation.restrict_by_assignee_or_personal_task(user_id)
       end
     end
 
@@ -31,7 +26,7 @@ module Criteria
       end
 
       def satisfy(relation)
-        relation.where('personal_tasks.id IS NULL OR personal_tasks.user_id = ?', searcher_id)
+        relation.restrict_by_public_task_or_searchers_personal_task(searcher_id)
       end
     end
   end

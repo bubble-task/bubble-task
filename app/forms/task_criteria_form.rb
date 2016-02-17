@@ -20,7 +20,7 @@ class TaskCriteriaForm
   def criteria
     Criteria::Task.create(
       @searcher_id,
-      assignee_id: signed_up_only? && @searcher_id,
+      assignee_id: assignee_id,
       from_date: from_datetime,
       to_date: to_datetime,
       tag_words: tag_words,
@@ -50,5 +50,9 @@ class TaskCriteriaForm
 
     def signed_up_only?
       is_signed_up_only == TRUE_VALUE
+    end
+
+    def assignee_id
+      signed_up_only? && @searcher_id
     end
 end
