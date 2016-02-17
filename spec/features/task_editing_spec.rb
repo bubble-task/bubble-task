@@ -100,6 +100,18 @@ describe 'タスクの編集' do
         expect(description_on_page).to eq(old_description)
         expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
       end
+
+      context '個人タスクにタグを追加' do
+        let(:old_tags) { [] }
+
+        it do
+          update_task_from_ui(task, tag_words: new_tag_words)
+          click_link old_title
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+        end
+      end
     end
 
     context 'タグを1つ削除' do
@@ -117,12 +129,37 @@ describe 'タスクの編集' do
     context 'タグを全て削除' do
       let(:new_tag_words) { '' }
 
-      it do
-        update_task_from_ui(task, tag_words: new_tag_words)
-        click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(個人タスク))
+      context '自分が作成したタスク' do
+        it '自分の個人タスクになること' do
+          update_task_from_ui(task, tag_words: new_tag_words)
+          click_link old_title
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(個人タスク))
+        end
+      end
+
+      context '他人が作成したタスク' do
+        let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'other_user@gaiax.com')) }
+        let(:task) { create_task(author_id: other_user.id, title: old_title, tags: old_tags, assignees: [other_user]) }
+
+        it '自分の個人タスクになること' do
+          update_task_from_ui(task, tag_words: new_tag_words)
+          expect(title_on_page).to eq(old_title)
+          expect(tags_on_page).to eq(%w(個人タスク))
+        end
+      end
+
+      context 'サインアップしたタスクを他人の個人タスクに変更された場合' do
+        let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'other_user@gaiax.com')) }
+        let(:task) { create_task(author_id: other_user.id, title: old_title, tags: old_tags, assignees: [user]) }
+
+        it '編集した他人の個人タスクになること' do
+          command = TaskEditing.new(task, TaskEditingForm.new({ title: 'タイトル', tag_words: '' }.merge(task_id: task.id)))
+          command.run(other_user)
+          visit root_path
+          expect(all('.task-summary').size).to eq(0)
+        end
       end
     end
 

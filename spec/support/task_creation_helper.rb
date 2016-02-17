@@ -18,6 +18,10 @@ module TaskCreationHelper
       .tap(&:save!)
   end
 
+  def create_personal_task(user:, title:, description: nil)
+    TaskCreation.new(TaskCreationForm.new(title: title, description: description)).run(user)
+  end
+
   def make_task_completion(task, completed_at_param)
     completed_at = if completed_at_param.is_a?(String)
                      Time.zone.parse(completed_at_param)
