@@ -52,4 +52,27 @@ describe 'GET /search' do
       expect(tasks).to eq(expected_tasks)
     end
   end
+
+  context '期間指定あり&タグ指定あり&完了・未完了どちらも&自分がサインアップOFFで検索' do
+    let(:expected_tasks) do
+      [
+        create_task(author_id: user.id, title: '公開タスク1', tags: %w(TagA TagB), assignees: [user], completed_at: '2016/02/01'),
+        create_task(author_id: other_user.id, title: '公開タスク2', tags: %w(TagB TagC), assignees: [other_user], deadline: Time.zone.parse('2016/02/02')),
+      ]
+    end
+
+    let(:unexpected_tasks) do
+      [
+        create_personal_task(user: user, title: '個人タスク', completed_at: '2016-02-01'),
+        create_personal_task(user: other_user, title: '他人の個人タスク', completed_at: '2016-02-02'),
+        create_task(author_id: other_user.id, title: '公開タスク3', tags: %w(TagA TagC), assignees: [other_user], completed_at: '2016/02/02'),
+      ]
+    end
+
+    it do
+      get search_path(c: { from_date: '2016-02-01', to_date: '2016-02-02', tag_words: 'TagB', is_signed_up_only: '0', completion_state: 'any' })
+      tasks = assigns(:tasks)
+      expect(tasks).to eq(expected_tasks)
+    end
+  end
 end
