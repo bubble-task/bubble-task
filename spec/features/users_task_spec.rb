@@ -38,7 +38,7 @@ describe '自身が作成したタスクの一覧' do
   end
 
   it do
-    task = create_task(author_id: user_a.id, title: 'ユーザAのタスク')
+    task = create_personal_task(user: user_a, title: 'ユーザAのタスク')
     sign_in_as(user_a)
     visit root_path
     expect(page).to have_link(task.title)

@@ -22,7 +22,12 @@ class TaskEditing
     end
 
     def update_tags(tags, user)
-      @origin.tagging_by_user(tags, user)
+      @origin.tagging_by(tags)
+      if tags.any?
+        @origin.disable_personal_task
+      else
+        @origin.to_personal_task(user)
+      end
     end
 
     def update_description(description)

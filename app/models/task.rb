@@ -46,24 +46,17 @@ class Task < ActiveRecord::Base
 
   def tagging_by(tags)
     tag_collection.remove_all!
-    if tags.any?
-      tag_collection.add(tags)
-    else
-      return if personal?
-      self.build_personal_task(user_id: author_id)
-    end
+    tag_collection.add(tags)
   end
 
-  def tagging_by_user(tags, user)
-    tag_collection.remove_all!
-    if tags.any?
-      tag_collection.add(tags)
-      self.personal_task&.destroy
-    else
-      return if personal?
-      self.build_personal_task(user_id: user.id)
-      self.assignments.clear
-    end
+  def disable_personal_task
+    self.personal_task&.destroy
+  end
+
+  def to_personal_task(user)
+    return if personal?
+    self.build_personal_task(user_id: user.id)
+    self.assignments.clear
   end
 
   def tags

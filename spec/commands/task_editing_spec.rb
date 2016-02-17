@@ -11,7 +11,7 @@ describe TaskEditing do
   context '個人タスクにする' do
     context 'タグがある場合' do
       let(:new_tag_words) { '' }
-      let(:other_user) { create_user_from_oauth_credential }
+      let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'other_user@gaiax.com')) }
       let(:task) { create_task(author_id: other_user.id, title: 'タイトル', tags: %w(タグ), assignees: [other_user]) }
 
       it { expect(updated_task.personal_task_owner).to eq(user) }
@@ -32,6 +32,7 @@ describe TaskEditing do
     let(:new_tag_words) { 'タグ2' }
 
     it { expect(updated_task.personal?).to be_falsey }
+
     it { expect(updated_task.assignees).to eq([user]) }
   end
 end
