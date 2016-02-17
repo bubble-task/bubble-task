@@ -30,7 +30,7 @@ class TaskParameters
   end
 
   def deadline
-    Time.zone.parse("#{deadline_date} #{deadline_hour}:#{deadline_minutes}")
+    Time.zone.parse("#{deadline_date} #{deadline_hour}:#{deadline_minutes.to_i}")
   end
 
   private
