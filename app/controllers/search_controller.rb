@@ -6,7 +6,7 @@ class SearchController < ApplicationController
     tasks = if form_params.empty?
               []
             else
-              TaskRepository.search_by_criteria(@form.criteria)
+              TaskRepository.search_by_criteria(current_user.id, @form.criteria)
             end
     @tasks = tasks.map { |t| TaskPresenter.new(t) }
   end
