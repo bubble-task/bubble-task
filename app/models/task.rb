@@ -58,6 +58,7 @@ class Task < ActiveRecord::Base
     tag_collection.remove_all!
     if tags.any?
       tag_collection.add(tags)
+      self.personal_task&.destroy
     else
       return if personal?
       self.build_personal_task(user_id: user.id)
