@@ -11,15 +11,16 @@ class TaskCriteriaForm
     :c
   end
 
-  def initialize(assignee_id, params)
-    @assignee_id = assignee_id
+  def initialize(searcher_id, params)
+    @searcher_id = searcher_id
     fill_is_signed_up_only(params)
     super(params)
   end
 
   def criteria
     Criteria::Task.create(
-      assignee_id: signed_up_only? && @assignee_id,
+      @searcher_id,
+      assignee_id: signed_up_only? && @searcher_id,
       from_date: from_datetime,
       to_date: to_datetime,
       tag_words: tag_words,

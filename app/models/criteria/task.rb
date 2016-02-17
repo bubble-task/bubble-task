@@ -1,16 +1,16 @@
 module Criteria
   class Task
 
-    def self.create(options)
+    def self.create(searcher_id, options)
       c = case options[:completion_state]
           when 'completed'
-            Criteria::CompletedTask.create(options)
+            Criteria::CompletedTask.create(searcher_id, options)
           when 'uncompleted'
-            Criteria::UncompletedTask.create(options)
+            Criteria::UncompletedTask.create(searcher_id, options)
           else
             [
-              Criteria::CompletedTask.create(options),
-              Criteria::UncompletedTask.create(options),
+              Criteria::CompletedTask.create(searcher_id, options),
+              Criteria::UncompletedTask.create(searcher_id, options),
             ]
           end
       new(*c)

@@ -23,11 +23,9 @@ module TaskRepository
         .order('tasks.id')
     end
 
-    def search_by_criteria(searcher_id, criteria)
-      base_relation =
-        Task
-          .joins('LEFT OUTER JOIN personal_tasks ON personal_tasks.task_id = tasks.id')
-          .where('personal_tasks.id IS NULL OR personal_tasks.user_id = ?', searcher_id)
+    def search_by_criteria(criteria)
+      base_relation = Task.joins('LEFT OUTER JOIN personal_tasks ON personal_tasks.task_id = tasks.id')
+          #.where('personal_tasks.id IS NULL OR personal_tasks.user_id = ?', searcher_id)
       criteria.satisfy(base_relation)
       #criteria.satisfy(searcher_id, Task)
     end

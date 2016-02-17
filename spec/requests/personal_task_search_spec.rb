@@ -76,7 +76,7 @@ describe 'GET /search' do
     end
   end
 
-  skip '期間指定なし&タグ指定なし&未完了のみ&自分がサインアップONで検索 ' do
+  context '期間指定なし&タグ指定なし&未完了のみ&自分がサインアップONで検索 ' do
     let(:expected_tasks) do
       [
         create_personal_task(user: user, title: '個人タスク'),
