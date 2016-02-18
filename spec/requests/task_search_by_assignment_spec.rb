@@ -30,7 +30,9 @@ describe 'GET /search' do
   end
 
   context '自分がサインアップしたタスクに限定する' do
-    let(:expected_tasks) { [create_task(author_id: task_author.id, title: 'a', completed_at: :now, assignees: [assignee_a])] }
+    let(:expected_tasks) do
+      [create_personal_task(user: assignee_a, title: 'a', completed_at: :now)]
+    end
 
     let(:unexpected_tasks) do
       [

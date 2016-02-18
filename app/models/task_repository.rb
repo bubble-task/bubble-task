@@ -24,7 +24,8 @@ module TaskRepository
     end
 
     def search_by_criteria(criteria)
-      criteria.satisfy(Task)
+      base_relation = Task.joins('LEFT OUTER JOIN personal_tasks ON personal_tasks.task_id = tasks.id')
+      criteria.satisfy(base_relation)
     end
   end
 end

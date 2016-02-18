@@ -1,13 +1,13 @@
 module Criteria
   module UncompletedTask
 
-    def self.create(assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
+    def self.create(searcher_id, assignee_id: nil, from_date: nil, to_date: nil, tag_words: nil, completion_state: nil)
       AbstractCriteria.new.tap do |c|
-        c.add_condition(Criteria::Conditions::Assignee.create(assignee_id))
-        c.add_condition(Criteria::Conditions::DeadlineFrom.create(from_date))
-        c.add_condition(Criteria::Conditions::DeadlineTo.create(to_date))
-        c.add_condition(Criteria::Conditions::Tags.create(tag_words))
-        c.add_condition(Criteria::Conditions::Uncompleted)
+        c.add_condition(Conditions::Assignee.create(searcher_id, assignee_id))
+        c.add_condition(Conditions::DeadlineFrom.create(from_date))
+        c.add_condition(Conditions::DeadlineTo.create(to_date))
+        c.add_condition(Conditions::Tags.create(tag_words))
+        c.add_condition(Conditions::Uncompleted)
         c.set_preparation do |plans|
           unless plans.planned_inner_join?(:taggings)
             plans.add(taggings: :left_outer)

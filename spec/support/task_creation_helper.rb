@@ -18,8 +18,10 @@ module TaskCreationHelper
       .tap(&:save!)
   end
 
-  def create_personal_task(user:, title:, description: nil)
-    TaskCreation.new(TaskCreationForm.new(title: title, description: description)).run(user)
+  def create_personal_task(user:, title:, description: nil, completed_at: nil)
+    task = TaskCreation.new(TaskCreationForm.new(title: title, description: description)).run(user)
+    return task unless completed_at
+    make_task_completion(task, completed_at)
   end
 
   def make_task_completion(task, completed_at_param)

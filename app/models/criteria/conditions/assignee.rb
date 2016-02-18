@@ -2,32 +2,31 @@ module Criteria
   module Conditions
     module Assignee
 
-      def self.create(user_id)
-        return Anyone unless user_id
-        Assigned.new(user_id)
+      def self.create(searcher_id, assignee_id)
+        return Anyone.new(searcher_id) unless assignee_id
+        Assigned.new(assignee_id)
       end
     end
 
-    Assigned = Struct.new(:id) do
+    Assigned = Struct.new(:user_id) do
 
       def prepare(plans)
-        plans.add(assignments: :inner)
+        plans.add(assignments: :left_outer)
       end
 
       def satisfy(relation)
-        relation.restrict_by_assignee(id)
+        relation.restrict_by_assignee_or_personal_task(user_id)
       end
     end
 
-    module Anyone
-      module_function
+    Anyone = Struct.new(:searcher_id) do
 
       def prepare(relation)
         relation
       end
 
       def satisfy(relation)
-        relation
+        relation.restrict_by_public_task_or_searchers_personal_task(searcher_id)
       end
     end
   end
