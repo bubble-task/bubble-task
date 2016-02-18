@@ -6,4 +6,5 @@ personal_tasks.each do |pt|
   p title: pt.title
   p owner: owner
   pt.to_personal_task(owner)
+  pt.save
 end
