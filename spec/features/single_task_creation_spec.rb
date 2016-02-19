@@ -152,7 +152,7 @@ describe 'タスクを作成する' do
       let(:deadline) { { date: '2016/02/03' } }
 
       it do
-        create_task_from_ui(title: title, deadline: deadline )
+        create_task_from_ui(title: title, deadline: deadline)
         expect(deadline_text).to eq('2016/02/03 00:00')
       end
 
