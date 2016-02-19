@@ -17,6 +17,7 @@
 //= require jquery-tags-input
 //= require gravtastic
 //= require datepicker-ja
+//= require marked
 //= require turbolinks
 //= require_tree .
 
@@ -37,4 +38,8 @@ $(document).on('page:change', function() {
   setupMaterialize()
     .then(function() { setupForm(); })
     .then(function() { setupTagsInput(); });
+
+  var taskDescriptionElement = $('#task-description-content');
+  var text = taskDescriptionElement.text();
+  taskDescriptionElement.replaceWith(marked(text));
 });
