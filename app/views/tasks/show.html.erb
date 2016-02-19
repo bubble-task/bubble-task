@@ -21,9 +21,9 @@
           <%= render partial: 'tasks/task_assignees', locals: { task: @task } %>
         </div>
         <% if @task.description -%>
-          <div class="task-description">
+          <div class="task-description markdown-body">
             <div class="divider"></div>
-            <%= simple_format(h(@task.description)) %>
+            <div id="task-description-content"><%= @task.description %></div>
           </div>
         <% end -%>
       </div>
