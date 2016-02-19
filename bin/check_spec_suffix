@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+r = `find spec -not -name '*_spec.rb' -type f | egrep -v '(rails|spec)_helper.rb' | grep -v '^spec/support'`
+files = r.split("\n")
+abort(r) if files.any?
