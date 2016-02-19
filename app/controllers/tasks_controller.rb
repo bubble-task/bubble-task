@@ -21,6 +21,7 @@ class TasksController < ApplicationController
   def create
     command = TaskCreation.new(TaskCreationForm.new(params[:task_parameters]))
     if command.run(current_user)
+      p ooooooo:Task.last.deadline
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_creation.success')
     else
       @form = command.form
