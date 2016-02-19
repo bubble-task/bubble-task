@@ -130,27 +130,27 @@
 }
 
 .markdown-body h1 {
-  font-size: 21px;
-}
-
-.markdown-body h2 {
   font-size: 16px;
 }
 
-.markdown-body h3 {
+.markdown-body h2 {
   font-size: 14px;
 }
 
-.markdown-body h4 {
+.markdown-body h3 {
   font-size: 12px;
 }
 
-.markdown-body h5 {
+.markdown-body h4 {
   font-size: 11px;
 }
 
-.markdown-body h6 {
+.markdown-body h5 {
   font-size: 10px;
+}
+
+.markdown-body h6 {
+  font-size: 9px;
 }
 
 .markdown-body blockquote {
