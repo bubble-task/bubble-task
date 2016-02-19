@@ -121,6 +121,11 @@
 }
 
 .markdown-body {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.0rem; }
+  h4, h5, h6 { font-size: 0.8rem; }
+
   ul li {
     list-style-type: disc;
   }
