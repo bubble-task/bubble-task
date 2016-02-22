@@ -4,7 +4,7 @@ describe 'タスクへのサインアップを取り消し' do
   before do
     sign_in_as(user)
     task
-    TaskAssignment.new(task: task, assignee: user).run
+    TaskAssignment.new(task_id: task.id, assignee_id: user.id).run
   end
 
   let(:user) { create_user_from_oauth_credential }

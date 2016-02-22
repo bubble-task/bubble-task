@@ -13,14 +13,14 @@ describe 'GET /search' do
   context '期間指定なし&タグ指定なし&完了・未完了どちらも&自分がサインアップOFFで検索' do
     let(:expected_tasks) do
       [
-        create_personal_task(user: user, title: '個人タスク'),
+        create_personal_task(user_id: user.id, title: '個人タスク'),
         create_task(author_id: user.id, title: '公開タスク1', tags: %w(TagA), assignees: [user]),
         create_task(author_id: other_user.id, title: '公開タスク2', tags: %w(TagB), assignees: [other_user]),
       ]
     end
 
     let(:unexpected_tasks) do
-      [create_personal_task(user: other_user, title: '他人の個人タスク')]
+      [create_personal_task(user_id: other_user.id, title: '他人の個人タスク')]
     end
 
     it do
@@ -33,7 +33,7 @@ describe 'GET /search' do
   context '期間指定あり&タグ指定なし&完了のみ&自分がサインアップOFFで検索' do
     let(:expected_tasks) do
       [
-        create_personal_task(user: user, title: '個人タスク', completed_at: '2016-02-01'),
+        create_personal_task(user_id: user.id, title: '個人タスク', completed_at: '2016-02-01'),
         create_task(author_id: user.id, title: '公開タスク1', tags: %w(TagA), assignees: [user], completed_at: '2016/02/01'),
         create_task(author_id: other_user.id, title: '公開タスク2', tags: %w(TagB), assignees: [other_user], completed_at: '2016/02/02'),
       ]
@@ -41,7 +41,7 @@ describe 'GET /search' do
 
     let(:unexpected_tasks) do
       [
-        create_personal_task(user: other_user, title: '他人の個人タスク', completed_at: '2016-02-02'),
+        create_personal_task(user_id: other_user.id, title: '他人の個人タスク', completed_at: '2016-02-02'),
         create_task(author_id: other_user.id, title: '公開タスク3', tags: %w(TagA TagB), assignees: [other_user], completed_at: '2016/02/03'),
       ]
     end
@@ -63,8 +63,8 @@ describe 'GET /search' do
 
     let(:unexpected_tasks) do
       [
-        create_personal_task(user: user, title: '個人タスク', completed_at: '2016-02-01'),
-        create_personal_task(user: other_user, title: '他人の個人タスク', completed_at: '2016-02-02'),
+        create_personal_task(user_id: user.id, title: '個人タスク', completed_at: '2016-02-01'),
+        create_personal_task(user_id: other_user.id, title: '他人の個人タスク', completed_at: '2016-02-02'),
         create_task(author_id: other_user.id, title: '公開タスク3', tags: %w(TagA TagC), assignees: [other_user], completed_at: '2016/02/02'),
       ]
     end
@@ -79,15 +79,15 @@ describe 'GET /search' do
   context '期間指定なし&タグ指定なし&未完了のみ&自分がサインアップONで検索 ' do
     let(:expected_tasks) do
       [
-        create_personal_task(user: user, title: '個人タスク'),
+        create_personal_task(user_id: user.id, title: '個人タスク'),
         create_task(author_id: user.id, title: '公開タスク1', tags: %w(TagA), assignees: [user]),
       ]
     end
 
     let(:unexpected_tasks) do
       [
-        create_personal_task(user: other_user, title: '他人の個人タスク'),
-        create_personal_task(user: user, title: '完了個人タスク', completed_at: :now),
+        create_personal_task(user_id: other_user.id, title: '他人の個人タスク'),
+        create_personal_task(user_id: user.id, title: '完了個人タスク', completed_at: :now),
         create_task(author_id: other_user.id, title: '公開タスク3', tags: %w(TagA TagC), assignees: [user, other_user], completed_at: '2016/02/02'),
       ]
     end

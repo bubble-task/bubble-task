@@ -181,7 +181,7 @@ describe 'タスクの編集' do
 
         it '編集した他人の個人タスクになること' do
           command = TaskEditing.new(task, TaskEditingForm.new({ title: 'タイトル', tag_words: '' }.merge(task_id: task.id)))
-          command.run(other_user)
+          command.run(other_user.id)
           visit root_path
           expect(all('.task-summary').size).to eq(0)
         end

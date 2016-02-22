@@ -15,8 +15,8 @@ describe 'GET /search' do
   context '自分がサインアップしたタスクに限定しない' do
     let(:expected_tasks) do
       [
-        create_task(author_id: task_author.id, title: 'a', completed_at: :now, assignees: [assignee_a]),
-        create_task(author_id: task_author.id, title: 'b', completed_at: :now, assignees: [assignee_b]),
+        create_task(author_id: task_author.id, title: 'a', tags: %w(tag), completed_at: :now, assignees: [assignee_a]),
+        create_task(author_id: task_author.id, title: 'b', tags: %w(tag), completed_at: :now, assignees: [assignee_b]),
       ]
     end
 
@@ -31,7 +31,7 @@ describe 'GET /search' do
 
   context '自分がサインアップしたタスクに限定する' do
     let(:expected_tasks) do
-      [create_personal_task(user: assignee_a, title: 'a', completed_at: :now)]
+      [create_personal_task(user_id: assignee_a.id, title: 'a', completed_at: :now)]
     end
 
     let(:unexpected_tasks) do
