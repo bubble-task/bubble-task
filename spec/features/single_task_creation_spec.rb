@@ -15,17 +15,10 @@ describe 'タスクを作成する' do
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
 
   context 'タイトルのみの場合' do
-    let(:deadline_text) { first('.task-deadline').text }
-
     it do
       create_task_from_ui(title: title)
       click_link title
       expect(title_on_page).to eq(title)
-    end
-
-    it 'タスクの期限は設定されないこと' do
-      create_task_from_ui(title: title)
-      expect(deadline_text).to be_empty
     end
   end
 

@@ -21,6 +21,7 @@ describe 'タスクの編集' do
   let(:title_on_page) { first('.task-title').text }
   let(:description_on_page) { first('.task-description').text }
   let(:tags_on_page) { first('.tags').text.split(/\s+/) }
+  let(:deadline_on_page) { first('.task-deadline').text }
 
   describe '編集画面' do
     let(:task) do
@@ -57,9 +58,12 @@ describe 'タスクの編集' do
     it 'タイトルのみ更新されていること' do
       update_task_from_ui(task, title: new_title)
       click_link new_title
-      expect(title_on_page).to eq(new_title)
-      expect(description_on_page).to eq(old_description)
-      expect(tags_on_page).to eq(old_tags)
+
+      aggregate_failures do
+        expect(title_on_page).to eq(new_title)
+        expect(description_on_page).to eq(old_description)
+        expect(tags_on_page).to eq(old_tags)
+      end
     end
   end
 
@@ -70,9 +74,12 @@ describe 'タスクの編集' do
       it '説明のみ更新されていること' do
         update_task_from_ui(task, description: new_description)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(new_description)
-        expect(tags_on_page).to eq(old_tags)
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(new_description)
+          expect(tags_on_page).to eq(old_tags)
+        end
       end
     end
 
@@ -82,9 +89,12 @@ describe 'タスクの編集' do
       it '説明が削除されていること' do
         update_task_from_ui(task, description: new_description)
         click_link old_title
-        expect(first('.task-description')).to be_nil
-        expect(title_on_page).to eq(old_title)
-        expect(tags_on_page).to eq(old_tags)
+
+        aggregate_failures do
+          expect(first('.task-description')).to be_nil
+          expect(title_on_page).to eq(old_title)
+          expect(tags_on_page).to eq(old_tags)
+        end
       end
     end
   end
@@ -96,9 +106,12 @@ describe 'タスクの編集' do
       it do
         update_task_from_ui(task, tag_words: new_tag_words)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+        end
       end
 
       context '個人タスクにタグを追加' do
@@ -107,9 +120,12 @@ describe 'タスクの編集' do
         it do
           update_task_from_ui(task, tag_words: new_tag_words)
           click_link old_title
-          expect(title_on_page).to eq(old_title)
-          expect(description_on_page).to eq(old_description)
-          expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+
+          aggregate_failures do
+            expect(title_on_page).to eq(old_title)
+            expect(description_on_page).to eq(old_description)
+            expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+          end
         end
       end
     end
@@ -120,9 +136,12 @@ describe 'タスクの編集' do
       it do
         update_task_from_ui(task, tag_words: new_tag_words)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(タグ2))
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(タグ2))
+        end
       end
     end
 
@@ -133,9 +152,12 @@ describe 'タスクの編集' do
         it '自分の個人タスクになること' do
           update_task_from_ui(task, tag_words: new_tag_words)
           click_link old_title
-          expect(title_on_page).to eq(old_title)
-          expect(description_on_page).to eq(old_description)
-          expect(tags_on_page).to eq(%w(個人タスク))
+
+          aggregate_failures do
+            expect(title_on_page).to eq(old_title)
+            expect(description_on_page).to eq(old_description)
+            expect(tags_on_page).to eq(%w(個人タスク))
+          end
         end
       end
 
@@ -145,8 +167,11 @@ describe 'タスクの編集' do
 
         it '自分の個人タスクになること' do
           update_task_from_ui(task, tag_words: new_tag_words)
-          expect(title_on_page).to eq(old_title)
-          expect(tags_on_page).to eq(%w(個人タスク))
+
+          aggregate_failures do
+            expect(title_on_page).to eq(old_title)
+            expect(tags_on_page).to eq(%w(個人タスク))
+          end
         end
       end
 
@@ -169,9 +194,12 @@ describe 'タスクの編集' do
       it do
         update_task_from_ui(task, tag_words: new_tag_words)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(タグ3 タグ4))
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(タグ3 タグ4))
+        end
       end
     end
   end
@@ -179,12 +207,20 @@ describe 'タスクの編集' do
   describe '期限を編集' do
     context '期限を設定' do
       let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
-      let(:deadline_text) { first('.task-deadline').text }
 
       context '期限が設定されていない場合' do
-        it do
-          update_task_from_ui(task, deadline: deadline)
-          expect(deadline_text).to eq('2016/02/03 10:00')
+        context '日時を全て指定' do
+          it do
+            update_task_from_ui(task, deadline: deadline)
+            expect(deadline_on_page).to eq('2016/02/03 10:00')
+          end
+        end
+
+        context '日付と時間のみ指定' do
+          it do
+            update_task_from_ui(task, deadline: { date: '2016/02/03', hour: '10' })
+            expect(deadline_on_page).to eq('2016/02/03 10:00')
+          end
         end
       end
 
@@ -195,27 +231,25 @@ describe 'タスクの編集' do
 
         it do
           update_task_from_ui(task, deadline: deadline)
-          expect(deadline_text).to eq('2016/02/03 10:00')
+          expect(deadline_on_page).to eq('2016/02/03 10:00')
         end
       end
     end
 
     context '期限を削除する', js: true do
-      let(:deadline_text) { first('.task-deadline').text }
-
       context '期限がすでに設定されている場合' do
         let(:task) { create_task(author_id: user.id, title: old_title, assignees: [user], deadline: Time.current) }
 
         it do
           disable_deadline_from_ui(task)
-          expect(deadline_text).to be_blank
+          expect(deadline_on_page).to be_blank
         end
       end
 
       context '期限がすでに設定されている場合' do
         it do
           disable_deadline_from_ui(task)
-          expect(deadline_text).to be_blank
+          expect(deadline_on_page).to be_blank
         end
       end
     end
