@@ -61,7 +61,6 @@ describe 'タスクの編集' do
       expect(title_on_page).to eq(new_title)
       expect(description_on_page).to eq(old_description)
       expect(tags_on_page).to eq(old_tags)
-      expect(deadline_on_page).to be_blank
     end
   end
 
