@@ -30,6 +30,7 @@ class TaskParameters
   end
 
   def deadline
+    return if deadline_date.blank?
     Time.zone.parse("#{deadline_date} #{deadline_hour.to_i}:#{deadline_minutes.to_i}")
   end
 
