@@ -6,7 +6,7 @@ module TaskCreationHelper
   def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [], deadline: nil)
     task = create_task_record(author_id: author_id, title: title, description: description, tags: tags, deadline: deadline)
     assignees.each do |user|
-      TaskAssignment.new(task: task, assignee: user).run
+      TaskAssignment.new(task_id: task.id, assignee_id: user.id).run
     end
     return task unless completed_at
     make_task_completion(task, completed_at)
@@ -18,8 +18,8 @@ module TaskCreationHelper
       .tap(&:save!)
   end
 
-  def create_personal_task(user:, title:, description: nil, completed_at: nil)
-    task = TaskCreation.new(TaskCreationForm.new(title: title, description: description)).run(user)
+  def create_personal_task(user_id:, title:, description: nil, completed_at: nil)
+    task = TaskCreation.new(TaskCreationForm.new(title: title, description: description)).run(user_id)
     return task unless completed_at
     make_task_completion(task, completed_at)
   end

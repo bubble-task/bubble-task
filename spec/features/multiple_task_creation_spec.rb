@@ -9,7 +9,7 @@ describe '複数のタスクを作成する' do
     def create_task_with_tags(title, tag_words)
       create_task_from_ui(title: title, tag_words: tag_words)
       task = Task.last
-      TaskAssignment.new(task: task, assignee: User.last).run
+      TaskAssignment.new(task_id: task.id, assignee_id: User.last.id).run
       task
     end
 

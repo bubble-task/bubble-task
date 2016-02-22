@@ -9,17 +9,26 @@ describe TaskCreation do
   context '通常のタスクを作成する場合' do
     it do
       command = TaskCreation.new(TaskCreationForm.new(title: title, tag_words: tag_words))
-      command.run(user)
+      command.run(user.id)
       expect(created_task.title).to eq(title)
       expect(created_task.tags).to eq([tag_words])
       expect(created_task.personal?).to be_falsey
+    end
+
+    it do
+      command = TaskCreation.new(TaskCreationForm.new(title: title, tag_words: tag_words, with_sign_up: '1'))
+      command.run(user.id)
+      expect(created_task.title).to eq(title)
+      expect(created_task.tags).to eq([tag_words])
+      expect(created_task.personal?).to be_falsey
+      expect(created_task.assignees).to eq([user])
     end
   end
 
   context '個人タスクを作成する場合' do
     it do
       command = TaskCreation.new(TaskCreationForm.new(title: title))
-      command.run(user)
+      command.run(user.id)
       expect(created_task.title).to eq(title)
       expect(created_task.tags).to be_empty
       expect(created_task.personal?).to be_truthy

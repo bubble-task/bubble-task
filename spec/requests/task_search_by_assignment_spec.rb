@@ -31,7 +31,7 @@ describe 'GET /search' do
 
   context '自分がサインアップしたタスクに限定する' do
     let(:expected_tasks) do
-      [create_personal_task(user: assignee_a, title: 'a', completed_at: :now)]
+      [create_personal_task(user_id: assignee_a.id, title: 'a', completed_at: :now)]
     end
 
     let(:unexpected_tasks) do

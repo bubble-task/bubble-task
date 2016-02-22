@@ -53,9 +53,9 @@ class Task < ActiveRecord::Base
     self.personal_task&.destroy
   end
 
-  def to_personal_task(user)
+  def to_personal_task(user_id)
     return if personal?
-    self.build_personal_task(user_id: user.id)
+    self.build_personal_task(user_id: user_id)
     self.assignments.clear
   end
 

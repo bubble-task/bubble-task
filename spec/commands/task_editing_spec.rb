@@ -4,7 +4,7 @@ describe TaskEditing do
   let(:user) { create_user_from_oauth_credential }
   let(:updated_task) do
     command = TaskEditing.new(task, TaskEditingForm.new({ title: 'タイトル', tag_words: new_tag_words }.merge(task_id: task.id)))
-    command.run(user)
+    command.run(user.id)
     Task.find(task.id)
   end
 

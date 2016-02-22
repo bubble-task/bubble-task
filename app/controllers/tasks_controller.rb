@@ -20,7 +20,7 @@ class TasksController < ApplicationController
 
   def create
     command = TaskCreation.new(TaskCreationForm.new(params[:task_parameters]))
-    if command.run(current_user)
+    if command.run(current_user.id)
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_creation.success')
     else
       @form = command.form
@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     command = TaskEditing.new(task, TaskEditingForm.new(params[:task_parameters].merge(task_id: params[:id])))
-    if command.run(current_user)
+    if command.run(current_user.id)
       redirect_to root_url, notice: I18n.t('.activemodel.messages.task_editing.success')
     else
       @form = command.form

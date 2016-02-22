@@ -20,7 +20,7 @@ describe '自身が作成したタスクの一覧' do
 
   it do
     task = create_task(author_id: user_b.id, title: 'ユーザBのタスク', tags: ['タグ'])
-    TaskAssignment.new(task: task, assignee: user_a).run
+    TaskAssignment.new(task_id: task.id, assignee_id: user_a.id).run
 
     sign_in_as(user_a)
     visit root_path
@@ -29,7 +29,7 @@ describe '自身が作成したタスクの一覧' do
 
   it do
     task = create_task(author_id: user_b.id, title: 'ユーザBのタスク', tags: %w(タグ1 タグ2))
-    TaskAssignment.new(task: task, assignee: user_a).run
+    TaskAssignment.new(task_id: task.id, assignee_id: user_a.id).run
 
     sign_in_as(user_a)
     visit root_path
@@ -38,7 +38,7 @@ describe '自身が作成したタスクの一覧' do
   end
 
   it do
-    task = create_personal_task(user: user_a, title: 'ユーザAのタスク')
+    task = create_personal_task(user_id: user_a.id, title: 'ユーザAのタスク')
     sign_in_as(user_a)
     visit root_path
     expect(page).to have_link(task.title)

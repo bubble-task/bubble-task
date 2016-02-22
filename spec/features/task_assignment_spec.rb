@@ -36,7 +36,7 @@ describe 'タスクへのサインアップ', js: true do
     let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@gaiax.com')) }
 
     it do
-      TaskAssignment.new(task: task, assignee: other_user).run
+      TaskAssignment.new(task_id: task.id, assignee_id: other_user.id).run
 
       find(sign_up_link_css_path).trigger('click')
       expect(assignee_avatar).to_not be_nil
