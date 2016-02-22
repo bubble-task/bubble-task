@@ -58,9 +58,12 @@ describe 'タスクの編集' do
     it 'タイトルのみ更新されていること' do
       update_task_from_ui(task, title: new_title)
       click_link new_title
-      expect(title_on_page).to eq(new_title)
-      expect(description_on_page).to eq(old_description)
-      expect(tags_on_page).to eq(old_tags)
+
+      aggregate_failures do
+        expect(title_on_page).to eq(new_title)
+        expect(description_on_page).to eq(old_description)
+        expect(tags_on_page).to eq(old_tags)
+      end
     end
   end
 
@@ -71,9 +74,12 @@ describe 'タスクの編集' do
       it '説明のみ更新されていること' do
         update_task_from_ui(task, description: new_description)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(new_description)
-        expect(tags_on_page).to eq(old_tags)
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(new_description)
+          expect(tags_on_page).to eq(old_tags)
+        end
       end
     end
 
@@ -83,9 +89,12 @@ describe 'タスクの編集' do
       it '説明が削除されていること' do
         update_task_from_ui(task, description: new_description)
         click_link old_title
-        expect(first('.task-description')).to be_nil
-        expect(title_on_page).to eq(old_title)
-        expect(tags_on_page).to eq(old_tags)
+
+        aggregate_failures do
+          expect(first('.task-description')).to be_nil
+          expect(title_on_page).to eq(old_title)
+          expect(tags_on_page).to eq(old_tags)
+        end
       end
     end
   end
@@ -97,9 +106,12 @@ describe 'タスクの編集' do
       it do
         update_task_from_ui(task, tag_words: new_tag_words)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+        end
       end
 
       context '個人タスクにタグを追加' do
@@ -108,9 +120,12 @@ describe 'タスクの編集' do
         it do
           update_task_from_ui(task, tag_words: new_tag_words)
           click_link old_title
-          expect(title_on_page).to eq(old_title)
-          expect(description_on_page).to eq(old_description)
-          expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+
+          aggregate_failures do
+            expect(title_on_page).to eq(old_title)
+            expect(description_on_page).to eq(old_description)
+            expect(tags_on_page).to eq(%w(タグ1 タグ2 タグ3))
+          end
         end
       end
     end
@@ -121,9 +136,12 @@ describe 'タスクの編集' do
       it do
         update_task_from_ui(task, tag_words: new_tag_words)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(タグ2))
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(タグ2))
+        end
       end
     end
 
@@ -134,9 +152,12 @@ describe 'タスクの編集' do
         it '自分の個人タスクになること' do
           update_task_from_ui(task, tag_words: new_tag_words)
           click_link old_title
-          expect(title_on_page).to eq(old_title)
-          expect(description_on_page).to eq(old_description)
-          expect(tags_on_page).to eq(%w(個人タスク))
+
+          aggregate_failures do
+            expect(title_on_page).to eq(old_title)
+            expect(description_on_page).to eq(old_description)
+            expect(tags_on_page).to eq(%w(個人タスク))
+          end
         end
       end
 
@@ -146,8 +167,11 @@ describe 'タスクの編集' do
 
         it '自分の個人タスクになること' do
           update_task_from_ui(task, tag_words: new_tag_words)
-          expect(title_on_page).to eq(old_title)
-          expect(tags_on_page).to eq(%w(個人タスク))
+
+          aggregate_failures do
+            expect(title_on_page).to eq(old_title)
+            expect(tags_on_page).to eq(%w(個人タスク))
+          end
         end
       end
 
@@ -170,9 +194,12 @@ describe 'タスクの編集' do
       it do
         update_task_from_ui(task, tag_words: new_tag_words)
         click_link old_title
-        expect(title_on_page).to eq(old_title)
-        expect(description_on_page).to eq(old_description)
-        expect(tags_on_page).to eq(%w(タグ3 タグ4))
+
+        aggregate_failures do
+          expect(title_on_page).to eq(old_title)
+          expect(description_on_page).to eq(old_description)
+          expect(tags_on_page).to eq(%w(タグ3 タグ4))
+        end
       end
     end
   end
