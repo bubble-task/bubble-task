@@ -23,7 +23,6 @@ describe 'タスクを作成する' do
       expect(title_on_page).to eq(title)
     end
 
-
     it 'タスクの期限は設定されないこと' do
       create_task_from_ui(title: title)
       expect(deadline_text).to be_empty
