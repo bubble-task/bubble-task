@@ -13,9 +13,16 @@ module TaskCreationHelper
   end
 
   def create_task_record(author_id:, title:, description: nil, tags: [], deadline: nil)
-    TaskFactory
-      .create(author_id, title, description.to_s, tags, deadline)
-      .tap(&:save!)
+    form =
+      TaskCreationForm.new(
+        title: title,
+        description: description.to_s,
+        tag_words: tags.join(' '),
+        deadline_date: deadline&.strftime('%Y/%m/%d'),
+        deadline_hour: deadline&.strftime('%H'),
+        deadline_minutes: deadline&.strftime('%M')
+      )
+    TaskCreation.new(form).run(author_id)
   end
 
   def create_personal_task(user_id:, title:, description: nil, completed_at: nil)

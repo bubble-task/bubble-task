@@ -22,7 +22,7 @@ describe 'GET /search' do
     let(:unexpected_tasks) { [uncompleted_task] }
 
     let(:expected_tasks) do
-      [create_task(author_id: task_author.id, title: 'a', completed_at: :now, assignees: [assignee])]
+      [create_task(author_id: task_author.id, title: 'a', tags: %w(tag), completed_at: :now, assignees: [assignee])]
     end
 
     it do
