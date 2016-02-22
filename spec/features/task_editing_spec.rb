@@ -183,9 +183,18 @@ describe 'タスクの編集' do
       let(:deadline) { Time.zone.parse('2016/02/03 10:00') }
 
       context '期限が設定されていない場合' do
-        it do
-          update_task_from_ui(task, deadline: deadline)
-          expect(deadline_on_page).to eq('2016/02/03 10:00')
+        context '日時を全て指定' do
+          it do
+            update_task_from_ui(task, deadline: deadline)
+            expect(deadline_on_page).to eq('2016/02/03 10:00')
+          end
+        end
+
+        context '日付と時間のみ指定' do
+          it do
+            update_task_from_ui(task, deadline: { date: '2016/02/03', hour: '10' })
+            expect(deadline_on_page).to eq('2016/02/03 10:00')
+          end
         end
       end
 
