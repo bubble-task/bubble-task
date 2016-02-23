@@ -5,4 +5,6 @@
     <input type="checkbox" id="<%= task_completion_checkbox_id %>" class="task_completion" <%= task.completion_checkbox_state %> />
     <label id="<%= task_completion_label_id %>" for="<%= task_completion_checkbox_id %>"></label>
   <% end -%>
+<% else -%>
+  <p></p>
 <% end -%>
