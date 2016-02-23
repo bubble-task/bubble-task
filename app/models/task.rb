@@ -1,3 +1,5 @@
+class TaskCompletionNotPermitted < StandardError; end
+
 class Task < ActiveRecord::Base
   include Removable
   include TaskRestrictable
@@ -63,7 +65,8 @@ class Task < ActiveRecord::Base
     tag_collection.to_a
   end
 
-  def complete(completed_at = Time.current)
+  def complete(user_id, completed_at = Time.current)
+    raise TaskCompletionNotPermitted unless can_complete?(user_id)
     self.build_completed_task(completed_at: completed_at)
   end
 

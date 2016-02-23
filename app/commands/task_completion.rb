@@ -8,8 +8,8 @@ class TaskCompletion
     @task = TaskRepository.find_by_id(task_id)
   end
 
-  def run
-    @task.complete
+  def run(user_id)
+    @task.complete(user_id)
     @task.save
   end
 
