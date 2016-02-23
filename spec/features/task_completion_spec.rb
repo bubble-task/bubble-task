@@ -27,8 +27,30 @@ describe 'タスクの完了', js: true do
     end
   end
 
-  describe '公開タスク:サインアップしていないタスクを完了にする' do
+  describe '公開タスク:自分がサインアップしていないタスクを完了にする' do
     let(:task) { create_task(author_id: user_a.id, title: title, tags: [tag], assignees: [user_b]) }
+
+    context 'タグのタスク一覧画面で操作する場合' do
+      before { visit tasks_path(tag: tag) }
+
+      it 'チェックボックスが表示されていないこと' do
+        completion_checkbox = first(completed_checkbox_label_id)
+        expect(completion_checkbox).to be_nil
+      end
+    end
+
+    context 'タスク詳細画面で操作する場合' do
+      before { visit task_path(task.id) }
+
+      it 'チェックボックスが表示されていないこと' do
+        completion_checkbox = first(completed_checkbox_label_id)
+        expect(completion_checkbox).to be_nil
+      end
+    end
+  end
+
+  describe '公開タスク:誰もサインアップしていないタスクを完了にする' do
+    let(:task) { create_task(author_id: user_a.id, title: title, tags: [tag]) }
 
     context 'タグのタスク一覧画面で操作する場合' do
       before { visit tasks_path(tag: tag) }
@@ -40,7 +62,47 @@ describe 'タスクの完了', js: true do
     end
   end
 
-  describe '公開タスク:サインアップ済みタスクを完了にする' do
+  describe '個人タスク:自分がサインアップしていないタスクを完了にする' do
+    let(:task) { create_task(author_id: user_a.id, title: title) }
+
+    context 'ホーム画面で操作する場合' do
+      before { visit root_path }
+
+      it 'タスクが非表示になっていること' do
+        find(completed_checkbox_label_id, visible: false).click
+        wait_completion
+        expect(title_link).to be_nil
+      end
+
+      it '一覧画面に再度アクセスするとタスクが非表示になっていること' do
+        find(completed_checkbox_label_id, visible: false).click
+        visit root_path
+        expect(title_link).to be_nil
+      end
+    end
+  end
+
+  context '個人タスク:自分がサインアップ済みタスクを完了にする' do
+    let(:task) { create_task(author_id: user_a.id, title: title, assignees: [user_a]) }
+
+    context 'ホーム画面で操作する場合' do
+      before { visit root_path }
+
+      it 'タスクが非表示になっていること' do
+        find(completed_checkbox_label_id, visible: false).click
+        wait_completion
+        expect(title_link).to be_nil
+      end
+
+      it '一覧画面に再度アクセスするとタスクが非表示になっていること' do
+        find(completed_checkbox_label_id, visible: false).click
+        visit root_path
+        expect(title_link).to be_nil
+      end
+    end
+  end
+
+  describe '公開タスク:自分がサインアップ済みのタスクを完了にする' do
     context 'ホーム画面で操作する場合' do
       before { visit root_path }
 

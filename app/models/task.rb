@@ -104,6 +104,7 @@ class Task < ActiveRecord::Base
   end
 
   def can_complete?(user_id)
+    return true if personal_task&.user_id == user_id
     assignments.one? { |a| a.user_id == user_id }
   end
 
