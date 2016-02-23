@@ -45,7 +45,7 @@ class TasksController < ApplicationController
 
   def complete
     command = TaskCompletion.new(task_id: params[:id])
-    command.run
+    command.run(current_user.id)
     @task = TaskPresenter.new(command.result)
   end
 

@@ -54,7 +54,8 @@ describe Task do
 
   describe '完了状態にする' do
     it do
-      task.complete
+      task.to_personal_task(1)
+      task.complete(1)
       expect(task).to be_completed
     end
   end
@@ -80,7 +81,8 @@ describe Task do
 
   describe '完了を取り消す' do
     it do
-      task.complete
+      task.to_personal_task(1)
+      task.complete(1)
       task.cancel_completion
       expect(task).to_not be_completed
     end
@@ -148,7 +150,6 @@ describe Task do
     context '個人タスク' do
       before do
         task.to_personal_task(1)
-        task.save!
       end
 
       context '自分の個人タスク' do

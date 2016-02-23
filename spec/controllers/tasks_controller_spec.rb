@@ -93,7 +93,7 @@ describe TasksController do
     end
 
     context 'ログインしている場合' do
-      before { sign_in }
+      before { sign_in(user) }
       it { is_expected.to render_template(:complete, format: :js) }
     end
   end
