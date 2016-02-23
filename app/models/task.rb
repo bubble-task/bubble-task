@@ -103,6 +103,10 @@ class Task < ActiveRecord::Base
     personal_task
   end
 
+  def can_complete?(user_id)
+    assignments.one? { |a| a.user_id == user_id }
+  end
+
   private
 
     def tag_collection

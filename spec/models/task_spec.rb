@@ -123,4 +123,26 @@ describe Task do
       end
     end
   end
+
+  describe '完了が可能か判断する' do
+    context '自分がサインアップしていない場合' do
+      it do
+        task.assignments.build(user_id: 1)
+        expect(task.can_complete?(2)).to be_falsey
+      end
+    end
+
+    context '自分がサインアップしている場合' do
+      it do
+        task.assignments.build(user_id: 1)
+        expect(task.can_complete?(1)).to be_truthy
+      end
+    end
+
+    context '誰もサインアップしていない場合' do
+      it do
+        expect(task.can_complete?(1)).to be_falsey
+      end
+    end
+  end
 end

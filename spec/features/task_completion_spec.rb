@@ -2,13 +2,14 @@ require 'rails_helper'
 
 describe 'タスクの完了', js: true do
   before do
-    sign_in_as(user)
+    sign_in_as(user_a)
     task
   end
 
-  let(:user) { create_user_from_oauth_credential }
+  let(:user_a) { create_user_from_oauth_credential }
+  let(:user_b) { create_user_from_oauth_credential }
 
-  let(:task) { create_task(author_id: user.id, title: title, tags: [tag], assignees: [user]) }
+  let(:task) { create_task(author_id: user_a.id, title: title, tags: [tag], assignees: [user_a]) }
   let(:title) { 'タスクのタイトル' }
   let(:tag) { 'タグ' }
 
@@ -26,8 +27,21 @@ describe 'タスクの完了', js: true do
     end
   end
 
-  describe 'タスクを完了にする' do
-    context '自分のタスク一覧画面で操作する場合' do
+  describe '公開タスク:サインアップしていないタスクを完了にする' do
+    let(:task) { create_task(author_id: user_a.id, title: title, tags: [tag], assignees: [user_b]) }
+
+    context 'タグのタスク一覧画面で操作する場合' do
+      before { visit tasks_path(tag: tag) }
+
+      it 'チェックボックスが表示されていないこと' do
+        completion_checkbox = first(completed_checkbox_label_id)
+        expect(completion_checkbox).to be_nil
+      end
+    end
+  end
+
+  describe '公開タスク:サインアップ済みタスクを完了にする' do
+    context 'ホーム画面で操作する場合' do
       before { visit root_path }
 
       it 'タスクが非表示になっていること' do
