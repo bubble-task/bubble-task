@@ -80,6 +80,16 @@ describe 'タスクの完了', js: true do
         expect(title_link).to be_nil
       end
     end
+
+    context 'タスク詳細画面で操作する場合' do
+      before { visit task_path(task.id) }
+
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        wait_completion
+        expect(completed_checkbox).to be_checked
+      end
+    end
   end
 
   context '個人タスク:自分がサインアップ済みタスクを完了にする' do
@@ -98,6 +108,16 @@ describe 'タスクの完了', js: true do
         find(completed_checkbox_label_id, visible: false).click
         visit root_path
         expect(title_link).to be_nil
+      end
+    end
+
+    context 'タスク詳細画面で操作する場合' do
+      before { visit task_path(task.id) }
+
+      it do
+        find(completed_checkbox_label_id, visible: false).click
+        wait_completion
+        expect(completed_checkbox).to be_checked
       end
     end
   end
