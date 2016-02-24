@@ -11,6 +11,7 @@ describe 'タスクへのサインアップ', js: true do
   let(:tag) { 'タグ' }
   let(:sign_up_link_css_path) { '.sign_up' }
   let(:assignee_avatar) { find(".assignee_#{user.id}") }
+  let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
 
   describe 'タグのタスク一覧から操作する' do
     before { visit tasks_path(tag: tag) }
@@ -32,10 +33,6 @@ describe 'タスクへのサインアップ', js: true do
       sign_up_link = first(sign_up_link_css_path)
       expect(sign_up_link).to be_nil
     end
-
-    let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
-    let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
-    let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
 
     it do
       find(sign_up_link_css_path).trigger('click')
@@ -59,6 +56,12 @@ describe 'タスクへのサインアップ', js: true do
     it do
       find(sign_up_link_css_path).trigger('click')
       expect(assignee_avatar).to_not be_nil
+    end
+
+    it do
+      find(sign_up_link_css_path).trigger('click')
+      completion_checkbox = find(completed_checkbox_label_id)
+      expect(completion_checkbox).to_not be_nil
     end
   end
 end
