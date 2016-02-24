@@ -29,8 +29,8 @@ describe 'GET /search' do
         author_id: user_a.id, tags: %w(タグA タグB), completed_at: '2016-01-03', assignees: [user_a]
       ),
       create_task(
-        title: '完了日=2016-01-01,タグ=なし,サインアップ=user_a,user_b',
-        author_id: user_a.id, completed_at: '2016-01-01', assignees: [user_a,user_b]
+        title: '完了日=2016-01-01,タグ=なし,サインアップ=user_a',
+        author_id: user_a.id, completed_at: '2016-01-01', assignees: [user_a]
       ),
       create_task(
         title: '完了日=2016-01-01,タグ=タグA タグC,サインアップ=user_b',
@@ -67,8 +67,13 @@ describe 'GET /search' do
         deadline: Time.zone.parse('2016-01-01'),
       ),
       create_task(
+        title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_a',
+        author_id: user_a.id, assignees: [user_a],
+        deadline: Time.zone.parse('2016-01-02'),
+      ),
+      create_task(
         title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_b',
-        author_id: user_a.id, assignees: [user_b],
+        author_id: user_b.id, assignees: [user_b],
         deadline: Time.zone.parse('2016-01-02'),
       ),
     ]
@@ -95,13 +100,13 @@ describe 'GET /search' do
       [
         Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグB,サインアップ=user_a'),
         Task.find_by(title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_a,user_b'),
-        Task.find_by(title: '完了日=2016-01-01,タグ=なし,サインアップ=user_a,user_b'),
+        Task.find_by(title: '完了日=2016-01-01,タグ=なし,サインアップ=user_a'),
         Task.find_by(title: '完了日=2016-01-01,タグ=タグA タグC,サインアップ=user_b'),
         Task.find_by(title: '完了日=2016-01-01,タグ=タグA,サインアップ=user_a,user_b'),
         Task.find_by(title: '完了日=2016-01-01,タグ=タグC,サインアップ=user_b'),
         Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグB,サインアップ=user_b'),
         Task.find_by(title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b'),
-        Task.find_by(title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_b'),
+        Task.find_by(title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_a'),
       ]
     end
 

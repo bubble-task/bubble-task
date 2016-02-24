@@ -10,7 +10,10 @@ describe 'GET /search' do
 
   let(:task_author) { create_user_from_oauth_credential(generate_auth_hash(email: 'task@gaiax.com')) }
   let(:assignee) { create_user_from_oauth_credential }
-  let(:uncompleted_task) { create_task(author_id: task_author.id, title: '未完了タスク', assignees: [assignee]) }
+
+  let(:uncompleted_task) do
+    create_task(author_id: task_author.id, title: '未完了タスク', tags: %w(tag), assignees: [assignee])
+  end
 
   let(:other_users_completed_task) do
     create_user_from_oauth_credential(generate_auth_hash(email: 'other@gaiax.com')).tap do |u|
@@ -22,7 +25,9 @@ describe 'GET /search' do
     let(:unexpected_tasks) { [uncompleted_task] }
 
     let(:expected_tasks) do
-      [create_task(author_id: task_author.id, title: 'a', tags: %w(tag), completed_at: :now, assignees: [assignee])]
+      [
+        create_task(author_id: task_author.id, title: 'a', tags: %w(tag), completed_at: :now, assignees: [assignee])
+      ]
     end
 
     it do

@@ -4,7 +4,7 @@ module TaskCreationHelper
   include TaskUIHelper
 
   def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [], deadline: nil)
-    task = create_task_record(author_id: author_id, title: title, description: description, tags: tags, deadline: deadline)
+    task = create(author_id: author_id, title: title, description: description, tags: tags, deadline: deadline)
 
     assignees.each do |user|
       TaskAssignment.new(task_id: task.id, assignee_id: user.id).run
@@ -12,27 +12,7 @@ module TaskCreationHelper
 
     return task unless completed_at
 
-    completer_id = if assignees.any?
-                     assignees.first.id
-                   else
-                     author_id
-                   end
-    completer_id = task.personal_task_owner.id if task.personal?
-
-    make_task_completion(task, completer_id, completed_at)
-  end
-
-  def create_task_record(author_id:, title:, description: nil, tags: [], deadline: nil)
-    form =
-      TaskCreationForm.new(
-        title: title,
-        description: description.to_s,
-        tag_words: tags.join(' '),
-        deadline_date: deadline&.strftime('%Y/%m/%d'),
-        deadline_hour: deadline&.strftime('%H'),
-        deadline_minutes: deadline&.strftime('%M')
-      )
-    TaskCreation.new(form).run(author_id)
+    make_task_completion(task, detect_completer_id(task), completed_at)
   end
 
   def create_personal_task(user_id:, title:, description: nil, completed_at: nil)
@@ -52,4 +32,25 @@ module TaskCreationHelper
       t.save!
     end
   end
+
+  private
+
+    def create(author_id:, title:, description: nil, tags: [], deadline: nil)
+      form =
+        TaskCreationForm.new(
+          title: title,
+          description: description.to_s,
+          tag_words: tags.join(' '),
+          deadline_date: deadline&.strftime('%Y/%m/%d'),
+          deadline_hour: deadline&.strftime('%H'),
+          deadline_minutes: deadline&.strftime('%M')
+        )
+      TaskCreation.new(form).run(author_id)
+    end
+
+    def detect_completer_id(task)
+      return task.personal_task_owner.id if task.personal?
+      return task.assignees.first.id if task.assignees.any?
+      task.author_id
+    end
 end

@@ -10,7 +10,9 @@ describe 'GET /search' do
   let(:task_author) { create_user_from_oauth_credential(generate_auth_hash(email: 'task@gaiax.com')) }
   let(:assignee_a) { create_user_from_oauth_credential }
   let(:assignee_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'other@gaiax.com')) }
-  let(:uncompleted_task) { create_task(author_id: task_author.id, title: '未完了タスク', assignees: [assignee_a]) }
+  let(:uncompleted_task) do
+    create_task(author_id: task_author.id, title: '未完了タスク', tags: %w(tag), assignees: [assignee_a])
+  end
 
   context '自分がサインアップしたタスクに限定しない' do
     let(:expected_tasks) do
@@ -31,13 +33,16 @@ describe 'GET /search' do
 
   context '自分がサインアップしたタスクに限定する' do
     let(:expected_tasks) do
-      [create_personal_task(user_id: assignee_a.id, title: 'a', completed_at: :now)]
+      [
+        create_personal_task(user_id: assignee_a.id, title: 'a', completed_at: :now),
+        create_task(author_id: task_author.id, title: 'b', tags: %w(tag), completed_at: :now, assignees: [assignee_a]),
+      ]
     end
 
     let(:unexpected_tasks) do
       [
         uncompleted_task,
-        create_task(author_id: task_author.id, title: 'b', completed_at: :now, assignees: [assignee_b]),
+        create_task(author_id: task_author.id, title: 'b', tags: %w(tag), completed_at: :now, assignees: [assignee_b]),
       ]
     end
 
