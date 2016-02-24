@@ -29,7 +29,7 @@ describe 'GET /search' do
     context '期間の絞り込みの開始日を指定' do
       let(:unexpected_tasks) do
         [
-          create_task(author_id: user_a.id, title: 'b', completed_at: '2015-11-30'),
+          create_task(author_id: user_a.id, title: 'b', tags: %w(tag), completed_at: '2015-11-30', assignees: [user_a]),
         ]
       end
 
@@ -49,7 +49,7 @@ describe 'GET /search' do
     context '期間の絞り込みの終了日を指定' do
       let(:unexpected_tasks) do
         [
-          create_task(author_id: user_a.id, title: 'b', completed_at: '2015-12-01'),
+          create_task(author_id: user_a.id, title: 'b', tags: %w(tag), completed_at: '2015-12-01', assignees: [user_a]),
         ]
       end
 
@@ -69,8 +69,8 @@ describe 'GET /search' do
     context '期間の絞り込みの開始日と終了日を指定' do
       let(:unexpected_tasks) do
         [
-          create_task(author_id: user_a.id, title: 'b', completed_at: '2015-11-30'),
-          create_task(author_id: user_a.id, title: 'c', completed_at: '2016-01-01'),
+          create_task(author_id: user_a.id, title: 'b', tags: %w(tag), completed_at: '2015-11-30', assignees: [user_a]),
+          create_task(author_id: user_a.id, title: 'c', tags: %w(tag), completed_at: '2016-01-01', assignees: [user_a]),
         ]
       end
 
@@ -93,7 +93,7 @@ describe 'GET /search' do
     context '期間を指定しない' do
       let(:unexpected_tasks) do
         [
-          create_task(author_id: user_a.id, title: 'a', completed_at: '2015-11-30'),
+          create_task(author_id: user_a.id, title: 'a', tags: %w(tag), completed_at: '2015-11-30', assignees: [user_a]),
         ]
       end
 
@@ -114,8 +114,8 @@ describe 'GET /search' do
     context '開始日だけの場合' do
       let(:unexpected_tasks) do
         [
-          create_task(author_id: user_a.id, title: 'a', completed_at: '2015-11-30'),
-          create_task(author_id: user_a.id, title: 'b', deadline: Time.zone.parse('2015-11-30')),
+          create_task(author_id: user_a.id, title: 'a', tags: %w(tag), completed_at: '2015-11-30', assignees: [user_a]),
+          create_task(author_id: user_a.id, title: 'b', tags: %w(tag), deadline: Time.zone.parse('2015-11-30')),
         ]
       end
 
