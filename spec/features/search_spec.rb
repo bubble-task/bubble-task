@@ -16,6 +16,7 @@ describe 'タスクの検索' do
       assignees: [user_a, user_b]
     )
   end
+
   let(:uncompleted_task) do
     create_task(
       author_id: user_a.id, title: '未完了',
