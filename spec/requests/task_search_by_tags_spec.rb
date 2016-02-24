@@ -26,7 +26,7 @@ describe 'GET /search' do
 
     let(:expected_tasks) do
       [
-        create_task(author_id: task_author.id, title: 'a', tags: %w(tag), completed_at: :now, assignees: [assignee])
+        create_task(author_id: task_author.id, title: 'a', tags: %w(tag), completed_at: :now, assignees: [assignee]),
       ]
     end
 
@@ -41,7 +41,7 @@ describe 'GET /search' do
     let(:unexpected_tasks) do
       [
         uncompleted_task,
-        create_task(author_id: task_author.id, title: 'a', tags: ['指定しないタグ'], completed_at: :now, assignees: [assignee])
+        create_task(author_id: task_author.id, title: 'a', tags: ['指定しないタグ'], completed_at: :now, assignees: [assignee]),
       ]
     end
 
