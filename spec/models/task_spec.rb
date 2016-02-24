@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Task do
-  let(:task) { Task.new }
+  let(:task) { Task.new(author_id: 1, title: 'Title') }
 
   describe '説明を追加する' do
     it do
@@ -54,7 +54,8 @@ describe Task do
 
   describe '完了状態にする' do
     it do
-      task.complete
+      task.to_personal_task(1)
+      task.complete(1)
       expect(task).to be_completed
     end
   end
@@ -80,7 +81,8 @@ describe Task do
 
   describe '完了を取り消す' do
     it do
-      task.complete
+      task.to_personal_task(1)
+      task.complete(1)
       task.cancel_completion
       expect(task).to_not be_completed
     end
@@ -120,6 +122,42 @@ describe Task do
         task.set_deadline(deadline)
         task.remove_deadline
         expect(task.deadline).to be_nil
+      end
+    end
+  end
+
+  describe '完了が可能か判断する' do
+    context '公開タスク:自分がサインアップしていない場合' do
+      it do
+        task.assignments.build(user_id: 1)
+        expect(task.can_complete?(2)).to be_falsey
+      end
+    end
+
+    context '公開タスク:自分がサインアップしている場合' do
+      it do
+        task.assignments.build(user_id: 1)
+        expect(task.can_complete?(1)).to be_truthy
+      end
+    end
+
+    context '公開タスク:誰もサインアップしていない場合' do
+      it do
+        expect(task.can_complete?(1)).to be_falsey
+      end
+    end
+
+    context '個人タスク' do
+      before do
+        task.to_personal_task(1)
+      end
+
+      context '自分の個人タスク' do
+        it { expect(task.can_complete?(1)).to be_truthy }
+      end
+
+      context '他人の個人タスク' do
+        it { expect(task.can_complete?(2)).to be_falsey }
       end
     end
   end

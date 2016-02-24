@@ -5,11 +5,21 @@ module TaskCreationHelper
 
   def create_task(author_id:, title:, description: nil, tags: [], completed_at: nil, assignees: [], deadline: nil)
     task = create_task_record(author_id: author_id, title: title, description: description, tags: tags, deadline: deadline)
+
     assignees.each do |user|
       TaskAssignment.new(task_id: task.id, assignee_id: user.id).run
     end
+
     return task unless completed_at
-    make_task_completion(task, completed_at)
+
+    completer_id = if assignees.any?
+                     assignees.first.id
+                   else
+                     author_id
+                   end
+    completer_id = task.personal_task_owner.id if task.personal?
+
+    make_task_completion(task, completer_id, completed_at)
   end
 
   def create_task_record(author_id:, title:, description: nil, tags: [], deadline: nil)
@@ -28,17 +38,17 @@ module TaskCreationHelper
   def create_personal_task(user_id:, title:, description: nil, completed_at: nil)
     task = TaskCreation.new(TaskCreationForm.new(title: title, description: description)).run(user_id)
     return task unless completed_at
-    make_task_completion(task, completed_at)
+    make_task_completion(task, user_id, completed_at)
   end
 
-  def make_task_completion(task, completed_at_param)
+  def make_task_completion(task, completer_id, completed_at_param)
     completed_at = if completed_at_param.is_a?(String)
                      Time.zone.parse(completed_at_param)
                    else
                      Time.current
                    end
     task.tap do |t|
-      t.complete(completed_at)
+      t.complete(completer_id, completed_at)
       t.save!
     end
   end

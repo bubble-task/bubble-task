@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe TaskPresenter do
+  let(:user) { create_user_from_oauth_credential(generate_auth_hash) }
+
   describe '#cancel_completion_link' do
     context '完了していない場合' do
       it do
@@ -12,7 +14,7 @@ describe TaskPresenter do
 
     context '完了している場合' do
 
-      let(:task) { create_task(author_id: 1, title: 'タイトル', completed_at: :now) }
+      let(:task) { create_task(author_id: user.id, title: 'タイトル', completed_at: :now, assignees: [user]) }
 
       it do
         view = double(:view)

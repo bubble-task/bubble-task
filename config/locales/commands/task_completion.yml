@@ -3,3 +3,4 @@ ja:
     messages:
       task_completion:
         success: 'タスクを完了にしました'
+        not_permited_erorr: 'サインアップしていないため完了にできません'
