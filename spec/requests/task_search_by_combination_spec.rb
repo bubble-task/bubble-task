@@ -18,7 +18,7 @@ describe 'GET /search' do
       ),
       create_task(
         title: '完了日=2016-01-02,タグ=タグA タグB タグC,サインアップ=user_a,user_b',
-        author_id: user_a.id, tags: %w(タグA タグB タグC), completed_at: '2016-01-02', assignees: [user_a,user_b]
+        author_id: user_a.id, tags: %w(タグA タグB タグC), completed_at: '2016-01-02', assignees: [user_a, user_b]
       ),
       create_task(
         title: '完了日=2015-12-30,タグ=タグA タグB,サインアップ=user_a',
@@ -38,7 +38,7 @@ describe 'GET /search' do
       ),
       create_task(
         title: '完了日=2016-01-01,タグ=タグA,サインアップ=user_a,user_b',
-        author_id: user_a.id, tags: %w(タグA), completed_at: '2016-01-01', assignees: [user_a,user_b]
+        author_id: user_a.id, tags: %w(タグA), completed_at: '2016-01-01', assignees: [user_a, user_b]
       ),
       create_task(
         title: '完了日=2016-01-01,タグ=タグC,サインアップ=user_b',
@@ -50,31 +50,31 @@ describe 'GET /search' do
       ),
       create_task(
         title: '未完了,タグ=タグA タグB,サインアップ=user_a,user_b',
-        author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_a,user_b]
+        author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_a, user_b]
       ),
       create_task(
         title: '未完了,タグ=タグA タグB,サインアップ=なし',
-        author_id: user_a.id, tags: %w(タグA タグB),
+        author_id: user_a.id, tags: %w(タグA タグB)
       ),
       create_task(
         title: '未完了,期限=2016-01-01,タグ=タグB,サインアップ=user_b',
         author_id: user_a.id, tags: %w(タグB), assignees: [user_b],
-        deadline: Time.zone.parse('2016-01-01'),
+        deadline: Time.zone.parse('2016-01-01')
       ),
       create_task(
         title: '未完了,期限=2016-01-01,タグ=タグA タグB,サインアップ=user_a,user_b',
         author_id: user_a.id, tags: %w(タグA タグB), assignees: [user_a, user_b],
-        deadline: Time.zone.parse('2016-01-01'),
+        deadline: Time.zone.parse('2016-01-01')
       ),
       create_task(
         title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_a',
         author_id: user_a.id, assignees: [user_a],
-        deadline: Time.zone.parse('2016-01-02'),
+        deadline: Time.zone.parse('2016-01-02')
       ),
       create_task(
         title: '未完了,期限=2016-01-02,タグ=なし,サインアップ=user_b',
         author_id: user_b.id, assignees: [user_b],
-        deadline: Time.zone.parse('2016-01-02'),
+        deadline: Time.zone.parse('2016-01-02')
       ),
     ]
   end

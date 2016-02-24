@@ -22,7 +22,7 @@ describe 'タスクの検索' do
       author_id: user_a.id, title: '未完了',
       tags: %w(DEF),
       assignees: [user_a, user_b],
-      deadline: Time.current,
+      deadline: Time.current
     )
   end
 
