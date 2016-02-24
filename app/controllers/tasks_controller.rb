@@ -46,6 +46,9 @@ class TasksController < ApplicationController
   def complete
     command = TaskCompletion.new(task_id: params[:id])
     command.run(current_user.id)
+  rescue TaskCompletionNotPermitted
+    render :completion_error
+  else
     @task = TaskPresenter.new(command.result)
   end
 
