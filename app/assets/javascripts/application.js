@@ -34,6 +34,12 @@ $(document).on('ready page:load', function() {
   });
 });
 
+$(document).on('page:partial-load', function() {
+  $('.task_completion').change(function() {
+    $(this).parent().submit();
+  });
+});
+
 $(document).on('page:change', function() {
   setupMaterialize()
     .then(function() { setupForm(); })

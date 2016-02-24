@@ -5,7 +5,7 @@ class AssignmentsController < ApplicationController
     task = TaskRepository.find_by_id(params[:task_id])
     command = TaskAssignment.new(task_id: task.id, assignee_id: current_user.id)
     command.run
-    @task = TaskPresenter.new(task)
+    @task = TaskPresenter.new(task.reload)
   end
 
   def destroy

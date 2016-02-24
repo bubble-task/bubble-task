@@ -33,6 +33,16 @@ describe 'タスクへのサインアップ', js: true do
       expect(sign_up_link).to be_nil
     end
 
+    let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
+    let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
+    let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
+
+    it do
+      find(sign_up_link_css_path).trigger('click')
+      completion_checkbox = find(completed_checkbox_label_id)
+      expect(completion_checkbox).to_not be_nil
+    end
+
     let(:other_user) { create_user_from_oauth_credential(generate_auth_hash(email: 'user2@gaiax.com')) }
 
     it do
