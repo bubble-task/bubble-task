@@ -41,5 +41,9 @@ $(document).on('page:change', function() {
 
   var taskDescriptionElement = $('#task-description-content');
   var text = taskDescriptionElement.text();
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    breaks: true,
+  });
   taskDescriptionElement.replaceWith(marked(text));
 });
