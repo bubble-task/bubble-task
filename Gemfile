@@ -65,9 +65,3 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'gravtastic'
 gem 'jquery-ui-rails'
-
-source 'https://rails-assets.org' do
-  #gem 'rails-assets-jquery-tags-input'
-  #gem 'rails-assets-jquery-ui'
-  #gem 'rails-assets-marked'
-end
