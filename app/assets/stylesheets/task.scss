@@ -102,6 +102,10 @@
     font-size: 1.1rem;
   }
 
+  .task-description .divider {
+    margin-bottom: 1.5rem;
+  }
+
   .task-deadline {
     @include task-deadline;
     margin: 1.5rem 0 0.5rem 0.2rem;
