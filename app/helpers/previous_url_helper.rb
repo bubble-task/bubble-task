@@ -13,6 +13,10 @@ module PreviousUrlHelper
     from_path_match?(%r{tasks/\d+\z})
   end
 
+  def from_search_result?
+    from_path_match?(%r{search})
+  end
+
   private
 
     def from_path_match?(regexp)
