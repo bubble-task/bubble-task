@@ -1,7 +1,6 @@
 <div id="<%= task_css_id(task.id) %>" class="compact task-summary-primary">
   <div class="row row-no-margin">
-    <div class="col s2">
-      <%#= task.cancel_completion_link(self) %>
+    <div class="col s2 completion-action">
       <%= render partial: 'tasks/task_completion', locals: { task: task } %>
       <span class="task-completed-on">
         <% if task.completed_on -%>
