@@ -55,25 +55,6 @@ describe 'タスクの検索' do
   end
 
   describe '検索結果の表示' do
-    context '完了タスク' do
-      before do
-        completed_task
-        visit search_path
-        click_button(I18n.t('search.index.actions.search'))
-      end
-
-      it do
-        completed_on_page = first('.task-completed-on').text
-        completed_on = TaskPresenter.new(completed_task).completed_on
-        expect(completed_on_page).to eq(I18n.l(completed_on, format: :default))
-      end
-
-      it do
-        cancel_completion = first('.cancel-completion')
-        expect(cancel_completion).to_not be_nil
-      end
-    end
-
     context '未完了タスク' do
       before do
         uncompleted_task
