@@ -9,7 +9,6 @@ describe 'タスク検索結果から完了にする', js: true do
   let(:user_a) { create_user_from_oauth_credential }
   let(:user_b) { create_user_from_oauth_credential }
 
-  let(:wait_completion) { find('#toast-container') }
   let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
   let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
   let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }

@@ -10,7 +10,6 @@ describe 'タスクの完了のキャンセル', js: true do
   let(:task) { create_task(author_id: user.id, title: title, completed_at: :now, assignees: [user]) }
   let(:title) { 'タスクのタイトル' }
 
-  let(:wait_cancellation_completion) { find('#toast-container') }
   let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
   let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
   let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }

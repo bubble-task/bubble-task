@@ -17,7 +17,6 @@ describe 'タスクの完了', js: true do
   let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
   let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
 
-  let(:wait_completion) { find('#toast-container') }
   let(:title_link) { first('.task-title') }
 
   describe 'タスクの作成直後' do
