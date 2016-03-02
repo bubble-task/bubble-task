@@ -41,10 +41,20 @@ describe 'タスク検索結果から完了にする', js: true do
   context 'サインアップしていない場合', js: false do
     let(:task) { create_task(author_id: user_a.id, title: '公開タスク', tags: %w(Tag), assignees: [user_b]) }
 
-    it do
-      visit search_path(c: { completion_state: 'any', is_signed_up_only: '0' })
-      completion_checkbox = first(completed_checkbox_label_id)
-      expect(completion_checkbox).to be_nil
+    context '完了/未完了を問わない場合' do
+      it do
+        visit search_path(c: { completion_state: 'any', is_signed_up_only: '0' })
+        completion_checkbox = first(completed_checkbox_label_id)
+        expect(completion_checkbox).to be_nil
+      end
+    end
+
+    context '未完了タスクのみの場合' do
+      it do
+        visit search_path(c: { completion_state: 'uncompleted', is_signed_up_only: '0' })
+        completion_checkbox = first(completed_checkbox_label_id)
+        expect(completion_checkbox).to be_nil
+      end
     end
   end
 end
