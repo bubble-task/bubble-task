@@ -50,13 +50,6 @@ class TaskPresenter < SimpleDelegator
     nil
   end
 
-  def cancel_completion_link(view)
-    return '' unless completed?
-    view.link_to view.cancel_completion_task_url(self), method: :put, class: 'cancel-completion tooltipped', data: { tooltip: I18n.t('helpers.actions.cancel_completion') } do
-      view.content_tag(:i, 'done', class: 'material-icons')
-    end
-  end
-
   def show_deadline
     return unless deadline
     I18n.l(deadline, format: :short)

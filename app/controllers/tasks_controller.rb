@@ -64,10 +64,4 @@ class TasksController < ApplicationController
     @task = TaskPresenter.new(Task.find(params[:id]))
     TaskCancellationCompletion.new(task_id: params[:id]).run
   end
-
-  private
-
-    def referer_path
-      "#{URI(request.referer).path}?#{URI(request.referer).query}"
-    end
 end
