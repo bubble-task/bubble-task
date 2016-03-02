@@ -1,10 +1,13 @@
 Materialize.toast('<%= t('activemodel.messages.task_completion.success') %>', 3000, 'success');
 
-<% if from_show_task? || from_search_result? %>
-  $('#<%= task_css_id(@task.id) %> .completion-action').html('<%= j(render(partial: 'tasks/task_completion', locals: { task: @task })) %>');
-  $('#<%= task_css_id(@task.id) %> .task-completed-on').html('<%= j(render(partial: 'search/task_timestamp', locals: { task: @task })) %>');
-<% else -%>
-  $('#<%= task_css_id(@task.id) %>').remove();
-<% end -%>
+<% if from_show_task? || from_search_result? -%>
 
-taskCompletionHandler('#<%= task_css_id(@task.id) %> .task_completion');
+  $('#<%= task_completion_css_id(@task.id) %>').html('<%= j(render(partial: 'tasks/task_completion', locals: { task: @task })) %>');
+  $('#<%= task_css_id(@task.id) %> .task-completed-on').html('<%= j(render(partial: 'search/task_timestamp', locals: { task: @task })) %>');
+  taskCompletionHandler('#<%= task_completion_css_id(@task.id) %> .task_completion');
+
+<% else -%>
+
+  $('#<%= task_css_id(@task.id) %>').remove();
+
+<% end -%>
