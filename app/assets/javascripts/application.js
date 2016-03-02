@@ -25,7 +25,7 @@ Turbolinks.enableProgressBar();
 
 $(document).on('ready page:load', function() {
   setupDatepicker();
-  taskCompletionHandler();
+  taskCompletionHandler('.task_completion');
   $('.sign_up').on('ajax:beforeSend', function() {
     $(this).tooltip('remove');
   });

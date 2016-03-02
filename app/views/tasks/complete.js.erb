@@ -7,4 +7,4 @@ Materialize.toast('<%= t('activemodel.messages.task_completion.success') %>', 30
   $('#<%= task_css_id(@task.id) %>').remove();
 <% end -%>
 
-taskCompletionHandler();
+taskCompletionHandler('#<%= task_css_id(@task.id) %> .task_completion');

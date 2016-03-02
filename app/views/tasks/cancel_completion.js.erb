@@ -3,4 +3,4 @@ Materialize.toast('<%= t('activemodel.messages.task_cancellation_completion.succ
 $('#<%= task_css_id(@task.id) %> .completion-action').html('<%= j(render(partial: 'tasks/task_completion', locals: { task: @task })) %>');
 $('#<%= task_css_id(@task.id) %> .task-completed-on').html('<%= j(render(partial: 'search/task_timestamp', locals: { task: @task })) %>');
 
-taskCompletionHandler();
+taskCompletionHandler('#<%= task_css_id(@task.id) %> .task_completion');
