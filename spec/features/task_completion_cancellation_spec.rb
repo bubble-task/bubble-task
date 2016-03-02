@@ -15,14 +15,23 @@ describe 'タスクの完了のキャンセル', js: true do
   let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
   let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
 
-  it do
-    visit search_path(c: { completion_state: 'any' })
-    find(completed_checkbox_label_id, visible: false).click
-    wait_cancellation_completion
-    expect(completed_checkbox).to_not be_checked
+  context '完了/未完了を問わない場合' do
+    it do
+      visit search_path(c: { completion_state: 'any' })
+      find(completed_checkbox_label_id, visible: false).click
+      wait_cancellation_completion
+      expect(completed_checkbox).to_not be_checked
+    end
+  end
 
-    #first('.cancel-completion').click
-    #achievement = first('.achievement')
-    #expect(achievement).to be_nil
+  context '完了タスクのみの場合' do
+    it do
+      visit search_path(c: { completion_state: 'completed' })
+      find(completed_checkbox_label_id, visible: false).click
+      wait_cancellation_completion
+      expect(first(completed_checkbox_id)).to be_nil
+      visit search_path(c: { completion_state: 'uncompleted' })
+      expect(completed_checkbox).to_not be_nil
+    end
   end
 end
