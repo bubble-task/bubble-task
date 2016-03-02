@@ -21,8 +21,8 @@ module Criteria
 
     Anyone = Struct.new(:searcher_id) do
 
-      def prepare(relation)
-        relation
+      def prepare(plans)
+        plans
       end
 
       def satisfy(relation)
