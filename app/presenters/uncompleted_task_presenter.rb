@@ -41,12 +41,10 @@ class UncompletedTaskPresenter < SimpleDelegator
   end
 
   def completed_on
-    return nil unless completed?
-    completed_task.completed_at.to_date
+    nil
   end
 
   def completion_checkbox_state
-    return %(checked="checked").html_safe if completed?
     nil
   end
 
