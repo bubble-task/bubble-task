@@ -32,6 +32,10 @@ class TaskPresenter < SimpleDelegator
     TaskCompletion.new(task_id: id)
   end
 
+  def cancellation_completion_command
+    TaskCancellationCompletion.new(task_id: id)
+  end
+
   def signed_up?(user)
     assignees.include?(user)
   end
@@ -42,15 +46,8 @@ class TaskPresenter < SimpleDelegator
   end
 
   def completion_checkbox_state
-    return %(checked="checked" disabled="disabled").html_safe if completed?
+    return %(checked="checked").html_safe if completed?
     nil
-  end
-
-  def cancel_completion_link(view)
-    return '' unless completed?
-    view.link_to view.cancel_completion_task_url(self), method: :put, class: 'cancel-completion tooltipped', data: { tooltip: I18n.t('helpers.actions.cancel_completion') } do
-      view.content_tag(:i, 'done', class: 'material-icons')
-    end
   end
 
   def show_deadline

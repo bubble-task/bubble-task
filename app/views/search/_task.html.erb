@@ -1,13 +1,11 @@
 <div id="<%= task_css_id(task.id) %>" class="compact task-summary-primary">
   <div class="row row-no-margin">
     <div class="col s2">
-      <%= task.cancel_completion_link(self) %>
+      <div class="completion-action">
+        <%= render partial: 'tasks/task_completion', locals: { task: task } %>
+      </div>
       <span class="task-completed-on">
-        <% if task.completed_on -%>
-          <%= l(task.completed_on, format: :default) %>
-        <% elsif task.deadline -%>
-          <%= task.show_deadline %>
-        <% end -%>
+        <%= render partial: 'search/task_timestamp', locals: { task: task } %>
       </span>
     </div>
     <div class="col s10">
