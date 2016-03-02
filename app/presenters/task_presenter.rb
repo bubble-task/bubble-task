@@ -1,10 +1,11 @@
-class TaskPresenter < SimpleDelegator
+module TaskPresenter
 
   def self.create(task)
+    base = Base.new(task)
     if task.completed?
-      CompletedTaskPresenter.new(task)
+      Completed.new(base)
     else
-      UncompletedTaskPresenter.new(task)
+      Uncompleted.new(base)
     end
   end
 end
