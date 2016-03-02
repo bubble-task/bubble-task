@@ -13,36 +13,30 @@ describe 'タスクの完了', js: true do
   let(:title) { 'タスクのタイトル' }
   let(:tag) { 'タグ' }
 
-  let(:completed_checkbox_id) { "#task_#{task.id}_completion_check" }
-  let(:completed_checkbox) { find(completed_checkbox_id, visible: false) }
-  let(:completed_checkbox_label_id) { "#task_#{task.id}_completion_mark" }
-
-  let(:wait_completion) { find('#toast-container') }
   let(:title_link) { first('.task-title') }
 
   describe 'タスクの作成直後' do
     it do
       visit root_path
-      expect(completed_checkbox).to_not be_checked
+      expect(completion_checkbox(task.id)).to_not be_checked
     end
   end
 
   shared_examples_for 'チェックボックスが表示されていないこと' do
     it 'チェックボックスが表示されていないこと' do
-      completion_checkbox = first(completed_checkbox_label_id)
-      expect(completion_checkbox).to be_nil
+      expect(completion_checkbox(task.id)).to be_nil
     end
   end
 
   shared_examples_for 'タスクが完了状態になっていること' do
     it 'タスクが非表示になっていること' do
-      find(completed_checkbox_label_id, visible: false).click
+      complete_task(task.id)
       wait_completion
       expect(title_link).to be_nil
     end
 
     it '一覧画面に再度アクセスするとタスクが非表示になっていること' do
-      find(completed_checkbox_label_id, visible: false).click
+      complete_task(task.id)
       visit root_path
       expect(title_link).to be_nil
     end
@@ -50,9 +44,9 @@ describe 'タスクの完了', js: true do
 
   shared_examples_for '完了にチェックが入っていること' do
     it do
-      find(completed_checkbox_label_id, visible: false).click
+      complete_task(task.id)
       wait_completion
-      expect(completed_checkbox).to be_checked
+      expect(completion_checkbox(task.id)).to be_checked
     end
   end
 

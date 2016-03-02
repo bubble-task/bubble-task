@@ -1,6 +1,0 @@
-Materialize.toast('<%= t('activemodel.messages.task_cancellation_completion.success') %>', 3000, 'success');
-
-$('#<%= task_completion_css_id(@task.id) %>').html('<%= j(render(partial: 'tasks/task_completion', locals: { task: @task })) %>');
-$('#<%= task_css_id(@task.id) %> .task-completed-on').html('<%= j(render(partial: 'search/task_timestamp', locals: { task: @task })) %>');
-
-taskCompletionHandler('#<%= task_completion_css_id(@task.id) %> .task_completion');

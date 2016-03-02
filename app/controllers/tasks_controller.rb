@@ -50,6 +50,7 @@ class TasksController < ApplicationController
     render :completion_error
   else
     @task = TaskPresenter.new(command.result)
+    render :completion, locals: { message: I18n.t('activemodel.messages.task_completion.success') }
   end
 
   def destroy
@@ -61,7 +62,8 @@ class TasksController < ApplicationController
   end
 
   def cancel_completion
-    @task = TaskPresenter.new(Task.find(params[:id]))
     TaskCancellationCompletion.new(task_id: params[:id]).run
+    @task = TaskPresenter.new(Task.find(params[:id]))
+    render :completion, locals: { message: I18n.t('activemodel.messages.task_cancellation_completion.success') }
   end
 end
