@@ -94,7 +94,7 @@ describe TasksController do
 
     context 'ログインしている場合' do
       before { sign_in(user) }
-      it { is_expected.to render_template(:complete, format: :js) }
+      it { is_expected.to render_template(:completion, format: :js) }
 
       context 'サインアップしていない場合' do
         let(:task) { create_task(author_id: user.id, title: 'title', tags: %w(tag)) }
