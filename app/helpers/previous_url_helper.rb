@@ -13,8 +13,8 @@ module PreviousUrlHelper
     from_path_match?(%r{tasks/\d+\z})
   end
 
-  def from_search_result?
-    from_path_match?(%r{search})
+  def from_search_any_task_result?
+    from_path_match?(%r{search\?.*?completion_state%5D=any})
   end
 
   private

@@ -20,11 +20,10 @@ describe 'タスクの完了のキャンセル', js: true do
   end
 
   context '完了タスクのみの場合' do
-    skip do
+    it do
       visit search_path(c: { completion_state: 'completed' })
       uncomplete_task(task.id)
       wait_cancellation_completion
-      #expect(first(completion_checkbox_id(task.id))).to be_nil
       expect(completion_checkbox(task.id)).to be_nil
       visit search_path(c: { completion_state: 'uncompleted' })
       expect(completion_checkbox(task.id)).to_not be_nil

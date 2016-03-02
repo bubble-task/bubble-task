@@ -22,11 +22,10 @@ describe 'タスク検索結果から完了にする', js: true do
     end
 
     context '未完了タスクのみの場合' do
-      skip do
+      it do
         visit search_path(c: { completion_state: 'uncompleted', is_signed_up_only: '1' })
         complete_task(task.id)
         wait_completion
-        #expect(first(completion_checkbox_id(task.id))).to be_nil
         expect(completion_checkbox(task.id)).to be_nil
         visit search_path(c: { completion_state: 'completed', is_signed_up_only: '1' })
         expect(completion_checkbox(task.id)).to_not be_nil
