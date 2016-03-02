@@ -6,12 +6,12 @@ class TasksController < ApplicationController
   def index
     @tag = params[:tag]
     @tasks = TaskRepository.all_by_tag(@tag).map do |task|
-      TaskPresenter.new(task)
+      TaskPresenter.create(task)
     end
   end
 
   def show
-    @task = TaskPresenter.new(TaskRepository.find_by_id(params[:id]))
+    @task = TaskPresenter.create(TaskRepository.find_by_id(params[:id]))
   end
 
   def new
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   rescue TaskCompletionNotPermitted
     render :completion_error
   else
-    @task = TaskPresenter.new(command.result)
+    @task = TaskPresenter.create(command.result)
     render :completion, locals: { message: I18n.t('activemodel.messages.task_completion.success') }
   end
 
@@ -63,7 +63,7 @@ class TasksController < ApplicationController
 
   def cancel_completion
     TaskCancellationCompletion.new(task_id: params[:id]).run
-    @task = TaskPresenter.new(Task.find(params[:id]))
+    @task = TaskPresenter.create(Task.find(params[:id]))
     render :completion, locals: { message: I18n.t('activemodel.messages.task_cancellation_completion.success') }
   end
 end

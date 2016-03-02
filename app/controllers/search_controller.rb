@@ -8,14 +8,7 @@ class SearchController < ApplicationController
             else
               TaskRepository.search_by_criteria(@form.criteria)
             end
-    #@tasks = tasks.map { |t| TaskPresenter.new(t) }
-    @tasks = tasks.map do |t|
-      if t.completed?
-        CompletedTaskPresenter.new(t)
-      else
-        UncompletedTaskPresenter.new(t)
-      end
-    end
+    @tasks = tasks.map { |t| TaskPresenter.create(t) }
   end
 
   private
