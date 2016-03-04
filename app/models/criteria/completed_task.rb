@@ -16,7 +16,7 @@ module Criteria
         end
 
         c.set_sorter do |result_set|
-          result_set.sort_by { |r| r.completed_at }
+          result_set.sort_by(&:completed_at)
         end
       end
     end

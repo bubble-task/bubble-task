@@ -19,8 +19,8 @@ module Criteria
         end
 
         c.set_sorter do |result_set|
-          with_deadline = result_set.select(&:deadline).sort_by { |r| r.deadline }
-          without_deadline = (result_set - with_deadline).sort_by { |r| r.id }
+          with_deadline = result_set.select(&:deadline).sort_by(&:deadline)
+          without_deadline = (result_set - with_deadline).sort_by(&:id)
           with_deadline + without_deadline
         end
       end
