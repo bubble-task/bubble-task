@@ -14,6 +14,8 @@ describe 'GET /search' do
     create_task(author_id: task_author.id, title: '未完了タスク', tags: %w(tag), assignees: [assignee_a])
   end
 
+  let(:expected_task_ids) { expected_tasks.map(&:id) }
+
   context '自分がサインアップしたタスクに限定しない' do
     let(:expected_tasks) do
       [
@@ -32,8 +34,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { is_signed_up_only: nil, completion_state: 'completed' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 
@@ -59,8 +60,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { is_signed_up_only: '1', completion_state: 'completed' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 end

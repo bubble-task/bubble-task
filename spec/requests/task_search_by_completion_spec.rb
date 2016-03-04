@@ -49,8 +49,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { completion_state: 'any' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq([completed_task, uncompleted_task])
+      expect(assigned_task_ids).to match_array([completed_task, uncompleted_task].map(&:id))
     end
 
     context 'タグを指定する' do
@@ -66,8 +65,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { completion_state: 'any', tag_words: 'ABC' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq([task1, task2])
+        expect(assigned_task_ids).to match_array([task1, task2].map(&:id))
       end
     end
   end

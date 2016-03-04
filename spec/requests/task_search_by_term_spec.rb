@@ -11,6 +11,8 @@ describe 'GET /search' do
   let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'b@gaiax.com')) }
   let(:uncompleted_task) { create_task(author_id: user_a.id, title: '未完了タスク', assignees: [user_b]) }
 
+  let(:expected_task_ids) { expected_tasks.map(&:id) }
+
   context '完了タスクを検索する場合' do
     context '期間を指定しない' do
       let(:unexpected_tasks) { [uncompleted_task] }
@@ -21,8 +23,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '0', completion_state: 'completed' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
 
@@ -41,8 +42,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: '2015-12-01', to_date: nil, is_signed_up_only: '0', completion_state: 'completed' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
 
@@ -61,8 +61,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: nil, to_date: '2015-11-30', is_signed_up_only: '0', completion_state: 'completed' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
 
@@ -83,8 +82,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '0', completion_state: 'completed' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
   end
@@ -106,8 +104,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '0', completion_state: 'uncompleted' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
 
@@ -127,8 +124,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: '2015-12-01', to_date: nil, is_signed_up_only: '0', completion_state: 'uncompleted' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
 
@@ -148,8 +144,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: nil, to_date: '2015-11-30', is_signed_up_only: '0', completion_state: 'uncompleted' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
 
@@ -172,8 +167,7 @@ describe 'GET /search' do
 
       it do
         get search_path(c: { from_date: '2015-12-01', to_date: '2015-12-31', is_signed_up_only: '0', completion_state: 'uncompleted' })
-        tasks = assigns(:tasks)
-        expect(tasks).to eq(expected_tasks)
+        expect(assigned_task_ids).to match_array(expected_task_ids)
       end
     end
   end

@@ -21,6 +21,8 @@ describe 'GET /search' do
     end
   end
 
+  let(:expected_task_ids) { expected_tasks.map(&:id) }
+
   context 'タグを指定しない場合' do
     let(:unexpected_tasks) { [uncompleted_task] }
 
@@ -32,8 +34,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '1', completion_state: 'completed' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 
@@ -51,8 +52,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: nil, to_date: nil, tag_words: '指定するタグ', is_signed_up_only: '0' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 
@@ -72,8 +72,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: nil, to_date: nil, tag_words: 'タグA タグB', is_signed_up_only: '1' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 end
