@@ -2,25 +2,67 @@ require 'rails_helper'
 
 describe 'GET /search' do
   before do
-    request_sign_in_as(user_b)
-    expected_tasks
+    request_sign_in_as(user)
+    tasks
   end
 
-  let(:user_a) { create_user_from_oauth_credential(generate_auth_hash(email: 'a@gaiax.com')) }
-  let(:user_b) { create_user_from_oauth_credential(generate_auth_hash(email: 'b@gaiax.com')) }
+  let(:user) { create_user_from_oauth_credential }
 
-  context '検索結果はタスクの作成日時の昇順' do
-    let(:expected_tasks) { [task2, task3, task1] }
-    let(:expected_ordered_tasks) { [task2, task3, task1] }
+  let(:tasks) do
+    [
+      create_task(
+        author_id: user.id, title: '期限なし,作成順1', tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '期限なし,作成順2', tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '期限なし,作成順3', tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '期限=2016-01-03',
+        deadline: Time.zone.parse('2016-01-03'), tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '期限=2016-01-01',
+        deadline: Time.zone.parse('2016-01-01'), tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '期限=2016-01-02',
+        deadline: Time.zone.parse('2016-01-02'), tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '完了=2016-01-03,期限なし',
+        completed_at: Time.zone.parse('2016-01-03'), tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '完了=2016-01-01,期限なし',
+        completed_at: Time.zone.parse('2016-01-01'), tags: ['tag'], assignees: [user]
+      ),
+      create_task(
+        author_id: user.id, title: '完了=2016-01-02,期限なし',
+        completed_at: Time.zone.parse('2016-01-02'), tags: ['tag'], assignees: [user]
+      ),
+    ]
+  end
 
-    let(:task1) { create_task(author_id: user_a.id, title: '1', tags: %w(tag), completed_at: '2015-12-01 00:00:00', assignees: [user_a]) }
-    let(:task2) { create_task(author_id: user_a.id, title: '2', tags: %w(tag), completed_at: '2015-12-01 00:00:01', assignees: [user_a]) }
-    let(:task3) { create_task(author_id: user_a.id, title: '3', tags: %w(tag), completed_at: '2015-12-05', assignees: [user_a]) }
+  let(:expected_tasks) do
+    [
+      Task.find_by(title: '完了=2016-01-03,期限なし'),
+      Task.find_by(title: '完了=2016-01-01,期限なし'),
+      Task.find_by(title: '完了=2016-01-02,期限なし'),
+      Task.find_by(title: '期限なし,作成順1'),
+      Task.find_by(title: '期限なし,作成順2'),
+      Task.find_by(title: '期限なし,作成順3'),
+      Task.find_by(title: '期限=2016-01-03'),
+      Task.find_by(title: '期限=2016-01-01'),
+      Task.find_by(title: '期限=2016-01-02'),
+    ]
+  end
 
-    it do
-      get search_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '0' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_ordered_tasks)
-    end
+  it 'タスクの完了日の昇順,期限の昇順,作成日時の昇順に並んでいること' do
+    get search_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '0' })
+    tasks = assigns(:tasks)
+    expect(tasks).to eq(expected_tasks)
   end
 end
