@@ -15,12 +15,12 @@ module TaskRepository
 
     def all_by_tag(tag)
       Task
-        .includes(:completed_task, { assignments: :user })
+        .includes(:completed_task, :task_deadline, { assignments: :user })
         .where(completed_tasks: { id: nil })
         .joins(:taggings)
         .where(taggings: { tag: tag })
         .preload(:taggings)
-        .order('tasks.id')
+        .order('task_deadlines.datetime, tasks.id')
     end
 
     def search_by_criteria(criteria)
