@@ -3,6 +3,8 @@ module Criteria
 
     def initialize
       @conditions = []
+      @preparation = nil
+      @sorter = nil
     end
 
     def add_condition(condition)
@@ -12,11 +14,16 @@ module Criteria
     def satisfy(relation)
       finalize_conditions
       prepared_relation = prepare_relation(relation)
-      satisfy_relation(prepared_relation).uniq.order(:id)
+      satisfied_relation = satisfy_relation(prepared_relation).uniq
+      @sorter.call(satisfied_relation)
     end
 
     def set_preparation(&block)
       @preparation = block
+    end
+
+    def set_sorter(&block)
+      @sorter = block
     end
 
     private
