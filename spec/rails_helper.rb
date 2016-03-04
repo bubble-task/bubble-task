@@ -42,6 +42,7 @@ RSpec.configure do |config|
   config.include SignInHelper
   config.include TaskCreationHelper
   config.include UIHelper
+  config.include TaskSearchHelper
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

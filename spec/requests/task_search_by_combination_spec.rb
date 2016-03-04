@@ -79,6 +79,8 @@ describe 'GET /search' do
     ]
   end
 
+  let(:expected_task_ids) { expected_tasks.map(&:id) }
+
   context '期間を指定,自分がサインアップ=OFF,タグを複数指定,完了/未完了どちらも' do
     let(:expected_tasks) do
       [
@@ -90,8 +92,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: '2015-12-31', to_date: '2016-01-02', tag_words: 'タグA タグB', is_signed_up_only: '0', completion_state: 'any' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 
@@ -112,8 +113,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: '2015-12-31', to_date: '2016-01-02', is_signed_up_only: '0', completion_state: 'any' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 
@@ -126,8 +126,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: '2015-12-15', to_date: '2016-01-01', is_signed_up_only: '1', completion_state: 'uncompleted' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 
@@ -141,8 +140,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: '2016-01-01', to_date: '2016-01-02', tag_words: 'タグA タグB', is_signed_up_only: '0', completion_state: 'completed' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_task_ids)
     end
   end
 end

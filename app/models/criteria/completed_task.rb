@@ -8,10 +8,15 @@ module Criteria
         c.add_condition(Conditions::CompletedOnTo.create(to_date))
         c.add_condition(Conditions::Tags.create(tag_words))
         c.add_condition(Conditions::Completed)
+
         c.set_preparation do |plans|
           unless plans.planned_inner_join?(:taggings)
             plans.add(taggings: :left_outer)
           end
+        end
+
+        c.set_sorter do |result_set|
+          result_set.sort_by(&:completed_at)
         end
       end
     end

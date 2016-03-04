@@ -7,20 +7,20 @@ module TaskRepository
     end
 
     def all_uncompleted_by_assignee(user_id)
-      Task.includes(:completed_task, :taggings, { personal_task: :user }, { assignments: :user })
+      Task.includes(:completed_task, :taggings, :task_deadline, { personal_task: :user }, { assignments: :user })
         .where('(assignments.user_id = ?) OR (personal_tasks.user_id = ?)', user_id, user_id)
         .where(completed_tasks: { id: nil })
-        .order('tasks.id')
+        .order('task_deadlines.datetime, tasks.id')
     end
 
     def all_by_tag(tag)
       Task
-        .includes(:completed_task, { assignments: :user })
+        .includes(:completed_task, :task_deadline, { assignments: :user })
         .where(completed_tasks: { id: nil })
         .joins(:taggings)
         .where(taggings: { tag: tag })
         .preload(:taggings)
-        .order('tasks.id')
+        .order('task_deadlines.datetime, tasks.id')
     end
 
     def search_by_criteria(criteria)
