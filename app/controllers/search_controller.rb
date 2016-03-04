@@ -8,7 +8,7 @@ class SearchController < ApplicationController
             else
               TaskRepository.search_by_criteria(@form.criteria)
             end
-    @tasks = tasks.map { |t| TaskPresenter.new(t) }
+    @tasks = tasks.map { |t| TaskPresenter.create(t) }
   end
 
   private
