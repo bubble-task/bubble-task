@@ -63,7 +63,6 @@ describe 'GET /search' do
   it 'タスクの完了日の昇順,期限の昇順,作成日時の昇順に並んでいること' do
     get search_path(c: { from_date: nil, to_date: nil, is_signed_up_only: '0' })
     tasks = assigns(:tasks)
-    #expect(tasks).to eq(expected_tasks)
-    expect(tasks.map(&:title)).to eq(expected_tasks.map(&:title))
+    expect(tasks).to eq(expected_tasks)
   end
 end
