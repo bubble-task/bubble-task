@@ -5,10 +5,6 @@ module TaskPresenter
       TaskCompletion.new(task_id: id)
     end
 
-    def cancellation_completion_command
-      TaskCancellationCompletion.new(task_id: id)
-    end
-
     def signed_up?(user)
       assignees.include?(user)
     end
