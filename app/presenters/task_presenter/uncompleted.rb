@@ -1,14 +1,6 @@
 module TaskPresenter
   class Uncompleted < SimpleDelegator
 
-    def completion_command
-      TaskCompletion.new(task_id: id)
-    end
-
-    def completed_on
-      nil
-    end
-
     def completion_checkbox_state
       nil
     end
@@ -28,5 +20,11 @@ module TaskPresenter
         completion_form_fields(self)
       end
     end
+
+    private
+
+      def completion_command
+        TaskCompletion.new(task_id: id)
+      end
   end
 end
