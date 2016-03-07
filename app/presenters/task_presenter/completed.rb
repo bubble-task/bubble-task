@@ -15,10 +15,7 @@ module TaskPresenter
 
     def completion_form(view)
       view.form_for(cancellation_completion_command, url: view.cancel_completion_task_url(self), method: :put, remote: true) do |f|
-        fields = ''
-        fields << %(<input type="checkbox" id="task_#{id}_completion_check" class="task_completion" #{completion_checkbox_state} />)
-        fields << %(<label id="task_#{id}_completion_mark" for="task_#{id}_completion_check"></label>)
-        fields.html_safe
+        completion_form_fields(self)
       end
     end
   end

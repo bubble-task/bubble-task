@@ -21,5 +21,11 @@ module TaskPresenter
       return unless deadline
       I18n.l(deadline, format: :short)
     end
+
+    def completion_form(view)
+      view.form_for(completion_command, url: view.complete_task_url(self), method: :put, remote: true) do |f|
+        completion_form_fields(self)
+      end
+    end
   end
 end
