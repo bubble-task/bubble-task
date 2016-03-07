@@ -12,6 +12,10 @@ module TaskPresenter
       fields.html_safe
     end
 
+    def signed_up?(user)
+      assignees.include?(user)
+    end
+
     private
 
      def completion_checkbox_id(task_id)

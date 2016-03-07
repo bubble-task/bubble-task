@@ -48,6 +48,13 @@ describe 'タスクの完了', js: true do
       wait_completion
       expect(completion_checkbox(task.id)).to be_checked
     end
+
+    it do
+      complete_task(task.id)
+      wait_completion
+      visit task_path(task.id)
+      expect(completion_checkbox(task.id)).to be_checked
+    end
   end
 
   describe '公開タスク:自分がサインアップしていないタスクを完了にする' do

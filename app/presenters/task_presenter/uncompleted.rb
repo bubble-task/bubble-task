@@ -5,10 +5,6 @@ module TaskPresenter
       TaskCompletion.new(task_id: id)
     end
 
-    def signed_up?(user)
-      assignees.include?(user)
-    end
-
     def completed_on
       nil
     end
@@ -20,6 +16,10 @@ module TaskPresenter
     def show_deadline
       return unless deadline
       I18n.l(deadline, format: :short)
+    end
+
+    def timestamp
+      show_deadline
     end
 
     def completion_form(view)
