@@ -1,13 +1,13 @@
 module TaskPresenter
   class Uncompleted < SimpleDelegator
 
-    def completion_checkbox_state
-      nil
-    end
-
     def timestamp
       return unless deadline
       I18n.l(deadline, format: :short)
+    end
+
+    def completion_checkbox_state
+      nil
     end
 
     def completion_form(view)
