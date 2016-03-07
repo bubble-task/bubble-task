@@ -1,13 +1,1 @@
-<% if task.completed? %>
-
-  <%= task.completion_form(self) %>
-
-<% else -%>
-
-  <% if task.can_complete?(current_user.id) -%>
-    <%= task.completion_form(self) %>
-  <% else -%>
-    <p></p>
-  <% end -%>
-
-<% end -%>
+<%= task.completion_form(self) %>
