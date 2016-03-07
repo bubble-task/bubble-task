@@ -48,8 +48,7 @@ describe 'GET /search' do
 
     it do
       get search_path(c: { from_date: '2016-02-01', to_date: '2016-02-02', is_signed_up_only: '0', completion_state: 'completed' })
-      tasks = assigns(:tasks)
-      expect(tasks).to eq(expected_tasks)
+      expect(assigned_task_ids).to match_array(expected_tasks.map(&:id))
     end
   end
 
