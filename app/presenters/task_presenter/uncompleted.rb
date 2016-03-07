@@ -5,13 +5,9 @@ module TaskPresenter
       nil
     end
 
-    def show_deadline
+    def timestamp
       return unless deadline
       I18n.l(deadline, format: :short)
-    end
-
-    def timestamp
-      show_deadline
     end
 
     def completion_form(view)
